@@ -1,0 +1,274 @@
+oke supaya kamu dapat pemahaman tentang kode yang sudah saya buat (baik yang sudah ada dan saya tambahi sekarang) supaya lebih 1 pemahaman dan pandangan kita.
+
+roles.ts:
+export const ROLE_LABELS = {
+  public: "Masyarakat",
+  admin: "Admin Desa",
+  kepala_desa: "Kepala Desa",
+  sekdes: "Sekretaris Desa",
+  kepala_dusun: "Kepala Dusun",
+  kasi: "Kepala Seksi"
+} as const;
+
+routes.ts:
+import type { UserRole } from "@/src/types/profile";
+
+export const ROUTES = {
+  HOME: "/",
+  LOGIN: "/auth/login",
+  REGISTER: "/auth/register",
+
+  DASHBOARD: "/dashboard",
+
+  REPORT_CREATE: "/reports/create",
+
+  ADMIN_DASHBOARD: "/dashboard/admin",
+  HAMLET_HEAD_DASHBOARD: "/dashboard/hamlet-head",
+  VILLAGE_DASHBOARD: "/dashboard/village",
+  PUBLIC_DASHBOARD: "/dashboard/public",
+  KASI_DASHBOARD: "/dashboard/kasi"
+} as const;
+
+export function getDashboardRouteByRole(role: UserRole | null | undefined) {
+  switch (role) {
+    case "admin":
+      return ROUTES.ADMIN_DASHBOARD;
+
+    case "kepala_dusun":
+      return ROUTES.HAMLET_HEAD_DASHBOARD;
+
+    case "kepala_desa":
+    case "sekdes":
+      return ROUTES.VILLAGE_DASHBOARD;
+    
+    case "kasi":
+      return ROUTES.KASI_DASHBOARD;
+
+    case "public":
+      return ROUTES.PUBLIC_DASHBOARD;
+
+    default:
+      return ROUTES.LOGIN;
+  }
+}
+
+auth/profile types:
+export type UserRole =
+  | "public"
+  | "admin"
+  | "kepala_desa"
+  | "sekdes"
+  | "kepala_dusun"
+  | "kasi";
+
+export type UserProfile = {
+  id: string;
+  full_name: string;
+  email: string;
+  phone_number: string | null;
+  role: UserRole;
+  dusun_id: string | null;
+  avatar_url: string | null;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+};
+
+report status.ts:
+export const REPORT_STATUS_LABELS = {
+  pending: "Menunggu",
+  approved: "Disetujui",
+  rejected: "Ditolak",
+  need_verification: "Perlu Verifikasi",
+  verified_valid: "Terverifikasi Valid",
+  verified_invalid: "Terverifikasi Tidak Valid",
+  classified: "Diklasifikasikan",
+  handled_by_village: "Ditangani Desa",
+  forwarded_to_agency: "Diteruskan ke Instansi",
+  waiting_budget: "Menunggu Anggaran",
+  in_progress: "Diproses",
+  resolved: "Selesai",
+  archived: "Diarsipkan",
+  merged: "Merged",
+} as const;
+
+export const REPORT_STATUS_BADGE_CLASSES = {
+  pending: "bg-warning-50 text-warning-700 border-warning-100",
+  approved: "bg-info-50 text-info-700 border-info-100",
+  rejected: "bg-danger-50 text-danger-700 border-danger-100",
+  need_verification: "bg-warning-50 text-warning-700 border-warning-100",
+  verified_valid: "bg-success-50 text-success-700 border-success-100",
+  verified_invalid: "bg-danger-50 text-danger-700 border-danger-100",
+  classified: "bg-primary-50 text-primary-700 border-primary-100",
+  handled_by_village: "bg-info-50 text-info-700 border-info-100",
+  forwarded_to_agency: "bg-primary-50 text-primary-700 border-primary-100",
+  waiting_budget: "bg-warning-50 text-warning-700 border-warning-100",
+  in_progress: "bg-info-50 text-info-700 border-info-100",
+  resolved: "bg-success-50 text-success-700 border-success-100",
+  archived: "bg-muted text-muted-foreground border-border",
+  merged: "bg-slate-100 text-slate-700",
+} as const;
+
+database.ts : kosong
+/dashboard/kasi : seperti yang kamu berikan
+dashboardNavigation.tsx:
+import {
+  Archive,
+  ArrowRightCircle,
+  BarChart3,
+  ClipboardList,
+  Database,
+  FileText,
+  Gauge,
+  Home,
+  Map,
+  PlusCircle,
+  ShieldCheck,
+  Tags,
+  Users,
+  Building2,
+  Timer,
+  type LucideIcon,
+} from "lucide-react";
+import type { UserRole } from "@/src/types/profile";
+
+export type DashboardNavItem = {
+  label: string;
+  href?: string;
+  icon: LucideIcon;
+  children?: {
+    label: string;
+    href: string;
+    icon: LucideIcon;
+  }[];
+};
+
+export function getDashboardNavigation(role: UserRole): DashboardNavItem[] {
+  if (role === "admin") {
+    return [
+      { label: "Overview", href: "/dashboard/admin", icon: Home },
+      {
+        label: "Reports",
+        href: "/dashboard/admin/reports",
+        icon: ClipboardList,
+      },
+      {
+        label: "Asset Classification",
+        href: "/dashboard/admin/asset-classification",
+        icon: Database,
+      },
+      {
+        label: "Follow-up",
+        href: "/dashboard/admin/follow-up",
+        icon: ArrowRightCircle,
+      },
+      {
+        label: "Archive",
+        href: "/dashboard/admin/archive",
+        icon: Archive,
+      },
+      {
+        label: "Letters",
+        href: "/dashboard/admin/letters",
+        icon: FileText,
+      },
+      {
+        label: "Master Data",
+        icon: Database,
+        children: [
+          {
+            label: "Categories",
+            href: "/dashboard/admin/master-data/categories",
+            icon: Tags,
+          },
+          {
+            label: "Dusun",
+            href: "/dashboard/admin/master-data/dusuns",
+            icon: Map,
+          },
+          {
+            label: "Agencies",
+            href: "/dashboard/admin/master-data/agencies",
+            icon: Building2,
+          },
+          {
+            label: "SLA Rules",
+            href: "/dashboard/admin/master-data/sla-rules",
+            icon: Timer,
+          },
+        ],
+      },
+    ];
+  }
+
+  if (role === "kepala_dusun") {
+    return [
+      { label: "Overview", href: "/dashboard/hamlet-head", icon: Home },
+      {
+        label: "Reports",
+        href: "/dashboard/hamlet-head/reports",
+        icon: ClipboardList,
+      },
+      {
+        label: "Verification",
+        href: "/dashboard/hamlet-head/verification",
+        icon: ShieldCheck,
+      },
+      {
+        label: "History",
+        href: "/dashboard/hamlet-head/history",
+        icon: Archive,
+      },
+    ];
+  }
+
+  if (role === "kepala_desa" || role === "sekdes") {
+    return [
+      { label: "Overview", href: "/dashboard/village", icon: Home },
+      {
+        label: "Analytics",
+        href: "/dashboard/village/analytics",
+        icon: BarChart3,
+      },
+      {
+        label: "SLA Monitoring",
+        href: "/dashboard/village/sla",
+        icon: Gauge,
+      },
+      {
+        label: "Heatmap",
+        href: "/dashboard/village/heatmap",
+        icon: Map,
+      },
+      {
+        label: "Users",
+        href: "/dashboard/village/users",
+        icon: Users,
+      },
+      {
+        label: "Archive",
+        href: "/dashboard/village/archive",
+        icon: Archive,
+      },
+    ];
+  }
+
+  if (role === "kasi") {
+    return [
+      { label: "Overview", href: "/dashboard/village", icon: Home },
+    ]
+  }
+
+  return [
+    {
+      label: "Overview",
+      href: "/dashboard/public",
+      icon: Home,
+    },
+    {
+      label: "My Reports",
+      href: "/dashboard/public/reports",
+      icon: ClipboardList,
+    },
+  ];
+}

@@ -1,0 +1,33 @@
+export const REPORT_STATUS_LABELS = {
+  pending: "Menunggu",
+  approved: "Disetujui",
+  rejected: "Ditolak",
+  need_verification: "Perlu Verifikasi",
+  verified_valid: "Terverifikasi Valid",
+  verified_invalid: "Terverifikasi Tidak Valid",
+  classified: "Diklasifikasikan",
+  handled_by_village: "Ditangani Desa",
+  forwarded_to_agency: "Diteruskan ke Instansi",
+  waiting_budget: "Menunggu Anggaran",
+  in_progress: "Diproses",
+  resolved: "Selesai",
+  archived: "Diarsipkan",
+  merged: "Digabungkan",
+} as const;
+
+export const REPORT_STATUS_BADGE_CLASSES = {
+  pending: "bg-warning-50 text-warning-700 border-warning-100",
+  approved: "bg-info-50 text-info-700 border-info-100",
+  rejected: "bg-danger-50 text-danger-700 border-danger-100",
+  need_verification: "bg-warning-50 text-warning-700 border-warning-100",
+  verified_valid: "bg-success-50 text-success-700 border-success-100",
+  verified_invalid: "bg-danger-50 text-danger-700 border-danger-100",
+  classified: "bg-primary-50 text-primary-700 border-primary-100",
+  handled_by_village: "bg-info-50 text-info-700 border-info-100",
+  forwarded_to_agency: "bg-primary-50 text-primary-700 border-primary-100",
+  waiting_budget: "bg-warning-50 text-warning-700 border-warning-100",
+  in_progress: "bg-info-50 text-info-700 border-info-100",
+  resolved: "bg-success-50 text-success-700 border-success-100",
+  archived: "bg-muted text-muted-foreground border-border",
+  merged: "bg-slate-100 text-slate-700 border-slate-200",
+} as const;

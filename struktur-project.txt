@@ -1,0 +1,391 @@
+Folder PATH listing
+Volume serial number is 00000271 121B:FB95
+D:\MACHUNG\MAGANG\LAPOR-AJA\SRC
++---app
+|   |   error.tsx
+|   |   favicon.ico
+|   |   globals.css
+|   |   layout.tsx
+|   |   loading.tsx
+|   |   not-found.tsx
+|   |   page.tsx
+|   |   
+|   +---(auth)
+|   |   \---auth
+|   |       +---login
+|   |       |       page.tsx
+|   |       |       
+|   |       \---register
+|   |               page.tsx
+|   |               
+|   +---(dashboard)
+|   |   |   layout.tsx
+|   |   |   
+|   |   \---dashboard
+|   |       |   page.tsx
+|   |       |   
+|   |       +---admin
+|   |       |   |   layout.tsx
+|   |       |   |   page.tsx
+|   |       |   |   
+|   |       |   +---approval
+|   |       |   |       page.tsx
+|   |       |   |       
+|   |       |   +---archive
+|   |       |   |       page.tsx
+|   |       |   |       
+|   |       |   +---asset-classification
+|   |       |   |   |   page.tsx
+|   |       |   |   |   
+|   |       |   |   \---[id]
+|   |       |   |           page.tsx
+|   |       |   |           
+|   |       |   +---follow-up
+|   |       |   |       page.tsx
+|   |       |   |       
+|   |       |   +---letters
+|   |       |   |   |   page.tsx
+|   |       |   |   |   
+|   |       |   |   \---[letterId]
+|   |       |   |           page.tsx
+|   |       |   |           
+|   |       |   +---master-data
+|   |       |   |   |   page.tsx
+|   |       |   |   |   
+|   |       |   |   +---agencies
+|   |       |   |   |       page.tsx
+|   |       |   |   |       
+|   |       |   |   +---categories
+|   |       |   |   |       page.tsx
+|   |       |   |   |       
+|   |       |   |   +---dusuns
+|   |       |   |   |       page.tsx
+|   |       |   |   |       
+|   |       |   |   \---sla-rules
+|   |       |   |           page.tsx
+|   |       |   |           
+|   |       |   \---reports
+|   |       |       |   page.tsx
+|   |       |       |   
+|   |       |       \---[id]
+|   |       |               page.tsx
+|   |       |               
+|   |       +---hamlet-head
+|   |       |   |   layout.tsx
+|   |       |   |   page.tsx
+|   |       |   |   
+|   |       |   +---history
+|   |       |   |       page.tsx
+|   |       |   |       
+|   |       |   +---reports
+|   |       |   |       page.tsx
+|   |       |   |       
+|   |       |   \---verification
+|   |       |       |   page.tsx
+|   |       |       |   
+|   |       |       \---[id]
+|   |       |               page.tsx
+|   |       |               
+|   |       +---public
+|   |       |   |   page.tsx
+|   |       |   |   
+|   |       |   \---reports
+|   |       |       |   page.tsx
+|   |       |       |   
+|   |       |       \---[id]
+|   |       |               page.tsx
+|   |       |               
+|   |       \---village
+|   |           |   layout.tsx
+|   |           |   page.tsx
+|   |           |   
+|   |           +---analytics
+|   |           |       page.tsx
+|   |           |       
+|   |           +---archive
+|   |           |   |   page.tsx
+|   |           |   |   
+|   |           |   \---[id]
+|   |           |           page.tsx
+|   |           |           
+|   |           +---heatmap
+|   |           |       page.tsx
+|   |           |       
+|   |           +---letters
+|   |           |       page.tsx
+|   |           |       
+|   |           +---sla
+|   |           |       page.tsx
+|   |           |       
+|   |           \---users
+|   |               |   page.tsx
+|   |               |   
+|   |               \---[id]
+|   |                       page.tsx
+|   |                       
+|   +---(public)
+|   |   +---guide
+|   |   |       page.tsx
+|   |   |       
+|   |   \---reports
+|   |       \---create
+|   |               page.tsx
+|   |               
+|   \---api
+|       +---exports
+|       |   \---reports
+|       |           route.ts
+|       |           
+|       +---letters
+|       |   +---generate
+|       |   |       route.ts
+|       |   |       
+|       |   \---[id]
+|       |           route.ts
+|       |           
+|       +---notifications
+|       |   \---email
+|       |           route.ts
+|       |           
+|       +---reports
+|       |   |   route.ts
+|       |   |   
+|       |   \---[id]
+|       |           route.ts
+|       |           
+|       +---test-brevo
+|       |       route.ts
+|       |       
+|       \---uploads
+|           +---report-photo
+|           |       route.ts
+|           |       
+|           \---verification-photo
+|                   route.ts
+|                   
++---components
+|   +---layout
+|   |       DashboardNavbar.tsx
+|   |       dashboardNavigation.tsx
+|   |       DashboardShell.tsx
+|   |       DashboardSidebar.tsx
+|   |       PublicNavbar.tsx
+|   |       PublicShell.tsx
+|   |       
+|   +---shared
+|   |       ComingSoonPage.tsx
+|   |       ConfirmDialog.tsx
+|   |       EmptyState.tsx
+|   |       LoadingState.tsx
+|   |       PageHeader.tsx
+|   |       
+|   \---ui
+|           Alert.tsx
+|           Badge.tsx
+|           Button.tsx
+|           Card.tsx
+|           Input.tsx
+|           Modal.tsx
+|           Select.tsx
+|           Table.tsx
+|           Textarea.tsx
+|           Toaster.tsx
+|           
++---features
+|   +---admin
+|   |   |   actions.ts
+|   |   |   queries.ts
+|   |   |   
+|   |   \---components
+|   |           AdminArchivePanel.tsx
+|   |           AdminAssetClassificationPanel.tsx
+|   |           AdminAssetClassificationTable.tsx
+|   |           AdminFollowUpPanel.tsx
+|   |           AdminFollowUpProgressPanel.tsx
+|   |           AdminFollowUpTable.tsx
+|   |           AdminReportReviewPanel.tsx
+|   |           AdminReportTable.tsx
+|   |           AgencyAssignmentForm.tsx
+|   |           AssetClassificationForm.tsx
+|   |           FinalizeOfficialLetterButton.tsx
+|   |           GenerateOfficialLetterButton.tsx
+|   |           OfficialLetterPanel.tsx
+|   |           PrintLetterButton.tsx
+|   |           ReportApprovalActions.tsx
+|   |           ReportClassificationForm.tsx
+|   |           
+|   +---auth
+|   |   |   actions.ts
+|   |   |   validations.ts
+|   |   |   
+|   |   \---components
+|   |           AuthLayout.tsx
+|   |           LoginForm.tsx
+|   |           LogoutButton.tsx
+|   |           RegisterForm.tsx
+|   |           
+|   +---citizen
+|   |   |   queries.ts
+|   |   |   
+|   |   \---components
+|   |           CitizenReportTable.tsx
+|   |           CitizenStatCard.tsx
+|   |           
+|   +---dashboard
+|   |   |   calculations.ts
+|   |   |   queries.ts
+|   |   |   
+|   |   \---components
+|   |           ReportCategoryChart.tsx
+|   |           ReportHamletChart.tsx
+|   |           ReportStatusChart.tsx
+|   |           SlaSummaryCard.tsx
+|   |           StatCard.tsx
+|   |           
+|   +---hamlet-head
+|   |   |   actions.ts
+|   |   |   queries.ts
+|   |   |   
+|   |   \---components
+|   |           HamletAssignedReportsTable.tsx
+|   |           HamletHeadStatCard.tsx
+|   |           HamletVerificationActionPanel.tsx
+|   |           HamletVerificationHistoryTable.tsx
+|   |           HamletVerificationTable.tsx
+|   |           
+|   +---letters
+|   |   |   actions.ts
+|   |   |   queries.ts
+|   |   |   
+|   |   \---components
+|   |           ArchiveActionButton.tsx
+|   |           ArchiveReportTable.tsx
+|   |           
+|   +---maps
+|   |   |   helpers.ts
+|   |   |   
+|   |   \---components
+|   |           ReportHeatmap.tsx
+|   |           ReportLocationPicker.tsx
+|   |           ReportMapView.tsx
+|   |           
+|   +---master-data
+|   |   |   actions.ts
+|   |   |   queries.ts
+|   |   |   
+|   |   \---components
+|   |           AgencyCreateModal.tsx
+|   |           AgencyTable.tsx
+|   |           CategoryCreateModal.tsx
+|   |           CategoryTable.tsx
+|   |           DusunCreateModal.tsx
+|   |           DusunTable.tsx
+|   |           HamletTable.tsx
+|   |           SlaRuleTable.tsx
+|   |           
+|   +---reports
+|   |   |   actions.ts
+|   |   |   helpers.ts
+|   |   |   queries.ts
+|   |   |   statusLogs.ts
+|   |   |   validations.ts
+|   |   |   
+|   |   \---components
+|   |           CreateReportModal.tsx
+|   |           ReportCard.tsx
+|   |           ReportCommentForm.tsx
+|   |           ReportCommentList.tsx
+|   |           ReportDetail.tsx
+|   |           ReportForm.tsx
+|   |           ReportLocationMap.tsx
+|   |           ReportLocationPreviewMap.tsx
+|   |           ReportLocationPreviewSection.tsx
+|   |           ReportPhotoUploader.tsx
+|   |           ReportStatusBadge.tsx
+|   |           ReportStatusTimeline.tsx
+|   |           
+|   +---verification
+|   |   |   actions.ts
+|   |   |   queries.ts
+|   |   |   
+|   |   \---components
+|   |           HamletReportTable.tsx
+|   |           VerificationForm.tsx
+|   |           VerificationPhotoUploader.tsx
+|   |           
+|   \---village
+|       |   actions.ts
+|       |   queries.ts
+|       |   
+|       \---components
+|               VillageAnalyticsCard.tsx
+|               VillageAnalyticsCharts.tsx
+|               VillageArchiveTable.tsx
+|               VillageHeatmapMap.tsx
+|               VillageHeatmapSection.tsx
+|               VillageSlaTable.tsx
+|               VillageStatCard.tsx
+|               VillageUserCreateForm.tsx
+|               VillageUserCreateModal.tsx
+|               VillageUserEditForm.tsx
+|               VillageUsersTable.tsx
+|               
++---hooks
+|       useAuth.ts
+|       useDebounce.ts
+|       useGeolocation.ts
+|       useReportDraft.ts
+|       useUserProfile.ts
+|       
++---lib
+|   |   utils.ts
+|   |   
+|   +---auth
+|   |       getProfile.ts
+|   |       getUser.ts
+|   |       requireAuth.ts
+|   |       requireRole.ts
+|   |       
+|   +---constants
+|   |       reportPriority.ts
+|   |       reportStatus.ts
+|   |       roles.ts
+|   |       routes.ts
+|   |       storageBuckets.ts
+|   |       
+|   +---email
+|   |       brevo.ts
+|   |       sendEmail.ts
+|   |       templates.ts
+|   |       
+|   +---maps
+|   |       coordinates.ts
+|   |       reverseGeocode.ts
+|   |       
+|   +---pdf
+|   |       generateLetterPdf.ts
+|   |       generateReportPdf.ts
+|   |       generateSummaryPdf.ts
+|   |       
+|   +---storage
+|   |       getSignedUrl.ts
+|   |       uploadReportPhoto.ts
+|   |       uploadVerificationPhoto.ts
+|   |       
+|   \---supabase
+|           admin.ts
+|           client.ts
+|           server.ts
+|           service.ts
+|           
+\---types
+        action.ts
+        auth.ts
+        dashboard.ts
+        database.ts
+        letter.ts
+        notification.ts
+        profile.ts
+        report.ts
+        verification.ts
+        

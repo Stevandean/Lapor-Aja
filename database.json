@@ -1,0 +1,2265 @@
+[
+  {
+    "database_schema_summary": {
+      "enums": [
+        {
+          "enum_name": "asset_status",
+          "enum_value": "aset_desa"
+        },
+        {
+          "enum_name": "asset_status",
+          "enum_value": "belum_diketahui"
+        },
+        {
+          "enum_name": "asset_status",
+          "enum_value": "bukan_aset_desa"
+        },
+        {
+          "enum_name": "authority_level",
+          "enum_value": "belum_diketahui"
+        },
+        {
+          "enum_name": "authority_level",
+          "enum_value": "desa"
+        },
+        {
+          "enum_name": "authority_level",
+          "enum_value": "kabupaten_kota"
+        },
+        {
+          "enum_name": "authority_level",
+          "enum_value": "nasional"
+        },
+        {
+          "enum_name": "authority_level",
+          "enum_value": "provinsi"
+        },
+        {
+          "enum_name": "follow_up_type",
+          "enum_value": "belum_ditentukan"
+        },
+        {
+          "enum_name": "follow_up_type",
+          "enum_value": "ditangani_desa"
+        },
+        {
+          "enum_name": "follow_up_type",
+          "enum_value": "diteruskan_ke_dinas"
+        },
+        {
+          "enum_name": "follow_up_type",
+          "enum_value": "diusulkan_musrenbang"
+        },
+        {
+          "enum_name": "follow_up_type",
+          "enum_value": "menunggu_anggaran"
+        },
+        {
+          "enum_name": "letter_status",
+          "enum_value": "draft"
+        },
+        {
+          "enum_name": "letter_status",
+          "enum_value": "final"
+        },
+        {
+          "enum_name": "letter_status",
+          "enum_value": "sent"
+        },
+        {
+          "enum_name": "letter_type",
+          "enum_value": "surat_permohonan_perbaikan"
+        },
+        {
+          "enum_name": "letter_type",
+          "enum_value": "surat_tugas_verifikasi"
+        },
+        {
+          "enum_name": "notification_status",
+          "enum_value": "failed"
+        },
+        {
+          "enum_name": "notification_status",
+          "enum_value": "pending"
+        },
+        {
+          "enum_name": "notification_status",
+          "enum_value": "sent"
+        },
+        {
+          "enum_name": "report_priority",
+          "enum_value": "darurat"
+        },
+        {
+          "enum_name": "report_priority",
+          "enum_value": "rendah"
+        },
+        {
+          "enum_name": "report_priority",
+          "enum_value": "sedang"
+        },
+        {
+          "enum_name": "report_priority",
+          "enum_value": "tinggi"
+        },
+        {
+          "enum_name": "report_status",
+          "enum_value": "approved"
+        },
+        {
+          "enum_name": "report_status",
+          "enum_value": "archived"
+        },
+        {
+          "enum_name": "report_status",
+          "enum_value": "classified"
+        },
+        {
+          "enum_name": "report_status",
+          "enum_value": "forwarded_to_agency"
+        },
+        {
+          "enum_name": "report_status",
+          "enum_value": "handled_by_village"
+        },
+        {
+          "enum_name": "report_status",
+          "enum_value": "in_progress"
+        },
+        {
+          "enum_name": "report_status",
+          "enum_value": "need_verification"
+        },
+        {
+          "enum_name": "report_status",
+          "enum_value": "pending"
+        },
+        {
+          "enum_name": "report_status",
+          "enum_value": "rejected"
+        },
+        {
+          "enum_name": "report_status",
+          "enum_value": "resolved"
+        },
+        {
+          "enum_name": "report_status",
+          "enum_value": "verified_invalid"
+        },
+        {
+          "enum_name": "report_status",
+          "enum_value": "verified_valid"
+        },
+        {
+          "enum_name": "report_status",
+          "enum_value": "waiting_budget"
+        },
+        {
+          "enum_name": "sla_status",
+          "enum_value": "at_risk"
+        },
+        {
+          "enum_name": "sla_status",
+          "enum_value": "completed"
+        },
+        {
+          "enum_name": "sla_status",
+          "enum_value": "on_time"
+        },
+        {
+          "enum_name": "sla_status",
+          "enum_value": "overdue"
+        },
+        {
+          "enum_name": "user_role",
+          "enum_value": "admin"
+        },
+        {
+          "enum_name": "user_role",
+          "enum_value": "kepala_desa"
+        },
+        {
+          "enum_name": "user_role",
+          "enum_value": "kepala_dusun"
+        },
+        {
+          "enum_name": "user_role",
+          "enum_value": "public"
+        },
+        {
+          "enum_name": "user_role",
+          "enum_value": "sekdes"
+        }
+      ],
+      "columns": [
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "agencies",
+          "column_name": "id",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()",
+          "ordinal_position": 1
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "agencies",
+          "column_name": "name",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 2
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "agencies",
+          "column_name": "type",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 3
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "agencies",
+          "column_name": "address",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 4
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "agencies",
+          "column_name": "email",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 5
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "agencies",
+          "column_name": "phone_number",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 6
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "agencies",
+          "column_name": "created_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 7
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "agencies",
+          "column_name": "updated_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 8
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "agencies",
+          "column_name": "description",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 9
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "agencies",
+          "column_name": "contact_person",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 10
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "agencies",
+          "column_name": "phone",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 11
+        },
+        {
+          "udt_name": "bool",
+          "data_type": "boolean",
+          "table_name": "agencies",
+          "column_name": "is_active",
+          "is_nullable": "NO",
+          "column_default": "true",
+          "ordinal_position": 12
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "categories",
+          "column_name": "id",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()",
+          "ordinal_position": 1
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "categories",
+          "column_name": "name",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 2
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "categories",
+          "column_name": "description",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 3
+        },
+        {
+          "udt_name": "report_priority",
+          "data_type": "USER-DEFINED",
+          "table_name": "categories",
+          "column_name": "default_priority",
+          "is_nullable": "YES",
+          "column_default": "'sedang'::report_priority",
+          "ordinal_position": 4
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "categories",
+          "column_name": "created_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 5
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "categories",
+          "column_name": "updated_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 6
+        },
+        {
+          "udt_name": "bool",
+          "data_type": "boolean",
+          "table_name": "categories",
+          "column_name": "is_active",
+          "is_nullable": "NO",
+          "column_default": "true",
+          "ordinal_position": 7
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "dusuns",
+          "column_name": "id",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()",
+          "ordinal_position": 1
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "dusuns",
+          "column_name": "name",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 2
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "dusuns",
+          "column_name": "description",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 3
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "dusuns",
+          "column_name": "created_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 4
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "dusuns",
+          "column_name": "updated_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 5
+        },
+        {
+          "udt_name": "bool",
+          "data_type": "boolean",
+          "table_name": "dusuns",
+          "column_name": "is_active",
+          "is_nullable": "NO",
+          "column_default": "true",
+          "ordinal_position": 6
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "notifications",
+          "column_name": "id",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()",
+          "ordinal_position": 1
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "notifications",
+          "column_name": "user_id",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 2
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "notifications",
+          "column_name": "report_id",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 3
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "notifications",
+          "column_name": "recipient_email",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 4
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "notifications",
+          "column_name": "subject",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 5
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "notifications",
+          "column_name": "message",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 6
+        },
+        {
+          "udt_name": "notification_status",
+          "data_type": "USER-DEFINED",
+          "table_name": "notifications",
+          "column_name": "status",
+          "is_nullable": "NO",
+          "column_default": "'pending'::notification_status",
+          "ordinal_position": 7
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "notifications",
+          "column_name": "sent_at",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 8
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "notifications",
+          "column_name": "error_message",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 9
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "notifications",
+          "column_name": "created_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 10
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "official_letters",
+          "column_name": "id",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()",
+          "ordinal_position": 1
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "official_letters",
+          "column_name": "report_id",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 2
+        },
+        {
+          "udt_name": "letter_type",
+          "data_type": "USER-DEFINED",
+          "table_name": "official_letters",
+          "column_name": "letter_type",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 3
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "official_letters",
+          "column_name": "letter_number",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 4
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "official_letters",
+          "column_name": "subject",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 5
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "official_letters",
+          "column_name": "recipient_agency_id",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 6
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "official_letters",
+          "column_name": "generated_by",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 7
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "official_letters",
+          "column_name": "generated_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 8
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "official_letters",
+          "column_name": "signed_by",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 9
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "official_letters",
+          "column_name": "signed_at",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 10
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "official_letters",
+          "column_name": "pdf_url",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 11
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "official_letters",
+          "column_name": "file_path",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 12
+        },
+        {
+          "udt_name": "letter_status",
+          "data_type": "USER-DEFINED",
+          "table_name": "official_letters",
+          "column_name": "status",
+          "is_nullable": "NO",
+          "column_default": "'draft'::letter_status",
+          "ordinal_position": 13
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "official_letters",
+          "column_name": "created_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 14
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "official_letters",
+          "column_name": "updated_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 15
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "official_letters",
+          "column_name": "body",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 16
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "profiles",
+          "column_name": "id",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 1
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "profiles",
+          "column_name": "full_name",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 2
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "profiles",
+          "column_name": "email",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 3
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "profiles",
+          "column_name": "phone_number",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 4
+        },
+        {
+          "udt_name": "user_role",
+          "data_type": "USER-DEFINED",
+          "table_name": "profiles",
+          "column_name": "role",
+          "is_nullable": "NO",
+          "column_default": "'public'::user_role",
+          "ordinal_position": 5
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "profiles",
+          "column_name": "dusun_id",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 6
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "profiles",
+          "column_name": "avatar_url",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 7
+        },
+        {
+          "udt_name": "bool",
+          "data_type": "boolean",
+          "table_name": "profiles",
+          "column_name": "is_active",
+          "is_nullable": "NO",
+          "column_default": "true",
+          "ordinal_position": 8
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "profiles",
+          "column_name": "created_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 9
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "profiles",
+          "column_name": "updated_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 10
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "report_comments",
+          "column_name": "id",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()",
+          "ordinal_position": 1
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "report_comments",
+          "column_name": "report_id",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 2
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "report_comments",
+          "column_name": "user_id",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 3
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "report_comments",
+          "column_name": "comment",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 4
+        },
+        {
+          "udt_name": "bool",
+          "data_type": "boolean",
+          "table_name": "report_comments",
+          "column_name": "is_internal",
+          "is_nullable": "NO",
+          "column_default": "false",
+          "ordinal_position": 5
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "report_comments",
+          "column_name": "created_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 6
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "report_photos",
+          "column_name": "id",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()",
+          "ordinal_position": 1
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "report_photos",
+          "column_name": "report_id",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 2
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "report_photos",
+          "column_name": "photo_url",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 3
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "report_photos",
+          "column_name": "file_path",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 4
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "report_photos",
+          "column_name": "uploaded_by",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 5
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "report_photos",
+          "column_name": "created_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 6
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "report_status_logs",
+          "column_name": "id",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()",
+          "ordinal_position": 1
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "report_status_logs",
+          "column_name": "report_id",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 2
+        },
+        {
+          "udt_name": "report_status",
+          "data_type": "USER-DEFINED",
+          "table_name": "report_status_logs",
+          "column_name": "old_status",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 3
+        },
+        {
+          "udt_name": "report_status",
+          "data_type": "USER-DEFINED",
+          "table_name": "report_status_logs",
+          "column_name": "new_status",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 4
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "report_status_logs",
+          "column_name": "changed_by",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 5
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "report_status_logs",
+          "column_name": "note",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 6
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "report_status_logs",
+          "column_name": "created_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 7
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "report_verifications",
+          "column_name": "id",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()",
+          "ordinal_position": 1
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "report_verifications",
+          "column_name": "report_id",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 2
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "report_verifications",
+          "column_name": "verified_by",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 3
+        },
+        {
+          "udt_name": "bool",
+          "data_type": "boolean",
+          "table_name": "report_verifications",
+          "column_name": "is_valid",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 4
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "report_verifications",
+          "column_name": "verification_note",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 5
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "report_verifications",
+          "column_name": "verified_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 6
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "report_verifications",
+          "column_name": "created_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 7
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "reports",
+          "column_name": "id",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()",
+          "ordinal_position": 1
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "reports",
+          "column_name": "report_number",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 2
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "reports",
+          "column_name": "reporter_id",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 3
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "reports",
+          "column_name": "title",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 4
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "reports",
+          "column_name": "description",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 5
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "reports",
+          "column_name": "category_id",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 6
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "reports",
+          "column_name": "dusun_id",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 7
+        },
+        {
+          "udt_name": "numeric",
+          "data_type": "numeric",
+          "table_name": "reports",
+          "column_name": "latitude",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 8
+        },
+        {
+          "udt_name": "numeric",
+          "data_type": "numeric",
+          "table_name": "reports",
+          "column_name": "longitude",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 9
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "reports",
+          "column_name": "auto_address",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 10
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "reports",
+          "column_name": "manual_address",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 11
+        },
+        {
+          "udt_name": "report_status",
+          "data_type": "USER-DEFINED",
+          "table_name": "reports",
+          "column_name": "status",
+          "is_nullable": "NO",
+          "column_default": "'pending'::report_status",
+          "ordinal_position": 12
+        },
+        {
+          "udt_name": "report_priority",
+          "data_type": "USER-DEFINED",
+          "table_name": "reports",
+          "column_name": "priority",
+          "is_nullable": "NO",
+          "column_default": "'sedang'::report_priority",
+          "ordinal_position": 13
+        },
+        {
+          "udt_name": "asset_status",
+          "data_type": "USER-DEFINED",
+          "table_name": "reports",
+          "column_name": "asset_status",
+          "is_nullable": "NO",
+          "column_default": "'belum_diketahui'::asset_status",
+          "ordinal_position": 14
+        },
+        {
+          "udt_name": "authority_level",
+          "data_type": "USER-DEFINED",
+          "table_name": "reports",
+          "column_name": "authority_level",
+          "is_nullable": "NO",
+          "column_default": "'belum_diketahui'::authority_level",
+          "ordinal_position": 15
+        },
+        {
+          "udt_name": "follow_up_type",
+          "data_type": "USER-DEFINED",
+          "table_name": "reports",
+          "column_name": "follow_up_type",
+          "is_nullable": "NO",
+          "column_default": "'belum_ditentukan'::follow_up_type",
+          "ordinal_position": 16
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "reports",
+          "column_name": "assigned_agency_id",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 17
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "reports",
+          "column_name": "rejection_reason",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 18
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "reports",
+          "column_name": "admin_note",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 19
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "reports",
+          "column_name": "verification_due_at",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 20
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "reports",
+          "column_name": "resolution_due_at",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 21
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "reports",
+          "column_name": "resolved_at",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 22
+        },
+        {
+          "udt_name": "sla_status",
+          "data_type": "USER-DEFINED",
+          "table_name": "reports",
+          "column_name": "sla_status",
+          "is_nullable": "NO",
+          "column_default": "'on_time'::sla_status",
+          "ordinal_position": 23
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "reports",
+          "column_name": "archived_at",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 24
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "reports",
+          "column_name": "archived_by",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 25
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "reports",
+          "column_name": "archive_reason",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 26
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "reports",
+          "column_name": "created_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 27
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "reports",
+          "column_name": "updated_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 28
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "reports",
+          "column_name": "agency_id",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 29
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "sla_rules",
+          "column_name": "id",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()",
+          "ordinal_position": 1
+        },
+        {
+          "udt_name": "report_priority",
+          "data_type": "USER-DEFINED",
+          "table_name": "sla_rules",
+          "column_name": "priority",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 2
+        },
+        {
+          "udt_name": "int4",
+          "data_type": "integer",
+          "table_name": "sla_rules",
+          "column_name": "verification_hours",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 3
+        },
+        {
+          "udt_name": "int4",
+          "data_type": "integer",
+          "table_name": "sla_rules",
+          "column_name": "resolution_hours",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 4
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "sla_rules",
+          "column_name": "description",
+          "is_nullable": "YES",
+          "column_default": null,
+          "ordinal_position": 5
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "sla_rules",
+          "column_name": "created_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 6
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "sla_rules",
+          "column_name": "updated_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 7
+        },
+        {
+          "udt_name": "bool",
+          "data_type": "boolean",
+          "table_name": "sla_rules",
+          "column_name": "is_active",
+          "is_nullable": "NO",
+          "column_default": "true",
+          "ordinal_position": 8
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "verification_photos",
+          "column_name": "id",
+          "is_nullable": "NO",
+          "column_default": "gen_random_uuid()",
+          "ordinal_position": 1
+        },
+        {
+          "udt_name": "uuid",
+          "data_type": "uuid",
+          "table_name": "verification_photos",
+          "column_name": "verification_id",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 2
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "verification_photos",
+          "column_name": "photo_url",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 3
+        },
+        {
+          "udt_name": "text",
+          "data_type": "text",
+          "table_name": "verification_photos",
+          "column_name": "file_path",
+          "is_nullable": "NO",
+          "column_default": null,
+          "ordinal_position": 4
+        },
+        {
+          "udt_name": "timestamptz",
+          "data_type": "timestamp with time zone",
+          "table_name": "verification_photos",
+          "column_name": "created_at",
+          "is_nullable": "YES",
+          "column_default": "now()",
+          "ordinal_position": 5
+        }
+      ],
+      "policies": [
+        {
+          "cmd": "ALL",
+          "qual": "((get_my_role())::text = 'admin'::text)",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "agencies",
+          "permissive": "PERMISSIVE",
+          "policyname": "Admins can manage agencies",
+          "schemaname": "public",
+          "with_check": "((get_my_role())::text = 'admin'::text)"
+        },
+        {
+          "cmd": "ALL",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "agencies",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can manage agencies",
+          "schemaname": "public",
+          "with_check": "is_staff()"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "((get_my_role())::text = ANY (ARRAY['admin'::text, 'sekdes'::text, 'kepala_desa'::text, 'kepala_dusun'::text]))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "agencies",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can read agencies",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "agencies",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can view agencies",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "true",
+          "roles": [
+            "anon",
+            "authenticated"
+          ],
+          "tablename": "categories",
+          "permissive": "PERMISSIVE",
+          "policyname": "Guest and users can view categories",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "ALL",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "categories",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can manage categories",
+          "schemaname": "public",
+          "with_check": "is_staff()"
+        },
+        {
+          "cmd": "ALL",
+          "qual": "((get_my_role())::text = 'admin'::text)",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "dusuns",
+          "permissive": "PERMISSIVE",
+          "policyname": "Admins can manage dusuns",
+          "schemaname": "public",
+          "with_check": "((get_my_role())::text = 'admin'::text)"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "true",
+          "roles": [
+            "anon",
+            "authenticated"
+          ],
+          "tablename": "dusuns",
+          "permissive": "PERMISSIVE",
+          "policyname": "Guest and users can view dusuns",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "ALL",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "dusuns",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can manage dusuns",
+          "schemaname": "public",
+          "with_check": "is_staff()"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "((get_my_role())::text = ANY (ARRAY['admin'::text, 'sekdes'::text, 'kepala_desa'::text, 'kepala_dusun'::text, 'public'::text]))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "dusuns",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can read dusuns",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "ALL",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "notifications",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can manage notifications",
+          "schemaname": "public",
+          "with_check": "is_staff()"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "(user_id = ( SELECT auth.uid() AS uid))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "notifications",
+          "permissive": "PERMISSIVE",
+          "policyname": "Users can view own notifications",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "ALL",
+          "qual": "((get_my_role())::text = 'admin'::text)",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "official_letters",
+          "permissive": "PERMISSIVE",
+          "policyname": "Admins can manage official letters",
+          "schemaname": "public",
+          "with_check": "((get_my_role())::text = 'admin'::text)"
+        },
+        {
+          "cmd": "ALL",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "official_letters",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can manage official letters",
+          "schemaname": "public",
+          "with_check": "is_staff()"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "((get_my_role())::text = ANY (ARRAY['admin'::text, 'sekdes'::text, 'kepala_desa'::text]))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "official_letters",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can read official letters",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "UPDATE",
+          "qual": "can_manage_users()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "profiles",
+          "permissive": "PERMISSIVE",
+          "policyname": "Managers can update users",
+          "schemaname": "public",
+          "with_check": "can_manage_users()"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "((auth.uid() = id) OR ((get_my_role())::text = ANY (ARRAY['admin'::text, 'sekdes'::text, 'kepala_desa'::text, 'kepala_dusun'::text])))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "profiles",
+          "permissive": "PERMISSIVE",
+          "policyname": "Profiles can be read by owner and staff",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "UPDATE",
+          "qual": "((auth.uid() = id) AND (is_active = true))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "profiles",
+          "permissive": "PERMISSIVE",
+          "policyname": "Users can update own basic profile only",
+          "schemaname": "public",
+          "with_check": "((auth.uid() = id) AND (is_active = true) AND profile_protected_fields_unchanged(id, email, role, dusun_id, is_active))"
+        },
+        {
+          "cmd": "INSERT",
+          "qual": null,
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_comments",
+          "permissive": "PERMISSIVE",
+          "policyname": "Kepala dusun can comment on own dusun reports",
+          "schemaname": "public",
+          "with_check": "((user_id = ( SELECT auth.uid() AS uid)) AND is_kepala_dusun() AND (EXISTS ( SELECT 1\n   FROM reports\n  WHERE ((reports.id = report_comments.report_id) AND (reports.dusun_id = get_my_dusun_id())))))"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "(is_kepala_dusun() AND (EXISTS ( SELECT 1\n   FROM reports\n  WHERE ((reports.id = report_comments.report_id) AND (reports.dusun_id = get_my_dusun_id())))))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_comments",
+          "permissive": "PERMISSIVE",
+          "policyname": "Kepala dusun can view comments on own dusun reports",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "INSERT",
+          "qual": null,
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_comments",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can comment on any report",
+          "schemaname": "public",
+          "with_check": "((user_id = ( SELECT auth.uid() AS uid)) AND is_staff())"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_comments",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can view all comments",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "INSERT",
+          "qual": null,
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_comments",
+          "permissive": "PERMISSIVE",
+          "policyname": "Users can comment on own reports",
+          "schemaname": "public",
+          "with_check": "((user_id = ( SELECT auth.uid() AS uid)) AND (is_internal = false) AND (EXISTS ( SELECT 1\n   FROM reports\n  WHERE ((reports.id = report_comments.report_id) AND (reports.reporter_id = ( SELECT auth.uid() AS uid))))))"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "((is_internal = false) AND (EXISTS ( SELECT 1\n   FROM reports\n  WHERE ((reports.id = report_comments.report_id) AND (reports.reporter_id = ( SELECT auth.uid() AS uid))))))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_comments",
+          "permissive": "PERMISSIVE",
+          "policyname": "Users can view public comments on own reports",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "(is_kepala_dusun() AND (EXISTS ( SELECT 1\n   FROM reports\n  WHERE ((reports.id = report_photos.report_id) AND (reports.dusun_id = get_my_dusun_id())))))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_photos",
+          "permissive": "PERMISSIVE",
+          "policyname": "Kepala dusun can view photos from own dusun reports",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "ALL",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_photos",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can manage report photos",
+          "schemaname": "public",
+          "with_check": "is_staff()"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_photos",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can view all report photos",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "INSERT",
+          "qual": null,
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_photos",
+          "permissive": "PERMISSIVE",
+          "policyname": "Users can upload photos to own reports",
+          "schemaname": "public",
+          "with_check": "((uploaded_by = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1\n   FROM reports\n  WHERE ((reports.id = report_photos.report_id) AND (reports.reporter_id = ( SELECT auth.uid() AS uid))))))"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "(EXISTS ( SELECT 1\n   FROM reports\n  WHERE ((reports.id = report_photos.report_id) AND (reports.reporter_id = ( SELECT auth.uid() AS uid)))))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_photos",
+          "permissive": "PERMISSIVE",
+          "policyname": "Users can view photos from own reports",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "INSERT",
+          "qual": null,
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_status_logs",
+          "permissive": "PERMISSIVE",
+          "policyname": "Authenticated users can insert report logs",
+          "schemaname": "public",
+          "with_check": "(changed_by = auth.uid())"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "(EXISTS ( SELECT 1\n   FROM reports r\n  WHERE ((r.id = report_status_logs.report_id) AND (r.reporter_id = auth.uid()))))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_status_logs",
+          "permissive": "PERMISSIVE",
+          "policyname": "Citizens can read own report logs",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "(is_kepala_dusun() AND (EXISTS ( SELECT 1\n   FROM reports\n  WHERE ((reports.id = report_status_logs.report_id) AND (reports.dusun_id = get_my_dusun_id())))))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_status_logs",
+          "permissive": "PERMISSIVE",
+          "policyname": "Kepala dusun can view status logs of own dusun reports",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "ALL",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_status_logs",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can manage report status logs",
+          "schemaname": "public",
+          "with_check": "is_staff()"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "((get_my_role())::text = ANY (ARRAY['admin'::text, 'sekdes'::text, 'kepala_desa'::text, 'kepala_dusun'::text]))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_status_logs",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can read report logs",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "(EXISTS ( SELECT 1\n   FROM reports\n  WHERE ((reports.id = report_status_logs.report_id) AND (reports.reporter_id = ( SELECT auth.uid() AS uid)))))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_status_logs",
+          "permissive": "PERMISSIVE",
+          "policyname": "Users can view status logs of own reports",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "INSERT",
+          "qual": null,
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_verifications",
+          "permissive": "PERMISSIVE",
+          "policyname": "Kepala dusun can create verification for own dusun reports",
+          "schemaname": "public",
+          "with_check": "((verified_by = ( SELECT auth.uid() AS uid)) AND is_kepala_dusun() AND (EXISTS ( SELECT 1\n   FROM reports\n  WHERE ((reports.id = report_verifications.report_id) AND (reports.dusun_id = get_my_dusun_id())))))"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "(verified_by = ( SELECT auth.uid() AS uid))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_verifications",
+          "permissive": "PERMISSIVE",
+          "policyname": "Kepala dusun can view own verifications",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "ALL",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_verifications",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can manage verifications",
+          "schemaname": "public",
+          "with_check": "is_staff()"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "report_verifications",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can view all verifications",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "INSERT",
+          "qual": null,
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "reports",
+          "permissive": "PERMISSIVE",
+          "policyname": "Authenticated users can create own reports",
+          "schemaname": "public",
+          "with_check": "(reporter_id = ( SELECT auth.uid() AS uid))"
+        },
+        {
+          "cmd": "UPDATE",
+          "qual": "(is_kepala_dusun() AND (dusun_id = get_my_dusun_id()))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "reports",
+          "permissive": "PERMISSIVE",
+          "policyname": "Kepala dusun can update own dusun reports",
+          "schemaname": "public",
+          "with_check": "(is_kepala_dusun() AND (dusun_id = get_my_dusun_id()))"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "(is_kepala_dusun() AND (dusun_id = get_my_dusun_id()))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "reports",
+          "permissive": "PERMISSIVE",
+          "policyname": "Kepala dusun can view own dusun reports",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "UPDATE",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "reports",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can update reports",
+          "schemaname": "public",
+          "with_check": "is_staff()"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "reports",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can view all reports",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "(reporter_id = ( SELECT auth.uid() AS uid))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "reports",
+          "permissive": "PERMISSIVE",
+          "policyname": "Users can view own reports",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "ALL",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "sla_rules",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can manage sla rules",
+          "schemaname": "public",
+          "with_check": "is_staff()"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "sla_rules",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can view sla rules",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "INSERT",
+          "qual": null,
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "verification_photos",
+          "permissive": "PERMISSIVE",
+          "policyname": "Kepala dusun can upload own verification photos",
+          "schemaname": "public",
+          "with_check": "(EXISTS ( SELECT 1\n   FROM report_verifications\n  WHERE ((report_verifications.id = verification_photos.verification_id) AND (report_verifications.verified_by = ( SELECT auth.uid() AS uid)))))"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "(EXISTS ( SELECT 1\n   FROM report_verifications\n  WHERE ((report_verifications.id = verification_photos.verification_id) AND (report_verifications.verified_by = ( SELECT auth.uid() AS uid)))))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "verification_photos",
+          "permissive": "PERMISSIVE",
+          "policyname": "Kepala dusun can view own verification photos",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "ALL",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "verification_photos",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can manage verification photos",
+          "schemaname": "public",
+          "with_check": "is_staff()"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "is_staff()",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "verification_photos",
+          "permissive": "PERMISSIVE",
+          "policyname": "Staff can view all verification photos",
+          "schemaname": "public",
+          "with_check": null
+        }
+      ],
+      "rls_status": [
+        {
+          "rls_forced": false,
+          "table_name": "agencies",
+          "rls_enabled": true
+        },
+        {
+          "rls_forced": false,
+          "table_name": "categories",
+          "rls_enabled": true
+        },
+        {
+          "rls_forced": false,
+          "table_name": "dusuns",
+          "rls_enabled": true
+        },
+        {
+          "rls_forced": false,
+          "table_name": "notifications",
+          "rls_enabled": true
+        },
+        {
+          "rls_forced": false,
+          "table_name": "official_letters",
+          "rls_enabled": true
+        },
+        {
+          "rls_forced": false,
+          "table_name": "profiles",
+          "rls_enabled": true
+        },
+        {
+          "rls_forced": false,
+          "table_name": "report_comments",
+          "rls_enabled": true
+        },
+        {
+          "rls_forced": false,
+          "table_name": "report_photos",
+          "rls_enabled": true
+        },
+        {
+          "rls_forced": false,
+          "table_name": "report_status_logs",
+          "rls_enabled": true
+        },
+        {
+          "rls_forced": false,
+          "table_name": "report_verifications",
+          "rls_enabled": true
+        },
+        {
+          "rls_forced": false,
+          "table_name": "reports",
+          "rls_enabled": true
+        },
+        {
+          "rls_forced": false,
+          "table_name": "sla_rules",
+          "rls_enabled": true
+        },
+        {
+          "rls_forced": false,
+          "table_name": "verification_photos",
+          "rls_enabled": true
+        }
+      ],
+      "foreign_keys": [
+        {
+          "source_table": "notifications",
+          "target_table": "reports",
+          "source_column": "report_id",
+          "target_column": "id",
+          "constraint_name": "notifications_report_id_fkey"
+        },
+        {
+          "source_table": "notifications",
+          "target_table": "profiles",
+          "source_column": "user_id",
+          "target_column": "id",
+          "constraint_name": "notifications_user_id_fkey"
+        },
+        {
+          "source_table": "official_letters",
+          "target_table": "profiles",
+          "source_column": "generated_by",
+          "target_column": "id",
+          "constraint_name": "official_letters_generated_by_fkey"
+        },
+        {
+          "source_table": "official_letters",
+          "target_table": "agencies",
+          "source_column": "recipient_agency_id",
+          "target_column": "id",
+          "constraint_name": "official_letters_recipient_agency_id_fkey"
+        },
+        {
+          "source_table": "official_letters",
+          "target_table": "reports",
+          "source_column": "report_id",
+          "target_column": "id",
+          "constraint_name": "official_letters_report_id_fkey"
+        },
+        {
+          "source_table": "official_letters",
+          "target_table": "profiles",
+          "source_column": "signed_by",
+          "target_column": "id",
+          "constraint_name": "official_letters_signed_by_fkey"
+        },
+        {
+          "source_table": "profiles",
+          "target_table": "dusuns",
+          "source_column": "dusun_id",
+          "target_column": "id",
+          "constraint_name": "profiles_dusun_id_fkey"
+        },
+        {
+          "source_table": "report_comments",
+          "target_table": "reports",
+          "source_column": "report_id",
+          "target_column": "id",
+          "constraint_name": "report_comments_report_id_fkey"
+        },
+        {
+          "source_table": "report_comments",
+          "target_table": "profiles",
+          "source_column": "user_id",
+          "target_column": "id",
+          "constraint_name": "report_comments_user_id_fkey"
+        },
+        {
+          "source_table": "report_photos",
+          "target_table": "reports",
+          "source_column": "report_id",
+          "target_column": "id",
+          "constraint_name": "report_photos_report_id_fkey"
+        },
+        {
+          "source_table": "report_photos",
+          "target_table": "profiles",
+          "source_column": "uploaded_by",
+          "target_column": "id",
+          "constraint_name": "report_photos_uploaded_by_fkey"
+        },
+        {
+          "source_table": "report_status_logs",
+          "target_table": "profiles",
+          "source_column": "changed_by",
+          "target_column": "id",
+          "constraint_name": "report_status_logs_changed_by_fkey"
+        },
+        {
+          "source_table": "report_status_logs",
+          "target_table": "reports",
+          "source_column": "report_id",
+          "target_column": "id",
+          "constraint_name": "report_status_logs_report_id_fkey"
+        },
+        {
+          "source_table": "report_verifications",
+          "target_table": "reports",
+          "source_column": "report_id",
+          "target_column": "id",
+          "constraint_name": "report_verifications_report_id_fkey"
+        },
+        {
+          "source_table": "report_verifications",
+          "target_table": "profiles",
+          "source_column": "verified_by",
+          "target_column": "id",
+          "constraint_name": "report_verifications_verified_by_fkey"
+        },
+        {
+          "source_table": "reports",
+          "target_table": "agencies",
+          "source_column": "agency_id",
+          "target_column": "id",
+          "constraint_name": "reports_agency_id_fkey"
+        },
+        {
+          "source_table": "reports",
+          "target_table": "profiles",
+          "source_column": "archived_by",
+          "target_column": "id",
+          "constraint_name": "reports_archived_by_fkey"
+        },
+        {
+          "source_table": "reports",
+          "target_table": "agencies",
+          "source_column": "assigned_agency_id",
+          "target_column": "id",
+          "constraint_name": "reports_assigned_agency_id_fkey"
+        },
+        {
+          "source_table": "reports",
+          "target_table": "categories",
+          "source_column": "category_id",
+          "target_column": "id",
+          "constraint_name": "reports_category_id_fkey"
+        },
+        {
+          "source_table": "reports",
+          "target_table": "dusuns",
+          "source_column": "dusun_id",
+          "target_column": "id",
+          "constraint_name": "reports_dusun_id_fkey"
+        },
+        {
+          "source_table": "reports",
+          "target_table": "profiles",
+          "source_column": "reporter_id",
+          "target_column": "id",
+          "constraint_name": "reports_reporter_id_fkey"
+        },
+        {
+          "source_table": "verification_photos",
+          "target_table": "report_verifications",
+          "source_column": "verification_id",
+          "target_column": "id",
+          "constraint_name": "verification_photos_verification_id_fkey"
+        }
+      ],
+      "primary_keys": [
+        {
+          "table_name": "agencies",
+          "column_name": "id",
+          "constraint_name": "agencies_pkey"
+        },
+        {
+          "table_name": "categories",
+          "column_name": "id",
+          "constraint_name": "categories_pkey"
+        },
+        {
+          "table_name": "dusuns",
+          "column_name": "id",
+          "constraint_name": "dusuns_pkey"
+        },
+        {
+          "table_name": "notifications",
+          "column_name": "id",
+          "constraint_name": "notifications_pkey"
+        },
+        {
+          "table_name": "official_letters",
+          "column_name": "id",
+          "constraint_name": "official_letters_pkey"
+        },
+        {
+          "table_name": "profiles",
+          "column_name": "id",
+          "constraint_name": "profiles_pkey"
+        },
+        {
+          "table_name": "report_comments",
+          "column_name": "id",
+          "constraint_name": "report_comments_pkey"
+        },
+        {
+          "table_name": "report_photos",
+          "column_name": "id",
+          "constraint_name": "report_photos_pkey"
+        },
+        {
+          "table_name": "report_status_logs",
+          "column_name": "id",
+          "constraint_name": "report_status_logs_pkey"
+        },
+        {
+          "table_name": "report_verifications",
+          "column_name": "id",
+          "constraint_name": "report_verifications_pkey"
+        },
+        {
+          "table_name": "reports",
+          "column_name": "id",
+          "constraint_name": "reports_pkey"
+        },
+        {
+          "table_name": "sla_rules",
+          "column_name": "id",
+          "constraint_name": "sla_rules_pkey"
+        },
+        {
+          "table_name": "verification_photos",
+          "column_name": "id",
+          "constraint_name": "verification_photos_pkey"
+        }
+      ]
+    }
+  }
+]
