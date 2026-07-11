@@ -40,8 +40,8 @@ type KasiReportTableProps = {
 
 export function KasiReportTable({
   reports,
-  emptyTitle = "No assigned reports",
-  emptyDescription = "Reports assigned to your section will appear here.",
+  emptyTitle = "Belum ada laporan ditugaskan",
+  emptyDescription = "Laporan yang ditugaskan ke seksi Anda akan muncul di sini.",
 }: KasiReportTableProps) {
   if (reports.length === 0) {
     return (
@@ -67,13 +67,13 @@ export function KasiReportTable({
         <table className="w-full min-w-[1000px] text-left text-sm">
           <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
-              <th className="px-5 py-4 font-semibold">Report</th>
-              <th className="px-5 py-4 font-semibold">Reporter</th>
-              <th className="px-5 py-4 font-semibold">Hamlet</th>
-              <th className="px-5 py-4 font-semibold">Priority</th>
+              <th className="px-5 py-4 font-semibold">Laporan</th>
+              <th className="px-5 py-4 font-semibold">Pelapor</th>
+              <th className="px-5 py-4 font-semibold">Dusun</th>
+              <th className="px-5 py-4 font-semibold">Prioritas</th>
               <th className="px-5 py-4 font-semibold">Status</th>
-              <th className="px-5 py-4 font-semibold">Updated</th>
-              <th className="px-5 py-4 text-right font-semibold">Action</th>
+              <th className="px-5 py-4 font-semibold">Diperbarui</th>
+              <th className="px-5 py-4 text-right font-semibold">Aksi</th>
             </tr>
           </thead>
 
@@ -128,7 +128,7 @@ export function KasiReportTable({
                       href={`/dashboard/kasi/reports/${report.id}`}
                       className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-700"
                     >
-                      View detail
+                      Lihat detail
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   </td>
@@ -162,22 +162,22 @@ export function KasiReportTable({
               </div>
 
               <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-                <InfoItem label="Reporter" value={reporter?.full_name ?? "-"} />
-                <InfoItem label="Hamlet" value={getRelationName(report.hamlet)} />
+                <InfoItem label="Pelapor" value={reporter?.full_name ?? "-"} />
+                <InfoItem label="Dusun" value={getRelationName(report.hamlet)} />
                 <InfoItem
-                  label="Priority"
+                  label="Prioritas"
                   value={
                     REPORT_PRIORITY_LABELS[report.priority] ?? report.priority
                   }
                 />
-                <InfoItem label="Updated" value={formatDate(report.updated_at)} />
+                <InfoItem label="Diperbarui" value={formatDate(report.updated_at)} />
               </div>
 
               <Link
                 href={`/dashboard/kasi/reports/${report.id}`}
                 className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-700"
               >
-                View detail
+                Lihat detail
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

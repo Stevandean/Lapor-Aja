@@ -30,7 +30,7 @@ export function CategoryCreateModal() {
     if (state.status === "success") {
       toast.success(state.message);
       formRef.current?.reset();
-      setOpen(false);
+      setTimeout(() => setOpen(false), 0);
     }
 
     if (state.status === "error") {
@@ -42,38 +42,38 @@ export function CategoryCreateModal() {
     <>
       <Button type="button" onClick={() => setOpen(true)}>
         <PlusCircle className="mr-2 h-4 w-4" />
-        Add Category
+        Tambah Kategori
       </Button>
 
       <Modal
         open={open}
         onOpenChange={setOpen}
-        title="Add Category"
-        description="Create a report category used for classifying citizen reports."
+        title="Tambah Kategori"
+        description="Buat kategori laporan yang digunakan untuk mengklasifikasi laporan masyarakat."
       >
         <form ref={formRef} action={action} className="space-y-5">
           <div>
             <label className="form-label" htmlFor="name">
-              Category Name
+              Nama Kategori
             </label>
 
             <Input
               id="name"
               name="name"
-              placeholder="Example: Road Damage"
+              placeholder="Contoh: Kerusakan Jalan"
               required
             />
           </div>
 
           <div>
             <label className="form-label" htmlFor="description">
-              Description
+              Deskripsi
             </label>
 
             <Textarea
               id="description"
               name="description"
-              placeholder="Briefly describe what this category is used for."
+              placeholder="Jelaskan secara singkat penggunaan kategori ini."
               rows={4}
             />
           </div>
@@ -85,11 +85,11 @@ export function CategoryCreateModal() {
               onClick={() => setOpen(false)}
               disabled={isPending}
             >
-              Cancel
+              Batal
             </Button>
 
             <Button type="submit" disabled={isPending}>
-              {isPending ? "Creating..." : "Create Category"}
+              {isPending ? "Membuat..." : "Buat Kategori"}
             </Button>
           </div>
         </form>

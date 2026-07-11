@@ -46,11 +46,11 @@ export function AdminReportTable({ reports }: AdminReportTableProps) {
         </div>
 
         <h3 className="mt-4 text-sm font-semibold text-foreground">
-          No reports found
+          Belum ada laporan
         </h3>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          Citizen reports will appear here after they submit a report.
+          Laporan masyarakat akan muncul di sini setelah mereka mengirim laporan.
         </p>
       </div>
     );
@@ -62,13 +62,13 @@ export function AdminReportTable({ reports }: AdminReportTableProps) {
         <table className="w-full min-w-[900px] text-left text-sm">
           <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
-              <th className="px-5 py-4 font-semibold">Report</th>
-              <th className="px-5 py-4 font-semibold">Category</th>
-              <th className="px-5 py-4 font-semibold">Hamlet</th>
-              <th className="px-5 py-4 font-semibold">Priority</th>
+              <th className="px-5 py-4 font-semibold">Laporan</th>
+              <th className="px-5 py-4 font-semibold">Kategori</th>
+              <th className="px-5 py-4 font-semibold">Dusun</th>
+              <th className="px-5 py-4 font-semibold">Prioritas</th>
               <th className="px-5 py-4 font-semibold">Status</th>
-              <th className="px-5 py-4 font-semibold">Created</th>
-              <th className="px-5 py-4 font-semibold text-right">Action</th>
+              <th className="px-5 py-4 font-semibold">Dibuat</th>
+              <th className="px-5 py-4 font-semibold text-right">Aksi</th>
             </tr>
           </thead>
 
@@ -156,20 +156,23 @@ export function AdminReportTable({ reports }: AdminReportTableProps) {
             </div>
 
             <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-              <InfoItem label="Category" value={getRelationName(report.categories)} />
-              <InfoItem label="Hamlet" value={getRelationName(report.dusuns)} />
               <InfoItem
-                label="Priority"
+                label="Kategori"
+                value={getRelationName(report.categories)}
+              />
+              <InfoItem label="Dusun" value={getRelationName(report.dusuns)} />
+              <InfoItem
+                label="Prioritas"
                 value={REPORT_PRIORITY_LABELS[report.priority] ?? report.priority}
               />
-              <InfoItem label="Created" value={formatDate(report.created_at)} />
+              <InfoItem label="Dibuat" value={formatDate(report.created_at)} />
             </div>
 
             <Link
               href={`/dashboard/admin/reports/${report.id}`}
               className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-700"
             >
-              View detail
+              Lihat detail
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -186,20 +189,23 @@ function RelationBadges({ summary }: { summary?: RelationSummary }) {
 
   const badges = [
     summary.duplicateAsSource > 0
-      ? { label: "Merged", className: "bg-slate-100 text-slate-700 border-slate-200" }
+      ? {
+          label: "Digabung",
+          className: "bg-slate-100 text-slate-700 border-slate-200",
+        }
       : null,
     summary.duplicateAsTarget > 0
       ? { label: "Master", className: "bg-info-50 text-info-700 border-info-100" }
       : null,
     summary.recurrenceAsSource > 0
       ? {
-          label: "Recurring",
+          label: "Berulang",
           className: "bg-warning-50 text-warning-700 border-warning-100",
         }
       : null,
     summary.recurrenceAsTarget > 0
       ? {
-          label: "Has Recurrence",
+          label: "Ada Pengulangan",
           className: "bg-primary-50 text-primary-700 border-primary-100",
         }
       : null,

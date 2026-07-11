@@ -22,22 +22,22 @@ export default async function KasiDashboardPage() {
     <div className="space-y-6">
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-semibold text-primary">Kasi Dashboard</p>
+          <p className="text-sm font-semibold text-primary">Dashboard Kasi</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Internal Report Handling
+            Penanganan Laporan Internal
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Monitor reports assigned to your village section and prepare the
-            handling workflow before progress actions are enabled.
+            Pantau laporan yang ditugaskan ke seksi desa Anda dan kelola alur
+            penanganannya.
           </p>
         </div>
 
         <Link href="/dashboard/kasi/reports">
           <Button>
             <ClipboardList className="mr-2 h-4 w-4" />
-            Assigned Reports
+            Laporan Ditugaskan
           </Button>
         </Link>
       </section>
@@ -46,42 +46,42 @@ export default async function KasiDashboardPage() {
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
         <VillageStatCard
-          title="Assigned"
+          title="Ditugaskan"
           value={stats.totalAssignedReports}
-          description="Reports assigned to your section."
+          description="Laporan yang ditugaskan ke seksi Anda."
           icon={<ClipboardList className="h-5 w-5" />}
         />
         <VillageStatCard
-          title="Active"
+          title="Aktif"
           value={stats.activeReports}
-          description="Reports still being handled."
+          description="Laporan yang masih ditangani."
           icon={<Gauge className="h-5 w-5" />}
         />
         <VillageStatCard
-          title="Waiting Budget"
+          title="Menunggu Anggaran"
           value={stats.waitingBudgetReports}
-          description="Reports needing budget planning."
+          description="Laporan yang membutuhkan perencanaan anggaran."
           icon={<Wallet className="h-5 w-5" />}
         />
         <VillageStatCard
-          title="In Progress"
+          title="Diproses"
           value={stats.inProgressReports}
-          description="Reports currently in progress."
+          description="Laporan yang sedang diproses."
           icon={<Clock3 className="h-5 w-5" />}
         />
         <VillageStatCard
-          title="Resolved"
+          title="Selesai"
           value={stats.resolvedReports}
-          description="Completed assigned reports."
+          description="Laporan tugas yang sudah selesai."
           icon={<CheckCircle2 className="h-5 w-5" />}
         />
       </section>
 
       <Card>
         <CardHeader>
-          <CardTitle>Recent Assigned Reports</CardTitle>
+          <CardTitle>Laporan Ditugaskan Terbaru</CardTitle>
           <CardDescription>
-            Latest reports assigned to your section.
+            Laporan terbaru yang ditugaskan ke seksi Anda.
           </CardDescription>
         </CardHeader>
 
@@ -89,11 +89,11 @@ export default async function KasiDashboardPage() {
           <KasiReportTable
             reports={recentReports as KasiReportTableReports}
             emptyTitle={
-              missingSection ? "Section assignment required" : undefined
+              missingSection ? "Penugasan seksi diperlukan" : undefined
             }
             emptyDescription={
               missingSection
-                ? "Ask an admin, sekdes, or kepala desa to assign your account to a village section."
+                ? "Minta admin, sekdes, atau kepala desa menautkan akun Anda ke seksi desa."
                 : undefined
             }
           />
@@ -106,8 +106,8 @@ export default async function KasiDashboardPage() {
 function MissingSectionNotice() {
   return (
     <div className="rounded-2xl border border-warning-100 bg-warning-50 p-4 text-sm leading-6 text-warning-700">
-      Your account has not been assigned to a village section yet. Please ask
-      the admin, sekdes, or kepala desa to update your user profile.
+      Akun Anda belum ditautkan ke seksi desa. Silakan minta admin, sekdes,
+      atau kepala desa memperbarui profil pengguna Anda.
     </div>
   );
 }

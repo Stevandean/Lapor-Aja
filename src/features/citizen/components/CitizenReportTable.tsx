@@ -16,7 +16,7 @@ type RelationName = {
   name: string;
 };
 
-type CitizenReport = {
+export type CitizenReport = {
   id: string;
   report_number: string;
   title: string;
@@ -35,12 +35,12 @@ type CitizenReportTableProps = {
 };
 
 const statusFilters = [
-  { label: "All Status", value: "all" },
-  { label: "Pending", value: "pending" },
-  { label: "In Process", value: "in_process" },
-  { label: "Resolved", value: "resolved" },
-  { label: "Archived", value: "archived" },
-  { label: "Rejected", value: "rejected" },
+  { label: "Semua Status", value: "all" },
+  { label: "Menunggu", value: "pending" },
+  { label: "Diproses", value: "in_process" },
+  { label: "Selesai", value: "resolved" },
+  { label: "Diarsipkan", value: "archived" },
+  { label: "Ditolak", value: "rejected" },
 ];
 
 const inProcessStatuses = [
@@ -96,11 +96,11 @@ export function CitizenReportTable({ reports }: CitizenReportTableProps) {
         </div>
 
         <h3 className="mt-4 text-sm font-semibold text-foreground">
-          No reports yet
+          Belum ada laporan
         </h3>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          Your submitted reports will appear here.
+          Laporan yang Anda kirim akan muncul di sini.
         </p>
       </div>
     );
@@ -112,7 +112,7 @@ export function CitizenReportTable({ reports }: CitizenReportTableProps) {
         <div className="grid flex-1 gap-4 md:grid-cols-[1.5fr_1fr]">
           <div>
             <label className="form-label" htmlFor="report-search">
-              Search Report
+              Cari laporan
             </label>
 
             <div className="relative">
@@ -120,7 +120,7 @@ export function CitizenReportTable({ reports }: CitizenReportTableProps) {
                 id="report-search"
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
-                placeholder="Search by report number, title, category, or hamlet"
+                placeholder="Cari berdasarkan nomor laporan, judul, kategori, atau dusun"
                 className="pl-10"
               />
 
@@ -150,11 +150,11 @@ export function CitizenReportTable({ reports }: CitizenReportTableProps) {
 
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
           <div className="rounded-xl border border-border bg-card px-3 py-2 text-sm text-muted-foreground">
-            Showing{" "}
+            Menampilkan{" "}
             <strong className="font-semibold text-foreground">
               {filteredReports.length}
             </strong>{" "}
-            of{" "}
+            dari{" "}
             <strong className="font-semibold text-foreground">
               {reports.length}
             </strong>
@@ -169,7 +169,7 @@ export function CitizenReportTable({ reports }: CitizenReportTableProps) {
               className="gap-2"
             >
               <X className="h-4 w-4" />
-              Reset
+              Atur Ulang
             </Button>
           )}
         </div>
@@ -178,11 +178,11 @@ export function CitizenReportTable({ reports }: CitizenReportTableProps) {
       {filteredReports.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-10 text-center">
           <h3 className="text-sm font-semibold text-foreground">
-            No matching reports
+            Tidak ada laporan yang cocok
           </h3>
 
           <p className="mt-2 text-sm text-muted-foreground">
-            Try using another keyword or status filter.
+            Coba gunakan kata kunci atau filter status lain.
           </p>
         </div>
       ) : (
@@ -191,13 +191,13 @@ export function CitizenReportTable({ reports }: CitizenReportTableProps) {
             <table className="w-full min-w-[950px] text-left text-sm">
               <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
                 <tr>
-                  <th className="px-5 py-4 font-semibold">Report</th>
-                  <th className="px-5 py-4 font-semibold">Category</th>
-                  <th className="px-5 py-4 font-semibold">Hamlet</th>
-                  <th className="px-5 py-4 font-semibold">Priority</th>
+                  <th className="px-5 py-4 font-semibold">Laporan</th>
+                  <th className="px-5 py-4 font-semibold">Kategori</th>
+                  <th className="px-5 py-4 font-semibold">Dusun</th>
+                  <th className="px-5 py-4 font-semibold">Prioritas</th>
                   <th className="px-5 py-4 font-semibold">Status</th>
-                  <th className="px-5 py-4 font-semibold">Updated</th>
-                  <th className="px-5 py-4 text-right font-semibold">Action</th>
+                  <th className="px-5 py-4 font-semibold">Diperbarui</th>
+                  <th className="px-5 py-4 text-right font-semibold">Aksi</th>
                 </tr>
               </thead>
 
@@ -245,7 +245,7 @@ export function CitizenReportTable({ reports }: CitizenReportTableProps) {
                             className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground shadow-sm transition hover:bg-muted"
                             >
                             <Eye className="h-3.5 w-3.5" />
-                            View Detail
+                            Lihat Detail
                             </Link>
                         </div>
                     </td>
@@ -279,7 +279,7 @@ export function CitizenReportTable({ reports }: CitizenReportTableProps) {
                 </div>
 
                 <div className="mt-4 text-sm text-muted-foreground">
-                  Updated {formatDate(report.updated_at)}
+                  Diperbarui {formatDate(report.updated_at)}
                 </div>
                 <div className="mt-4">
                     <Link
@@ -287,7 +287,7 @@ export function CitizenReportTable({ reports }: CitizenReportTableProps) {
                         className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground shadow-sm transition hover:bg-muted"
                     >
                         <Eye className="h-3.5 w-3.5" />
-                        View Detail
+                        Lihat Detail
                     </Link>
                 </div>
               </div>
@@ -350,8 +350,21 @@ function formatDate(date: string) {
 }
 
 function formatEnum(value: string) {
-  return value
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const labels: Record<string, string> = {
+    pending: "Menunggu",
+    need_verification: "Perlu Verifikasi",
+    verified_valid: "Terverifikasi Valid",
+    verified_invalid: "Terverifikasi Tidak Valid",
+    classified: "Diklasifikasi",
+    handled_by_village: "Ditangani Desa",
+    forwarded_to_agency: "Diteruskan ke Instansi",
+    waiting_budget: "Menunggu Anggaran",
+    in_progress: "Diproses",
+    resolved: "Selesai",
+    archived: "Diarsipkan",
+    rejected: "Ditolak",
+    merged: "Digabung",
+  };
+
+  return labels[value] ?? value.replaceAll("_", " ");
 }

@@ -40,17 +40,15 @@ export default async function AdminDashboardPage() {
     <div className="space-y-8">
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-semibold text-primary">
-            Admin Dashboard
-          </p>
+          <p className="text-sm font-semibold text-primary">Dashboard Admin</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Report Management Overview
+            Beranda Pengelolaan Laporan
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Monitor public reports, approval process, field verification, SLA
-            status, and village follow-up activities.
+            Pantau laporan masyarakat, proses persetujuan, verifikasi lapangan,
+            status SLA, dan aktivitas tindak lanjut desa.
           </p>
         </div>
 
@@ -59,58 +57,58 @@ export default async function AdminDashboardPage() {
             href="/dashboard/admin/reports"
             className="inline-flex h-11 items-center justify-center rounded-lg border border-border bg-card px-4 text-sm font-semibold text-foreground shadow-sm transition-colors hover:bg-muted"
           >
-            View reports
+            Lihat laporan
           </Link>
 
           <Link
             href="/dashboard/admin/approval"
             className="inline-flex h-11 items-center justify-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary-700"
           >
-            Review pending reports
+            Tinjau laporan masuk
           </Link>
         </div>
       </section>
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         <StatCard
-          title="Total Reports"
+          title="Total Laporan"
           value={stats.totalReports}
-          description="All reports submitted by citizens."
+          description="Semua laporan yang dikirim masyarakat."
           icon={<ClipboardList className="h-5 w-5" />}
         />
 
         <StatCard
-          title="Pending"
+          title="Menunggu"
           value={stats.pendingReports}
-          description="Reports waiting for admin review."
+          description="Laporan yang menunggu tinjauan admin."
           icon={<Clock3 className="h-5 w-5" />}
         />
 
         <StatCard
-          title="Need Verification"
+          title="Perlu Verifikasi"
           value={stats.needVerificationReports}
-          description="Reports requiring field verification."
+          description="Laporan yang perlu diverifikasi di lapangan."
           icon={<ShieldCheck className="h-5 w-5" />}
         />
 
         <StatCard
-          title="In Progress"
+          title="Diproses"
           value={stats.inProgressReports}
-          description="Reports currently being processed."
+          description="Laporan yang sedang diproses."
           icon={<Gauge className="h-5 w-5" />}
         />
 
         <StatCard
-          title="Resolved"
+          title="Selesai"
           value={stats.resolvedReports}
-          description="Reports that have been completed."
+          description="Laporan yang sudah selesai ditangani."
           icon={<CheckCircle2 className="h-5 w-5" />}
         />
 
         <StatCard
-          title="SLA Overdue"
+          title="SLA Terlambat"
           value={stats.overdueReports}
-          description="Reports that exceed SLA limits."
+          description="Laporan yang melewati batas SLA."
           icon={<AlertTriangle className="h-5 w-5" />}
         />
       </section>
@@ -119,9 +117,9 @@ export default async function AdminDashboardPage() {
         <Card>
           <CardHeader className="flex flex-row items-start justify-between gap-4">
             <div>
-              <CardTitle>Recent Reports</CardTitle>
+              <CardTitle>Laporan Terbaru</CardTitle>
               <CardDescription>
-                Latest public reports submitted to the village reporting system.
+                Laporan masyarakat terbaru yang masuk ke sistem pelaporan desa.
               </CardDescription>
             </div>
 
@@ -129,7 +127,7 @@ export default async function AdminDashboardPage() {
               href="/dashboard/admin/reports"
               className="hidden text-sm font-semibold text-primary hover:text-primary-700 sm:inline-flex"
             >
-              View all
+              Lihat semua
             </Link>
           </CardHeader>
 
@@ -137,10 +135,11 @@ export default async function AdminDashboardPage() {
             {recentReports.length === 0 ? (
               <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-8 text-center">
                 <p className="text-sm font-medium text-foreground">
-                  No reports yet
+                  Belum ada laporan
                 </p>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Citizen reports will appear here after they submit a report.
+                  Laporan masyarakat akan muncul di sini setelah mereka
+                  mengirim laporan.
                 </p>
               </div>
             ) : (
@@ -171,7 +170,7 @@ export default async function AdminDashboardPage() {
                         </div>
 
                         <p className="mt-1 text-xs text-muted-foreground">
-                          {report.report_number} •{" "}
+                          {report.report_number} -{" "}
                           {formatDate(report.created_at)}
                         </p>
                       </div>
@@ -185,7 +184,7 @@ export default async function AdminDashboardPage() {
                           href={`/dashboard/admin/reports/${report.id}`}
                           className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-700"
                         >
-                          Detail
+                          Lihat detail
                           <ArrowRight className="h-4 w-4" />
                         </Link>
                       </div>
@@ -199,37 +198,37 @@ export default async function AdminDashboardPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
+            <CardTitle>Aksi Cepat</CardTitle>
             <CardDescription>
-              Common administrative actions for managing reports.
+              Aksi administrasi yang sering digunakan untuk mengelola laporan.
             </CardDescription>
           </CardHeader>
 
           <CardContent className="space-y-3">
             <QuickAction
-              title="Review pending reports"
-              description="Approve or reject newly submitted reports."
+              title="Tinjau laporan masuk"
+              description="Setujui atau tolak laporan yang baru dikirim."
               href="/dashboard/admin/approval"
               icon={<ShieldCheck className="h-5 w-5" />}
             />
 
             <QuickAction
-              title="Manage report data"
-              description="Open the full report management table."
+              title="Kelola data laporan"
+              description="Buka tabel pengelolaan laporan secara lengkap."
               href="/dashboard/admin/reports"
               icon={<ClipboardList className="h-5 w-5" />}
             />
 
             <QuickAction
-              title="Generate letters"
-              description="Prepare official letters for verified reports."
+              title="Buat surat resmi"
+              description="Siapkan surat resmi untuk laporan yang diteruskan."
               href="/dashboard/admin/letters"
               icon={<FileText className="h-5 w-5" />}
             />
 
             <QuickAction
-              title="Master data"
-              description="Manage categories, hamlets, agencies, and SLA rules."
+              title="Data master"
+              description="Kelola kategori, dusun, instansi, dan aturan SLA."
               href="/dashboard/admin/master-data"
               icon={<PlusCircle className="h-5 w-5" />}
             />

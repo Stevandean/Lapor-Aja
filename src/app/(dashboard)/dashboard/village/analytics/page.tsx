@@ -32,19 +32,19 @@ export default async function VillageAnalyticsPage() {
           className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to village dashboard
+          Kembali ke dashboard desa
         </Link>
 
         <div className="mt-5">
-          <p className="text-sm font-semibold text-primary">Analytics</p>
+          <p className="text-sm font-semibold text-primary">Analitik</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Report Analytics
+            Analitik Laporan
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Analyze report distribution by status, priority, category, and
-            hamlet to support village-level decision making.
+            Analisis sebaran laporan berdasarkan status, prioritas, kategori,
+            dan dusun untuk mendukung pengambilan keputusan tingkat desa.
           </p>
         </div>
       </section>
@@ -53,17 +53,17 @@ export default async function VillageAnalyticsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <BarChart3 className="h-5 w-5 text-primary" />
-            Analytics Summary
+            Ringkasan Analitik
           </CardTitle>
           <CardDescription>
-            Total reports currently recorded in the village reporting system.
+            Total laporan yang tercatat di sistem pelaporan desa.
           </CardDescription>
         </CardHeader>
 
         <CardContent>
           <div className="rounded-2xl border border-border bg-muted/30 p-6">
             <p className="text-sm font-medium text-muted-foreground">
-              Total Reports
+              Total Laporan
             </p>
 
             <p className="mt-2 text-4xl font-bold tracking-tight text-foreground">
@@ -71,8 +71,8 @@ export default async function VillageAnalyticsPage() {
             </p>
 
             <p className="mt-2 text-sm text-muted-foreground">
-              This number includes active, resolved, rejected, and archived
-              reports.
+              Angka ini mencakup laporan aktif, selesai, ditolak, dan
+              diarsipkan.
             </p>
           </div>
         </CardContent>
@@ -88,8 +88,8 @@ export default async function VillageAnalyticsPage() {
 
       <section className="grid gap-6 xl:grid-cols-2">
         <VillageAnalyticsCard
-          title="Reports by Status"
-          description="Distribution of reports based on the current workflow status."
+          title="Laporan Berdasarkan Status"
+          description="Distribusi laporan berdasarkan status alur saat ini."
           items={statusStats}
           total={totalReports}
           formatLabel={(label) =>
@@ -100,8 +100,8 @@ export default async function VillageAnalyticsPage() {
         />
 
         <VillageAnalyticsCard
-          title="Reports by Priority"
-          description="Distribution of reports based on assigned priority level."
+          title="Laporan Berdasarkan Prioritas"
+          description="Distribusi laporan berdasarkan tingkat prioritas."
           items={priorityStats}
           total={totalReports}
           formatLabel={(label) =>
@@ -112,15 +112,15 @@ export default async function VillageAnalyticsPage() {
         />
 
         <VillageAnalyticsCard
-          title="Reports by Category"
-          description="Most frequent issue categories submitted by citizens."
+          title="Laporan Berdasarkan Kategori"
+          description="Kategori masalah yang paling sering dikirim masyarakat."
           items={categoryStats}
           total={totalReports}
         />
 
         <VillageAnalyticsCard
-          title="Reports by Hamlet"
-          description="Report distribution across hamlets in the village."
+          title="Laporan Berdasarkan Dusun"
+          description="Distribusi laporan di tiap dusun desa."
           items={hamletStats}
           total={totalReports}
         />

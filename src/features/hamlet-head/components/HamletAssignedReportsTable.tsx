@@ -17,7 +17,7 @@ type ReporterProfile = {
   phone_number: string | null;
 };
 
-type AssignedReport = {
+export type AssignedReport = {
   id: string;
   report_number: string;
   title: string;
@@ -49,11 +49,11 @@ export function HamletAssignedReportsTable({
         </div>
 
         <h3 className="mt-4 text-sm font-semibold text-foreground">
-          No assigned reports
+          Belum ada laporan ditugaskan
         </h3>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          Reports assigned to your hamlet will appear here.
+          Laporan yang ditugaskan ke dusun Anda akan muncul di sini.
         </p>
       </div>
     );
@@ -65,13 +65,13 @@ export function HamletAssignedReportsTable({
         <table className="w-full min-w-[1000px] text-left text-sm">
           <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
-              <th className="px-5 py-4 font-semibold">Report</th>
-              <th className="px-5 py-4 font-semibold">Reporter</th>
-              <th className="px-5 py-4 font-semibold">Category</th>
-              <th className="px-5 py-4 font-semibold">Priority</th>
+              <th className="px-5 py-4 font-semibold">Laporan</th>
+              <th className="px-5 py-4 font-semibold">Pelapor</th>
+              <th className="px-5 py-4 font-semibold">Kategori</th>
+              <th className="px-5 py-4 font-semibold">Prioritas</th>
               <th className="px-5 py-4 font-semibold">Status</th>
-              <th className="px-5 py-4 font-semibold">Updated</th>
-              <th className="px-5 py-4 font-semibold text-right">Action</th>
+              <th className="px-5 py-4 font-semibold">Diperbarui</th>
+              <th className="px-5 py-4 font-semibold text-right">Aksi</th>
             </tr>
           </thead>
 
@@ -79,7 +79,7 @@ export function HamletAssignedReportsTable({
             {reports.map((report) => {
               const reporter = getReporter(report.reporter);
               const statusLabel =
-                report.status === "need_verification" ? "Verify" : "Detail";
+                report.status === "need_verification" ? "Verifikasi" : "Detail";
 
               return (
                 <tr
@@ -148,7 +148,7 @@ export function HamletAssignedReportsTable({
         {reports.map((report) => {
           const reporter = getReporter(report.reporter);
           const statusLabel =
-            report.status === "need_verification" ? "Verify" : "View detail";
+            report.status === "need_verification" ? "Verifikasi" : "Lihat detail";
 
           return (
             <div key={report.id} className="p-4">
@@ -174,18 +174,18 @@ export function HamletAssignedReportsTable({
               </div>
 
               <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-                <InfoItem label="Reporter" value={reporter?.full_name ?? "-"} />
+                <InfoItem label="Pelapor" value={reporter?.full_name ?? "-"} />
                 <InfoItem
-                  label="Category"
+                  label="Kategori"
                   value={getRelationName(report.category)}
                 />
                 <InfoItem
-                  label="Priority"
+                  label="Prioritas"
                   value={
                     REPORT_PRIORITY_LABELS[report.priority] ?? report.priority
                   }
                 />
-                <InfoItem label="Updated" value={formatDate(report.updated_at)} />
+                <InfoItem label="Diperbarui" value={formatDate(report.updated_at)} />
               </div>
 
               <Link

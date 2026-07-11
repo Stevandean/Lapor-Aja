@@ -32,45 +32,45 @@ export type DashboardNavItem = {
 
 export function getDashboardNavigation(role: UserRole): DashboardNavItem[] {
   const settingsItem = {
-    label: "Settings",
+    label: "Pengaturan",
     href: "/dashboard/settings",
     icon: Settings,
   };
 
   if (role === "admin") {
     return [
-      { label: "Overview", href: "/dashboard/admin", icon: Home },
+      { label: "Beranda", href: "/dashboard/admin", icon: Home },
       {
-        label: "Reports",
+        label: "Laporan",
         href: "/dashboard/admin/reports",
         icon: ClipboardList,
       },
       {
-        label: "Asset Classification",
+        label: "Klasifikasi Aset",
         href: "/dashboard/admin/asset-classification",
         icon: Database,
       },
       {
-        label: "Follow-up",
+        label: "Tindak Lanjut",
         href: "/dashboard/admin/follow-up",
         icon: ArrowRightCircle,
       },
       {
-        label: "Archive",
+        label: "Arsip",
         href: "/dashboard/admin/archive",
         icon: Archive,
       },
       {
-        label: "Letters",
+        label: "Surat",
         href: "/dashboard/admin/letters",
         icon: FileText,
       },
       {
-        label: "Master Data",
+        label: "Data Master",
         icon: Database,
         children: [
           {
-            label: "Categories",
+            label: "Kategori",
             href: "/dashboard/admin/master-data/categories",
             icon: Tags,
           },
@@ -80,17 +80,17 @@ export function getDashboardNavigation(role: UserRole): DashboardNavItem[] {
             icon: Map,
           },
           {
-            label: "Agencies",
+            label: "Instansi",
             href: "/dashboard/admin/master-data/agencies",
             icon: Building2,
           },
           {
-            label: "Village Sections",
+            label: "Seksi Desa",
             href: "/dashboard/admin/master-data/village-sections",
             icon: Users,
           },
           {
-            label: "SLA Rules",
+            label: "Aturan SLA",
             href: "/dashboard/admin/master-data/sla-rules",
             icon: Timer,
           },
@@ -102,19 +102,19 @@ export function getDashboardNavigation(role: UserRole): DashboardNavItem[] {
 
   if (role === "kepala_dusun") {
     return [
-      { label: "Overview", href: "/dashboard/hamlet-head", icon: Home },
+      { label: "Beranda", href: "/dashboard/hamlet-head", icon: Home },
       {
-        label: "Reports",
+        label: "Laporan",
         href: "/dashboard/hamlet-head/reports",
         icon: ClipboardList,
       },
       {
-        label: "Verification",
+        label: "Verifikasi",
         href: "/dashboard/hamlet-head/verification",
         icon: ShieldCheck,
       },
       {
-        label: "History",
+        label: "Riwayat",
         href: "/dashboard/hamlet-head/history",
         icon: Archive,
       },
@@ -124,24 +124,24 @@ export function getDashboardNavigation(role: UserRole): DashboardNavItem[] {
 
   if (role === "kepala_desa" || role === "sekdes") {
     return [
-      { label: "Overview", href: "/dashboard/village", icon: Home },
+      { label: "Beranda", href: "/dashboard/village", icon: Home },
       {
-        label: "Reports",
+        label: "Laporan",
         href: "/dashboard/village/reports",
         icon: ClipboardList,
       },
       {
-        label: "Analytics",
+        label: "Analitik",
         href: "/dashboard/village/analytics",
         icon: BarChart3,
       },
       {
-        label: "SLA Monitoring",
+        label: "Monitoring SLA",
         href: "/dashboard/village/sla",
         icon: Gauge,
       },
       {
-        label: "Budget Requests",
+        label: "Pengajuan Anggaran",
         href: "/dashboard/village/budget-requests",
         icon: Wallet,
       },
@@ -151,12 +151,12 @@ export function getDashboardNavigation(role: UserRole): DashboardNavItem[] {
         icon: Map,
       },
       {
-        label: "Users",
+        label: "Pengguna",
         href: "/dashboard/village/users",
         icon: Users,
       },
       {
-        label: "Archive",
+        label: "Arsip",
         href: "/dashboard/village/archive",
         icon: Archive,
       },
@@ -166,19 +166,19 @@ export function getDashboardNavigation(role: UserRole): DashboardNavItem[] {
 
   if (role === "kasi") {
     return [
-      { label: "Overview", href: "/dashboard/kasi", icon: Home },
+      { label: "Beranda", href: "/dashboard/kasi", icon: Home },
       {
-        label: "Assigned Reports",
+        label: "Laporan Ditugaskan",
         href: "/dashboard/kasi/reports",
         icon: ClipboardList,
       },
       {
-        label: "Budget Proposal",
+        label: "Pengajuan Anggaran",
         href: "/dashboard/kasi/budget",
         icon: Wallet,
       },
       {
-        label: "Progress History",
+        label: "Riwayat Progress",
         href: "/dashboard/kasi/history",
         icon: Archive,
       },
@@ -188,12 +188,12 @@ export function getDashboardNavigation(role: UserRole): DashboardNavItem[] {
 
   return [
     {
-      label: "Overview",
+      label: "Beranda",
       href: "/dashboard/public",
       icon: Home,
     },
     {
-      label: "My Reports",
+      label: "Laporan Saya",
       href: "/dashboard/public/reports",
       icon: ClipboardList,
     },

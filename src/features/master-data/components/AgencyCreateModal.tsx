@@ -30,7 +30,7 @@ export function AgencyCreateModal() {
     if (state.status === "success") {
       toast.success(state.message);
       formRef.current?.reset();
-      setOpen(false);
+      setTimeout(() => setOpen(false), 0);
     }
 
     if (state.status === "error") {
@@ -42,20 +42,20 @@ export function AgencyCreateModal() {
     <>
       <Button type="button" onClick={() => setOpen(true)}>
         <PlusCircle className="mr-2 h-4 w-4" />
-        Add Agency
+        Tambah Instansi
       </Button>
 
       <Modal
         open={open}
         onOpenChange={setOpen}
-        title="Add Agency"
-        description="Create an external agency used when reports need to be forwarded outside village authority."
+        title="Tambah Instansi"
+        description="Buat data instansi luar yang digunakan saat laporan diteruskan ke luar kewenangan desa."
         className="max-w-2xl"
       >
         <form ref={formRef} action={action} className="space-y-5">
           <div>
             <label className="form-label" htmlFor="agency-name">
-              Agency Name
+              Nama Instansi
             </label>
 
             <Input
@@ -68,13 +68,13 @@ export function AgencyCreateModal() {
 
           <div>
             <label className="form-label" htmlFor="agency-description">
-              Description
+              Deskripsi
             </label>
 
             <Textarea
               id="agency-description"
               name="description"
-              placeholder="Briefly describe the agency responsibility."
+              placeholder="Jelaskan singkat tanggung jawab instansi."
               rows={3}
             />
           </div>
@@ -82,7 +82,7 @@ export function AgencyCreateModal() {
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <label className="form-label" htmlFor="contact-person">
-                Contact Person
+                Kontak
               </label>
 
               <Input
@@ -94,7 +94,7 @@ export function AgencyCreateModal() {
 
             <div>
               <label className="form-label" htmlFor="phone">
-                Phone
+                Telepon
               </label>
 
               <Input
@@ -120,13 +120,13 @@ export function AgencyCreateModal() {
 
           <div>
             <label className="form-label" htmlFor="address">
-              Address
+                Alamat
             </label>
 
             <Textarea
               id="address"
               name="address"
-              placeholder="Agency office address."
+              placeholder="Alamat kantor instansi."
               rows={3}
             />
           </div>
@@ -138,11 +138,11 @@ export function AgencyCreateModal() {
               onClick={() => setOpen(false)}
               disabled={isPending}
             >
-              Cancel
+              Batal
             </Button>
 
             <Button type="submit" disabled={isPending}>
-              {isPending ? "Creating..." : "Create Agency"}
+              {isPending ? "Membuat..." : "Buat Instansi"}
             </Button>
           </div>
         </form>

@@ -75,7 +75,7 @@ export function AdminReportReviewPanel({
 
   useEffect(() => {
     if (approveState.status === "success") {
-      toast.success("Success", {
+      toast.success("Berhasil", {
         description: approveState.message,
       });
 
@@ -83,7 +83,7 @@ export function AdminReportReviewPanel({
     }
 
     if (approveState.status === "error") {
-      toast.error("Failed", {
+      toast.error("Gagal", {
         description: approveState.message,
       });
     }
@@ -91,7 +91,7 @@ export function AdminReportReviewPanel({
 
   useEffect(() => {
     if (rejectState.status === "success") {
-      toast.success("Success", {
+      toast.success("Berhasil", {
         description: rejectState.message,
       });
 
@@ -99,7 +99,7 @@ export function AdminReportReviewPanel({
     }
 
     if (rejectState.status === "error") {
-      toast.error("Failed", {
+      toast.error("Gagal", {
         description: rejectState.message,
       });
     }
@@ -108,18 +108,18 @@ export function AdminReportReviewPanel({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Admin Review</CardTitle>
+        <CardTitle>Tinjauan Admin</CardTitle>
         <CardDescription>
-          Review the citizen report, assign category and hamlet, then send it to
-          verification.
+          Tinjau laporan masyarakat, tentukan kategori dan dusun, lalu kirim ke
+          tahap verifikasi.
         </CardDescription>
       </CardHeader>
 
       <CardContent className="space-y-6">
         {!isPending && (
           <div className="rounded-2xl border border-warning-100 bg-warning-50 p-4 text-sm leading-6 text-warning-700">
-            This report has already been reviewed. Review actions are only
-            available for reports with pending status.
+            Laporan ini sudah ditinjau. Aksi tinjauan hanya tersedia untuk
+            laporan dengan status menunggu.
           </div>
         )}
 
@@ -127,14 +127,14 @@ export function AdminReportReviewPanel({
           <input type="hidden" name="report_id" value={reportId} />
 
           <Select
-            label="Category"
+            label="Kategori"
             name="category_id"
             required
             defaultValue=""
             disabled={!isPending || isSubmitting}
           >
             <option value="" disabled>
-              Select category
+              Pilih kategori
             </option>
 
             {categories.map((category) => (
@@ -145,14 +145,14 @@ export function AdminReportReviewPanel({
           </Select>
 
           <Select
-            label="Hamlet"
+            label="Dusun"
             name="dusun_id"
             required
             defaultValue=""
             disabled={!isPending || isSubmitting}
           >
             <option value="" disabled>
-              Select hamlet
+              Pilih dusun
             </option>
 
             {hamlets.map((hamlet) => (
@@ -163,20 +163,20 @@ export function AdminReportReviewPanel({
           </Select>
 
           <Select
-            label="Priority"
+            label="Prioritas"
             name="priority"
             required
             defaultValue={defaultPriority}
             disabled={!isPending || isSubmitting || !hasPriorityOptions}
           >
             <option value="" disabled>
-              Select priority
+              Pilih prioritas
             </option>
 
             {priorityOptions.map((option) => (
               <option key={option.priority} value={option.priority}>
-                {formatPriority(option.priority)} — Verification{" "}
-                {formatHours(option.verification_hours)}, Resolution{" "}
+                {formatPriority(option.priority)} - Verifikasi{" "}
+                {formatHours(option.verification_hours)}, Resolusi{" "}
                 {formatHours(option.resolution_hours)}
               </option>
             ))}
@@ -184,15 +184,15 @@ export function AdminReportReviewPanel({
 
           {!hasPriorityOptions ? (
             <div className="rounded-2xl border border-danger-100 bg-danger-50 p-4 text-sm leading-6 text-danger-700">
-              No active SLA priority is available. Please activate at least one SLA rule
-              before approving reports.
+              Belum ada prioritas SLA yang aktif. Aktifkan minimal satu aturan
+              SLA sebelum menyetujui laporan.
             </div>
           ) : null}
 
           <Textarea
-            label="Admin note"
+            label="Catatan admin"
             name="admin_note"
-            placeholder="Add an internal note for this report."
+            placeholder="Tambahkan catatan internal untuk laporan ini."
             disabled={!isPending || isSubmitting}
           />
 
@@ -202,7 +202,7 @@ export function AdminReportReviewPanel({
             className="w-full"
           >
             <CheckCircle2 className="mr-2 h-4 w-4" />
-            {isApproving ? "Approving..." : "Approve and send to verification"}
+            {isApproving ? "Menyetujui..." : "Setujui dan kirim verifikasi"}
           </Button>
         </form>
 
@@ -211,9 +211,9 @@ export function AdminReportReviewPanel({
             <input type="hidden" name="report_id" value={reportId} />
 
             <Textarea
-              label="Rejection reason"
+              label="Alasan penolakan"
               name="rejection_reason"
-              placeholder="Explain why this report is rejected."
+              placeholder="Jelaskan alasan laporan ini ditolak."
               required
               disabled={!isPending || isSubmitting}
             />
@@ -225,7 +225,7 @@ export function AdminReportReviewPanel({
               className="w-full border-danger-200 text-danger-700 hover:bg-danger-50"
             >
               <XCircle className="mr-2 h-4 w-4" />
-              {isRejecting ? "Rejecting..." : "Reject report"}
+              {isRejecting ? "Menolak..." : "Tolak laporan"}
             </Button>
           </form>
         </div>
@@ -247,8 +247,8 @@ function formatPriority(priority: string) {
 
 function formatHours(hours: number) {
   if (hours % 24 === 0) {
-    return `${hours / 24} day${hours / 24 > 1 ? "s" : ""}`;
+    return `${hours / 24} hari`;
   }
 
-  return `${hours} hour${hours > 1 ? "s" : ""}`;
+  return `${hours} jam`;
 }

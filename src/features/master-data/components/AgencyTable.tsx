@@ -47,12 +47,12 @@ export function AgencyTable({ agencies }: AgencyTableProps) {
     return (
       <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-10 text-center">
         <p className="text-sm font-semibold text-foreground">
-          No agencies found
+          Belum ada instansi
         </p>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          Add the first agency to support forwarding reports outside village
-          authority.
+          Tambahkan instansi pertama untuk mendukung penerusan laporan ke luar
+          kewenangan desa.
         </p>
       </div>
     );
@@ -64,12 +64,12 @@ export function AgencyTable({ agencies }: AgencyTableProps) {
         <table className="w-full min-w-[1050px] text-left text-sm">
           <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
-              <th className="px-5 py-4 font-semibold">Agency</th>
-              <th className="px-5 py-4 font-semibold">Contact</th>
-              <th className="px-5 py-4 font-semibold">Address</th>
+              <th className="px-5 py-4 font-semibold">Instansi</th>
+              <th className="px-5 py-4 font-semibold">Kontak</th>
+              <th className="px-5 py-4 font-semibold">Alamat</th>
               <th className="px-5 py-4 font-semibold">Status</th>
-              <th className="px-5 py-4 font-semibold">Updated</th>
-              <th className="px-5 py-4 text-right font-semibold">Action</th>
+              <th className="px-5 py-4 font-semibold">Diperbarui</th>
+              <th className="px-5 py-4 text-right font-semibold">Aksi</th>
             </tr>
           </thead>
 
@@ -154,7 +154,7 @@ export function AgencyTable({ agencies }: AgencyTableProps) {
 
             <div className="rounded-xl border border-border bg-muted/30 p-3 text-sm text-muted-foreground">
               <p className="font-medium text-foreground">
-                {agency.contact_person || "No contact person"}
+                {agency.contact_person || "Belum ada kontak"}
               </p>
 
               {agency.phone ? <p className="mt-1">{agency.phone}</p> : null}
@@ -186,7 +186,7 @@ function AgencyEditModal({ agency }: { agency: Agency }) {
 
     if (state.status === "success") {
       toast.success(state.message);
-      setOpen(false);
+      setTimeout(() => setOpen(false), 0);
     }
 
     if (state.status === "error") {
@@ -209,8 +209,8 @@ function AgencyEditModal({ agency }: { agency: Agency }) {
       <Modal
         open={open}
         onOpenChange={setOpen}
-        title="Edit Agency"
-        description="Update agency information."
+        title="Edit Instansi"
+        description="Perbarui informasi instansi."
         className="max-w-2xl"
       >
         <form action={action} className="space-y-5">
@@ -218,7 +218,7 @@ function AgencyEditModal({ agency }: { agency: Agency }) {
 
           <div>
             <label className="form-label" htmlFor={`agency-name-${agency.id}`}>
-              Agency Name
+              Nama Instansi
             </label>
 
             <Input
@@ -234,7 +234,7 @@ function AgencyEditModal({ agency }: { agency: Agency }) {
               className="form-label"
               htmlFor={`agency-description-${agency.id}`}
             >
-              Description
+              Deskripsi
             </label>
 
             <Textarea
@@ -251,7 +251,7 @@ function AgencyEditModal({ agency }: { agency: Agency }) {
                 className="form-label"
                 htmlFor={`contact-person-${agency.id}`}
               >
-                Contact Person
+                Kontak
               </label>
 
               <Input
@@ -263,7 +263,7 @@ function AgencyEditModal({ agency }: { agency: Agency }) {
 
             <div>
               <label className="form-label" htmlFor={`phone-${agency.id}`}>
-                Phone
+                Telepon
               </label>
 
               <Input
@@ -289,7 +289,7 @@ function AgencyEditModal({ agency }: { agency: Agency }) {
 
           <div>
             <label className="form-label" htmlFor={`address-${agency.id}`}>
-              Address
+              Alamat
             </label>
 
             <Textarea
@@ -307,11 +307,11 @@ function AgencyEditModal({ agency }: { agency: Agency }) {
               onClick={() => setOpen(false)}
               disabled={isPending}
             >
-              Cancel
+              Batal
             </Button>
 
             <Button type="submit" disabled={isPending}>
-              {isPending ? "Saving..." : "Save Changes"}
+              {isPending ? "Menyimpan..." : "Simpan Perubahan"}
             </Button>
           </div>
         </form>
@@ -348,7 +348,7 @@ function AgencyStatusButton({ agency }: { agency: Agency }) {
       />
 
       <Button type="submit" variant="outline" size="sm" disabled={isPending}>
-        {agency.is_active ? "Deactivate" : "Activate"}
+        {agency.is_active ? "Nonaktifkan" : "Aktifkan"}
       </Button>
     </form>
   );
@@ -359,7 +359,7 @@ function StatusBadge({ isActive }: { isActive: boolean }) {
     return (
       <Badge className="bg-success-50 text-success-700">
         <CircleCheck className="mr-1 h-3.5 w-3.5" />
-        Active
+        Aktif
       </Badge>
     );
   }
@@ -367,7 +367,7 @@ function StatusBadge({ isActive }: { isActive: boolean }) {
   return (
     <Badge className="bg-danger-50 text-danger-700">
       <CircleX className="mr-1 h-3.5 w-3.5" />
-      Inactive
+      Nonaktif
     </Badge>
   );
 }

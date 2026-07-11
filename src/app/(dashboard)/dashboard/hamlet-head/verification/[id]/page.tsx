@@ -5,7 +5,6 @@ import {
   ArrowLeft,
   CalendarDays,
   ClipboardList,
-  MapPin,
   Phone,
   User,
 } from "lucide-react";
@@ -69,7 +68,7 @@ export default async function HamletVerificationDetailPage({
           className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to verification list
+          Kembali ke daftar verifikasi
         </Link>
 
         <div className="mt-5 flex flex-col justify-between gap-4 lg:flex-row lg:items-start">
@@ -83,7 +82,7 @@ export default async function HamletVerificationDetailPage({
             </h1>
 
             <p className="mt-2 text-sm text-muted-foreground">
-              Submitted on {formatDateTime(report.created_at)}
+              Dikirim pada {formatDateTime(report.created_at)}
             </p>
           </div>
 
@@ -108,9 +107,9 @@ export default async function HamletVerificationDetailPage({
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Report Description</CardTitle>
+              <CardTitle>Deskripsi Laporan</CardTitle>
               <CardDescription>
-                Read the citizen report before doing field verification.
+                Baca laporan masyarakat sebelum melakukan verifikasi lapangan.
               </CardDescription>
             </CardHeader>
 
@@ -123,9 +122,9 @@ export default async function HamletVerificationDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Photo Evidence</CardTitle>
+              <CardTitle>Foto Bukti</CardTitle>
               <CardDescription>
-                Photos uploaded by the citizen as initial evidence.
+                Foto yang diunggah masyarakat sebagai bukti awal.
               </CardDescription>
             </CardHeader>
 
@@ -133,10 +132,10 @@ export default async function HamletVerificationDetailPage({
               {photos.length === 0 ? (
                 <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-8 text-center">
                   <p className="text-sm font-medium text-foreground">
-                    No photos uploaded
+                    Belum ada foto yang diunggah
                   </p>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Citizen photo evidence will appear here.
+                    Foto bukti dari masyarakat akan muncul di sini.
                   </p>
                 </div>
               ) : (
@@ -149,14 +148,14 @@ export default async function HamletVerificationDetailPage({
                       {photo.signedUrl ? (
                         <Image
                           src={photo.signedUrl}
-                          alt="Report evidence"
+                          alt="Bukti laporan"
                           width={800}
                           height={600}
                           className="h-56 w-full object-cover"
                         />
                       ) : (
                         <div className="flex h-56 items-center justify-center text-sm text-muted-foreground">
-                          Image unavailable
+                          Gambar tidak tersedia
                         </div>
                       )}
                     </div>
@@ -186,16 +185,16 @@ export default async function HamletVerificationDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Reporter</CardTitle>
+              <CardTitle>Pelapor</CardTitle>
               <CardDescription>
-                Citizen account that submitted this report.
+                Akun masyarakat yang mengirim laporan ini.
               </CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-4">
               <InfoRow
                 icon={<User className="h-4 w-4" />}
-                label="Name"
+                label="Nama"
                 value={reporter?.full_name ?? "-"}
               />
 
@@ -207,7 +206,7 @@ export default async function HamletVerificationDetailPage({
 
               <InfoRow
                 icon={<Phone className="h-4 w-4" />}
-                label="Phone"
+                label="Nomor HP"
                 value={reporter?.phone_number ?? "-"}
               />
             </CardContent>
@@ -215,18 +214,18 @@ export default async function HamletVerificationDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Admin Classification</CardTitle>
+              <CardTitle>Klasifikasi Admin</CardTitle>
               <CardDescription>
-                Classification assigned by the village admin.
+                Klasifikasi yang ditetapkan oleh admin desa.
               </CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-4">
-              <InfoRow label="Category" value={categoryName} />
-              <InfoRow label="Hamlet" value={hamletName} />
+              <InfoRow label="Kategori" value={categoryName} />
+              <InfoRow label="Dusun" value={hamletName} />
               <InfoRow
                 icon={<CalendarDays className="h-4 w-4" />}
-                label="Last updated"
+                label="Terakhir diperbarui"
                 value={formatDateTime(report.updated_at)}
               />
             </CardContent>
@@ -235,9 +234,9 @@ export default async function HamletVerificationDetailPage({
           {report.admin_note && (
             <Card>
               <CardHeader>
-                <CardTitle>Admin Note</CardTitle>
+                <CardTitle>Catatan Admin</CardTitle>
                 <CardDescription>
-                  Internal note from admin for verification.
+                  Catatan internal dari admin untuk proses verifikasi.
                 </CardDescription>
               </CardHeader>
 

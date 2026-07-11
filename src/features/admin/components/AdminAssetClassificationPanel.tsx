@@ -75,7 +75,7 @@ export function AdminAssetClassificationPanel({
 
   useEffect(() => {
     if (state.status === "success") {
-      toast.success("Success", {
+      toast.success("Berhasil", {
         description: state.message,
       });
 
@@ -86,7 +86,7 @@ export function AdminAssetClassificationPanel({
     }
 
     if (state.status === "error") {
-      toast.error("Failed", {
+      toast.error("Gagal", {
         description: state.message,
       });
     }
@@ -95,17 +95,17 @@ export function AdminAssetClassificationPanel({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Asset Classification</CardTitle>
+        <CardTitle>Klasifikasi Aset</CardTitle>
         <CardDescription>
-          Decide whether the report is a village asset issue and determine its
-          authority and follow-up type.
+          Tentukan apakah laporan berkaitan dengan aset desa, level kewenangan,
+          dan jenis tindak lanjutnya.
         </CardDescription>
       </CardHeader>
 
       <CardContent>
         {!canClassify && (
           <div className="rounded-2xl border border-success-100 bg-success-50 p-4 text-sm leading-6 text-success-700">
-            This report has already been classified.
+            Laporan ini sudah diklasifikasi.
           </div>
         )}
 
@@ -114,7 +114,7 @@ export function AdminAssetClassificationPanel({
             <input type="hidden" name="report_id" value={reportId} />
 
             <Select
-              label="Asset status"
+              label="Status aset"
               name="asset_status"
               required
               defaultValue={
@@ -125,7 +125,7 @@ export function AdminAssetClassificationPanel({
               disabled={isSubmitting}
             >
               <option value="" disabled>
-                Select asset status
+                Pilih status aset
               </option>
               <option value="aset_desa">Aset Desa</option>
               <option value="bukan_aset_desa">Bukan Aset Desa</option>
@@ -133,7 +133,7 @@ export function AdminAssetClassificationPanel({
             </Select>
 
             <Select
-              label="Authority level"
+              label="Level kewenangan"
               name="authority_level"
               required
               defaultValue={
@@ -144,7 +144,7 @@ export function AdminAssetClassificationPanel({
               disabled={isSubmitting}
             >
               <option value="" disabled>
-                Select authority level
+                Pilih level kewenangan
               </option>
               <option value="desa">Desa</option>
               <option value="kabupaten_kota">Kabupaten/Kota</option>
@@ -154,7 +154,7 @@ export function AdminAssetClassificationPanel({
             </Select>
 
             <Select
-              label="Follow-up type"
+              label="Jenis tindak lanjut"
               name="follow_up_type"
               required
               value={selectedFollowUpType}
@@ -162,7 +162,7 @@ export function AdminAssetClassificationPanel({
               disabled={isSubmitting}
             >
               <option value="" disabled>
-                Select follow-up type
+                Pilih jenis tindak lanjut
               </option>
               <option value="ditangani_desa">Ditangani Desa</option>
               <option value="diteruskan_ke_dinas">Diteruskan ke Dinas</option>
@@ -172,15 +172,15 @@ export function AdminAssetClassificationPanel({
 
             {requiresVillageSection ? (
               <Select
-                label="Assigned village section"
+                label="Seksi desa tujuan"
                 name="assigned_section_id"
                 required
                 defaultValue={currentAssignedSectionId ?? ""}
                 disabled={!sectionOptionsAvailable || isSubmitting}
-                helperText="The selected section determines which Kasi dashboard receives this report."
+                helperText="Seksi yang dipilih menentukan dashboard Kasi yang menerima laporan ini."
               >
                 <option value="" disabled>
-                  Select village section
+                  Pilih seksi desa
                 </option>
 
                 {villageSections.map((section) => (
@@ -195,15 +195,15 @@ export function AdminAssetClassificationPanel({
 
             {requiresAgency ? (
               <Select
-                label="Target agency"
+                label="Instansi tujuan"
                 name="agency_id"
                 required
                 defaultValue=""
                 disabled={!agencyOptionsAvailable || isSubmitting}
-                helperText="The selected agency will be used for official letter generation."
+                helperText="Instansi yang dipilih akan digunakan untuk pembuatan surat resmi."
               >
                 <option value="" disabled>
-                  Select target agency
+                  Pilih instansi tujuan
                 </option>
 
                 {agencies.map((agency) => (
@@ -218,15 +218,15 @@ export function AdminAssetClassificationPanel({
 
             {requiresVillageSection && !sectionOptionsAvailable ? (
               <div className="rounded-2xl border border-danger-100 bg-danger-50 p-4 text-sm leading-6 text-danger-700">
-                No active village section is available. Please activate or add
-                a section in Master Data before classifying this report.
+                Belum ada seksi desa yang aktif. Aktifkan atau tambahkan seksi
+                di Data Master sebelum mengklasifikasi laporan ini.
               </div>
             ) : null}
 
             {requiresAgency && !agencyOptionsAvailable ? (
               <div className="rounded-2xl border border-danger-100 bg-danger-50 p-4 text-sm leading-6 text-danger-700">
-                No active agency is available. Please add or activate an agency
-                in Master Data before forwarding this report.
+                Belum ada instansi yang aktif. Tambahkan atau aktifkan instansi
+                di Data Master sebelum meneruskan laporan ini.
               </div>
             ) : null}
 
@@ -240,7 +240,7 @@ export function AdminAssetClassificationPanel({
               className="w-full"
             >
               <ClipboardCheck className="mr-2 h-4 w-4" />
-              {isSubmitting ? "Classifying..." : "Save classification"}
+              {isSubmitting ? "Mengklasifikasi..." : "Simpan klasifikasi"}
             </Button>
           </form>
         )}

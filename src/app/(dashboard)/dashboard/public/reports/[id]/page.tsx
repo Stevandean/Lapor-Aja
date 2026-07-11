@@ -58,14 +58,15 @@ export default async function CitizenReportDetailPage({
     <div className="space-y-6">
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-semibold text-primary">My Reports</p>
+          <p className="text-sm font-semibold text-primary">Laporan Saya</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Report Detail
+            Detail Laporan
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Track your submitted report and monitor its latest handling status.
+            Pantau laporan yang sudah Anda kirim dan lihat status penanganan
+            terbarunya.
           </p>
         </div>
 
@@ -73,7 +74,7 @@ export default async function CitizenReportDetailPage({
           <Link href="/dashboard/public/reports">
             <Button variant="outline">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to My Reports
+              Kembali ke Laporan Saya
             </Button>
           </Link>
 
@@ -83,25 +84,25 @@ export default async function CitizenReportDetailPage({
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <SummaryCard
-          title="Report Number"
+          title="Nomor Laporan"
           value={report.report_number}
           icon={<FileText className="h-5 w-5" />}
         />
 
         <SummaryCard
-          title="Current Status"
+          title="Status Saat Ini"
           value={getStatusLabel(report.status)}
           icon={<Clock3 className="h-5 w-5" />}
         />
 
         <SummaryCard
-          title="Submitted Date"
+          title="Tanggal Dikirim"
           value={formatDate(report.created_at)}
           icon={<CalendarDays className="h-5 w-5" />}
         />
 
         <SummaryCard
-          title="Resolved Date"
+          title="Tanggal Selesai"
           value={report.resolved_at ? formatDate(report.resolved_at) : "-"}
           icon={<CheckCircle2 className="h-5 w-5" />}
         />
@@ -138,35 +139,35 @@ export default async function CitizenReportDetailPage({
 
           <Card>
             <CardHeader>
-                <CardTitle>Status Timeline</CardTitle>
-                <CardDescription>
-                This timeline shows the real handling history of your report.
-                </CardDescription>
+              <CardTitle>Riwayat Status</CardTitle>
+              <CardDescription>
+                Riwayat ini menampilkan proses penanganan laporan Anda.
+              </CardDescription>
             </CardHeader>
 
             <CardContent>
-                <ReportStatusTimeline logs={report.status_logs} />
+              <ReportStatusTimeline logs={report.status_logs} />
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle>Submitted Photos</CardTitle>
+              <CardTitle>Foto Bukti</CardTitle>
               <CardDescription>
-                Evidence photos uploaded when you submitted the report.
+                Foto bukti yang Anda unggah saat mengirim laporan.
               </CardDescription>
             </CardHeader>
 
             <CardContent>
               {report.photos.length === 0 ? (
-                <EmptyText text="No photos available." />
+                <EmptyText text="Belum ada foto bukti." />
               ) : (
                 <div className="grid gap-4 sm:grid-cols-2">
                   {report.photos.map((photo: ReportPhoto) => (
                     <PhotoCard
                       key={photo.id}
                       src={photo.signed_url}
-                      alt="Citizen report evidence"
+                      alt="Foto bukti laporan masyarakat"
                     />
                   ))}
                 </div>
@@ -187,32 +188,32 @@ export default async function CitizenReportDetailPage({
         <aside className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Report Information</CardTitle>
+              <CardTitle>Informasi Laporan</CardTitle>
             </CardHeader>
 
             <CardContent className="space-y-4">
-              <InfoRow label="Category" value={getRelationName(report.category)} />
-              <InfoRow label="Hamlet" value={getRelationName(report.hamlet)} />
-              <InfoRow label="Priority" value={formatPriority(report.priority)} />
-              <InfoRow label="Created At" value={formatDate(report.created_at)} />
-              <InfoRow label="Updated At" value={formatDate(report.updated_at)} />
+              <InfoRow label="Kategori" value={getRelationName(report.category)} />
+              <InfoRow label="Dusun" value={getRelationName(report.hamlet)} />
+              <InfoRow label="Prioritas" value={formatPriority(report.priority)} />
+              <InfoRow label="Dibuat Pada" value={formatDate(report.created_at)} />
+              <InfoRow label="Diperbarui Pada" value={formatDate(report.updated_at)} />
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle>Message from Staff</CardTitle>
+              <CardTitle>Pesan dari Petugas</CardTitle>
             </CardHeader>
 
             <CardContent>
               {report.status === "rejected" ? (
                 <p className="whitespace-pre-line text-sm leading-7 text-danger-700">
-                  {report.rejection_reason || "Your report was rejected."}
+                  {report.rejection_reason || "Laporan Anda ditolak."}
                 </p>
               ) : (
                 <p className="whitespace-pre-line text-sm leading-7 text-muted-foreground">
                   {report.admin_note ||
-                    "No additional message from staff yet."}
+                    "Belum ada pesan tambahan dari petugas."}
                 </p>
               )}
             </CardContent>
@@ -254,7 +255,7 @@ function PhotoCard({ src, alt }: { src: string | null; alt: string }) {
   if (!src) {
     return (
       <div className="flex aspect-video items-center justify-center rounded-2xl border border-dashed border-border bg-muted/40 text-sm text-muted-foreground">
-        Photo unavailable
+        Foto tidak tersedia
       </div>
     );
   }
@@ -320,10 +321,10 @@ function ReportRelationsNotice({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Related Reports</CardTitle>
+        <CardTitle>Laporan Terkait</CardTitle>
         <CardDescription>
-          This section explains if your report was merged or connected to a
-          recurring issue.
+          Bagian ini menjelaskan apakah laporan Anda digabungkan atau
+          terhubung dengan masalah berulang.
         </CardDescription>
       </CardHeader>
 
@@ -373,13 +374,13 @@ function getRelationTitle(
 ) {
   if (relationType === "duplicate") {
     return direction === "outgoing"
-      ? "This report was merged into a master report"
-      : "Another report was merged into this report";
+      ? "Laporan ini digabungkan ke laporan utama"
+      : "Laporan lain digabungkan ke laporan ini";
   }
 
   return direction === "outgoing"
-    ? "This report is a recurring issue"
-    : "A newer report was marked as a recurrence of this issue";
+    ? "Laporan ini ditandai sebagai masalah berulang"
+    : "Laporan baru ditandai sebagai pengulangan dari masalah ini";
 }
 
 function getSingleRelation<T>(relation: T[] | T | null | undefined) {

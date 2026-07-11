@@ -14,22 +14,22 @@ export default async function AdminArchivePage() {
   return (
     <div className="space-y-6">
       <section>
-        <p className="text-sm font-semibold text-primary">Archive</p>
+        <p className="text-sm font-semibold text-primary">Arsip</p>
 
         <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-          Archived Reports
+          Laporan Diarsipkan
         </h1>
 
         <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-          View reports that have been closed and moved into the archive.
+          Lihat laporan yang sudah ditutup dan dipindahkan ke arsip.
         </p>
       </section>
 
       <Card>
         <CardHeader>
-          <CardTitle>Archived Report List</CardTitle>
+          <CardTitle>Daftar Laporan Arsip</CardTitle>
           <CardDescription>
-            Showing reports that are no longer active in the handling workflow.
+            Menampilkan laporan yang tidak lagi aktif dalam alur penanganan.
           </CardDescription>
         </CardHeader>
 

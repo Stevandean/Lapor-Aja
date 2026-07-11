@@ -46,14 +46,14 @@ export async function approveReportForVerification(
   if (!reportId || !categoryId || !hamletId) {
     return {
       status: "error",
-      message: "Please complete category and hamlet before approving.",
+      message: "Lengkapi kategori dan dusun sebelum menyetujui laporan.",
     };
   }
 
   if (!priority) {
     return {
       status: "error",
-      message: "Priority is required.",
+      message: "Prioritas wajib dipilih.",
     };
   }
 
@@ -70,7 +70,7 @@ export async function approveReportForVerification(
     return {
       status: "error",
       message:
-        "Selected priority is not available. Please choose an active SLA priority.",
+        "Prioritas yang dipilih tidak tersedia. Pilih prioritas SLA yang aktif.",
     };
   }
 
@@ -110,14 +110,14 @@ export async function approveReportForVerification(
     reportId,
     oldStatus: "pending",
     newStatus: "need_verification",
-    note: "Report approved by admin and sent for hamlet verification.",
+    note: "Laporan disetujui admin dan dikirim untuk verifikasi dusun.",
   });
 
   await recordSlaEvent({
     reportId,
     eventType: "deadline_started",
     newResolutionDueAt: resolutionDueAt,
-    note: `SLA started for ${priority} priority.`,
+    note: `SLA dimulai untuk prioritas ${priority}.`,
   });
 
   const { data: approvedReport } = await supabase
@@ -140,7 +140,7 @@ export async function approveReportForVerification(
 
   return {
     status: "success",
-    message: "Report approved and sent to verification.",
+    message: "Laporan disetujui dan dikirim ke tahap verifikasi.",
   };
 }
 
@@ -156,7 +156,7 @@ export async function rejectReport(
   if (!reportId || !rejectionReason) {
     return {
       status: "error",
-      message: "Please provide a rejection reason.",
+      message: "Isi alasan penolakan terlebih dahulu.",
     };
   }
 
@@ -183,13 +183,13 @@ export async function rejectReport(
     reportId,
     oldStatus: "pending",
     newStatus: "rejected",
-    note: rejectionReason || "Report rejected by admin.",
+    note: rejectionReason || "Laporan ditolak oleh admin.",
   });
 
   await recordSlaEvent({
     reportId,
     eventType: "completed",
-    note: "SLA completed when report was rejected.",
+    note: "SLA selesai karena laporan ditolak.",
   });
 
   revalidatePath("/dashboard/admin/reports");
@@ -197,7 +197,7 @@ export async function rejectReport(
 
   return {
     status: "success",
-    message: "Report rejected successfully.",
+    message: "Laporan berhasil ditolak.",
   };
 }
 
@@ -240,28 +240,28 @@ export async function classifyAssetReport(
   if (!reportId) {
     return {
       status: "error",
-      message: "Report ID is missing.",
+      message: "ID laporan tidak ditemukan.",
     };
   }
 
   if (!allowedAssetStatuses.includes(assetStatus)) {
     return {
       status: "error",
-      message: "Please select a valid asset status.",
+      message: "Pilih status aset yang valid.",
     };
   }
 
   if (!allowedAuthorityLevels.includes(authorityLevel)) {
     return {
       status: "error",
-      message: "Please select a valid authority level.",
+      message: "Pilih level kewenangan yang valid.",
     };
   }
 
   if (!allowedFollowUpTypes.includes(followUpType)) {
     return {
       status: "error",
-      message: "Please select a valid follow-up type.",
+      message: "Pilih jenis tindak lanjut yang valid.",
     };
   }
 
@@ -296,7 +296,7 @@ export async function classifyAssetReport(
       return {
         status: "error",
         message:
-          "Please assign the report to a village section before saving this classification.",
+          "Pilih seksi desa tujuan sebelum menyimpan klasifikasi.",
       };
     }
 
@@ -310,7 +310,7 @@ export async function classifyAssetReport(
     if (sectionError || !section) {
       return {
         status: "error",
-        message: "Selected village section is not available or inactive.",
+        message: "Seksi desa yang dipilih tidak tersedia atau tidak aktif.",
       };
     }
 
@@ -321,7 +321,7 @@ export async function classifyAssetReport(
     if (!agencyId) {
       return {
         status: "error",
-        message: "Please select the target agency before saving classification.",
+        message: "Pilih instansi tujuan sebelum menyimpan klasifikasi.",
       };
     }
 
@@ -335,7 +335,7 @@ export async function classifyAssetReport(
     if (agencyError || !agency) {
       return {
         status: "error",
-        message: "Selected agency is not available or inactive.",
+        message: "Instansi yang dipilih tidak tersedia atau tidak aktif.",
       };
     }
 
@@ -354,7 +354,7 @@ export async function classifyAssetReport(
   if (reportError || !report) {
     return {
       status: "error",
-      message: "Report not found or already classified.",
+      message: "Laporan tidak ditemukan atau sudah diklasifikasi.",
     };
   }
 
@@ -382,7 +382,7 @@ export async function classifyAssetReport(
     reportId,
     oldStatus: "verified_valid",
     newStatus: nextStatus,
-    note: "Report has been classified and routed by admin.",
+    note: "Laporan sudah diklasifikasi dan diarahkan oleh admin.",
   });
 
   if (selectedSectionId && selectedSectionId !== report.assigned_section_id) {
@@ -408,7 +408,7 @@ export async function classifyAssetReport(
       eventType: "paused_budget",
       previousResolutionDueAt: report.resolution_due_at,
       newResolutionDueAt: report.resolution_due_at,
-      note: "SLA paused because this report is waiting for budget.",
+      note: "SLA dijeda karena laporan menunggu anggaran.",
     });
   }
 
@@ -433,7 +433,7 @@ export async function classifyAssetReport(
 
   return {
     status: "success",
-    message: "Report has been classified and routed successfully.",
+    message: "Laporan berhasil diklasifikasi dan diarahkan.",
   };
 }
 
@@ -449,7 +449,7 @@ export async function processReportFollowUp(
   if (!reportId) {
     return {
       status: "error",
-      message: "Report ID is missing.",
+      message: "ID laporan tidak ditemukan.",
     };
   }
 
@@ -467,7 +467,7 @@ export async function processReportFollowUp(
   if (reportError || !report) {
     return {
       status: "error",
-      message: "Report not found or not ready for follow-up.",
+      message: "Laporan tidak ditemukan atau belum siap ditindaklanjuti.",
     };
   }
 
@@ -491,7 +491,7 @@ export async function processReportFollowUp(
   if (!nextStatus) {
     return {
       status: "error",
-      message: "Please set a valid follow-up type before processing this report.",
+      message: "Tentukan jenis tindak lanjut yang valid sebelum memproses laporan.",
     };
   }
 
@@ -504,7 +504,7 @@ export async function processReportFollowUp(
       return {
         status: "error",
         message:
-          "Please assign this village follow-up report to a village section before processing it.",
+          "Tugaskan laporan tindak lanjut desa ke seksi desa sebelum diproses.",
       };
     }
 
@@ -518,7 +518,7 @@ export async function processReportFollowUp(
     if (sectionError || !section) {
       return {
         status: "error",
-        message: "Assigned village section is inactive or unavailable.",
+        message: "Seksi desa yang ditugaskan tidak aktif atau tidak tersedia.",
       };
     }
   }
@@ -527,7 +527,7 @@ export async function processReportFollowUp(
     if (!agencyId) {
       return {
         status: "error",
-        message: "Please select the target agency before forwarding the report.",
+        message: "Pilih instansi tujuan sebelum meneruskan laporan.",
       };
     }
 
@@ -541,7 +541,7 @@ export async function processReportFollowUp(
     if (agencyError || !agency) {
       return {
         status: "error",
-        message: "Selected agency is not available or inactive.",
+        message: "Instansi yang dipilih tidak tersedia atau tidak aktif.",
       };
     }
   }
@@ -567,7 +567,7 @@ export async function processReportFollowUp(
     reportId,
     oldStatus: "classified",
     newStatus: nextStatus,
-    note: "Report follow-up direction has been determined.",
+    note: "Arah tindak lanjut laporan sudah ditentukan.",
   });
 
   if (nextStatus === "waiting_budget") {
@@ -576,7 +576,7 @@ export async function processReportFollowUp(
       eventType: "paused_budget",
       previousResolutionDueAt: report.resolution_due_at,
       newResolutionDueAt: report.resolution_due_at,
-      note: "SLA paused because this report is waiting for budget.",
+      note: "SLA dijeda karena laporan menunggu anggaran.",
     });
   }
 
@@ -601,7 +601,7 @@ export async function processReportFollowUp(
 
   return {
     status: "success",
-    message: "Report follow-up has been processed successfully.",
+    message: "Tindak lanjut laporan berhasil diproses.",
   };
 }
 
@@ -619,28 +619,28 @@ export async function linkRelatedReport(
   if (!sourceReportId || !targetReportId) {
     return {
       status: "error",
-      message: "Please select the related report.",
+      message: "Pilih laporan yang ingin ditautkan.",
     };
   }
 
   if (sourceReportId === targetReportId) {
     return {
       status: "error",
-      message: "A report cannot be linked to itself.",
+      message: "Laporan tidak bisa ditautkan ke dirinya sendiri.",
     };
   }
 
   if (!["duplicate", "recurrence"].includes(relationType)) {
     return {
       status: "error",
-      message: "Please choose a valid relation type.",
+      message: "Pilih jenis relasi yang valid.",
     };
   }
 
   if (!note) {
     return {
       status: "error",
-      message: "Please provide a note explaining the relation.",
+      message: "Tambahkan catatan yang menjelaskan relasi laporan.",
     };
   }
 
@@ -668,7 +668,7 @@ export async function linkRelatedReport(
   if (!sourceReport || !targetReport) {
     return {
       status: "error",
-      message: "Source or target report was not found.",
+      message: "Laporan sumber atau laporan tujuan tidak ditemukan.",
     };
   }
 
@@ -676,7 +676,7 @@ export async function linkRelatedReport(
     return {
       status: "error",
       message:
-        "Only active reports can be linked as duplicates or recurrences.",
+        "Hanya laporan aktif yang bisa ditautkan sebagai duplikat atau masalah berulang.",
     };
   }
 
@@ -687,7 +687,7 @@ export async function linkRelatedReport(
     return {
       status: "error",
       message:
-        "Duplicate reports must be linked to a master report that is still active.",
+        "Laporan duplikat harus ditautkan ke laporan master yang masih aktif.",
     };
   }
 
@@ -698,7 +698,7 @@ export async function linkRelatedReport(
     return {
       status: "error",
       message:
-        "Recurring issues must be linked to a previous report that was already resolved.",
+        "Masalah berulang harus ditautkan ke laporan sebelumnya yang sudah selesai.",
     };
   }
 
@@ -724,8 +724,8 @@ export async function linkRelatedReport(
       status: "error",
       message:
         relationType === "duplicate"
-          ? "This report has already been merged as a duplicate."
-          : "This report has already been marked as a recurring issue.",
+          ? "Laporan ini sudah digabung sebagai duplikat."
+          : "Laporan ini sudah ditandai sebagai masalah berulang.",
     };
   }
 
@@ -747,7 +747,7 @@ export async function linkRelatedReport(
     return {
       status: "error",
       message: isDuplicateRelation
-        ? "This report relation already exists."
+        ? "Relasi laporan ini sudah ada."
         : relationError.message,
     };
   }
@@ -776,8 +776,8 @@ export async function linkRelatedReport(
       return {
         status: "error",
         message:
-          updateError?.message ||
-          "This report could not be merged because its status has changed.",
+        updateError?.message ||
+          "Laporan ini tidak bisa digabung karena statusnya sudah berubah.",
       };
     }
 
@@ -785,20 +785,20 @@ export async function linkRelatedReport(
       reportId: sourceReportId,
       oldStatus: sourceReport.status,
       newStatus: "merged",
-      note: `Report merged into ${targetReport.report_number}. ${note}`,
+      note: `Laporan digabung ke ${targetReport.report_number}. ${note}`,
     });
 
     await recordSlaEvent({
       reportId: sourceReportId,
       eventType: "merged",
-      note: `SLA stopped because this report was merged into ${targetReport.report_number}.`,
+      note: `SLA dihentikan karena laporan ini digabung ke ${targetReport.report_number}.`,
     });
 
     await createReportStatusLog({
       reportId: targetReportId,
       oldStatus: targetReport.status,
       newStatus: targetReport.status,
-      note: `Duplicate report ${sourceReport.report_number} was merged into this master report. ${note}`,
+      note: `Laporan duplikat ${sourceReport.report_number} digabung ke laporan master ini. ${note}`,
       notifyReporter: false,
       notifyWhatsApp: false,
     });
@@ -809,7 +809,7 @@ export async function linkRelatedReport(
       reportId: sourceReportId,
       oldStatus: sourceReport.status,
       newStatus: sourceReport.status,
-      note: `Report marked as a recurring issue from ${targetReport.report_number}. ${note}`,
+      note: `Laporan ditandai sebagai masalah berulang dari ${targetReport.report_number}. ${note}`,
       notifyReporter: false,
       notifyWhatsApp: false,
     });
@@ -836,8 +836,8 @@ export async function linkRelatedReport(
     status: "success",
     message:
       relationType === "duplicate"
-        ? "Duplicate report has been merged into the master report."
-        : "Recurring issue relation has been recorded.",
+        ? "Laporan duplikat berhasil digabung ke laporan master."
+        : "Relasi masalah berulang berhasil dicatat.",
   };
 }
 
@@ -861,28 +861,28 @@ export async function bulkMergeDuplicateReports(
   if (!masterReportId) {
     return {
       status: "error",
-      message: "Master report ID is missing.",
+      message: "ID laporan master tidak ditemukan.",
     };
   }
 
   if (sourceReportIds.length === 0) {
     return {
       status: "error",
-      message: "Please select at least one duplicate report to merge.",
+      message: "Pilih minimal satu laporan duplikat untuk digabung.",
     };
   }
 
   if (sourceReportIds.includes(masterReportId)) {
     return {
       status: "error",
-      message: "A report cannot be merged into itself.",
+      message: "Laporan tidak bisa digabung ke dirinya sendiri.",
     };
   }
 
   if (!note) {
     return {
       status: "error",
-      message: "Please provide a note explaining this bulk merge.",
+      message: "Tambahkan catatan yang menjelaskan merge bulk ini.",
     };
   }
 
@@ -909,21 +909,21 @@ export async function bulkMergeDuplicateReports(
   if (!masterReport) {
     return {
       status: "error",
-      message: "Master report was not found.",
+      message: "Laporan master tidak ditemukan.",
     };
   }
 
   if (!ACTIVE_RELATION_STATUSES.includes(masterReport.status)) {
     return {
       status: "error",
-      message: "Bulk duplicate merge requires an active master report.",
+      message: "Merge duplikat bulk membutuhkan laporan master yang masih aktif.",
     };
   }
 
   if (sourceReports.length !== sourceReportIds.length) {
     return {
       status: "error",
-      message: "One or more selected duplicate reports were not found.",
+      message: "Satu atau lebih laporan duplikat yang dipilih tidak ditemukan.",
     };
   }
 
@@ -934,7 +934,7 @@ export async function bulkMergeDuplicateReports(
   if (invalidSource) {
     return {
       status: "error",
-      message: `Report ${invalidSource.report_number} is no longer active and cannot be merged.`,
+      message: `Laporan ${invalidSource.report_number} tidak lagi aktif dan tidak bisa digabung.`,
     };
   }
 
@@ -965,8 +965,8 @@ export async function bulkMergeDuplicateReports(
     return {
       status: "error",
       message: relatedReport
-        ? `Report ${relatedReport.report_number} is already merged as a duplicate.`
-        : "One or more selected reports are already merged as duplicates.",
+        ? `Laporan ${relatedReport.report_number} sudah digabung sebagai duplikat.`
+        : "Satu atau lebih laporan yang dipilih sudah digabung sebagai duplikat.",
     };
   }
 
@@ -1015,7 +1015,7 @@ export async function bulkMergeDuplicateReports(
       status: "error",
       message:
         updateError?.message ||
-        "One or more reports could not be merged because their status has changed.",
+        "Satu atau lebih laporan tidak bisa digabung karena statusnya sudah berubah.",
     };
   }
 
@@ -1024,13 +1024,13 @@ export async function bulkMergeDuplicateReports(
       reportId: sourceReport.id,
       oldStatus: sourceReport.status,
       newStatus: "merged",
-      note: `Report merged into ${masterReport.report_number}. ${note}`,
+      note: `Laporan digabung ke ${masterReport.report_number}. ${note}`,
     });
 
     await recordSlaEvent({
       reportId: sourceReport.id,
       eventType: "merged",
-      note: `SLA stopped because this report was merged into ${masterReport.report_number}.`,
+      note: `SLA dihentikan karena laporan ini digabung ke ${masterReport.report_number}.`,
     });
   }
 
@@ -1038,7 +1038,7 @@ export async function bulkMergeDuplicateReports(
     reportId: masterReportId,
     oldStatus: masterReport.status,
     newStatus: masterReport.status,
-    note: `Bulk duplicate merge: ${sourceReports.length} reports were merged into this master report. ${note}`,
+    note: `Merge duplikat bulk: ${sourceReports.length} laporan digabung ke laporan master ini. ${note}`,
     notifyReporter: false,
     notifyWhatsApp: false,
   });
@@ -1058,7 +1058,7 @@ export async function bulkMergeDuplicateReports(
 
   return {
     status: "success",
-    message: `${sourceReports.length} duplicate reports have been merged into ${masterReport.report_number}.`,
+    message: `${sourceReports.length} laporan duplikat berhasil digabung ke ${masterReport.report_number}.`,
   };
 }
 
@@ -1082,28 +1082,28 @@ export async function bulkMarkRecurringReports(
   if (!targetReportId) {
     return {
       status: "error",
-      message: "Resolved reference report ID is missing.",
+      message: "ID laporan referensi yang sudah selesai tidak ditemukan.",
     };
   }
 
   if (sourceReportIds.length === 0) {
     return {
       status: "error",
-      message: "Please select at least one active report to mark as recurring.",
+      message: "Pilih minimal satu laporan aktif untuk ditandai sebagai masalah berulang.",
     };
   }
 
   if (sourceReportIds.includes(targetReportId)) {
     return {
       status: "error",
-      message: "A report cannot be linked to itself.",
+      message: "Laporan tidak bisa ditautkan ke dirinya sendiri.",
     };
   }
 
   if (!note) {
     return {
       status: "error",
-      message: "Please provide a note explaining this recurring issue.",
+      message: "Tambahkan catatan yang menjelaskan masalah berulang ini.",
     };
   }
 
@@ -1130,7 +1130,7 @@ export async function bulkMarkRecurringReports(
   if (!targetReport) {
     return {
       status: "error",
-      message: "Resolved reference report was not found.",
+      message: "Laporan referensi yang sudah selesai tidak ditemukan.",
     };
   }
 
@@ -1138,14 +1138,14 @@ export async function bulkMarkRecurringReports(
     return {
       status: "error",
       message:
-        "Bulk recurring issues must be linked to a report that is already resolved or archived.",
+        "Masalah berulang bulk harus ditautkan ke laporan yang sudah selesai atau diarsipkan.",
     };
   }
 
   if (sourceReports.length !== sourceReportIds.length) {
     return {
       status: "error",
-      message: "One or more selected recurring reports were not found.",
+      message: "Satu atau lebih laporan berulang yang dipilih tidak ditemukan.",
     };
   }
 
@@ -1156,7 +1156,7 @@ export async function bulkMarkRecurringReports(
   if (invalidSource) {
     return {
       status: "error",
-      message: `Report ${invalidSource.report_number} is no longer active and cannot be marked as recurring.`,
+      message: `Laporan ${invalidSource.report_number} tidak lagi aktif dan tidak bisa ditandai sebagai masalah berulang.`,
     };
   }
 
@@ -1187,8 +1187,8 @@ export async function bulkMarkRecurringReports(
     return {
       status: "error",
       message: relatedReport
-        ? `Report ${relatedReport.report_number} is already marked as a recurring issue.`
-        : "One or more selected reports are already marked as recurring issues.",
+        ? `Laporan ${relatedReport.report_number} sudah ditandai sebagai masalah berulang.`
+        : "Satu atau lebih laporan yang dipilih sudah ditandai sebagai masalah berulang.",
     };
   }
 
@@ -1219,7 +1219,7 @@ export async function bulkMarkRecurringReports(
       reportId: sourceReport.id,
       oldStatus: sourceReport.status,
       newStatus: sourceReport.status,
-      note: `Report marked as a recurring issue from ${targetReport.report_number}. ${note}`,
+      note: `Laporan ditandai sebagai masalah berulang dari ${targetReport.report_number}. ${note}`,
       notifyReporter: false,
       notifyWhatsApp: false,
     });
@@ -1235,7 +1235,7 @@ export async function bulkMarkRecurringReports(
     reportId: targetReportId,
     oldStatus: targetReport.status,
     newStatus: targetReport.status,
-    note: `Bulk recurring issue: ${sourceReports.length} active reports were linked to this resolved report. ${note}`,
+    note: `Masalah berulang bulk: ${sourceReports.length} laporan aktif ditautkan ke laporan selesai ini. ${note}`,
     notifyReporter: false,
     notifyWhatsApp: false,
   });
@@ -1256,7 +1256,7 @@ export async function bulkMarkRecurringReports(
 
   return {
     status: "success",
-    message: `${sourceReports.length} active reports have been marked as recurring issues from ${targetReport.report_number}.`,
+    message: `${sourceReports.length} laporan aktif berhasil ditandai sebagai masalah berulang dari ${targetReport.report_number}.`,
   };
 }
 
@@ -1271,7 +1271,7 @@ export async function startReportProgress(
   if (!reportId) {
     return {
       status: "error",
-      message: "Report ID is missing.",
+      message: "ID laporan tidak ditemukan.",
     };
   }
 
@@ -1289,7 +1289,7 @@ export async function startReportProgress(
     return {
       status: "error",
       message:
-        "Only reports forwarded to an external agency can be started by admin.",
+        "Admin hanya bisa memulai laporan yang diteruskan ke instansi luar.",
     };
   }
 
@@ -1312,7 +1312,7 @@ export async function startReportProgress(
     reportId,
     oldStatus: report.status,
     newStatus: "in_progress",
-    note: "Report handling has started.",
+    note: "Penanganan laporan sudah dimulai.",
   });
 
   revalidatePath("/dashboard/admin/reports");
@@ -1321,7 +1321,7 @@ export async function startReportProgress(
 
   return {
     status: "success",
-    message: "Report has been marked as in progress.",
+    message: "Laporan berhasil ditandai sedang diproses.",
   };
 }
 
@@ -1336,7 +1336,7 @@ export async function resolveReport(
   if (!reportId) {
     return {
       status: "error",
-      message: "Report ID is missing.",
+      message: "ID laporan tidak ditemukan.",
     };
   }
 
@@ -1354,7 +1354,7 @@ export async function resolveReport(
     return {
       status: "error",
       message:
-        "Only in-progress reports forwarded to an external agency can be resolved by admin.",
+        "Admin hanya bisa menyelesaikan laporan instansi luar yang sedang diproses.",
     };
   }
 
@@ -1379,13 +1379,13 @@ export async function resolveReport(
     reportId,
     oldStatus: "in_progress",
     newStatus: "resolved",
-    note: "Report has been resolved.",
+    note: "Laporan sudah diselesaikan.",
   });
 
   await recordSlaEvent({
     reportId,
     eventType: "completed",
-    note: "SLA completed when report was resolved.",
+    note: "SLA selesai karena laporan sudah diselesaikan.",
   });
 
   revalidatePath("/dashboard/admin/reports");
@@ -1394,7 +1394,7 @@ export async function resolveReport(
 
   return {
     status: "success",
-    message: "Report has been resolved successfully.",
+    message: "Laporan berhasil diselesaikan.",
   };
 }
 
@@ -1409,7 +1409,7 @@ export async function archiveReport(
   if (!reportId) {
     return {
       status: "error",
-      message: "Report ID is missing.",
+      message: "ID laporan tidak ditemukan.",
     };
   }
 
@@ -1426,7 +1426,7 @@ export async function archiveReport(
     return {
       status: "error",
       message:
-        "Only resolved, rejected, or invalid reports can be archived.",
+        "Hanya laporan selesai, ditolak, atau tidak valid yang bisa diarsipkan.",
     };
   }
 
@@ -1450,13 +1450,13 @@ export async function archiveReport(
     reportId,
     oldStatus: report.status,
     newStatus: "archived",
-    note: "Report has been archived.",
+    note: "Laporan sudah diarsipkan.",
   });
 
   await recordSlaEvent({
     reportId,
     eventType: "completed",
-    note: "SLA completed when report was archived.",
+    note: "SLA selesai karena laporan diarsipkan.",
   });
 
   revalidatePath("/dashboard/admin/reports");
@@ -1466,7 +1466,7 @@ export async function archiveReport(
 
   return {
     status: "success",
-    message: "Report has been archived successfully.",
+    message: "Laporan berhasil diarsipkan.",
   };
 }
 
@@ -1481,7 +1481,7 @@ export async function createOfficialLetter(
   if (!reportId) {
     return {
       status: "error",
-      message: "Report ID is missing.",
+      message: "ID laporan tidak ditemukan.",
     };
   }
 
@@ -1504,7 +1504,7 @@ export async function createOfficialLetter(
   if (existingLetter) {
     return {
       status: "error",
-      message: "Official letter for this report already exists.",
+      message: "Surat resmi untuk laporan ini sudah ada.",
     };
   }
 
@@ -1530,7 +1530,7 @@ export async function createOfficialLetter(
   if (reportError || !report) {
     return {
       status: "error",
-      message: "Report not found.",
+      message: "Laporan tidak ditemukan.",
     };
   }
 
@@ -1538,14 +1538,14 @@ export async function createOfficialLetter(
     return {
       status: "error",
       message:
-        "Official letter can only be generated for reports forwarded to an agency.",
+        "Surat resmi hanya bisa dibuat untuk laporan yang diteruskan ke instansi.",
     };
   }
 
   if (!report.agency_id) {
     return {
       status: "error",
-      message: "Target agency is missing for this report.",
+      message: "Instansi tujuan belum dipilih untuk laporan ini.",
     };
   }
 
@@ -1558,7 +1558,7 @@ export async function createOfficialLetter(
   if (agencyError || !agency) {
     return {
       status: "error",
-      message: "Target agency was not found.",
+      message: "Instansi tujuan tidak ditemukan.",
     };
   }
 
@@ -1615,7 +1615,7 @@ export async function createOfficialLetter(
 
   return {
     status: "success",
-    message: "Official letter draft has been generated.",
+    message: "Draf surat resmi berhasil dibuat.",
   };
 }
 
@@ -1657,7 +1657,7 @@ export async function finalizeOfficialLetter(
   if (!letterId) {
     return {
       status: "error",
-      message: "Letter ID is missing.",
+      message: "ID surat tidak ditemukan.",
     };
   }
 
@@ -1672,21 +1672,21 @@ export async function finalizeOfficialLetter(
   if (letterError || !letter) {
     return {
       status: "error",
-      message: "Official letter not found.",
+      message: "Surat resmi tidak ditemukan.",
     };
   }
 
   if (letter.status === "sent") {
     return {
       status: "error",
-      message: "Sent letters cannot be changed.",
+      message: "Surat yang sudah terkirim tidak bisa diubah.",
     };
   }
 
   if (letter.status === "final") {
     return {
       status: "success",
-      message: "Official letter is already final.",
+      message: "Surat resmi sudah berstatus final.",
     };
   }
 
@@ -1710,7 +1710,7 @@ export async function finalizeOfficialLetter(
 
   return {
     status: "success",
-    message: "Official letter has been marked as final.",
+    message: "Surat resmi berhasil ditandai final.",
   };
 }
 
@@ -1725,7 +1725,7 @@ export async function sendOfficialLetterEmail(
   if (!letterId) {
     return {
       status: "error",
-      message: "Letter ID is missing.",
+      message: "ID surat tidak ditemukan.",
     };
   }
 
@@ -1750,28 +1750,28 @@ export async function sendOfficialLetterEmail(
   if (letterError || !letter) {
     return {
       status: "error",
-      message: "Official letter not found.",
+      message: "Surat resmi tidak ditemukan.",
     };
   }
 
   if (letter.status === "draft") {
     return {
       status: "error",
-      message: "Please mark the official letter as final before sending it.",
+      message: "Tandai surat resmi sebagai final sebelum mengirimnya.",
     };
   }
 
   if (letter.status === "sent") {
     return {
       status: "error",
-      message: "This official letter has already been sent.",
+      message: "Surat resmi ini sudah terkirim.",
     };
   }
 
   if (!letter.recipient_agency_id) {
     return {
       status: "error",
-      message: "Recipient agency is missing.",
+      message: "Instansi penerima tidak ditemukan.",
     };
   }
 
@@ -1795,7 +1795,7 @@ export async function sendOfficialLetterEmail(
   if (reportError || !report) {
     return {
       status: "error",
-      message: "Related report was not found.",
+      message: "Laporan terkait tidak ditemukan.",
     };
   }
 
@@ -1808,21 +1808,21 @@ export async function sendOfficialLetterEmail(
   if (agencyError || !agency) {
     return {
       status: "error",
-      message: "Recipient agency was not found.",
+      message: "Instansi penerima tidak ditemukan.",
     };
   }
 
   if (!agency.is_active) {
     return {
       status: "error",
-      message: "Recipient agency is inactive.",
+      message: "Instansi penerima tidak aktif.",
     };
   }
 
   if (!agency.email) {
     return {
       status: "error",
-      message: "Recipient agency does not have an email address.",
+      message: "Instansi penerima belum memiliki alamat email.",
     };
   }
 
@@ -1853,7 +1853,7 @@ export async function sendOfficialLetterEmail(
         report_id: report.id,
         recipient_email: agency.email,
         subject: letter.subject,
-        message: `Official letter ${letter.letter_number || letter.subject} has been sent to ${agency.name}.`,
+        message: `Surat resmi ${letter.letter_number || letter.subject} sudah dikirim ke ${agency.name}.`,
         status: "sent",
         sent_at: now,
         error_message: null,
@@ -1898,13 +1898,13 @@ export async function sendOfficialLetterEmail(
 
     return {
       status: "success",
-      message: `Official letter has been sent to ${agency.name}.`,
+      message: `Surat resmi berhasil dikirim ke ${agency.name}.`,
     };
   } catch (error) {
     const errorMessage =
       error instanceof Error
         ? error.message
-        : "Failed to send official letter email.";
+        : "Gagal mengirim email surat resmi.";
 
     const { error: notificationError } = await supabase
       .from("notifications")
@@ -1913,7 +1913,7 @@ export async function sendOfficialLetterEmail(
         report_id: report.id,
         recipient_email: agency.email,
         subject: letter.subject,
-        message: `Failed to send official letter ${letter.letter_number || letter.subject} to ${agency.name}.`,
+        message: `Gagal mengirim surat resmi ${letter.letter_number || letter.subject} ke ${agency.name}.`,
         status: "failed",
         sent_at: null,
         error_message: errorMessage,

@@ -17,15 +17,15 @@ export default async function KasiReportsPage() {
   return (
     <div className="space-y-6">
       <section>
-        <p className="text-sm font-semibold text-primary">Assigned Reports</p>
+        <p className="text-sm font-semibold text-primary">Laporan Ditugaskan</p>
 
         <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-          Section Report List
+          Daftar Laporan Seksi
         </h1>
 
         <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-          View reports assigned to your village section. Action controls will
-          be added after the read-only workflow is stable.
+          Lihat laporan yang ditugaskan ke seksi desa Anda dan tindak lanjuti
+          sesuai status penanganannya.
         </p>
       </section>
 
@@ -33,9 +33,9 @@ export default async function KasiReportsPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Assigned Report List</CardTitle>
+          <CardTitle>Daftar Laporan Ditugaskan</CardTitle>
           <CardDescription>
-            Showing reports whose assigned section matches your Kasi profile.
+            Menampilkan laporan yang seksi tujuannya sesuai profil Kasi Anda.
           </CardDescription>
         </CardHeader>
 
@@ -43,11 +43,11 @@ export default async function KasiReportsPage() {
           <KasiReportTable
             reports={reports as KasiReportTableReports}
             emptyTitle={
-              missingSection ? "Section assignment required" : undefined
+              missingSection ? "Penugasan seksi diperlukan" : undefined
             }
             emptyDescription={
               missingSection
-                ? "Ask an admin, sekdes, or kepala desa to assign your account to a village section."
+                ? "Minta admin, sekdes, atau kepala desa menautkan akun Anda ke seksi desa."
                 : undefined
             }
           />
@@ -60,8 +60,8 @@ export default async function KasiReportsPage() {
 function MissingSectionNotice() {
   return (
     <div className="rounded-2xl border border-warning-100 bg-warning-50 p-4 text-sm leading-6 text-warning-700">
-      Your account has not been assigned to a village section yet. Section
-      assignment is required before reports can appear here.
+      Akun Anda belum ditautkan ke seksi desa. Penugasan seksi diperlukan
+      sebelum laporan dapat muncul di sini.
     </div>
   );
 }

@@ -44,7 +44,7 @@ const initialState: ActionState = {
 
 const roleOptions = [
   {
-    label: "Public",
+    label: "Publik",
     value: "public",
   },
   {
@@ -117,11 +117,11 @@ export function VillageUserEditForm({
 
         <div>
           <h2 className="text-lg font-semibold text-foreground">
-            Edit User Profile
+            Edit Profil Pengguna
           </h2>
 
           <p className="mt-1 text-sm text-muted-foreground">
-            Update user identity, role, and assignment.
+            Perbarui identitas, role, dan penugasan pengguna.
           </p>
         </div>
 
@@ -134,13 +134,13 @@ export function VillageUserEditForm({
             <Input id="email" value={user.email} disabled />
 
             <p className="mt-2 text-xs text-muted-foreground">
-              Email is managed by Supabase Auth and cannot be edited here.
+              Email dikelola oleh Supabase Auth dan tidak bisa diedit di sini.
             </p>
           </div>
 
           <div>
             <label className="form-label" htmlFor="full_name">
-              Full Name
+              Nama Lengkap
             </label>
 
             <Input
@@ -153,14 +153,14 @@ export function VillageUserEditForm({
 
           <div>
             <label className="form-label" htmlFor="phone_number">
-              Phone Number
+              Nomor HP
             </label>
 
             <Input
               id="phone_number"
               name="phone_number"
               defaultValue={user.phone_number ?? ""}
-              placeholder="Example: 081234567890"
+              placeholder="Contoh: 081234567890"
             />
           </div>
 
@@ -187,7 +187,7 @@ export function VillageUserEditForm({
           {selectedRole === "kepala_dusun" ? (
             <div>
               <label className="form-label" htmlFor="dusun_id">
-                Hamlet Assignment
+                Penugasan Dusun
               </label>
 
               <select
@@ -197,7 +197,7 @@ export function VillageUserEditForm({
                 required
                 className="form-input"
               >
-                <option value="">Select hamlet</option>
+                <option value="">Pilih dusun</option>
 
                 {hamlets.map((hamlet) => (
                   <option key={hamlet.id} value={hamlet.id}>
@@ -207,7 +207,7 @@ export function VillageUserEditForm({
               </select>
 
               <p className="mt-2 text-xs text-muted-foreground">
-                Hamlet assignment is required for Kepala Dusun.
+                Penugasan dusun wajib diisi untuk Kepala Dusun.
               </p>
             </div>
           ) : (
@@ -217,7 +217,7 @@ export function VillageUserEditForm({
           {selectedRole === "kasi" ? (
             <div>
               <label className="form-label" htmlFor="section_id">
-                Section Assignment
+                Penugasan Seksi
               </label>
 
               <select
@@ -227,7 +227,7 @@ export function VillageUserEditForm({
                 required
                 className="form-input"
               >
-                <option value="">Select section</option>
+                <option value="">Pilih seksi</option>
 
                 {sections.map((section) => (
                   <option key={section.id} value={section.id}>
@@ -237,7 +237,7 @@ export function VillageUserEditForm({
               </select>
 
               <p className="mt-2 text-xs text-muted-foreground">
-                Section assignment is required for Kepala Seksi.
+                Penugasan seksi wajib diisi untuk Kepala Seksi.
               </p>
             </div>
           ) : (
@@ -247,7 +247,7 @@ export function VillageUserEditForm({
 
         <div className="mt-6 flex justify-end">
           <Button type="submit" disabled={isUpdating}>
-            {isUpdating ? "Saving..." : "Save Changes"}
+            {isUpdating ? "Menyimpan..." : "Simpan Perubahan"}
           </Button>
         </div>
       </form>
@@ -255,20 +255,21 @@ export function VillageUserEditForm({
       <aside className="space-y-4">
         <div className="rounded-2xl border border-border bg-card p-6">
           <h2 className="text-lg font-semibold text-foreground">
-            Account Status
+            Status Akun
           </h2>
 
           <p className="mt-2 text-sm leading-6 text-muted-foreground">
-            Deactivated users cannot access protected dashboard features.
+            Pengguna nonaktif tidak dapat mengakses fitur dashboard yang
+            dilindungi.
           </p>
 
           <div className="mt-5 rounded-2xl bg-muted/50 p-4">
             <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-              Current Status
+              Status Saat Ini
             </p>
 
             <p className="mt-2 text-lg font-bold text-foreground">
-              {user.is_active ? "Active" : "Inactive"}
+              {user.is_active ? "Aktif" : "Nonaktif"}
             </p>
           </div>
 
@@ -287,22 +288,22 @@ export function VillageUserEditForm({
               className="w-full"
             >
               {isChangingStatus
-                ? "Processing..."
+                ? "Memproses..."
                 : user.is_active
-                  ? "Deactivate User"
-                  : "Activate User"}
+                  ? "Nonaktifkan Pengguna"
+                  : "Aktifkan Pengguna"}
             </Button>
           </form>
         </div>
 
         <div className="rounded-2xl border border-warning-100 bg-warning-50 p-5">
           <p className="text-sm font-semibold text-warning-700">
-            Security Note
+            Catatan Keamanan
           </p>
 
           <p className="mt-2 text-sm leading-6 text-warning-700">
-            Do not give admin, sekdes, or kepala desa roles to public users
-            unless the account is verified as an official staff account.
+            Jangan berikan role admin, sekdes, atau kepala desa kepada pengguna
+            publik kecuali akun sudah diverifikasi sebagai akun perangkat resmi.
           </p>
         </div>
       </aside>

@@ -42,7 +42,7 @@ export function VillageBudgetReviewActions({
 
   useEffect(() => {
     if (approveState.status === "success") {
-      toast.success("Budget approved", {
+      toast.success("Anggaran disetujui", {
         description: approveState.message,
       });
 
@@ -50,7 +50,7 @@ export function VillageBudgetReviewActions({
     }
 
     if (approveState.status === "error") {
-      toast.error("Approval failed", {
+      toast.error("Persetujuan gagal", {
         description: approveState.message,
       });
     }
@@ -58,7 +58,7 @@ export function VillageBudgetReviewActions({
 
   useEffect(() => {
     if (rejectState.status === "success") {
-      toast.success("Budget rejected", {
+      toast.success("Anggaran ditolak", {
         description: rejectState.message,
       });
 
@@ -66,7 +66,7 @@ export function VillageBudgetReviewActions({
     }
 
     if (rejectState.status === "error") {
-      toast.error("Rejection failed", {
+      toast.error("Penolakan gagal", {
         description: rejectState.message,
       });
     }
@@ -75,7 +75,7 @@ export function VillageBudgetReviewActions({
   if (!reviewSchemaReady) {
     return (
       <p className="max-w-xs text-xs leading-5 text-warning-700">
-        Review migration is required before approving or rejecting this request.
+        Migration peninjauan diperlukan sebelum menyetujui atau menolak pengajuan ini.
       </p>
     );
   }
@@ -83,7 +83,7 @@ export function VillageBudgetReviewActions({
   if (!canReview) {
     return (
       <p className="text-xs font-medium text-muted-foreground">
-        Review completed
+        Peninjauan selesai
       </p>
     );
   }
@@ -95,7 +95,7 @@ export function VillageBudgetReviewActions({
 
         <Textarea
           name="review_note"
-          placeholder="Approval note"
+          placeholder="Catatan persetujuan"
           className="min-h-20 resize-none"
           disabled={isSubmitting}
         />
@@ -107,7 +107,7 @@ export function VillageBudgetReviewActions({
           className="w-full gap-2"
         >
           <CheckCircle2 className="h-4 w-4" />
-          {isApproving ? "Approving..." : "Approve"}
+          {isApproving ? "Menyetujui..." : "Setujui"}
         </Button>
       </form>
 
@@ -116,7 +116,7 @@ export function VillageBudgetReviewActions({
 
         <Textarea
           name="review_note"
-          placeholder="Rejection reason"
+          placeholder="Alasan penolakan"
           className="min-h-20 resize-none"
           required
           disabled={isSubmitting}
@@ -130,7 +130,7 @@ export function VillageBudgetReviewActions({
           className="w-full gap-2 border-danger-200 text-danger-700 hover:bg-danger-50"
         >
           <XCircle className="h-4 w-4" />
-          {isRejecting ? "Rejecting..." : "Reject"}
+          {isRejecting ? "Menolak..." : "Tolak"}
         </Button>
       </form>
     </div>

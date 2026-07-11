@@ -39,20 +39,20 @@ export default async function VillageSlaPage() {
           className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to village dashboard
+          Kembali ke dashboard desa
         </Link>
 
         <div className="mt-5 flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
           <div>
-            <p className="text-sm font-semibold text-primary">SLA Monitoring</p>
+            <p className="text-sm font-semibold text-primary">Monitoring SLA</p>
 
             <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              Service Level Monitoring
+              Monitoring Tingkat Layanan
             </h1>
 
             <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-              Monitor effective report SLA status, including active deadlines,
-              budget pauses, merged duplicates, and completed workflows.
+              Pantau status SLA laporan, termasuk batas waktu aktif, jeda
+              anggaran, duplikasi yang digabung, dan alur yang selesai.
             </p>
           </div>
 
@@ -62,69 +62,69 @@ export default async function VillageSlaPage() {
 
       {notSetCount > 0 && (
         <div className="rounded-2xl border border-warning-100 bg-warning-50 p-4 text-sm leading-6 text-warning-700">
-          Some reports do not have SLA deadlines yet. This is expected for
-          reports still waiting for admin review or reports that have not
-          entered the timed workflow.
+          Beberapa laporan belum memiliki batas waktu SLA. Ini wajar untuk
+          laporan yang masih menunggu review admin atau belum masuk alur
+          berbatas waktu.
         </div>
       )}
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-7">
         <VillageStatCard
-          title="Total Reports"
+          title="Total Laporan"
           value={totalReports}
-          description="All reports in monitoring."
+          description="Semua laporan dalam monitoring."
           icon={<Timer className="h-5 w-5" />}
         />
 
         <VillageStatCard
-          title="On Time"
+          title="Tepat Waktu"
           value={onTimeCount}
-          description="Reports still within SLA."
+          description="Laporan yang masih dalam batas SLA."
           icon={<Clock3 className="h-5 w-5" />}
         />
 
         <VillageStatCard
-          title="At Risk"
+          title="Berisiko"
           value={atRiskCount}
-          description="Reports close to SLA deadline."
+          description="Laporan yang mendekati batas SLA."
           icon={<AlertTriangle className="h-5 w-5" />}
         />
 
         <VillageStatCard
-          title="Overdue"
+          title="Terlambat"
           value={overdueCount}
-          description="Reports that exceeded SLA."
+          description="Laporan yang melewati batas SLA."
           icon={<AlertTriangle className="h-5 w-5" />}
         />
 
         <VillageStatCard
-          title="Completed"
+          title="Selesai"
           value={completedCount}
-          description="Terminal workflows."
+          description="Alur yang sudah selesai."
           icon={<CheckCircle2 className="h-5 w-5" />}
         />
 
         <VillageStatCard
-          title="Paused Budget"
+          title="Jeda Anggaran"
           value={pausedBudgetCount}
-          description="SLA paused for budget."
+          description="SLA dijeda karena anggaran."
           icon={<PauseCircle className="h-5 w-5" />}
         />
 
         <VillageStatCard
-          title="Merged"
+          title="Digabung"
           value={mergedCount}
-          description="Follows master report."
+          description="Mengikuti laporan master."
           icon={<GitMerge className="h-5 w-5" />}
         />
       </section>
 
       <Card>
         <CardHeader>
-          <CardTitle>SLA Report List</CardTitle>
+          <CardTitle>Daftar SLA Laporan</CardTitle>
           <CardDescription>
-            Showing report SLA status, verification deadline, and resolution
-            deadline.
+            Menampilkan status SLA, batas verifikasi, dan batas penyelesaian
+            laporan.
           </CardDescription>
         </CardHeader>
 

@@ -98,12 +98,12 @@ export function VillageBudgetRequestsTable({
         </div>
 
         <h3 className="mt-4 text-sm font-semibold text-foreground">
-          No budget requests
+          Belum ada pengajuan anggaran
         </h3>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          Requests submitted by Kasi will appear here after they propose a
-          budget from an assigned report.
+          Pengajuan dari Kasi akan muncul di sini setelah mereka mengusulkan
+          anggaran dari laporan yang ditugaskan.
         </p>
       </div>
     );
@@ -114,7 +114,7 @@ export function VillageBudgetRequestsTable({
       <div className="flex flex-col justify-between gap-4 rounded-2xl border border-border bg-muted/30 p-4 lg:flex-row lg:items-end">
         <div className="w-full max-w-xl">
           <label className="form-label" htmlFor="budget-request-search">
-            Search Budget Requests
+            Cari Pengajuan Anggaran
           </label>
 
           <div className="relative">
@@ -122,7 +122,7 @@ export function VillageBudgetRequestsTable({
               id="budget-request-search"
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
-              placeholder="Search report, section, requester, reviewer, or note"
+              placeholder="Cari laporan, seksi, pengaju, peninjau, atau catatan"
               className="pl-10"
             />
 
@@ -132,11 +132,11 @@ export function VillageBudgetRequestsTable({
 
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
           <div className="rounded-xl border border-border bg-card px-3 py-2 text-sm text-muted-foreground">
-            Showing{" "}
+            Menampilkan{" "}
             <strong className="font-semibold text-foreground">
               {filteredRequests.length}
             </strong>{" "}
-            of{" "}
+            dari{" "}
             <strong className="font-semibold text-foreground">
               {requests.length}
             </strong>
@@ -160,10 +160,10 @@ export function VillageBudgetRequestsTable({
       {filteredRequests.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-10 text-center">
           <h3 className="text-sm font-semibold text-foreground">
-            No matching budget requests
+            Tidak ada pengajuan anggaran yang cocok
           </h3>
           <p className="mt-2 text-sm text-muted-foreground">
-            Try using another keyword.
+            Coba gunakan kata kunci lain.
           </p>
         </div>
       ) : (
@@ -172,16 +172,16 @@ export function VillageBudgetRequestsTable({
             <table className="w-full min-w-[1450px] text-left text-sm">
               <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
                 <tr>
-                  <th className="px-5 py-4 font-semibold">Report</th>
-                  <th className="px-5 py-4 font-semibold">Section</th>
-                  <th className="px-5 py-4 font-semibold">Requester</th>
-                  <th className="px-5 py-4 font-semibold">Estimate</th>
-                  <th className="px-5 py-4 font-semibold">Priority</th>
-                  <th className="px-5 py-4 font-semibold">Budget Status</th>
-                  <th className="px-5 py-4 font-semibold">Report Status</th>
-                  <th className="px-5 py-4 font-semibold">Requested</th>
-                  <th className="px-5 py-4 font-semibold">Review</th>
-                  <th className="px-5 py-4 font-semibold">Action</th>
+                  <th className="px-5 py-4 font-semibold">Laporan</th>
+                  <th className="px-5 py-4 font-semibold">Seksi</th>
+                  <th className="px-5 py-4 font-semibold">Pengaju</th>
+                  <th className="px-5 py-4 font-semibold">Estimasi</th>
+                  <th className="px-5 py-4 font-semibold">Prioritas</th>
+                  <th className="px-5 py-4 font-semibold">Status Anggaran</th>
+                  <th className="px-5 py-4 font-semibold">Status Laporan</th>
+                  <th className="px-5 py-4 font-semibold">Diajukan</th>
+                  <th className="px-5 py-4 font-semibold">Peninjauan</th>
+                  <th className="px-5 py-4 font-semibold">Aksi</th>
                 </tr>
               </thead>
 
@@ -194,7 +194,7 @@ export function VillageBudgetRequestsTable({
                     <td className="px-5 py-4">
                       <div className="max-w-sm">
                         <p className="font-semibold text-foreground">
-                          {request.report?.title ?? "Unknown report"}
+                          {request.report?.title ?? "Laporan tidak diketahui"}
                         </p>
                         <p className="mt-1 text-xs text-muted-foreground">
                           {request.report?.report_number ?? "-"} -{" "}
@@ -220,7 +220,6 @@ export function VillageBudgetRequestsTable({
                       </p>
                       <p className="mt-1 text-xs text-muted-foreground">
                         {request.itemCount} item
-                        {request.itemCount === 1 ? "" : "s"}
                       </p>
                     </td>
 
@@ -248,7 +247,7 @@ export function VillageBudgetRequestsTable({
                       <Link href={`/dashboard/village/budget-requests/${request.id}`}>
                         <Button type="button" variant="outline" size="sm" className="gap-2">
                           <Eye className="h-4 w-4" />
-                          View detail
+                          Lihat detail
                         </Button>
                       </Link>
                     </td>
@@ -264,7 +263,7 @@ export function VillageBudgetRequestsTable({
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground">
-                      {request.report?.title ?? "Unknown report"}
+                      {request.report?.title ?? "Laporan tidak diketahui"}
                     </p>
                     <p className="mt-1 text-xs text-muted-foreground">
                       {request.report?.report_number ?? "-"} -{" "}
@@ -276,28 +275,28 @@ export function VillageBudgetRequestsTable({
                 </div>
 
                 <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-                  <InfoItem label="Section" value={request.section?.name ?? "-"} />
+                  <InfoItem label="Seksi" value={request.section?.name ?? "-"} />
                   <InfoItem
-                    label="Requester"
+                    label="Pengaju"
                     value={request.requester?.full_name ?? "-"}
                   />
                   <InfoItem
-                    label="Hamlet"
+                    label="Dusun"
                     value={getRelationName(request.report?.hamlet ?? null)}
                   />
                   <InfoItem
-                    label="Estimate"
+                    label="Estimasi"
                     value={formatCurrency(request.estimated_budget)}
                   />
                   <InfoItem
-                    label="Report Status"
+                    label="Status Laporan"
                     value={getReportStatusLabel(request.report?.status)}
                   />
-                  <InfoItem label="Items" value={String(request.itemCount)} />
+                  <InfoItem label="Item" value={String(request.itemCount)} />
                 </div>
 
                 <div className="mt-4 rounded-xl bg-muted/50 p-3">
-                  <p className="text-xs text-muted-foreground">Budget reason</p>
+                  <p className="text-xs text-muted-foreground">Alasan anggaran</p>
                   <p className="mt-1 whitespace-pre-line text-sm leading-6 text-foreground">
                     {request.note}
                   </p>
@@ -311,7 +310,7 @@ export function VillageBudgetRequestsTable({
                   <Link href={`/dashboard/village/budget-requests/${request.id}`}>
                     <Button type="button" variant="outline" size="sm" className="w-full gap-2">
                       <Eye className="h-4 w-4" />
-                      View detail
+                      Lihat detail
                     </Button>
                   </Link>
                 </div>
@@ -331,9 +330,9 @@ function BudgetStatusBadge({ status }: { status: string }) {
     rejected: "danger",
   };
   const labels: Record<string, string> = {
-    submitted: "Waiting Review",
-    approved: "Approved",
-    rejected: "Rejected",
+    submitted: "Menunggu Peninjauan",
+    approved: "Disetujui",
+    rejected: "Ditolak",
   };
 
   return (
@@ -397,7 +396,7 @@ function ReviewSummary({ request }: { request: BudgetRequest }) {
   if (request.status === "submitted") {
     return (
       <div className="text-xs leading-5 text-muted-foreground">
-        Waiting for Kepala Desa or Sekdes review.
+        Menunggu peninjauan Kepala Desa atau Sekdes.
       </div>
     );
   }
@@ -406,7 +405,7 @@ function ReviewSummary({ request }: { request: BudgetRequest }) {
     <div className="max-w-xs text-xs leading-5 text-muted-foreground">
       <p>
         <span className="font-semibold text-foreground">
-          {request.reviewer?.full_name ?? "Reviewer"}
+          {request.reviewer?.full_name ?? "Peninjau"}
         </span>
         {request.reviewed_at ? ` - ${formatDateTime(request.reviewed_at)}` : ""}
       </p>
@@ -414,7 +413,7 @@ function ReviewSummary({ request }: { request: BudgetRequest }) {
       {request.review_note ? (
         <p className="mt-1 whitespace-pre-line">{request.review_note}</p>
       ) : (
-        <p className="mt-1">No review note.</p>
+        <p className="mt-1">Tidak ada catatan peninjauan.</p>
       )}
     </div>
   );

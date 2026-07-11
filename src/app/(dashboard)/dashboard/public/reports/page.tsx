@@ -1,6 +1,4 @@
-import Link from "next/link";
-import { FileText, PlusCircle } from "lucide-react";
-import { Button } from "@/src/components/ui/Button";
+import { FileText } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -9,6 +7,7 @@ import {
   CardTitle,
 } from "@/src/components/ui/Card";
 import { CitizenReportTable } from "@/src/features/citizen/components/CitizenReportTable";
+import type { CitizenReport } from "@/src/features/citizen/components/CitizenReportTable";
 import { CreateReportModal } from "@/src/features/reports/components/CreateReportModal";
 import { getCitizenReports } from "@/src/features/citizen/queries";
 
@@ -19,15 +18,15 @@ export default async function CitizenReportsPage() {
     <div className="space-y-6">
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-semibold text-primary">Citizen Reports</p>
+          <p className="text-sm font-semibold text-primary">Laporan Masyarakat</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            My Reports
+            Laporan Saya
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Track all reports you have submitted and monitor their latest status
-            in the village reporting workflow.
+            Pantau semua laporan yang sudah Anda kirim beserta status
+            terbarunya dalam alur pelaporan desa.
           </p>
         </div>
 
@@ -40,16 +39,16 @@ export default async function CitizenReportsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <FileText className="h-5 w-5 text-primary" />
-            Report List
+            Daftar Laporan
           </CardTitle>
 
           <CardDescription>
-            Showing reports submitted using your citizen account.
+            Menampilkan laporan yang dikirim menggunakan akun masyarakat Anda.
           </CardDescription>
         </CardHeader>
 
         <CardContent>
-          <CitizenReportTable reports={reports as any} />
+          <CitizenReportTable reports={reports as CitizenReport[]} />
         </CardContent>
       </Card>
     </div>

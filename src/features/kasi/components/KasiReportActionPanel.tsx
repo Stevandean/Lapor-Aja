@@ -92,10 +92,10 @@ export function KasiReportActionPanel({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Kasi Actions</CardTitle>
+        <CardTitle>Aksi Kasi</CardTitle>
         <CardDescription>
-          Update handling progress, request budget, or resolve this assigned
-          report.
+          Perbarui progres penanganan, ajukan anggaran, atau selesaikan
+          laporan yang ditugaskan.
         </CardDescription>
       </CardHeader>
 
@@ -105,29 +105,29 @@ export function KasiReportActionPanel({
             <input type="hidden" name="report_id" value={reportId} />
             <Textarea
               name="note"
-              label="Start note"
-              placeholder="Briefly describe the first handling step."
+              label="Catatan mulai"
+              placeholder="Jelaskan singkat langkah awal penanganan."
               required
               disabled={isSubmitting}
             />
             <Button type="submit" disabled={isSubmitting} className="w-full">
               <PlayCircle className="mr-2 h-4 w-4" />
-              {isStarting ? "Starting..." : "Mark as in progress"}
+              {isStarting ? "Memulai..." : "Tandai sedang diproses"}
             </Button>
           </form>
         ) : null}
 
         {localStatus === "waiting_budget" ? (
           <div className="rounded-2xl border border-warning-100 bg-warning-50 p-4 text-sm leading-6 text-warning-700">
-            This report is waiting for budget review. Progress actions will be
-            available after the budget request is reviewed.
+            Laporan ini sedang menunggu peninjauan anggaran. Aksi progres akan
+            tersedia setelah pengajuan anggaran ditinjau.
           </div>
         ) : null}
 
         {hasPendingBudgetRequest && localStatus !== "waiting_budget" ? (
           <div className="rounded-2xl border border-warning-100 bg-warning-50 p-4 text-sm leading-6 text-warning-700">
-            This report already has a budget request waiting for review. You can
-            submit a revision after the current request is approved or rejected.
+            Laporan ini sudah memiliki pengajuan anggaran yang menunggu peninjauan.
+            Anda dapat mengirim revisi setelah pengajuan saat ini disetujui atau ditolak.
           </div>
         ) : null}
 
@@ -136,23 +136,23 @@ export function KasiReportActionPanel({
             <input type="hidden" name="report_id" value={reportId} />
             <Textarea
               name="note"
-              label="Progress update"
-              placeholder="Write the latest field handling progress."
+              label="Update progres"
+              placeholder="Tulis progres penanganan lapangan terbaru."
               required
               disabled={isSubmitting}
             />
             <Input
               name="progress_photos"
-              label="Progress photos"
+              label="Foto progres"
               type="file"
               accept="image/jpeg,image/png,image/webp"
               multiple
               disabled={isSubmitting}
-              helperText="Optional, maximum 5 photos. JPG, PNG, or WEBP only."
+              helperText="Opsional, maksimal 5 foto. Hanya JPG, PNG, atau WEBP."
             />
             <Button type="submit" disabled={isSubmitting} className="w-full">
               <ClipboardEdit className="mr-2 h-4 w-4" />
-              {isSavingProgress ? "Saving..." : "Save progress update"}
+              {isSavingProgress ? "Menyimpan..." : "Simpan update progres"}
             </Button>
           </form>
         ) : null}
@@ -161,7 +161,7 @@ export function KasiReportActionPanel({
           <Link href={`/dashboard/kasi/budget?reportId=${reportId}`}>
             <Button type="button" variant="outline" className="w-full">
               <Wallet className="mr-2 h-4 w-4" />
-              Prepare itemized budget
+              Siapkan anggaran per item
             </Button>
           </Link>
         ) : null}
@@ -171,8 +171,8 @@ export function KasiReportActionPanel({
             <input type="hidden" name="report_id" value={reportId} />
             <Textarea
               name="note"
-              label="Return assignment note"
-              placeholder="Explain why this report is not suitable for your section."
+              label="Catatan pengembalian tugas"
+              placeholder="Jelaskan mengapa laporan ini tidak sesuai dengan seksi Anda."
               required
               disabled={isSubmitting}
             />
@@ -183,7 +183,7 @@ export function KasiReportActionPanel({
               className="w-full border-warning-200 text-warning-700 hover:bg-warning-50"
             >
               <RotateCcw className="mr-2 h-4 w-4" />
-              {isReturning ? "Returning..." : "Return to admin"}
+              {isReturning ? "Mengembalikan..." : "Kembalikan ke admin"}
             </Button>
           </form>
         ) : null}
@@ -193,23 +193,23 @@ export function KasiReportActionPanel({
             <input type="hidden" name="report_id" value={reportId} />
             <Textarea
               name="note"
-              label="Resolution note"
-              placeholder="Summarize the completed handling result."
+              label="Catatan penyelesaian"
+              placeholder="Ringkas hasil penanganan yang sudah selesai."
               required
               disabled={isSubmitting}
             />
             <Input
               name="progress_photos"
-              label="Completion photos"
+              label="Foto penyelesaian"
               type="file"
               accept="image/jpeg,image/png,image/webp"
               multiple
               disabled={isSubmitting}
-              helperText="Optional final evidence before resolving."
+              helperText="Bukti akhir opsional sebelum laporan diselesaikan."
             />
             <Button type="submit" disabled={isSubmitting} className="w-full">
               <CheckCircle2 className="mr-2 h-4 w-4" />
-              {isResolving ? "Resolving..." : "Mark as resolved"}
+              {isResolving ? "Menyelesaikan..." : "Tandai selesai"}
             </Button>
           </form>
         ) : null}
@@ -220,8 +220,8 @@ export function KasiReportActionPanel({
         !canReturnAssignment &&
         !canResolve ? (
           <div className="rounded-2xl border border-muted bg-muted/40 p-4 text-sm leading-6 text-muted-foreground">
-            Actions are available only for active reports assigned to your
-            section.
+            Aksi hanya tersedia untuk laporan aktif yang ditugaskan ke seksi
+            Anda.
           </div>
         ) : null}
       </CardContent>
@@ -232,7 +232,7 @@ export function KasiReportActionPanel({
 function useActionToast(state: ActionState, router: ReturnType<typeof useRouter>) {
   useEffect(() => {
     if (state.status === "success") {
-      toast.success("Success", {
+      toast.success("Berhasil", {
         description: state.message,
       });
 
@@ -240,7 +240,7 @@ function useActionToast(state: ActionState, router: ReturnType<typeof useRouter>
     }
 
     if (state.status === "error") {
-      toast.error("Failed", {
+      toast.error("Gagal", {
         description: state.message,
       });
     }

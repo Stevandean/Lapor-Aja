@@ -16,15 +16,15 @@ export default async function AdminSlaRulesMasterDataPage() {
     <div className="space-y-6">
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-semibold text-primary">Master Data</p>
+          <p className="text-sm font-semibold text-primary">Data Master</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            SLA Rules
+            Aturan SLA
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Manage verification and resolution time limits based on report
-            priority.
+            Kelola batas waktu verifikasi dan penyelesaian berdasarkan
+            prioritas laporan.
           </p>
         </div>
       </section>
@@ -33,12 +33,12 @@ export default async function AdminSlaRulesMasterDataPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Timer className="h-5 w-5 text-primary" />
-            SLA Rules by Priority
+            Aturan SLA Berdasarkan Prioritas
           </CardTitle>
 
           <CardDescription>
-            These rules are used to calculate verification and resolution
-            deadlines after a report is approved.
+            Aturan ini digunakan untuk menghitung tenggat verifikasi dan
+            penyelesaian setelah laporan disetujui.
           </CardDescription>
         </CardHeader>
 

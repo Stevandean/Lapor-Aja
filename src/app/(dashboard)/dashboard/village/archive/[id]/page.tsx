@@ -6,7 +6,6 @@ import {
   CalendarDays,
   CheckCircle2,
   FileText,
-  MapPin,
   ShieldCheck,
 } from "lucide-react";
 import { Badge } from "@/src/components/ui/Badge";
@@ -33,6 +32,21 @@ type ArchiveDetailPageProps = {
   }>;
 };
 
+type RelationName = {
+  name?: string | null;
+};
+
+type ReporterRelation = {
+  full_name?: string | null;
+  email?: string | null;
+  phone_number?: string | null;
+};
+
+type ArchivePhoto = {
+  id: string;
+  signed_url: string | null;
+};
+
 export default async function VillageArchiveDetailPage({
   params,
 }: ArchiveDetailPageProps) {
@@ -47,15 +61,15 @@ export default async function VillageArchiveDetailPage({
     <div className="space-y-6">
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-semibold text-primary">Archive</p>
+          <p className="text-sm font-semibold text-primary">Arsip</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Archived Report Detail
+            Detail Laporan Arsip
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Review the archived report information, field verification evidence,
-            classification, and follow-up record.
+            Tinjau informasi laporan arsip, bukti verifikasi lapangan,
+            klasifikasi, dan riwayat tindak lanjut.
           </p>
         </div>
 
@@ -63,7 +77,7 @@ export default async function VillageArchiveDetailPage({
           <Link href="/dashboard/village/archive">
             <Button variant="outline">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Archive
+              Kembali ke Arsip
             </Button>
           </Link>
         </div>
@@ -71,25 +85,25 @@ export default async function VillageArchiveDetailPage({
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <SummaryCard
-          title="Report Number"
+          title="Nomor Laporan"
           value={report.report_number}
           icon={<FileText className="h-5 w-5" />}
         />
 
         <SummaryCard
-          title="Priority"
+          title="Prioritas"
           value={formatPriority(report.priority)}
           icon={<ShieldCheck className="h-5 w-5" />}
         />
 
         <SummaryCard
-          title="Resolved Date"
+          title="Tanggal Selesai"
           value={report.resolved_at ? formatDate(report.resolved_at) : "-"}
           icon={<CheckCircle2 className="h-5 w-5" />}
         />
 
         <SummaryCard
-          title="Archived Date"
+          title="Tanggal Arsip"
           value={formatDate(report.updated_at)}
           icon={<CalendarDays className="h-5 w-5" />}
         />
@@ -124,9 +138,9 @@ export default async function VillageArchiveDetailPage({
 
           <Card>
             <CardHeader>
-                <CardTitle>Status Timeline</CardTitle>
+                <CardTitle>Linimasa Status</CardTitle>
                 <CardDescription>
-                Real handling history of this archived report.
+                Riwayat penanganan laporan arsip ini.
                 </CardDescription>
             </CardHeader>
 
@@ -137,22 +151,22 @@ export default async function VillageArchiveDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Citizen Evidence Photos</CardTitle>
+              <CardTitle>Foto Bukti Masyarakat</CardTitle>
               <CardDescription>
-                Photos submitted by the citizen when creating the report.
+                Foto yang dikirim masyarakat saat membuat laporan.
               </CardDescription>
             </CardHeader>
 
             <CardContent>
               {report.report_photos.length === 0 ? (
-                <EmptyText text="No citizen photos available." />
+                <EmptyText text="Belum ada foto dari masyarakat." />
               ) : (
                 <div className="grid gap-4 sm:grid-cols-2">
-                  {report.report_photos.map((photo: any) => (
+                  {report.report_photos.map((photo: ArchivePhoto) => (
                     <PhotoCard
                       key={photo.id}
                       src={photo.signed_url}
-                      alt="Citizen report evidence"
+                      alt="Bukti laporan masyarakat"
                     />
                   ))}
                 </div>
@@ -162,31 +176,31 @@ export default async function VillageArchiveDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Field Verification</CardTitle>
+              <CardTitle>Verifikasi Lapangan</CardTitle>
               <CardDescription>
-                Verification result and field evidence from the hamlet head.
+                Hasil verifikasi dan bukti lapangan dari kepala dusun.
               </CardDescription>
             </CardHeader>
 
             <CardContent>
               {!report.verification ? (
-                <EmptyText text="No field verification data available." />
+                <EmptyText text="Belum ada data verifikasi lapangan." />
               ) : (
                 <div className="space-y-5">
                   <div className="rounded-2xl border border-border bg-muted/30 p-4">
                     <div className="flex flex-wrap items-center gap-2">
                       {report.verification.is_valid ? (
                         <Badge className="bg-success-50 text-success-700">
-                          Valid Report
+                          Laporan Valid
                         </Badge>
                       ) : (
                         <Badge className="bg-danger-50 text-danger-700">
-                          Invalid Report
+                          Laporan Tidak Valid
                         </Badge>
                       )}
 
                       <Badge variant="muted">
-                        Verified by{" "}
+                        Diverifikasi oleh{" "}
                         {report.verification.verifier?.full_name ?? "-"}
                       </Badge>
                     </div>
@@ -196,19 +210,19 @@ export default async function VillageArchiveDetailPage({
                     </p>
 
                     <p className="mt-3 text-xs text-muted-foreground">
-                      Verified on {formatDate(report.verification.created_at)}
+                      Diverifikasi pada {formatDate(report.verification.created_at)}
                     </p>
                   </div>
 
                   {report.verification.photos.length === 0 ? (
-                    <EmptyText text="No verification photos available." />
+                    <EmptyText text="Belum ada foto verifikasi." />
                   ) : (
                     <div className="grid gap-4 sm:grid-cols-2">
-                      {report.verification.photos.map((photo: any) => (
+                      {report.verification.photos.map((photo: ArchivePhoto) => (
                         <PhotoCard
                           key={photo.id}
                           src={photo.signed_url}
-                          alt="Field verification evidence"
+                          alt="Bukti verifikasi lapangan"
                         />
                       ))}
                     </div>
@@ -231,31 +245,31 @@ export default async function VillageArchiveDetailPage({
         <aside className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Report Information</CardTitle>
+              <CardTitle>Informasi Laporan</CardTitle>
             </CardHeader>
 
             <CardContent className="space-y-4">
-              <InfoRow label="Reporter" value={getReporterName(report.reporter)} />
-              <InfoRow label="Reporter Email" value={getReporterEmail(report.reporter)} />
-              <InfoRow label="Reporter Phone" value={getReporterPhone(report.reporter)} />
-              <InfoRow label="Category" value={getRelationName(report.category)} />
-              <InfoRow label="Hamlet" value={getRelationName(report.hamlet)} />
-              <InfoRow label="Created At" value={formatDate(report.created_at)} />
-              <InfoRow label="Updated At" value={formatDate(report.updated_at)} />
+              <InfoRow label="Pelapor" value={getReporterName(report.reporter)} />
+              <InfoRow label="Email Pelapor" value={getReporterEmail(report.reporter)} />
+              <InfoRow label="Nomor HP Pelapor" value={getReporterPhone(report.reporter)} />
+              <InfoRow label="Kategori" value={getRelationName(report.category)} />
+              <InfoRow label="Dusun" value={getRelationName(report.hamlet)} />
+              <InfoRow label="Dibuat" value={formatDate(report.created_at)} />
+              <InfoRow label="Diperbarui" value={formatDate(report.updated_at)} />
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle>Classification</CardTitle>
+              <CardTitle>Klasifikasi</CardTitle>
             </CardHeader>
 
             <CardContent className="space-y-4">
-              <InfoRow label="Asset Status" value={formatEnum(report.asset_status)} />
-              <InfoRow label="Authority Level" value={formatEnum(report.authority_level)} />
-              <InfoRow label="Follow-up Type" value={formatEnum(report.follow_up_type)} />
+              <InfoRow label="Status Aset" value={formatEnum(report.asset_status)} />
+              <InfoRow label="Level Kewenangan" value={formatEnum(report.authority_level)} />
+              <InfoRow label="Jenis Tindak Lanjut" value={formatEnum(report.follow_up_type)} />
               <InfoRow
-                label="Verification Due"
+                label="Batas Verifikasi"
                 value={
                   report.verification_due_at
                     ? formatDate(report.verification_due_at)
@@ -263,7 +277,7 @@ export default async function VillageArchiveDetailPage({
                 }
               />
               <InfoRow
-                label="Resolution Due"
+                label="Batas Penyelesaian"
                 value={
                   report.resolution_due_at
                     ? formatDate(report.resolution_due_at)
@@ -275,7 +289,7 @@ export default async function VillageArchiveDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Admin Note</CardTitle>
+              <CardTitle>Catatan Admin</CardTitle>
             </CardHeader>
 
             <CardContent>
@@ -321,7 +335,7 @@ function PhotoCard({ src, alt }: { src: string | null; alt: string }) {
   if (!src) {
     return (
       <div className="flex aspect-video items-center justify-center rounded-2xl border border-dashed border-border bg-muted/40 text-sm text-muted-foreground">
-        Photo unavailable
+        Foto tidak tersedia
       </div>
     );
   }
@@ -368,25 +382,25 @@ function EmptyText({ text }: { text: string }) {
   );
 }
 
-function getRelationName(relation: any) {
+function getRelationName(relation: RelationName[] | RelationName | null) {
   if (!relation) return "-";
   if (Array.isArray(relation)) return relation[0]?.name ?? "-";
   return relation.name ?? "-";
 }
 
-function getReporterName(reporter: any) {
+function getReporterName(reporter: ReporterRelation[] | ReporterRelation | null) {
   if (!reporter) return "-";
   if (Array.isArray(reporter)) return reporter[0]?.full_name ?? "-";
   return reporter.full_name ?? "-";
 }
 
-function getReporterEmail(reporter: any) {
+function getReporterEmail(reporter: ReporterRelation[] | ReporterRelation | null) {
   if (!reporter) return "-";
   if (Array.isArray(reporter)) return reporter[0]?.email ?? "-";
   return reporter.email ?? "-";
 }
 
-function getReporterPhone(reporter: any) {
+function getReporterPhone(reporter: ReporterRelation[] | ReporterRelation | null) {
   if (!reporter) return "-";
   if (Array.isArray(reporter)) return reporter[0]?.phone_number ?? "-";
   return reporter.phone_number ?? "-";
@@ -409,10 +423,22 @@ function formatDate(date: string) {
 function formatEnum(value: string | null) {
   if (!value) return "-";
 
-  return value
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const labels: Record<string, string> = {
+    aset_desa: "Aset Desa",
+    bukan_aset_desa: "Bukan Aset Desa",
+    belum_diketahui: "Belum Diketahui",
+    desa: "Desa",
+    kabupaten_kota: "Kabupaten/Kota",
+    provinsi: "Provinsi",
+    nasional: "Nasional",
+    ditangani_desa: "Ditangani Desa",
+    diteruskan_ke_dinas: "Diteruskan ke Dinas",
+    diusulkan_musrenbang: "Diusulkan Musrenbang",
+    menunggu_anggaran: "Menunggu Anggaran",
+    belum_ditentukan: "Belum Ditentukan",
+  };
+
+  return labels[value] ?? value.replaceAll("_", " ");
 }
 
 type ReportStatusKey = keyof typeof REPORT_STATUS_LABELS;

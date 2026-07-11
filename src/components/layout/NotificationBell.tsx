@@ -44,7 +44,7 @@ export function NotificationBell({
         type="button"
         onClick={() => setIsOpen((current) => !current)}
         className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card text-muted-foreground shadow-sm transition hover:bg-muted hover:text-foreground"
-        aria-label="Open notifications"
+        aria-label="Buka notifikasi"
         aria-expanded={isOpen}
       >
         <Bell className="h-5 w-5" />
@@ -61,10 +61,10 @@ export function NotificationBell({
           <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-3">
             <div>
               <p className="text-sm font-semibold text-foreground">
-                Notifications
+                Notifikasi
               </p>
               <p className="text-xs text-muted-foreground">
-                {unreadCount} unread
+                {unreadCount} belum dibaca
               </p>
             </div>
 
@@ -72,7 +72,7 @@ export function NotificationBell({
               <form action={markNavbarNotificationsAsRead}>
                 <Button type="submit" variant="outline" size="sm">
                   <CheckCheck className="mr-2 h-4 w-4" />
-                  Read
+                  Tandai Dibaca
                 </Button>
               </form>
             ) : null}
@@ -81,10 +81,10 @@ export function NotificationBell({
           {notifications.length === 0 ? (
             <div className="p-6 text-center">
               <p className="text-sm font-semibold text-foreground">
-                No notifications
+                Belum ada notifikasi
               </p>
               <p className="mt-2 text-sm text-muted-foreground">
-                Updates that need your attention will appear here.
+                Pembaruan yang perlu Anda perhatikan akan muncul di sini.
               </p>
             </div>
           ) : (

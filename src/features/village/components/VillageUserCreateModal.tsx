@@ -31,7 +31,7 @@ const initialState: ActionState = {
 
 const roleOptions = [
   {
-    label: "Public",
+    label: "Publik",
     value: "public",
   },
   {
@@ -90,25 +90,25 @@ export function VillageUserCreateModal({
     <>
       <Button type="button" onClick={() => setOpen(true)}>
         <UserPlus className="mr-2 h-4 w-4" />
-        Create User
+        Buat Pengguna
       </Button>
 
       <Modal
         open={open}
         onOpenChange={setOpen}
-        title="Create User"
-        description="Create a new citizen or village staff account with secure role assignment."
+        title="Buat Pengguna"
+        description="Buat akun masyarakat atau perangkat desa dengan penugasan role yang aman."
       >
         <form action={action} className="space-y-5">
           <div>
             <label className="form-label" htmlFor="full_name">
-              Full Name
+              Nama Lengkap
             </label>
 
             <Input
               id="full_name"
               name="full_name"
-              placeholder="Example: Ahmad Fauzi"
+              placeholder="Contoh: Ahmad Fauzi"
               required
             />
           </div>
@@ -129,32 +129,32 @@ export function VillageUserCreateModal({
 
           <div>
             <label className="form-label" htmlFor="password">
-              Temporary Password
+              Password Sementara
             </label>
 
             <Input
               id="password"
               name="password"
               type="password"
-              placeholder="Minimum 6 characters"
+              placeholder="Minimal 6 karakter"
               required
             />
 
             <p className="mt-2 text-xs leading-5 text-muted-foreground">
-              Give this temporary password to the user. The user can change it
-              later if password reset is added.
+              Berikan password sementara ini kepada pengguna. Pengguna dapat
+              menggantinya nanti jika fitur reset password sudah ditambahkan.
             </p>
           </div>
 
           <div>
             <label className="form-label" htmlFor="phone_number">
-              Phone Number
+              Nomor HP
             </label>
 
             <Input
               id="phone_number"
               name="phone_number"
-              placeholder="Example: 081234567890"
+              placeholder="Contoh: 081234567890"
             />
           </div>
 
@@ -181,7 +181,7 @@ export function VillageUserCreateModal({
           {selectedRole === "kepala_dusun" ? (
             <div>
               <label className="form-label" htmlFor="dusun_id">
-                Hamlet Assignment
+                Penugasan Dusun
               </label>
 
               <select
@@ -190,7 +190,7 @@ export function VillageUserCreateModal({
                 required
                 className="form-input"
               >
-                <option value="">Select hamlet</option>
+                <option value="">Pilih dusun</option>
 
                 {hamlets.map((hamlet) => (
                   <option key={hamlet.id} value={hamlet.id}>
@@ -200,7 +200,7 @@ export function VillageUserCreateModal({
               </select>
 
               <p className="mt-2 text-xs leading-5 text-muted-foreground">
-                Hamlet assignment is required for Kepala Dusun.
+                Penugasan dusun wajib diisi untuk Kepala Dusun.
               </p>
             </div>
           ) : null}
@@ -208,7 +208,7 @@ export function VillageUserCreateModal({
           {selectedRole === "kasi" ? (
             <div>
               <label className="form-label" htmlFor="section_id">
-                Section Assignment
+                Penugasan Seksi
               </label>
 
               <select
@@ -217,7 +217,7 @@ export function VillageUserCreateModal({
                 required
                 className="form-input"
               >
-                <option value="">Select section</option>
+                <option value="">Pilih seksi</option>
 
                 {sections.map((section) => (
                   <option key={section.id} value={section.id}>
@@ -227,7 +227,7 @@ export function VillageUserCreateModal({
               </select>
 
               <p className="mt-2 text-xs leading-5 text-muted-foreground">
-                Section assignment is required for Kepala Seksi.
+                Penugasan seksi wajib diisi untuk Kepala Seksi.
               </p>
             </div>
           ) : null}
@@ -239,11 +239,11 @@ export function VillageUserCreateModal({
               onClick={() => setOpen(false)}
               disabled={isPending}
             >
-              Cancel
+              Batal
             </Button>
 
             <Button type="submit" disabled={isPending}>
-              {isPending ? "Creating..." : "Create User"}
+              {isPending ? "Membuat..." : "Buat Pengguna"}
             </Button>
           </div>
         </form>

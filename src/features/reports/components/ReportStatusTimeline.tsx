@@ -20,7 +20,7 @@ type ReportStatusTimelineProps = {
 
 export function ReportStatusTimeline({
   logs,
-  emptyText = "No status history available yet.",
+  emptyText = "Riwayat status belum tersedia.",
 }: ReportStatusTimelineProps) {
   if (logs.length === 0) {
     return (
@@ -63,7 +63,7 @@ export function ReportStatusTimeline({
 
                 {isLast ? (
                   <Badge className="bg-primary-50 text-primary-700">
-                    Current
+                    Saat Ini
                   </Badge>
                 ) : null}
               </div>
@@ -104,19 +104,19 @@ function getStatusLabel(status: string) {
 
 function getTimelineTitle(status: string) {
   const titles: Record<string, string> = {
-    pending: "Report Submitted",
-    need_verification: "Sent for Field Verification",
-    verified_valid: "Verified as Valid",
-    verified_invalid: "Verified as Invalid",
-    classified: "Report Classified",
-    handled_by_village: "Handled by Village",
-    forwarded_to_agency: "Forwarded to Agency",
-    waiting_budget: "Waiting for Budget",
-    in_progress: "Handling in Progress",
-    resolved: "Report Resolved",
-    rejected: "Report Rejected",
-    archived: "Report Archived",
-    merged: "Report Merged",
+    pending: "Laporan Dikirim",
+    need_verification: "Dikirim untuk Verifikasi Lapangan",
+    verified_valid: "Terverifikasi Valid",
+    verified_invalid: "Terverifikasi Tidak Valid",
+    classified: "Laporan Diklasifikasi",
+    handled_by_village: "Ditangani Desa",
+    forwarded_to_agency: "Diteruskan ke Dinas",
+    waiting_budget: "Menunggu Anggaran",
+    in_progress: "Sedang Diproses",
+    resolved: "Laporan Selesai",
+    rejected: "Laporan Ditolak",
+    archived: "Laporan Diarsipkan",
+    merged: "Laporan Digabungkan",
   };
 
   return titles[status] ?? getStatusLabel(status);
@@ -124,34 +124,34 @@ function getTimelineTitle(status: string) {
 
 function getTimelineDescription(status: string) {
   const descriptions: Record<string, string> = {
-    pending: "Your report has been submitted and is waiting for admin review.",
+    pending: "Laporan sudah dikirim dan menunggu review admin.",
     need_verification:
-      "The report has been approved by admin and sent to the hamlet head for field verification.",
+      "Laporan sudah disetujui admin dan dikirim ke kepala dusun untuk verifikasi lapangan.",
     verified_valid:
-      "The hamlet head has verified that the report is valid.",
+      "Kepala dusun sudah memverifikasi bahwa laporan valid.",
     verified_invalid:
-      "The hamlet head has verified that the report is invalid.",
+      "Kepala dusun sudah memverifikasi bahwa laporan tidak valid.",
     classified:
-      "The admin has classified the report for the proper follow-up process.",
+      "Admin sudah mengklasifikasi laporan untuk proses tindak lanjut yang sesuai.",
     handled_by_village:
-      "The report will be handled directly by the village.",
+      "Laporan akan ditangani langsung oleh desa.",
     forwarded_to_agency:
-      "The report has been forwarded to the relevant agency.",
+      "Laporan sudah diteruskan ke dinas terkait.",
     waiting_budget:
-      "The report is waiting for budget allocation or planning.",
+      "Laporan sedang menunggu alokasi atau perencanaan anggaran.",
     in_progress:
-      "The report is currently being handled by the responsible party.",
+      "Laporan sedang ditangani oleh pihak yang bertanggung jawab.",
     resolved:
-      "The report has been resolved.",
+      "Laporan sudah selesai.",
     rejected:
-      "The report was rejected after review.",
+      "Laporan ditolak setelah review.",
     archived:
-      "The report has been archived for record keeping.",
+      "Laporan sudah diarsipkan untuk pencatatan.",
     merged:
-      "The report has been merged into a master report for consolidated handling.",
+      "Laporan sudah digabungkan ke laporan master untuk penanganan terpadu.",
   };
 
-  return descriptions[status] ?? "The report status has been updated.";
+  return descriptions[status] ?? "Status laporan sudah diperbarui.";
 }
 
 function formatDateTime(date: string) {
@@ -165,8 +165,21 @@ function formatDateTime(date: string) {
 }
 
 function formatEnum(value: string) {
-  return value
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const labels: Record<string, string> = {
+    pending: "Menunggu Review",
+    need_verification: "Perlu Verifikasi",
+    verified_valid: "Terverifikasi Valid",
+    verified_invalid: "Terverifikasi Tidak Valid",
+    classified: "Diklasifikasi",
+    handled_by_village: "Ditangani Desa",
+    forwarded_to_agency: "Diteruskan ke Instansi",
+    waiting_budget: "Menunggu Anggaran",
+    in_progress: "Diproses",
+    resolved: "Selesai",
+    rejected: "Ditolak",
+    archived: "Diarsipkan",
+    merged: "Digabungkan",
+  };
+
+  return labels[value] ?? value.replaceAll("_", " ");
 }

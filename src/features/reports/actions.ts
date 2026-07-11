@@ -23,7 +23,8 @@ function isValidImage(file: File) {
 export async function createReport(
   _prevState: ActionState,
   formData: FormData
-): Promise<ActionState> {  const profile = await getProfile();
+): Promise<ActionState> {
+  const profile = await getProfile();
 
   if (!profile) {
     redirect(`${ROUTES.LOGIN}?redirect=${encodeURIComponent(ROUTES.REPORT_CREATE)}`);
@@ -46,11 +47,11 @@ export async function createReport(
     .filter((file): file is File => file instanceof File && file.size > 0);
 
   if (!title || !description) {
-    throw new Error("Please complete the report title and description.");
+    throw new Error("Lengkapi judul dan deskripsi laporan terlebih dahulu.");
   }
 
   if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
-    throw new Error("Please select your report location first.");
+    throw new Error("Pilih lokasi laporan terlebih dahulu.");
   }
 
   if (
@@ -60,7 +61,7 @@ export async function createReport(
   ) {
     return {
       status: "error",
-      message: "GPS origin is required. Please use GPS location first.",
+      message: "Lokasi GPS wajib digunakan terlebih dahulu.",
     };
   }
 
@@ -74,25 +75,25 @@ export async function createReport(
   if (distanceFromGpsKm > locationRadiusKm) {
     return {
       status: "error",
-      message: `Report location must be within ${locationRadiusKm} km from your GPS location.`,
+      message: `Lokasi laporan harus berada dalam radius ${locationRadiusKm} km dari lokasi GPS Anda.`,
     };
   }
 
   if (photos.length === 0) {
-    throw new Error("Please upload at least one photo evidence.");
+    throw new Error("Unggah minimal satu foto bukti.");
   }
 
   if (photos.length > 5) {
-    throw new Error("You can upload a maximum of 5 photos.");
+    throw new Error("Anda hanya bisa mengunggah maksimal 5 foto.");
   }
 
   for (const photo of photos) {
     if (!isValidImage(photo)) {
-      throw new Error("Only JPG, PNG, and WEBP images are allowed.");
+      throw new Error("Hanya gambar JPG, PNG, dan WEBP yang diizinkan.");
     }
 
     if (photo.size > 10 * 1024 * 1024) {
-      throw new Error("Each photo must be less than 10MB.");
+      throw new Error("Setiap foto harus kurang dari 10MB.");
     }
   }
 
@@ -118,7 +119,7 @@ export async function createReport(
     .single();
 
   if (reportError || !report) {
-    throw new Error(reportError?.message || "Failed to create report.");
+    throw new Error(reportError?.message || "Gagal membuat laporan.");
   }
 
   for (const photo of photos) {
@@ -152,7 +153,7 @@ export async function createReport(
       reportId: report.id,
       oldStatus: null,
       newStatus: "pending",
-      note: "Report submitted by citizen.",
+      note: "Laporan dikirim oleh masyarakat.",
     });
   }
 
@@ -161,7 +162,7 @@ export async function createReport(
 
   return {
     status: "success",
-    message: "Report has been submitted successfully.",
+    message: "Laporan berhasil dikirim.",
   };
 }
 

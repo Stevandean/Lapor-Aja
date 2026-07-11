@@ -31,10 +31,10 @@ export function VillageAnalyticsCard({
         {items.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-8 text-center">
             <p className="text-sm font-medium text-foreground">
-              No data available
+              Belum ada data
             </p>
             <p className="mt-2 text-sm text-muted-foreground">
-              Analytics will appear after reports are submitted.
+              Analitik akan muncul setelah laporan dikirim.
             </p>
           </div>
         ) : (
@@ -51,7 +51,7 @@ export function VillageAnalyticsCard({
                     </p>
 
                     <p className="text-muted-foreground">
-                      {item.count} report{item.count > 1 ? "s" : ""} •{" "}
+                      {item.count} laporan -{" "}
                       {percentage}%
                     </p>
                   </div>

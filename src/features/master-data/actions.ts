@@ -47,7 +47,7 @@ export async function createCategory(
   if (!name) {
     return {
       status: "error",
-      message: "Category name is required.",
+      message: "Nama kategori wajib diisi.",
     };
   }
 
@@ -70,7 +70,7 @@ export async function createCategory(
 
   return {
     status: "success",
-    message: "Category has been created.",
+    message: "Kategori berhasil dibuat.",
   };
 }
 
@@ -87,14 +87,14 @@ export async function updateCategory(
   if (!categoryId) {
     return {
       status: "error",
-      message: "Category ID is missing.",
+      message: "ID kategori tidak ditemukan.",
     };
   }
 
   if (!name) {
     return {
       status: "error",
-      message: "Category name is required.",
+      message: "Nama kategori wajib diisi.",
     };
   }
 
@@ -120,7 +120,7 @@ export async function updateCategory(
 
   return {
     status: "success",
-    message: "Category has been updated.",
+    message: "Kategori berhasil diperbarui.",
   };
 }
 
@@ -136,14 +136,14 @@ export async function toggleCategoryStatus(
   if (!categoryId) {
     return {
       status: "error",
-      message: "Category ID is missing.",
+      message: "ID kategori tidak ditemukan.",
     };
   }
 
   if (action !== "activate" && action !== "deactivate") {
     return {
       status: "error",
-      message: "Invalid category action.",
+      message: "Aksi kategori tidak valid.",
     };
   }
 
@@ -170,8 +170,8 @@ export async function toggleCategoryStatus(
     status: "success",
     message:
       action === "activate"
-        ? "Category has been activated."
-        : "Category has been deactivated.",
+        ? "Kategori berhasil diaktifkan."
+        : "Kategori berhasil dinonaktifkan.",
   };
 }
 
@@ -187,7 +187,7 @@ export async function createDusun(
   if (!name) {
     return {
       status: "error",
-      message: "Dusun name is required.",
+      message: "Nama dusun wajib diisi.",
     };
   }
 
@@ -211,7 +211,7 @@ export async function createDusun(
 
   return {
     status: "success",
-    message: "Dusun has been created.",
+    message: "Dusun berhasil dibuat.",
   };
 }
 
@@ -228,14 +228,14 @@ export async function updateDusun(
   if (!dusunId) {
     return {
       status: "error",
-      message: "Dusun ID is missing.",
+      message: "ID dusun tidak ditemukan.",
     };
   }
 
   if (!name) {
     return {
       status: "error",
-      message: "Dusun name is required.",
+      message: "Nama dusun wajib diisi.",
     };
   }
 
@@ -262,7 +262,7 @@ export async function updateDusun(
 
   return {
     status: "success",
-    message: "Dusun has been updated.",
+    message: "Dusun berhasil diperbarui.",
   };
 }
 
@@ -278,14 +278,14 @@ export async function toggleDusunStatus(
   if (!dusunId) {
     return {
       status: "error",
-      message: "Dusun ID is missing.",
+      message: "ID dusun tidak ditemukan.",
     };
   }
 
   if (action !== "activate" && action !== "deactivate") {
     return {
       status: "error",
-      message: "Invalid dusun action.",
+      message: "Aksi dusun tidak valid.",
     };
   }
 
@@ -313,8 +313,8 @@ export async function toggleDusunStatus(
     status: "success",
     message:
       action === "activate"
-        ? "Dusun has been activated."
-        : "Dusun has been deactivated.",
+        ? "Dusun berhasil diaktifkan."
+        : "Dusun berhasil dinonaktifkan.",
   };
 }
 
@@ -334,7 +334,7 @@ export async function createAgency(
   if (!name) {
     return {
       status: "error",
-      message: "Agency name is required.",
+      message: "Nama instansi wajib diisi.",
     };
   }
 
@@ -362,7 +362,7 @@ export async function createAgency(
 
   return {
     status: "success",
-    message: "Agency has been created.",
+    message: "Instansi berhasil dibuat.",
   };
 }
 
@@ -383,14 +383,14 @@ export async function updateAgency(
   if (!agencyId) {
     return {
       status: "error",
-      message: "Agency ID is missing.",
+      message: "ID instansi tidak ditemukan.",
     };
   }
 
   if (!name) {
     return {
       status: "error",
-      message: "Agency name is required.",
+      message: "Nama instansi wajib diisi.",
     };
   }
 
@@ -421,7 +421,7 @@ export async function updateAgency(
 
   return {
     status: "success",
-    message: "Agency has been updated.",
+    message: "Instansi berhasil diperbarui.",
   };
 }
 
@@ -437,14 +437,14 @@ export async function toggleAgencyStatus(
   if (!agencyId) {
     return {
       status: "error",
-      message: "Agency ID is missing.",
+      message: "ID instansi tidak ditemukan.",
     };
   }
 
   if (action !== "activate" && action !== "deactivate") {
     return {
       status: "error",
-      message: "Invalid agency action.",
+      message: "Aksi instansi tidak valid.",
     };
   }
 
@@ -472,8 +472,8 @@ export async function toggleAgencyStatus(
     status: "success",
     message:
       action === "activate"
-        ? "Agency has been activated."
-        : "Agency has been deactivated.",
+        ? "Instansi berhasil diaktifkan."
+        : "Instansi berhasil dinonaktifkan.",
   };
 }
 
@@ -491,7 +491,7 @@ export async function updateSlaRule(
   if (!ruleId) {
     return {
       status: "error",
-      message: "SLA rule ID is missing.",
+      message: "ID aturan SLA tidak ditemukan.",
     };
   }
 
@@ -503,14 +503,15 @@ export async function updateSlaRule(
   ) {
     return {
       status: "error",
-      message: "Verification and resolution hours must be greater than 0.",
+      message: "Jam verifikasi dan penyelesaian harus lebih dari 0.",
     };
   }
 
   if (verificationHours > resolutionHours) {
     return {
       status: "error",
-      message: "Verification hours cannot be greater than resolution hours.",
+      message:
+        "Jam verifikasi tidak boleh lebih besar dari jam penyelesaian.",
     };
   }
 
@@ -539,7 +540,7 @@ export async function updateSlaRule(
 
   return {
     status: "success",
-    message: "SLA rule has been updated.",
+    message: "Aturan SLA berhasil diperbarui.",
   };
 }
 
@@ -555,14 +556,14 @@ export async function toggleSlaRuleStatus(
   if (!ruleId) {
     return {
       status: "error",
-      message: "SLA rule ID is missing.",
+      message: "ID aturan SLA tidak ditemukan.",
     };
   }
 
   if (action !== "activate" && action !== "deactivate") {
     return {
       status: "error",
-      message: "Invalid SLA rule action.",
+      message: "Aksi aturan SLA tidak valid.",
     };
   }
 
@@ -579,7 +580,7 @@ export async function toggleSlaRuleStatus(
     if (ruleError || !rule) {
       return {
         status: "error",
-        message: ruleError?.message || "SLA rule was not found.",
+        message: ruleError?.message || "Aturan SLA tidak ditemukan.",
       };
     }
 
@@ -610,7 +611,7 @@ export async function toggleSlaRuleStatus(
     if (ruleError || !rule) {
       return {
         status: "error",
-        message: ruleError?.message || "SLA rule was not found.",
+        message: ruleError?.message || "Aturan SLA tidak ditemukan.",
       };
     }
 
@@ -635,7 +636,7 @@ export async function toggleSlaRuleStatus(
       return {
         status: "error",
         message:
-          "Each priority must keep at least one active SLA rule for report approval.",
+          "Setiap prioritas harus memiliki minimal satu aturan SLA aktif untuk persetujuan laporan.",
       };
     }
   }
@@ -663,8 +664,8 @@ export async function toggleSlaRuleStatus(
     status: "success",
     message:
       action === "activate"
-        ? "SLA rule has been activated."
-        : "SLA rule has been deactivated.",
+        ? "Aturan SLA berhasil diaktifkan."
+        : "Aturan SLA berhasil dinonaktifkan.",
   };
 }
 
@@ -681,7 +682,7 @@ export async function createVillageSection(
   if (!name) {
     return {
       status: "error",
-      message: "Section name is required.",
+      message: "Nama seksi wajib diisi.",
     };
   }
 
@@ -719,7 +720,7 @@ export async function createVillageSection(
 
   return {
     status: "success",
-    message: "Village section has been created.",
+    message: "Seksi desa berhasil dibuat.",
   };
 }
 export async function toggleVillageSectionStatus(
@@ -734,7 +735,7 @@ export async function toggleVillageSectionStatus(
   if (!sectionId) {
     return {
       status: "error",
-      message: "Section ID is missing.",
+      message: "ID seksi tidak ditemukan.",
     };
   }
 
@@ -760,7 +761,7 @@ export async function toggleVillageSectionStatus(
   return {
     status: "success",
     message: isActive
-      ? "Village section has been deactivated."
-      : "Village section has been activated.",
+      ? "Seksi desa berhasil dinonaktifkan."
+      : "Seksi desa berhasil diaktifkan.",
   };
 }

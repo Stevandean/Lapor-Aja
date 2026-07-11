@@ -128,49 +128,49 @@ export async function updateVillageUser(
   if (!userId) {
     return {
       status: "error",
-      message: "User ID is missing.",
+      message: "ID pengguna tidak ditemukan.",
     };
   }
 
   if (!fullName) {
     return {
       status: "error",
-      message: "Full name is required.",
+      message: "Nama lengkap wajib diisi.",
     };
   }
 
   if (!isManagedUserRole(role)) {
     return {
       status: "error",
-      message: "Invalid user role.",
+      message: "Role pengguna tidak valid.",
     };
   }
 
   if (role === "admin" && manager.role !== "admin") {
     return {
-        status: "error",
-        message: "Only admin can assign admin role.",
+      status: "error",
+      message: "Hanya admin yang bisa menetapkan role admin.",
     };
   }
 
   if (role === "kepala_dusun" && !dusunId) {
     return {
       status: "error",
-      message: "Kepala dusun must be assigned to a hamlet.",
+      message: "Kepala dusun harus ditautkan ke dusun.",
     };
   }
 
   if (role === "kasi" && !sectionId) {
     return {
       status: "error",
-      message: "Kepala seksi must be assigned to a section.",
+      message: "Kepala seksi harus ditautkan ke seksi.",
     };
   }
 
   if (userId === manager.id && role !== manager.role) {
     return {
       status: "error",
-      message: "You cannot change your own role.",
+      message: "Anda tidak bisa mengubah role akun sendiri.",
     };
   }
 
@@ -199,7 +199,7 @@ export async function updateVillageUser(
 
   return {
     status: "success",
-    message: "User profile has been updated.",
+    message: "Profil pengguna berhasil diperbarui.",
   };
 }
 
@@ -215,21 +215,21 @@ export async function toggleVillageUserStatus(
   if (!userId) {
     return {
       status: "error",
-      message: "User ID is missing.",
+      message: "ID pengguna tidak ditemukan.",
     };
   }
 
   if (userId === manager.id) {
     return {
       status: "error",
-      message: "You cannot deactivate your own account.",
+      message: "Anda tidak bisa menonaktifkan akun sendiri.",
     };
   }
 
   if (action !== "activate" && action !== "deactivate") {
     return {
       status: "error",
-      message: "Invalid status action.",
+      message: "Aksi status tidak valid.",
     };
   }
 
@@ -256,8 +256,8 @@ export async function toggleVillageUserStatus(
     status: "success",
     message:
       action === "activate"
-        ? "User account has been activated."
-        : "User account has been deactivated.",
+        ? "Akun pengguna berhasil diaktifkan."
+        : "Akun pengguna berhasil dinonaktifkan.",
   };
 }
 
@@ -278,49 +278,49 @@ export async function createVillageUser(
   if (!fullName) {
     return {
       status: "error",
-      message: "Full name is required.",
+      message: "Nama lengkap wajib diisi.",
     };
   }
 
   if (!email) {
     return {
       status: "error",
-      message: "Email is required.",
+      message: "Email wajib diisi.",
     };
   }
 
   if (!password || password.length < 6) {
     return {
       status: "error",
-      message: "Password must be at least 6 characters.",
+      message: "Password minimal 6 karakter.",
     };
   }
 
   if (!isManagedUserRole(role)) {
     return {
       status: "error",
-      message: "Invalid user role.",
+      message: "Role pengguna tidak valid.",
     };
   }
 
   if (role === "admin" && manager.role !== "admin") {
     return {
       status: "error",
-      message: "Only admin can create another admin account.",
+      message: "Hanya admin yang bisa membuat akun admin lain.",
     };
   }
 
   if (role === "kepala_dusun" && !dusunId) {
     return {
       status: "error",
-      message: "Kepala dusun must be assigned to a hamlet.",
+      message: "Kepala dusun harus ditautkan ke dusun.",
     };
   }
 
   if (role === "kasi" && !sectionId) {
     return {
       status: "error",
-      message: "Section is required for Kasi.",
+      message: "Seksi wajib dipilih untuk Kasi.",
     };
   }
 
@@ -340,7 +340,7 @@ export async function createVillageUser(
   if (createError || !createdUser.user) {
     return {
       status: "error",
-      message: createError?.message || "Failed to create user.",
+      message: createError?.message || "Gagal membuat pengguna.",
     };
   }
 
@@ -373,7 +373,7 @@ export async function createVillageUser(
 
   return {
     status: "success",
-    message: "User account has been created.",
+    message: "Akun pengguna berhasil dibuat.",
   };
 }
 
@@ -388,7 +388,7 @@ export async function approveBudgetRequest(
   if (!requestId) {
     return {
       status: "error",
-      message: "Budget request ID is missing.",
+      message: "ID pengajuan anggaran tidak ditemukan.",
     };
   }
 
@@ -404,21 +404,21 @@ export async function approveBudgetRequest(
       status: "error",
       message:
         requestError.message ||
-        "Failed to read budget request. Make sure the review migration has been applied.",
+        "Gagal membaca pengajuan anggaran. Pastikan migration peninjauan sudah dijalankan.",
     };
   }
 
   if (!budgetRequest) {
     return {
       status: "error",
-      message: "Budget request was not found.",
+      message: "Pengajuan anggaran tidak ditemukan.",
     };
   }
 
   if (budgetRequest.status !== "submitted") {
     return {
       status: "error",
-      message: "Only submitted budget requests can be approved.",
+      message: "Hanya pengajuan anggaran yang masih menunggu peninjauan yang bisa disetujui.",
     };
   }
 
@@ -442,7 +442,7 @@ export async function approveBudgetRequest(
       status: "error",
       message:
         updateError?.message ||
-        "Budget request is no longer available for approval.",
+        "Pengajuan anggaran sudah tidak tersedia untuk disetujui.",
     };
   }
 
@@ -458,8 +458,8 @@ export async function approveBudgetRequest(
 
   if (report?.status === "waiting_budget") {
     const statusNote = reviewNote
-      ? `Budget request approved: ${reviewNote}`
-      : "Budget request approved.";
+      ? `Pengajuan anggaran disetujui: ${reviewNote}`
+      : "Pengajuan anggaran disetujui.";
     const nextReportStatus = (await hasReportProgressUpdates(budgetRequest.report_id))
       ? "in_progress"
       : "handled_by_village";
@@ -515,7 +515,7 @@ export async function approveBudgetRequest(
 
   return {
     status: "success",
-    message: "Budget request has been approved.",
+    message: "Pengajuan anggaran berhasil disetujui.",
   };
 }
 
@@ -530,14 +530,14 @@ export async function rejectBudgetRequest(
   if (!requestId) {
     return {
       status: "error",
-      message: "Budget request ID is missing.",
+      message: "ID pengajuan anggaran tidak ditemukan.",
     };
   }
 
   if (!reviewNote) {
     return {
       status: "error",
-      message: "Please write a rejection reason.",
+      message: "Tulis alasan penolakan terlebih dahulu.",
     };
   }
 
@@ -553,21 +553,21 @@ export async function rejectBudgetRequest(
       status: "error",
       message:
         requestError.message ||
-        "Failed to read budget request. Make sure the review migration has been applied.",
+        "Gagal membaca pengajuan anggaran. Pastikan migration peninjauan sudah dijalankan.",
     };
   }
 
   if (!budgetRequest) {
     return {
       status: "error",
-      message: "Budget request was not found.",
+      message: "Pengajuan anggaran tidak ditemukan.",
     };
   }
 
   if (budgetRequest.status !== "submitted") {
     return {
       status: "error",
-      message: "Only submitted budget requests can be rejected.",
+      message: "Hanya pengajuan anggaran yang masih menunggu peninjauan yang bisa ditolak.",
     };
   }
 
@@ -591,7 +591,7 @@ export async function rejectBudgetRequest(
       status: "error",
       message:
         updateError?.message ||
-        "Budget request is no longer available for rejection.",
+        "Pengajuan anggaran sudah tidak tersedia untuk ditolak.",
     };
   }
 
@@ -633,7 +633,7 @@ export async function rejectBudgetRequest(
       reportId: budgetRequest.report_id,
       oldStatus: "waiting_budget",
       newStatus: "handled_by_village",
-      note: `Budget request rejected: ${reviewNote}`,
+      note: `Pengajuan anggaran ditolak: ${reviewNote}`,
     });
 
     await recordSlaEvent({
@@ -641,7 +641,7 @@ export async function rejectBudgetRequest(
       eventType: "resumed_budget",
       previousResolutionDueAt: report.resolution_due_at,
       newResolutionDueAt: nextResolutionDueAt,
-      note: `Budget request rejected: ${reviewNote}`,
+      note: `Pengajuan anggaran ditolak: ${reviewNote}`,
     });
   }
 
@@ -658,6 +658,6 @@ export async function rejectBudgetRequest(
 
   return {
     status: "success",
-    message: "Budget request has been rejected.",
+    message: "Pengajuan anggaran berhasil ditolak.",
   };
 }

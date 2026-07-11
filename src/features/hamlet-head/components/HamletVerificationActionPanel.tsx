@@ -41,7 +41,7 @@ export function HamletVerificationActionPanel({
 
   useEffect(() => {
     if (state.status === "success") {
-      toast.success("Success", {
+      toast.success("Berhasil", {
         description: state.message,
       });
 
@@ -49,7 +49,7 @@ export function HamletVerificationActionPanel({
     }
 
     if (state.status === "error") {
-      toast.error("Failed", {
+      toast.error("Gagal", {
         description: state.message,
       });
     }
@@ -58,17 +58,17 @@ export function HamletVerificationActionPanel({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Verification Action</CardTitle>
+        <CardTitle>Aksi Verifikasi</CardTitle>
         <CardDescription>
-          Upload field evidence and mark this report as valid or invalid.
+          Unggah bukti lapangan dan tandai laporan ini valid atau tidak valid.
         </CardDescription>
       </CardHeader>
 
       <CardContent>
         {!canVerify && (
           <div className="rounded-2xl border border-warning-100 bg-warning-50 p-4 text-sm leading-6 text-warning-700">
-            This report has already been verified or is no longer available for
-            field verification.
+            Laporan ini sudah diverifikasi atau tidak lagi tersedia untuk
+            verifikasi lapangan.
           </div>
         )}
 
@@ -77,15 +77,15 @@ export function HamletVerificationActionPanel({
             <input type="hidden" name="report_id" value={reportId} />
 
             <Textarea
-              label="Verification note"
+              label="Catatan verifikasi"
               name="verification_note"
-              placeholder="Describe the field condition and explain your verification result."
+              placeholder="Jelaskan kondisi lapangan dan alasan hasil verifikasi Anda."
               required
               disabled={isSubmitting}
             />
 
             <div className="space-y-2">
-              <label className="form-label">Verification photos</label>
+              <label className="form-label">Foto verifikasi</label>
 
               <div className="rounded-2xl border border-dashed border-border bg-card p-5">
                 <div className="flex items-start gap-3">
@@ -105,8 +105,8 @@ export function HamletVerificationActionPanel({
                     />
 
                     <p className="mt-2 text-sm text-muted-foreground">
-                      Upload 1–5 field photos. Supported formats: JPG, PNG,
-                      WEBP. Maximum 10MB per photo.
+                      Unggah 1-5 foto lapangan. Format yang didukung: JPG, PNG,
+                      WEBP. Maksimal 10MB per foto.
                     </p>
                   </div>
                 </div>
@@ -122,7 +122,7 @@ export function HamletVerificationActionPanel({
                 className="w-full"
               >
                 <CheckCircle2 className="mr-2 h-4 w-4" />
-                {isSubmitting ? "Submitting..." : "Mark as valid"}
+                {isSubmitting ? "Mengirim..." : "Tandai valid"}
               </Button>
 
               <Button
@@ -134,7 +134,7 @@ export function HamletVerificationActionPanel({
                 className="w-full border-danger-200 text-danger-700 hover:bg-danger-50"
               >
                 <XCircle className="mr-2 h-4 w-4" />
-                {isSubmitting ? "Submitting..." : "Mark as invalid"}
+                {isSubmitting ? "Mengirim..." : "Tandai tidak valid"}
               </Button>
             </div>
           </form>
@@ -143,3 +143,4 @@ export function HamletVerificationActionPanel({
     </Card>
   );
 }
+

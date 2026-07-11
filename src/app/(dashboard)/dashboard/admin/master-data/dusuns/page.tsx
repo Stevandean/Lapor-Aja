@@ -17,15 +17,15 @@ export default async function AdminDusunMasterDataPage() {
     <div className="space-y-6">
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-semibold text-primary">Master Data</p>
+          <p className="text-sm font-semibold text-primary">Data Master</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Dusun Data
+            Data Dusun
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Manage hamlet areas used for report assignment and hamlet head
-            access control.
+            Kelola wilayah dusun yang digunakan untuk penugasan laporan dan
+            akses kepala dusun.
           </p>
         </div>
 
@@ -42,8 +42,8 @@ export default async function AdminDusunMasterDataPage() {
           </CardTitle>
 
           <CardDescription>
-            Dusun data is used when admins assign reports to the correct hamlet
-            head.
+            Data dusun digunakan saat admin mengirim laporan ke kepala dusun
+            yang sesuai.
           </CardDescription>
         </CardHeader>
 

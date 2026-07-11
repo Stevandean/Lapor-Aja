@@ -44,7 +44,7 @@ function isValidImage(file: File) {
 
 function formatProgressPolicyError(message: string) {
   if (message.toLowerCase().includes("row-level security")) {
-    return "Progress permissions are not configured yet. Please apply the Kasi progress RLS migration.";
+    return "Izin progres belum dikonfigurasi. Jalankan migration RLS progres Kasi terlebih dahulu.";
   }
 
   return message;
@@ -60,7 +60,7 @@ function validateProgressPhotos(photos: File[]): ActionState | null {
   if (photos.length > MAX_PROGRESS_PHOTOS) {
     return {
       status: "error",
-      message: `You can upload a maximum of ${MAX_PROGRESS_PHOTOS} progress photos.`,
+      message: `Anda hanya bisa mengunggah maksimal ${MAX_PROGRESS_PHOTOS} foto progres.`,
     };
   }
 
@@ -68,14 +68,14 @@ function validateProgressPhotos(photos: File[]): ActionState | null {
     if (!isValidImage(photo)) {
       return {
         status: "error",
-        message: "Only JPG, PNG, and WEBP images are allowed.",
+        message: "Hanya gambar JPG, PNG, dan WEBP yang diizinkan.",
       };
     }
 
     if (photo.size > MAX_PHOTO_SIZE) {
       return {
         status: "error",
-        message: "Each progress photo must be less than 10MB.",
+        message: "Setiap foto progres harus kurang dari 10MB.",
       };
     }
   }
@@ -331,7 +331,7 @@ export async function returnKasiReportAssignment(
   if (!profile.section_id) {
     return {
       status: "error",
-      message: "Your account has not been assigned to a village section.",
+      message: "Akun Anda belum ditautkan ke seksi desa.",
     };
   }
 
@@ -341,14 +341,14 @@ export async function returnKasiReportAssignment(
   if (!reportId) {
     return {
       status: "error",
-      message: "Report ID is missing.",
+      message: "ID laporan tidak ditemukan.",
     };
   }
 
   if (!note) {
     return {
       status: "error",
-      message: "Please explain why this report should be returned to admin.",
+      message: "Jelaskan alasan laporan ini perlu dikembalikan ke admin.",
     };
   }
 
@@ -357,14 +357,14 @@ export async function returnKasiReportAssignment(
   if (!report) {
     return {
       status: "error",
-      message: "Report not found or not assigned to your section.",
+      message: "Laporan tidak ditemukan atau tidak ditugaskan ke seksi Anda.",
     };
   }
 
   if (!["handled_by_village", "waiting_budget"].includes(report.status)) {
     return {
       status: "error",
-      message: "Only newly assigned reports can be returned to admin.",
+      message: "Hanya laporan yang baru ditugaskan yang bisa dikembalikan ke admin.",
     };
   }
 
@@ -377,7 +377,7 @@ export async function returnKasiReportAssignment(
     return {
       status: "error",
       message:
-        "This report already has progress or budget activity and cannot be returned.",
+        "Laporan ini sudah memiliki aktivitas progres atau anggaran sehingga tidak bisa dikembalikan.",
     };
   }
 
@@ -402,7 +402,7 @@ export async function returnKasiReportAssignment(
       status: "error",
       message:
         error?.message ||
-        "Report could not be returned because its assignment has changed.",
+        "Laporan tidak bisa dikembalikan karena penugasannya sudah berubah.",
     };
   }
 
@@ -410,7 +410,7 @@ export async function returnKasiReportAssignment(
     reportId,
     oldStatus: report.status,
     newStatus: "verified_valid",
-    note: `Returned by Kasi for reassignment: ${note}`,
+    note: `Dikembalikan oleh Kasi untuk penugasan ulang: ${note}`,
     notifyReporter: false,
     notifyWhatsApp: false,
   });
@@ -419,7 +419,7 @@ export async function returnKasiReportAssignment(
     roles: ["admin"],
     reportId,
     subject: `Laporan dikembalikan ${report.report_number}`,
-    message: `Kasi mengembalikan laporan ${report.report_number} (${report.title}) untuk reassignment. Catatan: ${note}`,
+    message: `Kasi mengembalikan laporan ${report.report_number} (${report.title}) untuk penugasan ulang. Catatan: ${note}`,
   });
 
   revalidateKasiReport(reportId);
@@ -428,7 +428,7 @@ export async function returnKasiReportAssignment(
 
   return {
     status: "success",
-    message: "Report has been returned to admin for reassignment.",
+    message: "Laporan berhasil dikembalikan ke admin untuk penugasan ulang.",
   };
 }
 
@@ -441,7 +441,7 @@ export async function startKasiReportProgress(
   if (!profile.section_id) {
     return {
       status: "error",
-      message: "Your account has not been assigned to a village section.",
+      message: "Akun Anda belum ditautkan ke seksi desa.",
     };
   }
 
@@ -451,14 +451,14 @@ export async function startKasiReportProgress(
   if (!reportId) {
     return {
       status: "error",
-      message: "Report ID is missing.",
+      message: "ID laporan tidak ditemukan.",
     };
   }
 
   if (!note) {
     return {
       status: "error",
-      message: "Please write a short handling note before starting progress.",
+      message: "Tulis catatan singkat penanganan sebelum memulai progres.",
     };
   }
 
@@ -467,14 +467,14 @@ export async function startKasiReportProgress(
   if (!report) {
     return {
       status: "error",
-      message: "Report not found or not assigned to your section.",
+      message: "Laporan tidak ditemukan atau tidak ditugaskan ke seksi Anda.",
     };
   }
 
   if (report.status !== "handled_by_village") {
     return {
       status: "error",
-      message: "Only village-handled reports can be started.",
+      message: "Hanya laporan yang ditangani desa yang bisa dimulai.",
     };
   }
 
@@ -503,7 +503,7 @@ export async function startKasiReportProgress(
 
     return {
       status: "success",
-      message: "Report handling is already in progress.",
+      message: "Penanganan laporan sudah sedang diproses.",
     };
   }
 
@@ -525,7 +525,7 @@ export async function startKasiReportProgress(
       status: "error",
       message:
         error?.message ||
-        "This report has already been started or is no longer available to start.",
+        "Laporan ini sudah dimulai atau tidak lagi tersedia untuk dimulai.",
     };
   }
 
@@ -533,7 +533,7 @@ export async function startKasiReportProgress(
     reportId,
     userId: profile.id,
     updateType: "progress",
-    title: "Handling started",
+    title: "Penanganan dimulai",
     note,
     photos: [],
   });
@@ -564,7 +564,7 @@ export async function startKasiReportProgress(
 
   return {
     status: "success",
-    message: "Report handling has been marked as in progress.",
+    message: "Penanganan laporan berhasil ditandai sedang diproses.",
   };
 }
 
@@ -577,7 +577,7 @@ export async function submitKasiProgressUpdate(
   if (!profile.section_id) {
     return {
       status: "error",
-      message: "Your account has not been assigned to a village section.",
+      message: "Akun Anda belum ditautkan ke seksi desa.",
     };
   }
 
@@ -593,14 +593,14 @@ export async function submitKasiProgressUpdate(
   if (!reportId) {
     return {
       status: "error",
-      message: "Report ID is missing.",
+      message: "ID laporan tidak ditemukan.",
     };
   }
 
   if (!note) {
     return {
       status: "error",
-      message: "Please write a progress note.",
+      message: "Tulis catatan progres terlebih dahulu.",
     };
   }
 
@@ -609,7 +609,7 @@ export async function submitKasiProgressUpdate(
   if (!report) {
     return {
       status: "error",
-      message: "Report not found or not assigned to your section.",
+      message: "Laporan tidak ditemukan atau tidak ditugaskan ke seksi Anda.",
     };
   }
 
@@ -623,7 +623,7 @@ export async function submitKasiProgressUpdate(
       return {
         status: "error",
         message:
-          "Progress updates are only available after handling has started.",
+          "Update progres hanya tersedia setelah penanganan dimulai.",
       };
     }
 
@@ -650,7 +650,7 @@ export async function submitKasiProgressUpdate(
   if (effectiveStatus !== "in_progress") {
     return {
       status: "error",
-      message: "Progress updates are only available after handling has started.",
+      message: "Update progres hanya tersedia setelah penanganan dimulai.",
     };
   }
 
@@ -658,7 +658,7 @@ export async function submitKasiProgressUpdate(
     reportId,
     userId: profile.id,
     updateType: "progress",
-    title: "Progress update",
+    title: "Update progres",
     note,
     photos,
   });
@@ -687,7 +687,7 @@ export async function submitKasiProgressUpdate(
 
   return {
     status: "success",
-    message: "Progress update has been saved.",
+    message: "Update progres berhasil disimpan.",
   };
 }
 
@@ -700,7 +700,7 @@ export async function submitKasiBudgetRequest(
   if (!profile.section_id) {
     return {
       status: "error",
-      message: "Your account has not been assigned to a village section.",
+      message: "Akun Anda belum ditautkan ke seksi desa.",
     };
   }
 
@@ -711,21 +711,21 @@ export async function submitKasiBudgetRequest(
   if (!reportId) {
     return {
       status: "error",
-      message: "Please select an assigned report.",
+      message: "Pilih laporan yang ditugaskan.",
     };
   }
 
   if (!summaryNote) {
     return {
       status: "error",
-      message: "Please explain the budget need.",
+      message: "Jelaskan kebutuhan anggaran terlebih dahulu.",
     };
   }
 
   if (items.length === 0) {
     return {
       status: "error",
-      message: "Please add at least one budget item.",
+      message: "Tambahkan minimal satu item anggaran.",
     };
   }
 
@@ -733,14 +733,14 @@ export async function submitKasiBudgetRequest(
     if (!Number.isFinite(item.quantity) || item.quantity <= 0) {
       return {
         status: "error",
-        message: "Each item quantity must be greater than 0.",
+        message: "Jumlah setiap item harus lebih dari 0.",
       };
     }
 
     if (!Number.isFinite(item.unit_price) || item.unit_price < 0) {
       return {
         status: "error",
-        message: "Each item unit price must be 0 or greater.",
+        message: "Harga satuan setiap item harus 0 atau lebih.",
       };
     }
   }
@@ -750,7 +750,7 @@ export async function submitKasiBudgetRequest(
   if (!report) {
     return {
       status: "error",
-      message: "Report not found or not assigned to your section.",
+      message: "Laporan tidak ditemukan atau tidak ditugaskan ke seksi Anda.",
     };
   }
 
@@ -758,7 +758,7 @@ export async function submitKasiBudgetRequest(
     return {
       status: "error",
       message:
-        "Budget requests are only available before or during active handling.",
+        "Pengajuan anggaran hanya tersedia sebelum atau selama penanganan aktif.",
     };
   }
 
@@ -787,7 +787,7 @@ export async function submitKasiBudgetRequest(
   if (pendingBudgetRequest) {
     return {
       status: "error",
-      message: "This report already has a budget request waiting for review.",
+      message: "Laporan ini sudah memiliki pengajuan anggaran yang menunggu peninjauan.",
     };
   }
 
@@ -809,7 +809,7 @@ export async function submitKasiBudgetRequest(
       status: "error",
       message:
         requestError?.message ||
-        "Failed to submit budget request. Please make sure the budget migration has been applied.",
+        "Gagal mengirim pengajuan anggaran. Pastikan migration anggaran sudah dijalankan.",
     };
   }
 
@@ -863,7 +863,7 @@ export async function submitKasiBudgetRequest(
     eventType: "paused_budget",
     previousResolutionDueAt: report.resolution_due_at,
     newResolutionDueAt: report.resolution_due_at,
-    note: "SLA paused while waiting for budget review.",
+    note: "SLA dijeda selama menunggu peninjauan anggaran.",
   });
 
   await notifyRoleInternal({
@@ -877,7 +877,7 @@ export async function submitKasiBudgetRequest(
 
   return {
     status: "success",
-    message: "Budget request has been submitted.",
+    message: "Pengajuan anggaran berhasil dikirim.",
   };
 }
 
@@ -890,7 +890,7 @@ export async function resolveKasiReport(
   if (!profile.section_id) {
     return {
       status: "error",
-      message: "Your account has not been assigned to a village section.",
+      message: "Akun Anda belum ditautkan ke seksi desa.",
     };
   }
 
@@ -906,14 +906,14 @@ export async function resolveKasiReport(
   if (!reportId) {
     return {
       status: "error",
-      message: "Report ID is missing.",
+      message: "ID laporan tidak ditemukan.",
     };
   }
 
   if (!note) {
     return {
       status: "error",
-      message: "Please write a resolution note.",
+      message: "Tulis catatan penyelesaian terlebih dahulu.",
     };
   }
 
@@ -922,7 +922,7 @@ export async function resolveKasiReport(
   if (!report) {
     return {
       status: "error",
-      message: "Report not found or not assigned to your section.",
+      message: "Laporan tidak ditemukan atau tidak ditugaskan ke seksi Anda.",
     };
   }
 
@@ -957,7 +957,7 @@ export async function resolveKasiReport(
   if (effectiveStatus !== "in_progress") {
     return {
       status: "error",
-      message: "Only in-progress reports can be resolved.",
+      message: "Hanya laporan yang sedang diproses yang bisa diselesaikan.",
     };
   }
 
@@ -965,7 +965,7 @@ export async function resolveKasiReport(
     reportId,
     userId: profile.id,
     updateType: "progress",
-    title: "Report resolved",
+    title: "Laporan selesai",
     note,
     photos,
   });
@@ -1004,13 +1004,13 @@ export async function resolveKasiReport(
   await recordSlaEvent({
     reportId,
     eventType: "completed",
-    note: "SLA completed when report was resolved by Kasi.",
+    note: "SLA selesai karena laporan diselesaikan oleh Kasi.",
   });
 
   revalidateKasiReport(reportId);
 
   return {
     status: "success",
-    message: "Report has been marked as resolved.",
+    message: "Laporan berhasil ditandai selesai.",
   };
 }

@@ -21,19 +21,19 @@ export default async function VillageHeatmapPage() {
           className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to village dashboard
+          Kembali ke dashboard desa
         </Link>
 
         <div className="mt-5">
-          <p className="text-sm font-semibold text-primary">Heatmap</p>
+          <p className="text-sm font-semibold text-primary">Peta Sebaran</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Report Location Map
+            Peta Lokasi Laporan
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            View the geographic distribution of citizen reports across the
-            village area to identify recurring problem locations.
+            Lihat sebaran geografis laporan masyarakat di wilayah desa untuk
+            mengidentifikasi lokasi masalah yang sering muncul.
           </p>
         </div>
       </section>
@@ -42,12 +42,11 @@ export default async function VillageHeatmapPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <MapPinned className="h-5 w-5 text-primary" />
-            Report Distribution Map
+            Peta Sebaran Laporan
           </CardTitle>
 
           <CardDescription>
-            Showing {reports.length} report location
-            {reports.length > 1 ? "s" : ""} with available coordinates.
+            Menampilkan {reports.length} titik laporan yang memiliki koordinat.
           </CardDescription>
         </CardHeader>
 
@@ -55,43 +54,43 @@ export default async function VillageHeatmapPage() {
           {reports.length === 0 ? (
             <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-10 text-center">
               <p className="text-sm font-medium text-foreground">
-                No location data available
+                Belum ada data lokasi
               </p>
 
               <p className="mt-2 text-sm text-muted-foreground">
-                Reports will appear on this map after citizens submit reports
-                with location data.
+                Laporan akan muncul di peta ini setelah masyarakat mengirim
+                laporan dengan data lokasi.
               </p>
             </div>
           ) : (
-            <VillageHeatmapSection reports={reports as any} />
+            <VillageHeatmapSection reports={reports} />
           )}
         </CardContent>
       </Card>
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <MapInfoCard
-          title="Total Points"
+          title="Total Titik"
           value={reports.length}
-          description="Reports with latitude and longitude."
+          description="Laporan yang memiliki latitude dan longitude."
         />
 
         <MapInfoCard
-          title="Map Usage"
+          title="Kegunaan Peta"
           value="Monitoring"
-          description="Used for village-level spatial analysis."
+          description="Digunakan untuk analisis spasial tingkat desa."
         />
 
         <MapInfoCard
-          title="Decision Support"
-          value="Location"
-          description="Helps identify recurring issue areas."
+          title="Pendukung Keputusan"
+          value="Lokasi"
+          description="Membantu mengenali area masalah berulang."
         />
 
         <MapInfoCard
-          title="Next Upgrade"
+          title="Pengembangan Berikutnya"
           value="Heat Layer"
-          description="Can be upgraded to density-based heatmap."
+          description="Bisa dikembangkan menjadi heatmap berbasis kepadatan."
         />
       </section>
     </div>

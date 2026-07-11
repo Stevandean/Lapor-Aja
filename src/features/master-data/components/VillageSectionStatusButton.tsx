@@ -33,7 +33,7 @@ export function VillageSectionStatusButton({
     if (!state.message) return;
 
     if (state.status === "success") {
-      toast.success("Success", {
+      toast.success("Berhasil", {
         description: state.message,
       });
 
@@ -41,7 +41,7 @@ export function VillageSectionStatusButton({
     }
 
     if (state.status === "error") {
-      toast.error("Failed", {
+      toast.error("Gagal", {
         description: state.message,
       });
     }
@@ -54,7 +54,7 @@ export function VillageSectionStatusButton({
 
       <Button type="submit" variant="outline" size="sm" disabled={isPending}>
         <Power className="mr-2 h-4 w-4" />
-        {isPending ? "Updating..." : isActive ? "Deactivate" : "Activate"}
+        {isPending ? "Memperbarui..." : isActive ? "Nonaktifkan" : "Aktifkan"}
       </Button>
     </form>
   );

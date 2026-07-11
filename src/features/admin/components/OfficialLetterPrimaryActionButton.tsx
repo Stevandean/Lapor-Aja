@@ -41,7 +41,7 @@ export function OfficialLetterPrimaryActionButton({
     if (!state.message) return;
 
     if (state.status === "success") {
-      toast.success("Success", {
+      toast.success("Berhasil", {
         description: state.message,
       });
 
@@ -49,7 +49,7 @@ export function OfficialLetterPrimaryActionButton({
     }
 
     if (state.status === "error") {
-      toast.error("Failed", {
+      toast.error("Gagal", {
         description: state.message,
       });
     }
@@ -70,7 +70,7 @@ export function OfficialLetterPrimaryActionButton({
 function getButtonConfig(status: string, isPending: boolean) {
   if (status === "draft") {
     return {
-      label: isPending ? "Finalizing..." : "Mark as Final",
+      label: isPending ? "Memfinalisasi..." : "Tandai Final",
       disabled: isPending,
       icon: <CheckCircle2 className="mr-2 h-4 w-4" />,
     };
@@ -78,7 +78,7 @@ function getButtonConfig(status: string, isPending: boolean) {
 
   if (status === "final") {
     return {
-      label: isPending ? "Sending..." : "Send Email",
+      label: isPending ? "Mengirim..." : "Kirim Email",
       disabled: isPending,
       icon: isPending ? (
         <Send className="mr-2 h-4 w-4" />
@@ -90,14 +90,14 @@ function getButtonConfig(status: string, isPending: boolean) {
 
   if (status === "sent") {
     return {
-      label: "Already Sent",
+      label: "Sudah Terkirim",
       disabled: true,
       icon: <ShieldCheck className="mr-2 h-4 w-4" />,
     };
   }
 
   return {
-    label: "Action Unavailable",
+    label: "Aksi Tidak Tersedia",
     disabled: true,
     icon: <CheckCircle2 className="mr-2 h-4 w-4" />,
   };

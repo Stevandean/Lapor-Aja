@@ -50,7 +50,7 @@ export function DashboardSidebar({
             type="button"
             onClick={onClose}
             className="rounded-lg p-2 text-sidebar-muted hover:bg-sidebar-accent hover:text-sidebar-foreground"
-            aria-label="Close sidebar"
+            aria-label="Tutup sidebar"
           >
             <X className="h-5 w-5" />
           </button>
@@ -91,7 +91,7 @@ function Brand() {
 
       <div>
         <p className="font-bold text-white">Lapor Aja</p>
-        <p className="text-xs text-sidebar-muted">Village Reporting System</p>
+        <p className="text-xs text-sidebar-muted">Sistem Pelaporan Desa</p>
       </div>
     </Link>
   );

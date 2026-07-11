@@ -1,4 +1,5 @@
 import { HamletAssignedReportsTable } from "@/src/features/hamlet-head/components/HamletAssignedReportsTable";
+import type { AssignedReport } from "@/src/features/hamlet-head/components/HamletAssignedReportsTable";
 import { getHamletHeadAssignedReports } from "@/src/features/hamlet-head/queries";
 import {
   Card,
@@ -14,36 +15,36 @@ export default async function HamletHeadReportsPage() {
   return (
     <div className="space-y-6">
       <section>
-        <p className="text-sm font-semibold text-primary">Reports</p>
+        <p className="text-sm font-semibold text-primary">Laporan</p>
 
         <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-          Assigned Hamlet Reports
+          Laporan Dusun Ditugaskan
         </h1>
 
         <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-          View all reports that have been assigned to your hamlet, including
-          reports waiting for verification and reports that have already moved
-          to the next workflow stages.
+          Lihat semua laporan yang ditugaskan ke dusun Anda, termasuk laporan
+          yang menunggu verifikasi dan laporan yang sudah lanjut ke tahap
+          berikutnya.
         </p>
       </section>
 
       {missingHamlet && (
         <div className="rounded-2xl border border-warning-100 bg-warning-50 p-4 text-sm leading-6 text-warning-700">
-          Your account has not been assigned to a hamlet yet. Please ask the
-          admin to set your hamlet in the profile data.
+          Akun Anda belum ditugaskan ke dusun. Silakan minta admin mengatur
+          dusun Anda pada data profil.
         </div>
       )}
 
       <Card>
         <CardHeader>
-          <CardTitle>Assigned Report List</CardTitle>
+          <CardTitle>Daftar Laporan Ditugaskan</CardTitle>
           <CardDescription>
-            Showing all reports connected to your hamlet.
+            Menampilkan semua laporan yang terhubung dengan dusun Anda.
           </CardDescription>
         </CardHeader>
 
         <CardContent>
-          <HamletAssignedReportsTable reports={reports as any} />
+          <HamletAssignedReportsTable reports={reports as AssignedReport[]} />
         </CardContent>
       </Card>
     </div>

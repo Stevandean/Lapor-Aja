@@ -175,10 +175,10 @@ export function KasiReportDetail({ detail }: KasiReportDetailProps) {
 
         <Card>
           <CardHeader>
-            <CardTitle>Status Timeline</CardTitle>
+            <CardTitle>Linimasa Status</CardTitle>
             <CardDescription>
-              Real handling history from citizen submission to the latest
-              section assignment state.
+              Riwayat penanganan dari laporan masyarakat hingga status
+              penugasan seksi terbaru.
             </CardDescription>
           </CardHeader>
 
@@ -193,15 +193,15 @@ export function KasiReportDetail({ detail }: KasiReportDetailProps) {
 
         <Card>
           <CardHeader>
-            <CardTitle>Report Photos</CardTitle>
+            <CardTitle>Foto Laporan</CardTitle>
             <CardDescription>
-              Evidence uploaded by the citizen when creating the report.
+              Bukti yang diunggah masyarakat saat membuat laporan.
             </CardDescription>
           </CardHeader>
 
           <CardContent>
             {photos.length === 0 ? (
-              <EmptyText text="No report photos available." />
+              <EmptyText text="Belum ada foto laporan." />
             ) : (
               <div className="grid gap-4 sm:grid-cols-2">
                 {photos.map((photo) => (
@@ -212,14 +212,14 @@ export function KasiReportDetail({ detail }: KasiReportDetailProps) {
                     {photo.signedUrl ? (
                       <Image
                         src={photo.signedUrl}
-                        alt="Report evidence"
+                        alt="Bukti laporan"
                         width={800}
                         height={600}
                         className="h-56 w-full object-cover"
                       />
                     ) : (
                       <div className="flex h-56 items-center justify-center text-sm text-muted-foreground">
-                        Image unavailable
+                        Gambar tidak tersedia
                       </div>
                     )}
                   </div>
@@ -231,9 +231,10 @@ export function KasiReportDetail({ detail }: KasiReportDetailProps) {
 
         <Card>
           <CardHeader>
-            <CardTitle>Report Location</CardTitle>
+            <CardTitle>Lokasi Laporan</CardTitle>
             <CardDescription>
-              Location submitted by the citizen for field handling reference.
+              Lokasi yang dikirim masyarakat sebagai referensi penanganan
+              lapangan.
             </CardDescription>
           </CardHeader>
 
@@ -259,29 +260,29 @@ export function KasiReportDetail({ detail }: KasiReportDetailProps) {
 
         <Card>
           <CardHeader>
-            <CardTitle>Assignment</CardTitle>
+            <CardTitle>Penugasan</CardTitle>
             <CardDescription>
-              Section-level handling information for this report.
+              Informasi penanganan tingkat seksi untuk laporan ini.
             </CardDescription>
           </CardHeader>
 
           <CardContent className="space-y-4">
             <InfoItem
               icon={<ClipboardList className="h-4 w-4" />}
-              label="Section"
+              label="Seksi"
               value={getRelationName(report.section)}
             />
             <InfoItem
               icon={<MapPin className="h-4 w-4" />}
-              label="Hamlet"
+              label="Dusun"
               value={getRelationName(report.hamlet)}
             />
             <InfoItem
-              label="Follow-up"
+              label="Tindak lanjut"
               value={formatEnum(report.follow_up_type)}
             />
             <InfoItem
-              label="Internal note"
+              label="Catatan internal"
               value={report.internal_handling_note || "-"}
             />
           </CardContent>
@@ -289,13 +290,13 @@ export function KasiReportDetail({ detail }: KasiReportDetailProps) {
 
         <Card>
           <CardHeader>
-            <CardTitle>Reporter</CardTitle>
+            <CardTitle>Pelapor</CardTitle>
           </CardHeader>
 
           <CardContent className="space-y-4">
             <InfoItem
               icon={<User className="h-4 w-4" />}
-              label="Name"
+              label="Nama"
               value={reporter?.full_name ?? "-"}
             />
             <InfoItem
@@ -305,7 +306,7 @@ export function KasiReportDetail({ detail }: KasiReportDetailProps) {
             />
             <InfoItem
               icon={<Phone className="h-4 w-4" />}
-              label="Phone"
+              label="Nomor HP"
               value={reporter?.phone_number ?? "-"}
             />
           </CardContent>
@@ -313,17 +314,17 @@ export function KasiReportDetail({ detail }: KasiReportDetailProps) {
 
         <Card>
           <CardHeader>
-            <CardTitle>Classification</CardTitle>
+            <CardTitle>Klasifikasi</CardTitle>
           </CardHeader>
 
           <CardContent className="space-y-4">
-            <InfoItem label="Category" value={getRelationName(report.category)} />
+            <InfoItem label="Kategori" value={getRelationName(report.category)} />
             <InfoItem
-              label="Asset status"
+              label="Status aset"
               value={formatEnum(report.asset_status)}
             />
             <InfoItem
-              label="Authority"
+              label="Kewenangan"
               value={formatEnum(report.authority_level)}
             />
           </CardContent>
@@ -337,7 +338,7 @@ export function KasiReportDetail({ detail }: KasiReportDetailProps) {
           <CardContent className="space-y-4">
             <InfoItem
               icon={<CalendarDays className="h-4 w-4" />}
-              label="Verification due"
+              label="Batas verifikasi"
               value={
                 report.verification_due_at
                   ? formatDateTime(report.verification_due_at)
@@ -346,7 +347,7 @@ export function KasiReportDetail({ detail }: KasiReportDetailProps) {
             />
             <InfoItem
               icon={<CalendarDays className="h-4 w-4" />}
-              label="Resolution due"
+              label="Batas penyelesaian"
               value={
                 report.resolution_due_at
                   ? formatDateTime(report.resolution_due_at)
@@ -354,7 +355,7 @@ export function KasiReportDetail({ detail }: KasiReportDetailProps) {
               }
             />
             <InfoItem
-              label="Resolved"
+              label="Selesai"
               value={report.resolved_at ? formatDateTime(report.resolved_at) : "-"}
             />
           </CardContent>
@@ -368,16 +369,16 @@ function BudgetRequestHistory({ requests }: { requests: BudgetRequest[] }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Budget Request History</CardTitle>
+        <CardTitle>Riwayat Pengajuan Anggaran</CardTitle>
         <CardDescription>
-          Budget proposals, item estimates, and review decisions for this
-          report.
+          Pengajuan anggaran, estimasi item, dan keputusan peninjauan untuk
+          laporan ini.
         </CardDescription>
       </CardHeader>
 
       <CardContent>
         {requests.length === 0 ? (
-          <EmptyText text="No budget requests have been submitted for this report." />
+          <EmptyText text="Belum ada pengajuan anggaran untuk laporan ini." />
         ) : (
           <div className="space-y-4">
             {requests.map((request) => (
@@ -399,7 +400,7 @@ function BudgetRequestHistory({ requests }: { requests: BudgetRequest[] }) {
                         <BudgetStatusBadge status={request.status} />
                       </div>
                       <p className="mt-1 text-xs text-muted-foreground">
-                        Submitted {formatDateTime(request.created_at)}
+                        Dikirim {formatDateTime(request.created_at)}
                       </p>
                     </div>
                   </div>
@@ -416,9 +417,9 @@ function BudgetRequestHistory({ requests }: { requests: BudgetRequest[] }) {
                         <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
                           <tr>
                             <th className="px-4 py-3 font-semibold">Item</th>
-                            <th className="px-4 py-3 font-semibold">Qty</th>
-                            <th className="px-4 py-3 font-semibold">Unit</th>
-                            <th className="px-4 py-3 font-semibold">Unit Price</th>
+                            <th className="px-4 py-3 font-semibold">Jumlah</th>
+                            <th className="px-4 py-3 font-semibold">Satuan</th>
+                            <th className="px-4 py-3 font-semibold">Harga Satuan</th>
                             <th className="px-4 py-3 font-semibold">Subtotal</th>
                           </tr>
                         </thead>
@@ -459,13 +460,13 @@ function BudgetRequestHistory({ requests }: { requests: BudgetRequest[] }) {
                 {request.status !== "submitted" ? (
                   <div className="mt-4 rounded-xl border border-border bg-muted/30 p-3 text-sm leading-6">
                     <p className="font-semibold text-foreground">
-                      Reviewed by {request.reviewer?.full_name ?? "Reviewer"}
+                      Ditinjau oleh {request.reviewer?.full_name ?? "Peninjau"}
                     </p>
                     <p className="text-xs text-muted-foreground">
                       {request.reviewed_at ? formatDateTime(request.reviewed_at) : "-"}
                     </p>
                     <p className="mt-2 whitespace-pre-line text-muted-foreground">
-                      {request.review_note || "No review note."}
+                      {request.review_note || "Tidak ada catatan peninjauan."}
                     </p>
                   </div>
                 ) : null}
@@ -485,9 +486,9 @@ function BudgetStatusBadge({ status }: { status: string }) {
     rejected: "danger",
   };
   const labels: Record<string, string> = {
-    submitted: "Waiting Review",
-    approved: "Approved",
-    rejected: "Rejected",
+    submitted: "Menunggu Peninjauan",
+    approved: "Disetujui",
+    rejected: "Ditolak",
   };
 
   return <Badge variant={variants[status] ?? "muted"}>{labels[status] ?? status}</Badge>;
@@ -497,16 +498,16 @@ function ProgressHistory({ updates }: { updates: ProgressUpdate[] }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Progress History</CardTitle>
+        <CardTitle>Riwayat Progres</CardTitle>
         <CardDescription>
-          Section updates, budget requests, and completion notes submitted by
-          Kasi.
+          Pembaruan seksi, pengajuan anggaran, dan catatan penyelesaian yang
+          dikirim oleh Kasi.
         </CardDescription>
       </CardHeader>
 
       <CardContent>
         {updates.length === 0 ? (
-          <EmptyText text="No progress updates have been submitted yet." />
+          <EmptyText text="Belum ada update progres." />
         ) : (
           <div className="space-y-4">
             {updates.map((update) => (
@@ -546,14 +547,14 @@ function ProgressHistory({ updates }: { updates: ProgressUpdate[] }) {
                         {photo.signedUrl ? (
                           <Image
                             src={photo.signedUrl}
-                            alt="Progress evidence"
+                            alt="Bukti progres"
                             width={640}
                             height={480}
                             className="h-44 w-full object-cover"
                           />
                         ) : (
                           <div className="flex h-44 items-center justify-center text-sm text-muted-foreground">
-                            Image unavailable
+                            Gambar tidak tersedia
                           </div>
                         )}
                       </div>
@@ -649,8 +650,8 @@ function formatNumber(value: number) {
 
 function getProgressTypeLabel(value: string) {
   const labels: Record<string, string> = {
-    progress: "Progress Update",
-    resolved: "Resolution",
+    progress: "Update Progres",
+    resolved: "Penyelesaian",
   };
 
   return labels[value] ?? formatEnum(value);
@@ -659,8 +660,23 @@ function getProgressTypeLabel(value: string) {
 function formatEnum(value: string | null) {
   if (!value) return "-";
 
-  return value
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const labels: Record<string, string> = {
+    aset_desa: "Aset Desa",
+    bukan_aset_desa: "Bukan Aset Desa",
+    belum_diketahui: "Belum Diketahui",
+    desa: "Desa",
+    kabupaten_kota: "Kabupaten/Kota",
+    provinsi: "Provinsi",
+    nasional: "Nasional",
+    ditangani_desa: "Ditangani Desa",
+    diteruskan_ke_dinas: "Diteruskan ke Dinas",
+    diusulkan_musrenbang: "Diusulkan Musrenbang",
+    menunggu_anggaran: "Menunggu Anggaran",
+    belum_ditentukan: "Belum Ditentukan",
+    waiting_budget: "Menunggu Anggaran",
+    in_progress: "Diproses",
+    resolved: "Selesai",
+  };
+
+  return labels[value] ?? value.replaceAll("_", " ");
 }

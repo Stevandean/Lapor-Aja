@@ -57,7 +57,7 @@ export function AdminFollowUpProgressPanel({
 
   useEffect(() => {
     if (startState.status === "success") {
-      toast.success("Success", {
+      toast.success("Berhasil", {
         description: startState.message,
       });
 
@@ -65,7 +65,7 @@ export function AdminFollowUpProgressPanel({
     }
 
     if (startState.status === "error") {
-      toast.error("Failed", {
+      toast.error("Gagal", {
         description: startState.message,
       });
     }
@@ -73,7 +73,7 @@ export function AdminFollowUpProgressPanel({
 
   useEffect(() => {
     if (resolveState.status === "success") {
-      toast.success("Success", {
+      toast.success("Berhasil", {
         description: resolveState.message,
       });
 
@@ -81,7 +81,7 @@ export function AdminFollowUpProgressPanel({
     }
 
     if (resolveState.status === "error") {
-      toast.error("Failed", {
+      toast.error("Gagal", {
         description: resolveState.message,
       });
     }
@@ -91,17 +91,17 @@ export function AdminFollowUpProgressPanel({
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Follow-up Progress</CardTitle>
+          <CardTitle>Progress Tindak Lanjut</CardTitle>
           <CardDescription>
-            Manage the progress of a report after follow-up processing.
+            Kelola progress laporan setelah proses tindak lanjut dimulai.
           </CardDescription>
         </CardHeader>
 
         <CardContent>
           <div className="rounded-2xl border border-muted bg-muted/40 p-4 text-sm leading-6 text-muted-foreground">
-            Admin progress actions are only available for reports forwarded to
-            an external agency. Village-handled reports are managed by the
-            assigned Kasi.
+            Aksi progress admin hanya tersedia untuk laporan yang diteruskan ke
+            instansi luar. Laporan yang ditangani desa dikelola oleh Kasi yang
+            ditugaskan.
           </div>
         </CardContent>
       </Card>
@@ -111,9 +111,9 @@ export function AdminFollowUpProgressPanel({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Follow-up Progress</CardTitle>
+        <CardTitle>Progress Tindak Lanjut</CardTitle>
         <CardDescription>
-          Update this report after the follow-up process has started.
+          Perbarui laporan ini setelah proses tindak lanjut dimulai.
         </CardDescription>
       </CardHeader>
 
@@ -124,7 +124,7 @@ export function AdminFollowUpProgressPanel({
 
             <Button type="submit" disabled={isSubmitting} className="w-full">
               <PlayCircle className="mr-2 h-4 w-4" />
-              {isStarting ? "Starting..." : "Mark as in progress"}
+              {isStarting ? "Memulai..." : "Tandai sedang diproses"}
             </Button>
           </form>
         )}
@@ -135,7 +135,7 @@ export function AdminFollowUpProgressPanel({
 
             <Button type="submit" disabled={isSubmitting} className="w-full">
               <CheckCircle2 className="mr-2 h-4 w-4" />
-              {isResolving ? "Resolving..." : "Mark as resolved"}
+              {isResolving ? "Menyelesaikan..." : "Tandai selesai"}
             </Button>
           </form>
         )}

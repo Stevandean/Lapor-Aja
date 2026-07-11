@@ -28,21 +28,21 @@ export default async function VillageBudgetRequestsPage() {
           className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to village dashboard
+          Kembali ke dashboard desa
         </Link>
 
         <div className="mt-5">
           <p className="text-sm font-semibold text-primary">
-            Budget Requests
+            Pengajuan Anggaran
           </p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Kasi Budget Request Monitoring
+            Monitoring Pengajuan Anggaran Kasi
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Review budget needs proposed by Kasi from reports assigned to each
-            village section.
+            Tinjau kebutuhan anggaran yang diajukan Kasi dari laporan yang
+            ditugaskan ke tiap seksi desa.
           </p>
         </div>
       </section>
@@ -52,33 +52,33 @@ export default async function VillageBudgetRequestsPage() {
 
       <section className="grid gap-4 md:grid-cols-3">
         <VillageStatCard
-          title="Requests"
+          title="Pengajuan"
           value={stats.totalRequests}
-          description="Budget proposals submitted by Kasi."
+          description="Pengajuan anggaran yang dikirim oleh Kasi."
           icon={<Wallet className="h-5 w-5" />}
         />
 
         <VillageStatCard
-          title="Total Estimate"
+          title="Total Estimasi"
           value={formatCurrency(stats.totalEstimatedBudget)}
-          description="Combined estimated budget value."
+          description="Akumulasi nilai estimasi anggaran."
           icon={<Wallet className="h-5 w-5" />}
         />
 
         <VillageStatCard
-          title="Waiting Budget"
+          title="Menunggu Anggaran"
           value={stats.waitingBudgetReports}
-          description="Related reports currently waiting for budget."
+          description="Laporan terkait yang sedang menunggu anggaran."
           icon={<Clock3 className="h-5 w-5" />}
         />
       </section>
 
       <Card>
         <CardHeader>
-          <CardTitle>Submitted Budget Requests</CardTitle>
+          <CardTitle>Pengajuan Anggaran Terkirim</CardTitle>
           <CardDescription>
-            Showing the latest budget requests submitted from section-level
-            handling.
+            Menampilkan pengajuan anggaran terbaru dari penanganan tingkat
+            seksi.
           </CardDescription>
         </CardHeader>
 
@@ -90,11 +90,11 @@ export default async function VillageBudgetRequestsPage() {
           ) : (
             <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-8 text-center">
               <p className="text-sm font-semibold text-foreground">
-                Budget request tables are not ready
+                Tabel pengajuan anggaran belum siap
               </p>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                Apply the budget migration to Supabase before reviewing Kasi
-                budget proposals.
+                Jalankan migration anggaran di Supabase sebelum meninjau
+                pengajuan anggaran Kasi.
               </p>
             </div>
           )}
@@ -107,11 +107,11 @@ export default async function VillageBudgetRequestsPage() {
 function ReviewSchemaNotice() {
   return (
     <div className="rounded-2xl border border-warning-100 bg-warning-50 p-4 text-sm leading-6 text-warning-700">
-      Budget review columns are not available yet. Apply the migration{" "}
+      Kolom review anggaran belum tersedia. Jalankan migration{" "}
       <span className="font-semibold">
         supabase/migrations/202606240002_budget_request_review.sql
       </span>{" "}
-      to Supabase before approving or rejecting requests.
+      di Supabase sebelum menyetujui atau menolak pengajuan.
     </div>
   );
 }
@@ -119,11 +119,11 @@ function ReviewSchemaNotice() {
 function BudgetSchemaNotice() {
   return (
     <div className="rounded-2xl border border-warning-100 bg-warning-50 p-4 text-sm leading-6 text-warning-700">
-      Budget request tables are not available yet. Apply the migration{" "}
+      Tabel pengajuan anggaran belum tersedia. Jalankan migration{" "}
       <span className="font-semibold">
         supabase/migrations/202606240001_kasi_progress_workflow.sql
       </span>{" "}
-      to Supabase, then reload this page.
+      di Supabase, lalu muat ulang halaman ini.
     </div>
   );
 }

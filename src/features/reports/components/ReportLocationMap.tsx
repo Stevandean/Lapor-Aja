@@ -58,8 +58,8 @@ export function ReportLocationMap({
     const distanceKm = calculateDistanceKm(gpsLat, gpsLng, latitude, longitude);
 
     if (distanceKm > radiusKm) {
-      toast.error("Location is outside the allowed radius", {
-        description: `Please select a point within ${radiusKm} km from your GPS location.`,
+      toast.error("Lokasi berada di luar radius yang diizinkan", {
+        description: `Pilih titik dalam radius ${radiusKm} km dari lokasi GPS Anda.`,
       });
 
       return false;
@@ -121,7 +121,7 @@ export function ReportLocationMap({
           <Popup>
             <div className="space-y-1 text-sm">
               <p className="font-semibold text-slate-900">
-                Selected Report Location
+                Lokasi Laporan Dipilih
               </p>
 
               <p className="text-xs text-slate-600">
@@ -133,7 +133,7 @@ export function ReportLocationMap({
               </p>
 
               <p className="text-xs text-slate-600">
-                Radius limit: {radiusKm} km from GPS point
+                Batas radius: {radiusKm} km dari titik GPS
               </p>
             </div>
           </Popup>

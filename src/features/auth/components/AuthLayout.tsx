@@ -1,9 +1,7 @@
 import Link from "next/link";
 import {
-  ArrowRight,
   CheckCircle2,
   ClipboardList,
-  Clock3,
   MapPin,
   ShieldCheck,
 } from "lucide-react";
@@ -42,7 +40,7 @@ export function AuthLayout({
                 <div>
                   <p className="text-lg font-bold text-white">Lapor Aja</p>
                   <p className="text-xs text-sidebar-muted">
-                    Village Public Reporting System
+                    Sistem Pelaporan Publik Desa
                   </p>
                 </div>
               </Link>
@@ -50,23 +48,23 @@ export function AuthLayout({
               <div className="mt-20 max-w-xl">
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-medium text-primary-100">
                   <span className="h-1.5 w-1.5 rounded-full bg-success-600" />
-                  Digital public service platform
+                  Platform layanan publik digital
                 </div>
 
                 <h1 className="mt-6 text-5xl font-bold leading-[1.05] tracking-tight text-white">
-                  Report, verify, and monitor village issues in one system.
+                  Laporkan, verifikasi, dan pantau masalah desa dalam satu sistem.
                 </h1>
 
                 <p className="mt-6 max-w-lg text-base leading-7 text-sidebar-muted">
-                  A structured reporting platform for citizens, village admins,
-                  hamlet heads, and village leaders to manage public complaints
-                  transparently.
+                  Platform pelaporan terstruktur untuk masyarakat, admin desa,
+                  kepala dusun, dan pimpinan desa dalam mengelola aduan publik
+                  secara transparan.
                 </p>
 
                 <div className="mt-8 grid grid-cols-3 gap-3">
-                  <MetricCard value="GPS" label="Map report" />
-                  <MetricCard value="PHOTO" label="Evidence upload" />
-                  <MetricCard value="TRACK" label="Progress tracking" />
+                  <MetricCard value="GPS" label="Lokasi laporan" />
+                  <MetricCard value="FOTO" label="Bukti laporan" />
+                  <MetricCard value="PANTAU" label="Progress laporan" />
                 </div>
               </div>
             </div>
@@ -75,60 +73,21 @@ export function AuthLayout({
               <div className="space-y-3 w-1/2">
                 <ProcessItem
                   icon={<ClipboardList className="h-4 w-4" />}
-                  title="Submit report"
-                  description="Citizens send reports with photos and location."
+                  title="Kirim laporan"
+                  description="Masyarakat mengirim laporan lengkap dengan foto dan lokasi."
                 />
                 <ProcessItem
                   icon={<MapPin className="h-4 w-4" />}
-                  title="Field verification"
-                  description="Hamlet heads verify cases directly on site."
+                  title="Verifikasi lapangan"
+                  description="Kepala dusun memverifikasi laporan langsung di lokasi."
                 />
                 <ProcessItem
                   icon={<CheckCircle2 className="h-4 w-4" />}
-                  title="Official follow-up"
-                  description="Village admins classify and process reports."
+                  title="Tindak lanjut resmi"
+                  description="Admin desa mengklasifikasi dan memproses laporan."
                 />
               </div>
 
-              {/* <div className="rounded-3xl border border-white/10 bg-white/[0.08] p-4 shadow-floating backdrop-blur">
-                <div className="rounded-2xl bg-white p-4 text-slate-900">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-xs font-medium text-slate-500">
-                        Latest Report
-                      </p>
-                      <h3 className="mt-1 text-sm font-bold">
-                        Damaged village road
-                      </h3>
-                    </div>
-
-                    <span className="rounded-full border border-warning-100 bg-warning-50 px-2.5 py-1 text-xs font-semibold text-warning-700">
-                      Verification
-                    </span>
-                  </div>
-
-                  <div className="mt-4 rounded-2xl bg-slate-100 p-3">
-                    <div className="flex items-center gap-2 text-xs text-slate-500">
-                      <MapPin className="h-3.5 w-3.5" />
-                      Dusun Krajan, Main Road Area
-                    </div>
-
-                    <div className="mt-3 h-24 rounded-xl bg-[linear-gradient(135deg,#dbeafe_25%,transparent_25%),linear-gradient(225deg,#dbeafe_25%,transparent_25%),linear-gradient(45deg,#dbeafe_25%,transparent_25%),linear-gradient(315deg,#dbeafe_25%,#eff6ff_25%)] bg-[length:20px_20px] bg-[position:10px_0,10px_0,0_0,0_0]" />
-                  </div>
-
-                  <div className="mt-4 flex items-center justify-between border-t border-slate-200 pt-4">
-                    <div className="flex items-center gap-2 text-xs text-slate-500">
-                      <Clock3 className="h-3.5 w-3.5" />
-                      SLA: 24 hours
-                    </div>
-
-                    <div className="flex items-center gap-1 text-xs font-semibold text-primary">
-                      View detail
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </div>
-                  </div>
-                </div>
-              </div> */}
             </div>
           </div>
         </section>
@@ -144,7 +103,7 @@ export function AuthLayout({
                 <div>
                   <p className="font-bold text-foreground">Lapor Aja</p>
                   <p className="text-xs text-muted-foreground">
-                    Village Public Reporting System
+                    Sistem Pelaporan Publik Desa
                   </p>
                 </div>
               </Link>
@@ -152,7 +111,7 @@ export function AuthLayout({
 
             <div className="mb-8">
               <p className="text-sm font-semibold text-primary">
-                Secure access
+                Akses aman
               </p>
               <h1 className="mt-3 text-3xl font-bold tracking-tight text-foreground">
                 {title}

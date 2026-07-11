@@ -17,14 +17,15 @@ export default async function AdminCategoryMasterDataPage() {
     <div className="space-y-6">
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-semibold text-primary">Master Data</p>
+          <p className="text-sm font-semibold text-primary">Data Master</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Report Categories
+            Kategori Laporan
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Manage report categories used by admins to classify citizen reports.
+            Kelola kategori laporan yang digunakan admin untuk
+            mengklasifikasi laporan masyarakat.
           </p>
         </div>
 
@@ -37,12 +38,12 @@ export default async function AdminCategoryMasterDataPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Database className="h-5 w-5 text-primary" />
-            Categories
+            Kategori
           </CardTitle>
 
           <CardDescription>
-            Categories help admins classify reports before verification and
-            follow-up.
+            Kategori membantu admin mengelompokkan laporan sebelum verifikasi
+            dan tindak lanjut.
           </CardDescription>
         </CardHeader>
 

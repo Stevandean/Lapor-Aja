@@ -16,13 +16,13 @@ export default async function VillageReportsPage() {
   return (
     <div className="space-y-6">
       <section>
-        <p className="text-sm font-semibold text-primary">Village Monitoring</p>
+        <p className="text-sm font-semibold text-primary">Monitoring Desa</p>
         <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-          Reports
+          Laporan
         </h1>
         <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-          Monitor every citizen report across verification, classification,
-          village handling, agency forwarding, budgeting, and completion.
+          Pantau seluruh laporan masyarakat dari verifikasi, klasifikasi,
+          penanganan desa, penerusan dinas, anggaran, hingga penyelesaian.
         </p>
       </section>
 
@@ -33,27 +33,27 @@ export default async function VillageReportsPage() {
           icon={<ClipboardList className="h-5 w-5" />}
         />
         <CompactStatCard
-          title="Active"
+          title="Aktif"
           value={stats.activeReports}
           icon={<Gauge className="h-5 w-5" />}
         />
         <CompactStatCard
-          title="Waiting Budget"
+          title="Menunggu Anggaran"
           value={stats.waitingBudgetReports}
           icon={<Wallet className="h-5 w-5" />}
         />
         <CompactStatCard
-          title="Village Handled"
+          title="Ditangani Desa"
           value={stats.villageHandledReports}
           icon={<ShieldCheck className="h-5 w-5" />}
         />
         <CompactStatCard
-          title="Forwarded"
+          title="Diteruskan"
           value={stats.forwardedReports}
           icon={<ArrowRightCircle className="h-5 w-5" />}
         />
         <CompactStatCard
-          title="Resolved"
+          title="Selesai"
           value={stats.resolvedReports}
           icon={<CheckCircle2 className="h-5 w-5" />}
         />
@@ -61,7 +61,7 @@ export default async function VillageReportsPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>All Reports</CardTitle>
+          <CardTitle>Semua Laporan</CardTitle>
         </CardHeader>
         <CardContent>
           <VillageReportsTable reports={reports} sections={sections} />

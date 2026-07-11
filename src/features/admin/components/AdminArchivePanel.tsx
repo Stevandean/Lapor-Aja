@@ -44,7 +44,7 @@ export function AdminArchivePanel({
 
   useEffect(() => {
     if (state.status === "success") {
-      toast.success("Success", {
+      toast.success("Berhasil", {
         description: state.message,
       });
 
@@ -52,7 +52,7 @@ export function AdminArchivePanel({
     }
 
     if (state.status === "error") {
-      toast.error("Failed", {
+      toast.error("Gagal", {
         description: state.message,
       });
     }
@@ -61,23 +61,23 @@ export function AdminArchivePanel({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Archive Report</CardTitle>
+        <CardTitle>Arsipkan Laporan</CardTitle>
         <CardDescription>
-          Move completed or closed reports into the archive.
+          Pindahkan laporan yang sudah selesai atau ditutup ke arsip.
         </CardDescription>
       </CardHeader>
 
       <CardContent>
         {isArchived && (
           <div className="rounded-2xl border border-muted bg-muted/40 p-4 text-sm leading-6 text-muted-foreground">
-            This report has already been archived.
+            Laporan ini sudah diarsipkan.
           </div>
         )}
 
         {!isArchived && !canArchive && (
           <div className="rounded-2xl border border-muted bg-muted/40 p-4 text-sm leading-6 text-muted-foreground">
-            Archive action is only available for resolved, rejected, or invalid
-            reports.
+            Aksi arsip hanya tersedia untuk laporan yang selesai, ditolak, atau
+            tidak valid.
           </div>
         )}
 
@@ -92,7 +92,7 @@ export function AdminArchivePanel({
               className="w-full"
             >
               <Archive className="mr-2 h-4 w-4" />
-              {isSubmitting ? "Archiving..." : "Archive report"}
+              {isSubmitting ? "Mengarsipkan..." : "Arsipkan laporan"}
             </Button>
           </form>
         )}

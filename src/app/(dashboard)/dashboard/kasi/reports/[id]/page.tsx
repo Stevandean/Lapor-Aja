@@ -30,7 +30,7 @@ export default async function KasiReportDetailPage({
             className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to assigned reports
+            Kembali ke laporan ditugaskan
           </Link>
 
           <p className="mt-5 text-sm font-semibold text-primary">
@@ -42,15 +42,15 @@ export default async function KasiReportDetailPage({
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Review report context, location, evidence, and status history for
-            your section handling workflow.
+            Tinjau konteks laporan, lokasi, bukti, dan riwayat status untuk
+            alur penanganan seksi Anda.
           </p>
         </div>
 
         <Link href="/dashboard/kasi/reports">
           <Button variant="outline">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Reports
+            Laporan
           </Button>
         </Link>
       </section>

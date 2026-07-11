@@ -56,38 +56,38 @@ export default async function BudgetRequestDetailPage({
             className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to budget requests
+            Kembali ke pengajuan anggaran
           </Link>
 
           <p className="mt-5 text-sm font-semibold text-primary">
-            Budget Request Detail
+            Detail Pengajuan Anggaran
           </p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            {report?.title ?? "Unknown report"}
+            {report?.title ?? "Laporan tidak diketahui"}
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Review the assigned report context and itemized budget proposal
-            before approving or rejecting the request.
+            Tinjau konteks laporan dan rincian estimasi item sebelum menyetujui
+            atau menolak pengajuan.
           </p>
         </div>
 
         <Link href="/dashboard/village/budget-requests">
           <Button variant="outline">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Requests
+            Pengajuan
           </Button>
         </Link>
       </section>
 
       {!reviewSchemaReady ? (
         <div className="rounded-2xl border border-warning-100 bg-warning-50 p-4 text-sm leading-6 text-warning-700">
-          Budget review columns are not available yet. Apply the migration{" "}
+          Kolom peninjauan anggaran belum tersedia. Jalankan migration{" "}
           <span className="font-semibold">
             supabase/migrations/202606240002_budget_request_review.sql
           </span>{" "}
-          before approving or rejecting this request.
+          sebelum menyetujui atau menolak pengajuan ini.
         </div>
       ) : null}
 
@@ -97,10 +97,10 @@ export default async function BudgetRequestDetailPage({
             <CardHeader>
               <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-start">
                 <div>
-                  <CardTitle>Report Context</CardTitle>
+                  <CardTitle>Konteks Laporan</CardTitle>
                   <CardDescription>
-                    {report?.report_number ?? "-"} submitted for village-level
-                    handling.
+                    {report?.report_number ?? "-"} diajukan untuk penanganan
+                    tingkat desa.
                   </CardDescription>
                 </div>
 
@@ -114,35 +114,35 @@ export default async function BudgetRequestDetailPage({
 
             <CardContent className="space-y-5">
               <p className="whitespace-pre-line text-sm leading-7 text-foreground">
-                {report?.description ?? "No report description available."}
+                {report?.description ?? "Deskripsi laporan tidak tersedia."}
               </p>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <InfoItem
                   icon={<ClipboardList className="h-4 w-4" />}
-                  label="Category"
+                  label="Kategori"
                   value={getRelationName(report?.category ?? null)}
                 />
                 <InfoItem
                   icon={<ClipboardList className="h-4 w-4" />}
-                  label="Hamlet"
+                  label="Dusun"
                   value={getRelationName(report?.hamlet ?? null)}
                 />
                 <InfoItem
-                  label="Follow-up"
+                  label="Tindak lanjut"
                   value={formatEnum(report?.follow_up_type ?? null)}
                 />
                 <InfoItem
-                  label="Authority"
+                  label="Kewenangan"
                   value={formatEnum(report?.authority_level ?? null)}
                 />
                 <InfoItem
-                  label="Internal note"
+                  label="Catatan internal"
                   value={report?.internal_handling_note ?? "-"}
                 />
                 <InfoItem
                   icon={<User className="h-4 w-4" />}
-                  label="Reporter"
+                  label="Pelapor"
                   value={reporter?.full_name ?? "-"}
                 />
               </div>
@@ -151,16 +151,16 @@ export default async function BudgetRequestDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Budget Items</CardTitle>
+              <CardTitle>Item Anggaran</CardTitle>
               <CardDescription>
-                Itemized estimate submitted by the assigned Kasi.
+                Rincian estimasi yang dikirim oleh Kasi yang ditugaskan.
               </CardDescription>
             </CardHeader>
 
             <CardContent>
               {request.items.length === 0 ? (
                 <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-8 text-center text-sm text-muted-foreground">
-                  No budget items found.
+                  Item anggaran tidak ditemukan.
                 </div>
               ) : (
                 <div className="overflow-hidden rounded-2xl border border-border">
@@ -169,9 +169,9 @@ export default async function BudgetRequestDetailPage({
                       <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
                         <tr>
                           <th className="px-4 py-3 font-semibold">Item</th>
-                          <th className="px-4 py-3 font-semibold">Qty</th>
-                          <th className="px-4 py-3 font-semibold">Unit</th>
-                          <th className="px-4 py-3 font-semibold">Unit Price</th>
+                          <th className="px-4 py-3 font-semibold">Jumlah</th>
+                          <th className="px-4 py-3 font-semibold">Satuan</th>
+                          <th className="px-4 py-3 font-semibold">Harga Satuan</th>
                           <th className="px-4 py-3 font-semibold">Subtotal</th>
                         </tr>
                       </thead>
@@ -215,28 +215,28 @@ export default async function BudgetRequestDetailPage({
         <aside className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Request Summary</CardTitle>
+              <CardTitle>Ringkasan Pengajuan</CardTitle>
             </CardHeader>
 
             <CardContent className="space-y-4">
               <InfoItem
                 icon={<Wallet className="h-4 w-4" />}
-                label="Total estimate"
+                label="Total estimasi"
                 value={formatCurrency(request.estimated_budget)}
               />
               <InfoItem
                 icon={<ClipboardList className="h-4 w-4" />}
-                label="Section"
+                label="Seksi"
                 value={request.section?.name ?? "-"}
               />
               <InfoItem
                 icon={<User className="h-4 w-4" />}
-                label="Requested by"
+                label="Diajukan oleh"
                 value={request.requester?.full_name ?? "-"}
               />
               <InfoItem
                 icon={<CalendarDays className="h-4 w-4" />}
-                label="Submitted"
+                label="Dikirim"
                 value={formatDateTime(request.created_at)}
               />
             </CardContent>
@@ -244,7 +244,7 @@ export default async function BudgetRequestDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Budget Reason</CardTitle>
+              <CardTitle>Alasan Anggaran</CardTitle>
             </CardHeader>
 
             <CardContent>
@@ -256,10 +256,10 @@ export default async function BudgetRequestDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Review Decision</CardTitle>
+              <CardTitle>Keputusan Peninjauan</CardTitle>
               <CardDescription>
-                Approve or reject this request after checking the report and
-                item details.
+                Setujui atau tolak pengajuan setelah memeriksa laporan dan
+                rincian item.
               </CardDescription>
             </CardHeader>
 
@@ -288,9 +288,9 @@ function BudgetStatusBadge({ status }: { status: string }) {
     rejected: "danger",
   };
   const labels: Record<string, string> = {
-    submitted: "Waiting Review",
-    approved: "Approved",
-    rejected: "Rejected",
+    submitted: "Menunggu Peninjauan",
+    approved: "Disetujui",
+    rejected: "Ditolak",
   };
 
   return <Badge variant={variants[status] ?? "muted"}>{labels[status] ?? status}</Badge>;
@@ -362,13 +362,13 @@ function ReviewSummary({
         <BudgetStatusBadge status={request.status} />
       </div>
       <p className="font-semibold text-foreground">
-        {request.reviewer?.full_name ?? "Reviewer"}
+        {request.reviewer?.full_name ?? "Peninjau"}
       </p>
       <p className="text-xs text-muted-foreground">
         {request.reviewed_at ? formatDateTime(request.reviewed_at) : "-"}
       </p>
       <p className="mt-3 whitespace-pre-line text-muted-foreground">
-        {request.review_note || "No review note."}
+        {request.review_note || "Tidak ada catatan peninjauan."}
       </p>
     </div>
   );

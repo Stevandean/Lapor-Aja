@@ -57,7 +57,7 @@ export function Button({
       disabled={disabled || isLoading}
       {...props}
     >
-      {isLoading ? "Processing..." : children}
+      {isLoading ? "Memproses..." : children}
     </button>
   );
 }

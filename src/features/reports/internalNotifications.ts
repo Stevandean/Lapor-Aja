@@ -511,8 +511,21 @@ function isMissingReportRelationsError(message: string | null | undefined) {
 }
 
 function formatStatus(status: string) {
-  return status
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const labels: Record<string, string> = {
+    pending: "Menunggu Review",
+    need_verification: "Perlu Verifikasi",
+    verified_valid: "Terverifikasi Valid",
+    verified_invalid: "Terverifikasi Tidak Valid",
+    classified: "Diklasifikasi",
+    handled_by_village: "Ditangani Desa",
+    forwarded_to_agency: "Diteruskan ke Instansi",
+    waiting_budget: "Menunggu Anggaran",
+    in_progress: "Diproses",
+    resolved: "Selesai",
+    rejected: "Ditolak",
+    archived: "Diarsipkan",
+    merged: "Digabungkan",
+  };
+
+  return labels[status] ?? status.replaceAll("_", " ");
 }

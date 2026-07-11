@@ -29,7 +29,7 @@ export function GenerateOfficialLetterButton({
     if (!state.message) return;
 
     if (state.status === "success") {
-      toast.success("Success", {
+      toast.success("Berhasil", {
         description: state.message,
       });
 
@@ -37,7 +37,7 @@ export function GenerateOfficialLetterButton({
     }
 
     if (state.status === "error") {
-      toast.error("Failed", {
+      toast.error("Gagal", {
         description: state.message,
       });
     }
@@ -49,7 +49,7 @@ export function GenerateOfficialLetterButton({
 
       <Button type="submit" disabled={isPending} size="sm">
         <Wand2 className="mr-2 h-4 w-4" />
-        {isPending ? "Generating..." : "Generate Letter"}
+        {isPending ? "Membuat surat..." : "Buat surat"}
       </Button>
     </form>
   );

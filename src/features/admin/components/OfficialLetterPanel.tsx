@@ -60,7 +60,7 @@ export function OfficialLetterPanel({
     if (!state.message) return;
 
     if (state.status === "success") {
-      toast.success("Success", {
+      toast.success("Berhasil", {
         description: state.message,
       });
 
@@ -68,7 +68,7 @@ export function OfficialLetterPanel({
     }
 
     if (state.status === "error") {
-      toast.error("Failed", {
+      toast.error("Gagal", {
         description: state.message,
       });
     }
@@ -79,19 +79,19 @@ export function OfficialLetterPanel({
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <FileText className="h-5 w-5 text-primary" />
-          Official Letter
+          Surat Resmi
         </CardTitle>
 
         <CardDescription>
-          Generate a draft letter for reports forwarded to an external agency.
+          Buat draf surat untuk laporan yang diteruskan ke instansi luar.
         </CardDescription>
       </CardHeader>
 
       <CardContent className="space-y-5">
         {!canGenerate && !letter ? (
           <div className="rounded-2xl border border-muted bg-muted/40 p-4 text-sm leading-6 text-muted-foreground">
-            Official letter is only available for reports with forwarded to
-            agency status.
+            Surat resmi hanya tersedia untuk laporan dengan status diteruskan ke
+            instansi.
           </div>
         ) : null}
 
@@ -99,15 +99,15 @@ export function OfficialLetterPanel({
           <div className="space-y-4">
             <div className="rounded-2xl border border-success-100 bg-success-50 p-4">
               <p className="text-sm font-semibold text-success-700">
-                Letter draft has been generated
+                Draf surat sudah dibuat
               </p>
 
               <div className="mt-3 grid gap-3 text-sm text-success-700 sm:grid-cols-2">
-                <InfoItem label="Letter Number" value={letter.letter_number} />
+                <InfoItem label="Nomor Surat" value={letter.letter_number} />
                 <InfoItem label="Status" value={formatEnum(letter.status)} />
-                <InfoItem label="Subject" value={letter.subject} />
+                <InfoItem label="Perihal" value={letter.subject} />
                 <InfoItem
-                  label="Generated At"
+                  label="Dibuat Pada"
                   value={
                     letter.generated_at
                       ? formatDateTime(letter.generated_at)
@@ -120,7 +120,7 @@ export function OfficialLetterPanel({
             {letter.body ? (
               <div className="rounded-2xl border border-border bg-card p-5">
                 <p className="text-sm font-semibold text-foreground">
-                  Letter Preview
+                  Pratinjau Surat
                 </p>
 
                 <pre className="mt-4 whitespace-pre-wrap rounded-xl bg-muted/40 p-4 text-sm leading-7 text-muted-foreground">
@@ -139,7 +139,7 @@ export function OfficialLetterPanel({
               className="w-full"
             >
               <Wand2 className="mr-2 h-4 w-4" />
-              {isPending ? "Generating..." : "Generate Official Letter"}
+              {isPending ? "Membuat surat..." : "Buat surat resmi"}
             </Button>
           </form>
         )}
@@ -158,10 +158,13 @@ function InfoItem({ label, value }: { label: string; value: string }) {
 }
 
 function formatEnum(value: string) {
-  return value
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const labels: Record<string, string> = {
+    draft: "Draf",
+    final: "Final",
+    sent: "Terkirim",
+  };
+
+  return labels[value] ?? value.replaceAll("_", " ");
 }
 
 function formatDateTime(date: string) {

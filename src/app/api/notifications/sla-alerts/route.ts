@@ -6,7 +6,7 @@ export async function POST(request: Request) {
 
   if (!cronSecret) {
     return NextResponse.json(
-      { error: "SLA_ALERT_CRON_SECRET is not configured." },
+      { error: "SLA_ALERT_CRON_SECRET belum dikonfigurasi." },
       { status: 500 }
     );
   }
@@ -14,7 +14,7 @@ export async function POST(request: Request) {
   const authorization = request.headers.get("authorization");
 
   if (authorization !== `Bearer ${cronSecret}`) {
-    return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
+    return NextResponse.json({ error: "Tidak terotorisasi." }, { status: 401 });
   }
 
   const result = await sendSlaAlertNotifications();

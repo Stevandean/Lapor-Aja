@@ -95,17 +95,17 @@ export default async function VillageReportDetailPage({
             className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to reports
+            Kembali ke laporan
           </Link>
 
           <p className="mt-5 text-sm font-semibold text-primary">
-            Report Monitoring
+            Monitoring Laporan
           </p>
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             {report.title}
           </h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            {report.report_number} submitted on {formatDateTime(report.created_at)}
+            {report.report_number} dikirim pada {formatDateTime(report.created_at)}
           </p>
         </div>
 
@@ -117,22 +117,22 @@ export default async function VillageReportDetailPage({
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <SummaryCard
-          title="Current Status"
+          title="Status Saat Ini"
           value={getStatusLabel(report.status)}
           icon={<ClipboardList className="h-5 w-5" />}
         />
         <SummaryCard
-          title="Assigned Section"
+          title="Seksi Ditugaskan"
           value={report.section?.name ?? "-"}
           icon={<User className="h-5 w-5" />}
         />
         <SummaryCard
-          title="Follow-up"
+          title="Tindak Lanjut"
           value={formatEnum(report.follow_up_type)}
           icon={<Building2 className="h-5 w-5" />}
         />
         <SummaryCard
-          title="Updated"
+          title="Diperbarui"
           value={formatDate(report.updated_at)}
           icon={<CalendarDays className="h-5 w-5" />}
         />
@@ -142,9 +142,9 @@ export default async function VillageReportDetailPage({
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Report Description</CardTitle>
+              <CardTitle>Deskripsi Laporan</CardTitle>
               <CardDescription>
-                Original report content submitted by the citizen.
+                Isi laporan asli yang dikirim oleh masyarakat.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -156,9 +156,9 @@ export default async function VillageReportDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Status Timeline</CardTitle>
+              <CardTitle>Linimasa Status</CardTitle>
               <CardDescription>
-                Full workflow history from submission to the latest movement.
+                Riwayat alur lengkap dari pengiriman hingga pergerakan terbaru.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -168,14 +168,14 @@ export default async function VillageReportDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Kasi Progress Updates</CardTitle>
+              <CardTitle>Update Progres Kasi</CardTitle>
               <CardDescription>
-                Field handling progress submitted by the assigned section.
+                Progres penanganan lapangan yang dikirim oleh seksi terkait.
               </CardDescription>
             </CardHeader>
             <CardContent>
               {detail.progressUpdates.length === 0 ? (
-                <EmptyState text="No Kasi progress updates yet." />
+                <EmptyState text="Belum ada update progres dari Kasi." />
               ) : (
                 <div className="space-y-4">
                   {detail.progressUpdates.map((update) => (
@@ -189,7 +189,7 @@ export default async function VillageReportDetailPage({
                             {update.title}
                           </p>
                           <p className="mt-1 text-xs text-muted-foreground">
-                            {update.creator?.full_name ?? "-"} ·{" "}
+                            {update.creator?.full_name ?? "-"} -{" "}
                             {formatDateTime(update.created_at)}
                           </p>
                         </div>
@@ -206,7 +206,7 @@ export default async function VillageReportDetailPage({
                             <PhotoCard
                               key={photo.id}
                               src={photo.signed_url}
-                              alt="Kasi progress evidence"
+                              alt="Bukti progres Kasi"
                             />
                           ))}
                         </div>
@@ -220,14 +220,14 @@ export default async function VillageReportDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Budget History</CardTitle>
+              <CardTitle>Riwayat Anggaran</CardTitle>
               <CardDescription>
-                Itemized budget requests submitted for this report.
+                Rincian pengajuan anggaran untuk laporan ini.
               </CardDescription>
             </CardHeader>
             <CardContent>
               {detail.budgetRequests.length === 0 ? (
-                <EmptyState text="No budget request has been submitted for this report." />
+                <EmptyState text="Belum ada pengajuan anggaran untuk laporan ini." />
               ) : (
                 <div className="space-y-4">
                   {detail.budgetRequests.map((request) => (
@@ -247,7 +247,7 @@ export default async function VillageReportDetailPage({
                             {formatCurrency(request.estimated_budget)}
                           </p>
                           <p className="mt-1 text-xs text-muted-foreground">
-                            Requested by {request.requester?.full_name ?? "-"} ·{" "}
+                            Diajukan oleh {request.requester?.full_name ?? "-"} -{" "}
                             {formatDateTime(request.created_at)}
                           </p>
                         </div>
@@ -267,7 +267,7 @@ export default async function VillageReportDetailPage({
                       {request.reviewed_at ? (
                         <div className="mt-4 rounded-xl border border-border bg-card p-3 text-sm">
                           <p className="font-semibold text-foreground">
-                            Reviewed by {request.reviewer?.full_name ?? "-"}
+                            Direview oleh {request.reviewer?.full_name ?? "-"}
                           </p>
                           <p className="mt-1 text-xs text-muted-foreground">
                             {formatDateTime(request.reviewed_at)}
@@ -285,10 +285,10 @@ export default async function VillageReportDetailPage({
                               <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
                                 <tr>
                                   <th className="px-4 py-3 font-semibold">Item</th>
-                                  <th className="px-4 py-3 font-semibold">Qty</th>
-                                  <th className="px-4 py-3 font-semibold">Unit</th>
+                                  <th className="px-4 py-3 font-semibold">Jumlah</th>
+                                  <th className="px-4 py-3 font-semibold">Satuan</th>
                                   <th className="px-4 py-3 font-semibold">
-                                    Unit Price
+                                    Harga Satuan
                                   </th>
                                   <th className="px-4 py-3 font-semibold">
                                     Subtotal
@@ -336,21 +336,21 @@ export default async function VillageReportDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Citizen Evidence Photos</CardTitle>
+              <CardTitle>Foto Bukti Masyarakat</CardTitle>
               <CardDescription>
-                Photos uploaded by the citizen when submitting the report.
+                Foto yang diunggah masyarakat saat mengirim laporan.
               </CardDescription>
             </CardHeader>
             <CardContent>
               {detail.photos.length === 0 ? (
-                <EmptyState text="No citizen evidence photos available." />
+                <EmptyState text="Belum ada foto bukti masyarakat." />
               ) : (
                 <div className="grid gap-4 sm:grid-cols-2">
                   {detail.photos.map((photo) => (
                     <PhotoCard
                       key={photo.id}
                       src={photo.signed_url}
-                      alt="Citizen report evidence"
+                      alt="Bukti laporan masyarakat"
                     />
                   ))}
                 </div>
@@ -360,25 +360,25 @@ export default async function VillageReportDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Field Verification</CardTitle>
+              <CardTitle>Verifikasi Lapangan</CardTitle>
               <CardDescription>
-                Verification result submitted by the hamlet head.
+                Hasil verifikasi yang dikirim oleh kepala dusun.
               </CardDescription>
             </CardHeader>
             <CardContent>
               {!detail.verification ? (
-                <EmptyState text="No field verification data available." />
+                <EmptyState text="Belum ada data verifikasi lapangan." />
               ) : (
                 <div className="space-y-5">
                   <div className="rounded-2xl border border-border bg-muted/20 p-4">
                     <div className="flex flex-wrap items-center gap-2">
                       {detail.verification.is_valid ? (
                         <Badge className="bg-success-50 text-success-700">
-                          Valid Report
+                          Laporan Valid
                         </Badge>
                       ) : (
                         <Badge className="bg-danger-50 text-danger-700">
-                          Invalid Report
+                          Laporan Tidak Valid
                         </Badge>
                       )}
                       <Badge variant="muted">
@@ -389,7 +389,7 @@ export default async function VillageReportDetailPage({
                       {detail.verification.verification_note}
                     </p>
                     <p className="mt-3 text-xs text-muted-foreground">
-                      Verified on {formatDateTime(detail.verification.created_at)}
+                      Diverifikasi pada {formatDateTime(detail.verification.created_at)}
                     </p>
                   </div>
 
@@ -399,7 +399,7 @@ export default async function VillageReportDetailPage({
                         <PhotoCard
                           key={photo.id}
                           src={photo.signed_url}
-                          alt="Field verification evidence"
+                          alt="Bukti verifikasi lapangan"
                         />
                       ))}
                     </div>
@@ -422,33 +422,33 @@ export default async function VillageReportDetailPage({
         <aside className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Report Information</CardTitle>
+              <CardTitle>Informasi Laporan</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <InfoRow label="Reporter" value={getReporterValue(report.reporter, "full_name")} />
+              <InfoRow label="Pelapor" value={getReporterValue(report.reporter, "full_name")} />
               <InfoRow label="Email" value={getReporterValue(report.reporter, "email")} />
               <InfoRow
-                label="Phone"
+                label="Nomor HP"
                 value={getReporterValue(report.reporter, "phone_number")}
               />
-              <InfoRow label="Category" value={getRelationName(report.category)} />
-              <InfoRow label="Hamlet" value={getRelationName(report.hamlet)} />
-              <InfoRow label="Created" value={formatDateTime(report.created_at)} />
-              <InfoRow label="Resolved" value={report.resolved_at ? formatDateTime(report.resolved_at) : "-"} />
+              <InfoRow label="Kategori" value={getRelationName(report.category)} />
+              <InfoRow label="Dusun" value={getRelationName(report.hamlet)} />
+              <InfoRow label="Dibuat" value={formatDateTime(report.created_at)} />
+              <InfoRow label="Selesai" value={report.resolved_at ? formatDateTime(report.resolved_at) : "-"} />
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle>Classification</CardTitle>
+              <CardTitle>Klasifikasi</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <InfoRow label="Asset Status" value={formatEnum(report.asset_status)} />
-              <InfoRow label="Authority Level" value={formatEnum(report.authority_level)} />
-              <InfoRow label="Follow-up Type" value={formatEnum(report.follow_up_type)} />
-              <InfoRow label="Assigned Section" value={report.section?.name ?? "-"} />
+              <InfoRow label="Status Aset" value={formatEnum(report.asset_status)} />
+              <InfoRow label="Tingkat Kewenangan" value={formatEnum(report.authority_level)} />
+              <InfoRow label="Jenis Tindak Lanjut" value={formatEnum(report.follow_up_type)} />
+              <InfoRow label="Seksi Ditugaskan" value={report.section?.name ?? "-"} />
               <InfoRow
-                label="Verification Due"
+                label="Batas Verifikasi"
                 value={
                   report.verification_due_at
                     ? formatDateTime(report.verification_due_at)
@@ -456,7 +456,7 @@ export default async function VillageReportDetailPage({
                 }
               />
               <InfoRow
-                label="Resolution Due"
+                label="Batas Penyelesaian"
                 value={
                   report.resolution_due_at
                     ? formatDateTime(report.resolution_due_at)
@@ -474,7 +474,7 @@ export default async function VillageReportDetailPage({
           {report.agency ? (
             <Card>
               <CardHeader>
-                <CardTitle>Forwarded Agency</CardTitle>
+                <CardTitle>Dinas Tujuan</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <InfoRow label="Agency" value={getAgencyValue(report.agency, "name")} />
@@ -609,14 +609,14 @@ function PriorityBadge({ priority }: { priority: string }) {
 
 function BudgetStatusBadge({ status }: { status: string }) {
   if (status === "approved") {
-    return <Badge className="bg-success-50 text-success-700">Approved</Badge>;
+    return <Badge className="bg-success-50 text-success-700">Disetujui</Badge>;
   }
 
   if (status === "rejected") {
-    return <Badge className="bg-danger-50 text-danger-700">Rejected</Badge>;
+    return <Badge className="bg-danger-50 text-danger-700">Ditolak</Badge>;
   }
 
-  return <Badge className="bg-warning-50 text-warning-700">Submitted</Badge>;
+  return <Badge className="bg-warning-50 text-warning-700">Diajukan</Badge>;
 }
 
 function getRelationName(relation: RelationName[] | RelationName | null) {

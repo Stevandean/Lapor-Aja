@@ -15,25 +15,24 @@ export default async function AdminAssetClassificationPage() {
     <div className="space-y-6">
       <section>
         <p className="text-sm font-semibold text-primary">
-          Asset Classification
+          Klasifikasi Aset
         </p>
 
         <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-          Reports Ready for Classification
+          Laporan Siap Diklasifikasi
         </h1>
 
         <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-          Review reports that have been verified as valid by the hamlet head,
-          then decide the asset status, authority level, and follow-up type.
+          Tinjau laporan yang sudah diverifikasi valid oleh kepala dusun, lalu
+          tentukan status aset, level kewenangan, dan jenis tindak lanjut.
         </p>
       </section>
 
       <Card>
         <CardHeader>
-          <CardTitle>Verified Reports</CardTitle>
+          <CardTitle>Laporan Terverifikasi</CardTitle>
           <CardDescription>
-            Showing valid reports that are ready for administrative
-            classification.
+            Menampilkan laporan valid yang siap diklasifikasi oleh admin.
           </CardDescription>
         </CardHeader>
 

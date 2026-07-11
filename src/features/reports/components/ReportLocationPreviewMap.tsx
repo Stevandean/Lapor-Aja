@@ -36,7 +36,7 @@ const reportMarkerIcon = L.divIcon({
 export function ReportLocationPreviewMap({
   latitude,
   longitude,
-  title = "Report Location",
+  title = "Lokasi Laporan",
   address,
 }: ReportLocationPreviewMapProps) {
   const lat = Number(latitude);
@@ -45,7 +45,7 @@ export function ReportLocationPreviewMap({
   if (Number.isNaN(lat) || Number.isNaN(lng)) {
     return (
       <div className="flex h-72 items-center justify-center rounded-2xl border border-dashed border-border bg-muted/40 text-sm text-muted-foreground">
-        Location map is unavailable.
+        Peta lokasi tidak tersedia.
       </div>
     );
   }

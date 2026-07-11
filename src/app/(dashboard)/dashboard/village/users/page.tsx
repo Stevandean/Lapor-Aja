@@ -35,15 +35,15 @@ export default async function VillageUsersPage() {
     <div className="space-y-6">
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-semibold text-primary">Users</p>
+          <p className="text-sm font-semibold text-primary">Pengguna</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            User Management
+            Manajemen Pengguna
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Manage registered citizens and village staff accounts, including
-            roles, hamlet assignments, section assignments, and account status.
+            Kelola akun masyarakat dan perangkat desa, termasuk role,
+            penugasan dusun, penugasan seksi, dan status akun.
           </p>
         </div>
 
@@ -57,37 +57,37 @@ export default async function VillageUsersPage() {
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
         <VillageStatCard
-          title="Total Users"
+          title="Total Pengguna"
           value={stats.totalUsers}
-          description="All registered accounts."
+          description="Semua akun terdaftar."
           icon={<Users className="h-5 w-5" />}
         />
 
         <VillageStatCard
-          title="Public Users"
+          title="Pengguna Publik"
           value={stats.publicUsers}
-          description="Citizen accounts."
+          description="Akun masyarakat."
           icon={<UserCheck className="h-5 w-5" />}
         />
 
         <VillageStatCard
           title="Admin"
           value={stats.adminUsers}
-          description="Admin operator accounts."
+          description="Akun operator admin."
           icon={<ShieldCheck className="h-5 w-5" />}
         />
 
         <VillageStatCard
-          title="Hamlet Heads"
+          title="Kepala Dusun"
           value={stats.hamletHeadUsers}
-          description="Kepala dusun accounts."
+          description="Akun kepala dusun."
           icon={<MapPinned className="h-5 w-5" />}
         />
 
         <VillageStatCard
-          title="Village Leaders"
+          title="Pimpinan Desa"
           value={stats.villageLeaders}
-          description="Kepala desa and sekdes."
+          description="Kepala desa dan sekdes."
           icon={<Landmark className="h-5 w-5" />}
         />
       </section>
@@ -95,11 +95,12 @@ export default async function VillageUsersPage() {
       <Card>
         <CardHeader className="flex flex-col justify-between gap-4 border-b border-border sm:flex-row sm:items-center">
           <div>
-            <CardTitle>User List</CardTitle>
+            <CardTitle>Daftar Pengguna</CardTitle>
 
             <CardDescription>
-              Showing registered users and their roles in the reporting system.
-              Use the manage action to update user profile and access status.
+              Menampilkan pengguna terdaftar dan role mereka di sistem
+              pelaporan. Gunakan aksi kelola untuk memperbarui profil dan
+              status akses pengguna.
             </CardDescription>
           </div>
         </CardHeader>

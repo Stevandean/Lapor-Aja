@@ -19,7 +19,7 @@ type Reporter = {
   email: string | null;
 };
 
-type ArchivedReport = {
+export type ArchivedReport = {
   id: string;
   report_number: string;
   title: string;
@@ -73,11 +73,11 @@ export function VillageArchiveTable({ reports }: VillageArchiveTableProps) {
         </div>
 
         <h3 className="mt-4 text-sm font-semibold text-foreground">
-          No archived reports
+          Belum ada laporan arsip
         </h3>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          Archived reports will appear here after completed reports are archived.
+          Laporan akan muncul di sini setelah laporan selesai dipindahkan ke arsip.
         </p>
       </div>
     );
@@ -88,7 +88,7 @@ export function VillageArchiveTable({ reports }: VillageArchiveTableProps) {
       <div className="flex flex-col justify-between gap-4 rounded-2xl border border-border bg-muted/30 p-4 lg:flex-row lg:items-end">
         <div className="w-full max-w-xl">
           <label className="form-label" htmlFor="archive-search">
-            Search Archive
+            Cari Arsip
           </label>
 
           <div className="relative">
@@ -96,7 +96,7 @@ export function VillageArchiveTable({ reports }: VillageArchiveTableProps) {
               id="archive-search"
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
-              placeholder="Search report number, title, hamlet, category, or reporter"
+              placeholder="Cari nomor laporan, judul, dusun, kategori, atau pelapor"
               className="pl-10"
             />
 
@@ -106,11 +106,11 @@ export function VillageArchiveTable({ reports }: VillageArchiveTableProps) {
 
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
           <div className="rounded-xl border border-border bg-card px-3 py-2 text-sm text-muted-foreground">
-            Showing{" "}
+            Menampilkan{" "}
             <strong className="font-semibold text-foreground">
               {filteredReports.length}
             </strong>{" "}
-            of{" "}
+            dari{" "}
             <strong className="font-semibold text-foreground">
               {reports.length}
             </strong>
@@ -134,11 +134,11 @@ export function VillageArchiveTable({ reports }: VillageArchiveTableProps) {
       {filteredReports.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-10 text-center">
           <h3 className="text-sm font-semibold text-foreground">
-            No matching archived reports
+            Tidak ada laporan arsip yang cocok
           </h3>
 
           <p className="mt-2 text-sm text-muted-foreground">
-            Try using another keyword.
+            Coba gunakan kata kunci lain.
           </p>
         </div>
       ) : (
@@ -147,14 +147,14 @@ export function VillageArchiveTable({ reports }: VillageArchiveTableProps) {
             <table className="w-full min-w-[1050px] text-left text-sm">
               <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
                 <tr>
-                  <th className="px-5 py-4 font-semibold">Report</th>
-                  <th className="px-5 py-4 font-semibold">Reporter</th>
-                  <th className="px-5 py-4 font-semibold">Category</th>
-                  <th className="px-5 py-4 font-semibold">Hamlet</th>
-                  <th className="px-5 py-4 font-semibold">Priority</th>
-                  <th className="px-5 py-4 font-semibold">Follow-up</th>
-                  <th className="px-5 py-4 font-semibold">Archived</th>
-                  <th className="px-5 py-4 text-right font-semibold">Action</th>
+                  <th className="px-5 py-4 font-semibold">Laporan</th>
+                  <th className="px-5 py-4 font-semibold">Pelapor</th>
+                  <th className="px-5 py-4 font-semibold">Kategori</th>
+                  <th className="px-5 py-4 font-semibold">Dusun</th>
+                  <th className="px-5 py-4 font-semibold">Prioritas</th>
+                  <th className="px-5 py-4 font-semibold">Tindak Lanjut</th>
+                  <th className="px-5 py-4 font-semibold">Diarsipkan</th>
+                  <th className="px-5 py-4 text-right font-semibold">Aksi</th>
                 </tr>
               </thead>
 
@@ -206,7 +206,7 @@ export function VillageArchiveTable({ reports }: VillageArchiveTableProps) {
                             className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground shadow-sm transition hover:bg-muted"
                             >
                             <Eye className="h-3.5 w-3.5" />
-                            View Detail
+                            Lihat Detail
                             </Link>
                         </div>
                     </td>
@@ -235,25 +235,25 @@ export function VillageArchiveTable({ reports }: VillageArchiveTableProps) {
 
                 <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
                   <InfoItem
-                    label="Reporter"
+                    label="Pelapor"
                     value={getReporterName(report.reporter)}
                   />
                   <InfoItem
-                    label="Category"
+                    label="Kategori"
                     value={getRelationName(report.category)}
                   />
                   <InfoItem
-                    label="Hamlet"
+                    label="Dusun"
                     value={getRelationName(report.hamlet)}
                   />
                   <InfoItem
-                    label="Archived"
+                    label="Diarsipkan"
                     value={formatDate(report.updated_at)}
                   />
                 </div>
 
                 <div className="mt-4 rounded-xl bg-muted/50 p-3">
-                  <p className="text-xs text-muted-foreground">Follow-up</p>
+                  <p className="text-xs text-muted-foreground">Tindak Lanjut</p>
                   <p className="mt-1 text-sm font-medium text-foreground">
                     {formatEnum(report.follow_up_type)}
                   </p>
@@ -264,7 +264,7 @@ export function VillageArchiveTable({ reports }: VillageArchiveTableProps) {
                         className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground shadow-sm transition hover:bg-muted"
                     >
                         <Eye className="h-3.5 w-3.5" />
-                        View Detail
+                        Lihat Detail
                     </Link>
                 </div>
               </div>
@@ -328,8 +328,20 @@ function formatDate(date: string) {
 function formatEnum(value: string | null) {
   if (!value) return "-";
 
-  return value
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const labels: Record<string, string> = {
+    aset_desa: "Aset Desa",
+    bukan_aset_desa: "Bukan Aset Desa",
+    belum_diketahui: "Belum Diketahui",
+    desa: "Desa",
+    kabupaten_kota: "Kabupaten/Kota",
+    provinsi: "Provinsi",
+    nasional: "Nasional",
+    ditangani_desa: "Ditangani Desa",
+    diteruskan_ke_dinas: "Diteruskan ke Dinas",
+    diusulkan_musrenbang: "Diusulkan Musrenbang",
+    menunggu_anggaran: "Menunggu Anggaran",
+    belum_ditentukan: "Belum Ditentukan",
+  };
+
+  return labels[value] ?? value.replaceAll("_", " ");
 }

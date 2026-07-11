@@ -26,7 +26,7 @@ export function DashboardNavbar({
           type="button"
           onClick={onOpenSidebar}
           className="rounded-xl border border-border bg-card p-2 text-muted-foreground shadow-sm hover:bg-muted hover:text-foreground lg:hidden"
-          aria-label="Open sidebar"
+          aria-label="Buka sidebar"
         >
           <Menu className="h-5 w-5" />
         </button>
@@ -34,7 +34,7 @@ export function DashboardNavbar({
         <div>
           <p className="text-sm text-muted-foreground">Dashboard</p>
           <h1 className="line-clamp-1 text-lg font-semibold text-foreground">
-            Welcome, {profile.full_name}
+            Selamat datang, {profile.full_name}
           </h1>
         </div>
       </div>

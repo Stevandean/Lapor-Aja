@@ -49,12 +49,12 @@ export function AdminAssetClassificationTable({
         </div>
 
         <h3 className="mt-4 text-sm font-semibold text-foreground">
-          No reports ready for classification
+          Belum ada laporan siap diklasifikasi
         </h3>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          Reports will appear here after they are verified as valid by the
-          hamlet head.
+          Laporan akan muncul di sini setelah diverifikasi valid oleh kepala
+          dusun.
         </p>
       </div>
     );
@@ -66,13 +66,13 @@ export function AdminAssetClassificationTable({
         <table className="w-full min-w-[950px] text-left text-sm">
           <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
-              <th className="px-5 py-4 font-semibold">Report</th>
-              <th className="px-5 py-4 font-semibold">Reporter</th>
-              <th className="px-5 py-4 font-semibold">Category</th>
-              <th className="px-5 py-4 font-semibold">Hamlet</th>
-              <th className="px-5 py-4 font-semibold">Priority</th>
+              <th className="px-5 py-4 font-semibold">Laporan</th>
+              <th className="px-5 py-4 font-semibold">Pelapor</th>
+              <th className="px-5 py-4 font-semibold">Kategori</th>
+              <th className="px-5 py-4 font-semibold">Dusun</th>
+              <th className="px-5 py-4 font-semibold">Prioritas</th>
               <th className="px-5 py-4 font-semibold">Status</th>
-              <th className="px-5 py-4 font-semibold text-right">Action</th>
+              <th className="px-5 py-4 font-semibold text-right">Aksi</th>
             </tr>
           </thead>
 
@@ -131,7 +131,7 @@ export function AdminAssetClassificationTable({
                       href={`/dashboard/admin/asset-classification/${report.id}`}
                       className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-700"
                     >
-                      Classify
+                      Klasifikasi
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   </td>
@@ -169,14 +169,14 @@ export function AdminAssetClassificationTable({
               </div>
 
               <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-                <InfoItem label="Reporter" value={reporter?.full_name ?? "-"} />
+                <InfoItem label="Pelapor" value={reporter?.full_name ?? "-"} />
                 <InfoItem
-                  label="Category"
+                  label="Kategori"
                   value={getRelationName(report.category)}
                 />
-                <InfoItem label="Hamlet" value={getRelationName(report.hamlet)} />
+                <InfoItem label="Dusun" value={getRelationName(report.hamlet)} />
                 <InfoItem
-                  label="Priority"
+                  label="Prioritas"
                   value={
                     REPORT_PRIORITY_LABELS[report.priority] ?? report.priority
                   }
@@ -187,7 +187,7 @@ export function AdminAssetClassificationTable({
                 href={`/dashboard/admin/asset-classification/${report.id}`}
                 className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-700"
               >
-                Classify
+                Klasifikasi
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

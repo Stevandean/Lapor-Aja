@@ -39,14 +39,14 @@ export default function RegisterForm() {
 
     if (error) {
       setLoading(false);
-      toast.error("Registration failed", {
+      toast.error("Registrasi gagal", {
         description: translateAuthError(error.message),
       });
       return;
     }
 
-    toast.success("Registration successful", {
-      description: "Please sign in using your new account.",
+    toast.success("Registrasi berhasil", {
+      description: "Silakan masuk menggunakan akun baru Anda.",
     });
 
     router.replace(`${ROUTES.LOGIN}?registered=1`);
@@ -57,9 +57,9 @@ export default function RegisterForm() {
     <form onSubmit={handleRegister} className="space-y-5">
       <div className="relative">
         <Input
-          label="Full name"
+          label="Nama lengkap"
           type="text"
-          placeholder="Enter your full name"
+          placeholder="Masukkan nama lengkap"
           value={fullName}
           onChange={(event) => setFullName(event.target.value)}
           required
@@ -70,9 +70,9 @@ export default function RegisterForm() {
 
       <div className="relative">
         <Input
-          label="Email address"
+          label="Alamat email"
           type="email"
-          placeholder="you@example.com"
+          placeholder="nama@email.com"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           required
@@ -83,9 +83,9 @@ export default function RegisterForm() {
 
       <div className="relative">
         <Input
-          label="Phone number"
+          label="Nomor HP"
           type="text"
-          placeholder="Example: 08123456789"
+          placeholder="Contoh: 08123456789"
           value={phoneNumber}
           onChange={(event) => setPhoneNumber(event.target.value)}
           className="pl-10"
@@ -95,9 +95,9 @@ export default function RegisterForm() {
 
       <div className="relative">
         <Input
-          label="Password"
+          label="Kata sandi"
           type={showPassword ? "text" : "password"}
-          placeholder="Minimum 6 characters"
+          placeholder="Minimal 6 karakter"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           minLength={6}
@@ -111,7 +111,9 @@ export default function RegisterForm() {
           type="button"
           onClick={() => setShowPassword((current) => !current)}
           className="absolute right-3 top-[34px] rounded-md p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
-          aria-label={showPassword ? "Hide password" : "Show password"}
+          aria-label={
+            showPassword ? "Sembunyikan kata sandi" : "Tampilkan kata sandi"
+          }
         >
           {showPassword ? (
             <EyeOff className="h-4 w-4" />
@@ -122,7 +124,7 @@ export default function RegisterForm() {
       </div>
 
       <Button type="submit" className="w-full" isLoading={loading}>
-        Create account
+        Buat akun
       </Button>
     </form>
   );
@@ -132,11 +134,11 @@ function translateAuthError(message: string) {
   const lowerMessage = message.toLowerCase();
 
   if (lowerMessage.includes("email rate limit exceeded")) {
-    return "Too many registration attempts. Please try again later.";
+    return "Terlalu banyak percobaan registrasi. Silakan coba lagi nanti.";
   }
 
   if (lowerMessage.includes("user already registered")) {
-    return "This email is already registered. Please sign in instead.";
+    return "Email ini sudah terdaftar. Silakan masuk menggunakan akun tersebut.";
   }
 
   return message;

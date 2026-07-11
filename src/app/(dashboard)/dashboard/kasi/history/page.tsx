@@ -17,15 +17,15 @@ export default async function KasiHistoryPage() {
   return (
     <div className="space-y-6">
       <section>
-        <p className="text-sm font-semibold text-primary">Progress History</p>
+        <p className="text-sm font-semibold text-primary">Riwayat Progres</p>
 
         <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-          Section Handling History
+          Riwayat Penanganan Seksi
         </h1>
 
         <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-          Review reports that have entered the section handling workflow,
-          including active, budget, progress, and completed states.
+          Tinjau laporan yang sudah masuk ke alur penanganan seksi, termasuk
+          status aktif, anggaran, progres, dan selesai.
         </p>
       </section>
 
@@ -33,9 +33,9 @@ export default async function KasiHistoryPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Handling History</CardTitle>
+          <CardTitle>Riwayat Penanganan</CardTitle>
           <CardDescription>
-            Showing section-assigned reports that have reached a handling stage.
+            Menampilkan laporan seksi yang sudah masuk tahap penanganan.
           </CardDescription>
         </CardHeader>
 
@@ -43,12 +43,12 @@ export default async function KasiHistoryPage() {
           <KasiReportTable
             reports={reports as KasiReportTableReports}
             emptyTitle={
-              missingSection ? "Section assignment required" : "No history yet"
+              missingSection ? "Penugasan seksi diperlukan" : "Belum ada riwayat"
             }
             emptyDescription={
               missingSection
-                ? "Ask an admin, sekdes, or kepala desa to assign your account to a village section."
-                : "Reports will appear here after they enter section handling."
+                ? "Minta admin, sekdes, atau kepala desa menautkan akun Anda ke seksi desa."
+                : "Laporan akan muncul di sini setelah masuk penanganan seksi."
             }
           />
         </CardContent>
@@ -60,8 +60,8 @@ export default async function KasiHistoryPage() {
 function MissingSectionNotice() {
   return (
     <div className="rounded-2xl border border-warning-100 bg-warning-50 p-4 text-sm leading-6 text-warning-700">
-      Your account has not been assigned to a village section yet. Section
-      assignment is required before handling history can appear here.
+      Akun Anda belum ditautkan ke seksi desa. Penugasan seksi diperlukan
+      sebelum riwayat penanganan dapat muncul di sini.
     </div>
   );
 }

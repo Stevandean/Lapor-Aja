@@ -11,7 +11,7 @@ type RelationName = {
   name: string;
 };
 
-type VerificationHistoryItem = {
+export type VerificationHistoryItem = {
   verification: {
     id: string;
     report_id: string;
@@ -46,11 +46,11 @@ export function HamletVerificationHistoryTable({
         </div>
 
         <h3 className="mt-4 text-sm font-semibold text-foreground">
-          No verification history
+          Belum ada riwayat verifikasi
         </h3>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          Reports that you have verified will appear here.
+          Laporan yang sudah Anda verifikasi akan muncul di sini.
         </p>
       </div>
     );
@@ -62,12 +62,12 @@ export function HamletVerificationHistoryTable({
         <table className="w-full min-w-[950px] text-left text-sm">
           <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
-              <th className="px-5 py-4 font-semibold">Report</th>
-              <th className="px-5 py-4 font-semibold">Category</th>
-              <th className="px-5 py-4 font-semibold">Verification Result</th>
-              <th className="px-5 py-4 font-semibold">Current Status</th>
-              <th className="px-5 py-4 font-semibold">Verified At</th>
-              <th className="px-5 py-4 font-semibold text-right">Action</th>
+              <th className="px-5 py-4 font-semibold">Laporan</th>
+              <th className="px-5 py-4 font-semibold">Kategori</th>
+              <th className="px-5 py-4 font-semibold">Hasil Verifikasi</th>
+              <th className="px-5 py-4 font-semibold">Status Saat Ini</th>
+              <th className="px-5 py-4 font-semibold">Diverifikasi</th>
+              <th className="px-5 py-4 font-semibold text-right">Aksi</th>
             </tr>
           </thead>
 
@@ -100,7 +100,7 @@ export function HamletVerificationHistoryTable({
                     </Badge>
                   ) : (
                     <Badge className="bg-danger-50 text-danger-700">
-                      Invalid
+                      Tidak Valid
                     </Badge>
                   )}
                 </td>
@@ -152,13 +152,13 @@ export function HamletVerificationHistoryTable({
               {verification.is_valid ? (
                 <Badge className="bg-success-50 text-success-700">Valid</Badge>
               ) : (
-                <Badge className="bg-danger-50 text-danger-700">Invalid</Badge>
+                <Badge className="bg-danger-50 text-danger-700">Tidak Valid</Badge>
               )}
             </div>
 
             <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
               <InfoItem
-                label="Category"
+                label="Kategori"
                 value={getRelationName(report.category)}
               />
               <InfoItem
@@ -166,11 +166,11 @@ export function HamletVerificationHistoryTable({
                 value={REPORT_STATUS_LABELS[report.status] ?? report.status}
               />
               <InfoItem
-                label="Priority"
+                label="Prioritas"
                 value={REPORT_PRIORITY_LABELS[report.priority] ?? report.priority}
               />
               <InfoItem
-                label="Verified"
+                label="Diverifikasi"
                 value={formatDateTime(verification.created_at)}
               />
             </div>
@@ -179,7 +179,7 @@ export function HamletVerificationHistoryTable({
               href={`/dashboard/hamlet-head/verification/${report.id}`}
               className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-700"
             >
-              View detail
+              Lihat detail
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

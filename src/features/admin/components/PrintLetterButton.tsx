@@ -7,7 +7,7 @@ export function PrintLetterButton() {
   return (
     <Button type="button" onClick={() => window.print()}>
       <Printer className="mr-2 h-4 w-4" />
-      Print / Save as PDF
+      Cetak / Simpan PDF
     </Button>
   );
 }

@@ -5,11 +5,11 @@ import { AuthLayout } from "@/src/features/auth/components/AuthLayout";
 export default function LoginPage() {
   return (
     <AuthLayout
-        title="Welcome back"
-        description="Sign in to continue submitting reports, tracking progress, and supporting transparent village services."
-        footerText="Don’t have an account?"
-        footerLinkText="Create an account"
-        footerHref="/auth/register"
+      title="Selamat datang kembali"
+      description="Masuk untuk mengirim laporan, memantau progress, dan mendukung layanan desa yang transparan."
+      footerText="Belum punya akun?"
+      footerLinkText="Buat akun"
+      footerHref="/auth/register"
     >
       <Suspense>
         <LoginForm />

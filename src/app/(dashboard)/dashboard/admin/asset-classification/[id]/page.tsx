@@ -76,7 +76,7 @@ export default async function AdminAssetClassificationDetailPage({
           className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to classification list
+          Kembali ke daftar klasifikasi
         </Link>
 
         <div className="mt-5 flex flex-col justify-between gap-4 lg:flex-row lg:items-start">
@@ -90,7 +90,7 @@ export default async function AdminAssetClassificationDetailPage({
             </h1>
 
             <p className="mt-2 text-sm text-muted-foreground">
-              Verified report ready for administrative classification.
+              Laporan valid yang siap diklasifikasi oleh admin.
             </p>
           </div>
 
@@ -115,9 +115,9 @@ export default async function AdminAssetClassificationDetailPage({
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Report Description</CardTitle>
+              <CardTitle>Deskripsi Laporan</CardTitle>
               <CardDescription>
-                Citizen report information submitted through the public form.
+                Informasi laporan yang dikirim masyarakat melalui form publik.
               </CardDescription>
             </CardHeader>
 
@@ -129,17 +129,17 @@ export default async function AdminAssetClassificationDetailPage({
           </Card>
 
           <PhotoCard
-            title="Citizen Photo Evidence"
-            description="Initial photos uploaded by the citizen."
+            title="Foto Bukti Masyarakat"
+            description="Foto awal yang diunggah oleh pelapor."
             photos={reportPhotos}
-            emptyText="No citizen photos uploaded."
+            emptyText="Belum ada foto dari pelapor."
           />
 
           <Card>
             <CardHeader>
-              <CardTitle>Verification Result</CardTitle>
+              <CardTitle>Hasil Verifikasi</CardTitle>
               <CardDescription>
-                Field verification submitted by the hamlet head.
+                Verifikasi lapangan yang dikirim oleh kepala dusun.
               </CardDescription>
             </CardHeader>
 
@@ -147,7 +147,7 @@ export default async function AdminAssetClassificationDetailPage({
               {!verification ? (
                 <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-6 text-center">
                   <p className="text-sm font-medium text-foreground">
-                    No verification data found
+                    Data verifikasi tidak ditemukan
                   </p>
                 </div>
               ) : (
@@ -158,8 +158,8 @@ export default async function AdminAssetClassificationDetailPage({
                       <div>
                         <p className="font-semibold">
                           {verification.is_valid
-                            ? "Verified as valid"
-                            : "Verified as invalid"}
+                            ? "Terverifikasi valid"
+                            : "Terverifikasi tidak valid"}
                         </p>
                         <p className="mt-1 whitespace-pre-line">
                           {verification.verification_note}
@@ -169,10 +169,10 @@ export default async function AdminAssetClassificationDetailPage({
                   </div>
 
                   <PhotoCard
-                    title="Verification Photos"
-                    description="Field photos uploaded by the hamlet head."
+                    title="Foto Verifikasi"
+                    description="Foto lapangan yang diunggah oleh kepala dusun."
                     photos={verificationPhotos}
-                    emptyText="No verification photos uploaded."
+                    emptyText="Belum ada foto verifikasi."
                   />
                 </div>
               )}
@@ -181,9 +181,9 @@ export default async function AdminAssetClassificationDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Location</CardTitle>
+              <CardTitle>Lokasi</CardTitle>
               <CardDescription>
-                Coordinate submitted by the citizen.
+                Koordinat lokasi yang dikirim oleh pelapor.
               </CardDescription>
             </CardHeader>
 
@@ -196,7 +196,7 @@ export default async function AdminAssetClassificationDetailPage({
 
                   <div>
                     <p className="text-sm font-semibold text-foreground">
-                      Report coordinate
+                      Koordinat laporan
                     </p>
 
                     <p className="mt-1 text-sm text-muted-foreground">
@@ -213,7 +213,7 @@ export default async function AdminAssetClassificationDetailPage({
                       rel="noreferrer"
                       className="mt-3 inline-flex text-sm font-semibold text-primary hover:text-primary-700"
                     >
-                      Open in Google Maps
+                      Buka di Google Maps
                     </a>
                   </div>
                 </div>
@@ -236,29 +236,29 @@ export default async function AdminAssetClassificationDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Current Classification</CardTitle>
+              <CardTitle>Klasifikasi Saat Ini</CardTitle>
               <CardDescription>
-                Existing classification data on this report.
+                Data klasifikasi yang saat ini tersimpan pada laporan.
               </CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-4">
-              <InfoRow label="Category" value={categoryName} />
-              <InfoRow label="Hamlet" value={hamletName} />
+              <InfoRow label="Kategori" value={categoryName} />
+              <InfoRow label="Dusun" value={hamletName} />
               <InfoRow
-                label="Asset status"
+                label="Status aset"
                 value={formatEnum(report.asset_status)}
               />
               <InfoRow
-                label="Authority level"
+                label="Level kewenangan"
                 value={formatEnum(report.authority_level)}
               />
               <InfoRow
-                label="Follow-up type"
+                label="Jenis tindak lanjut"
                 value={formatEnum(report.follow_up_type)}
               />
               <InfoRow
-                label="Assigned section"
+                label="Seksi tujuan"
                 value={getSectionName(
                   villageSections,
                   report.assigned_section_id
@@ -269,16 +269,16 @@ export default async function AdminAssetClassificationDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Reporter</CardTitle>
+              <CardTitle>Pelapor</CardTitle>
               <CardDescription>
-                Citizen account that submitted this report.
+                Akun masyarakat yang mengirim laporan ini.
               </CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-4">
               <InfoRow
                 icon={<User className="h-4 w-4" />}
-                label="Name"
+                label="Nama"
                 value={reporter?.full_name ?? "-"}
               />
 
@@ -290,7 +290,7 @@ export default async function AdminAssetClassificationDetailPage({
 
               <InfoRow
                 icon={<Phone className="h-4 w-4" />}
-                label="Phone"
+                label="Nomor HP"
                 value={reporter?.phone_number ?? "-"}
               />
             </CardContent>
@@ -341,7 +341,7 @@ function PhotoCard({
                   />
                 ) : (
                   <div className="flex h-56 items-center justify-center text-sm text-muted-foreground">
-                    Image unavailable
+                    Gambar tidak tersedia
                   </div>
                 )}
               </div>
@@ -399,8 +399,20 @@ function getSectionName(
 function formatEnum(value: string | null) {
   if (!value) return "-";
 
-  return value
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const labels: Record<string, string> = {
+    aset_desa: "Aset Desa",
+    bukan_aset_desa: "Bukan Aset Desa",
+    belum_diketahui: "Belum Diketahui",
+    desa: "Desa",
+    kabupaten_kota: "Kabupaten/Kota",
+    provinsi: "Provinsi",
+    nasional: "Nasional",
+    ditangani_desa: "Ditangani Desa",
+    diteruskan_ke_dinas: "Diteruskan ke Dinas",
+    diusulkan_musrenbang: "Diusulkan Musrenbang",
+    menunggu_anggaran: "Menunggu Anggaran",
+    belum_ditentukan: "Belum Ditentukan",
+  };
+
+  return labels[value] ?? value.replaceAll("_", " ");
 }

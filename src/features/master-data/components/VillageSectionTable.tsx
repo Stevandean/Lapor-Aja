@@ -16,11 +16,11 @@ export function VillageSectionTable({ sections }: VillageSectionTableProps) {
         </div>
 
         <h3 className="mt-4 text-sm font-semibold text-foreground">
-          No village sections found
+          Belum ada seksi desa
         </h3>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          Add village sections to assign village-handled reports to Kasi.
+          Tambahkan seksi desa untuk menugaskan laporan internal kepada Kasi.
         </p>
       </div>
     );
@@ -32,11 +32,11 @@ export function VillageSectionTable({ sections }: VillageSectionTableProps) {
         <table className="w-full min-w-[850px] text-left text-sm">
           <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
-              <th className="px-5 py-4 font-semibold">Section</th>
-              <th className="px-5 py-4 font-semibold">Code</th>
-              <th className="px-5 py-4 font-semibold">Description</th>
+              <th className="px-5 py-4 font-semibold">Seksi</th>
+              <th className="px-5 py-4 font-semibold">Kode</th>
+              <th className="px-5 py-4 font-semibold">Deskripsi</th>
               <th className="px-5 py-4 font-semibold">Status</th>
-              <th className="px-5 py-4 font-semibold text-right">Action</th>
+              <th className="px-5 py-4 font-semibold text-right">Aksi</th>
             </tr>
           </thead>
 
@@ -70,7 +70,7 @@ export function VillageSectionTable({ sections }: VillageSectionTableProps) {
                         : "bg-muted text-muted-foreground border-border"
                     }
                   >
-                    {section.is_active ? "Active" : "Inactive"}
+                    {section.is_active ? "Aktif" : "Nonaktif"}
                   </Badge>
                 </td>
 
@@ -104,7 +104,7 @@ export function VillageSectionTable({ sections }: VillageSectionTableProps) {
                     : "bg-muted text-muted-foreground border-border"
                 }
               >
-                {section.is_active ? "Active" : "Inactive"}
+                {section.is_active ? "Aktif" : "Nonaktif"}
               </Badge>
             </div>
 

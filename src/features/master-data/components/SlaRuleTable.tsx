@@ -37,10 +37,10 @@ const initialState: ActionState = {
 };
 
 const PRIORITY_LABELS: Record<Priority, string> = {
-  rendah: "Low",
-  sedang: "Medium",
-  tinggi: "High",
-  darurat: "Emergency",
+  rendah: "Rendah",
+  sedang: "Sedang",
+  tinggi: "Tinggi",
+  darurat: "Darurat",
 };
 
 export function SlaRuleTable({ rules }: SlaRuleTableProps) {
@@ -52,11 +52,11 @@ export function SlaRuleTable({ rules }: SlaRuleTableProps) {
         </div>
 
         <p className="mt-4 text-sm font-semibold text-foreground">
-          No SLA rules found
+          Belum ada aturan SLA
         </p>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          Please seed the default SLA rules in Supabase first.
+          Jalankan data awal aturan SLA di Supabase terlebih dahulu.
         </p>
       </div>
     );
@@ -68,12 +68,12 @@ export function SlaRuleTable({ rules }: SlaRuleTableProps) {
         <table className="w-full min-w-[900px] text-left text-sm">
           <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
-              <th className="px-5 py-4 font-semibold">Priority</th>
-              <th className="px-5 py-4 font-semibold">Verification</th>
-              <th className="px-5 py-4 font-semibold">Resolution</th>
-              <th className="px-5 py-4 font-semibold">Description</th>
+              <th className="px-5 py-4 font-semibold">Prioritas</th>
+              <th className="px-5 py-4 font-semibold">Verifikasi</th>
+              <th className="px-5 py-4 font-semibold">Penyelesaian</th>
+              <th className="px-5 py-4 font-semibold">Deskripsi</th>
               <th className="px-5 py-4 font-semibold">Status</th>
-              <th className="px-5 py-4 text-right font-semibold">Action</th>
+              <th className="px-5 py-4 text-right font-semibold">Aksi</th>
             </tr>
           </thead>
 
@@ -139,11 +139,11 @@ export function SlaRuleTable({ rules }: SlaRuleTableProps) {
 
             <div className="grid grid-cols-2 gap-3 rounded-xl border border-border bg-muted/30 p-3 text-sm">
               <InfoItem
-                label="Verification"
+                label="Verifikasi"
                 value={formatHours(rule.verification_hours)}
               />
               <InfoItem
-                label="Resolution"
+                label="Penyelesaian"
                 value={formatHours(rule.resolution_hours)}
               />
             </div>
@@ -172,7 +172,7 @@ function SlaRuleEditModal({ rule }: { rule: SlaRule }) {
 
     if (state.status === "success") {
       toast.success(state.message);
-      setOpen(false);
+      setTimeout(() => setOpen(false), 0);
     }
 
     if (state.status === "error") {
@@ -195,14 +195,14 @@ function SlaRuleEditModal({ rule }: { rule: SlaRule }) {
       <Modal
         open={open}
         onOpenChange={setOpen}
-        title="Edit SLA Rule"
-        description="Update verification and resolution time limits for this priority."
+        title="Edit Aturan SLA"
+        description="Perbarui batas waktu verifikasi dan penyelesaian untuk prioritas ini."
       >
         <form action={action} className="space-y-5">
           <input type="hidden" name="rule_id" value={rule.id} />
 
           <div className="rounded-2xl border border-info-100 bg-info-50 p-4 text-sm text-info-700">
-            Priority:{" "}
+            Prioritas:{" "}
             <span className="font-semibold">
               {PRIORITY_LABELS[rule.priority] ?? rule.priority}
             </span>
@@ -214,7 +214,7 @@ function SlaRuleEditModal({ rule }: { rule: SlaRule }) {
                 className="form-label"
                 htmlFor={`verification-${rule.id}`}
               >
-                Verification Hours
+                Jam Verifikasi
               </label>
 
               <Input
@@ -229,7 +229,7 @@ function SlaRuleEditModal({ rule }: { rule: SlaRule }) {
 
             <div>
               <label className="form-label" htmlFor={`resolution-${rule.id}`}>
-                Resolution Hours
+                Jam Penyelesaian
               </label>
 
               <Input
@@ -245,7 +245,7 @@ function SlaRuleEditModal({ rule }: { rule: SlaRule }) {
 
           <div>
             <label className="form-label" htmlFor={`description-${rule.id}`}>
-              Description
+              Deskripsi
             </label>
 
             <Textarea
@@ -263,11 +263,11 @@ function SlaRuleEditModal({ rule }: { rule: SlaRule }) {
               onClick={() => setOpen(false)}
               disabled={isPending}
             >
-              Cancel
+              Batal
             </Button>
 
             <Button type="submit" disabled={isPending}>
-              {isPending ? "Saving..." : "Save Changes"}
+              {isPending ? "Menyimpan..." : "Simpan Perubahan"}
             </Button>
           </div>
         </form>
@@ -304,7 +304,7 @@ function SlaRuleStatusButton({ rule }: { rule: SlaRule }) {
       />
 
       <Button type="submit" variant="outline" size="sm" disabled={isPending}>
-        {rule.is_active ? "Deactivate" : "Activate"}
+        {rule.is_active ? "Nonaktifkan" : "Aktifkan"}
       </Button>
     </form>
   );
@@ -315,7 +315,7 @@ function StatusBadge({ isActive }: { isActive: boolean }) {
     return (
       <Badge className="bg-success-50 text-success-700">
         <CircleCheck className="mr-1 h-3.5 w-3.5" />
-        Active
+        Aktif
       </Badge>
     );
   }
@@ -323,7 +323,7 @@ function StatusBadge({ isActive }: { isActive: boolean }) {
   return (
     <Badge className="bg-danger-50 text-danger-700">
       <CircleX className="mr-1 h-3.5 w-3.5" />
-      Inactive
+      Nonaktif
     </Badge>
   );
 }
@@ -339,8 +339,8 @@ function InfoItem({ label, value }: { label: string; value: string }) {
 
 function formatHours(hours: number) {
   if (hours % 24 === 0) {
-    return `${hours / 24} day${hours / 24 > 1 ? "s" : ""}`;
+    return `${hours / 24} hari`;
   }
 
-  return `${hours} hour${hours > 1 ? "s" : ""}`;
+  return `${hours} jam`;
 }

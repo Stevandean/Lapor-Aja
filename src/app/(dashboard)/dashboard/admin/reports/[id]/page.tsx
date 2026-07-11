@@ -108,7 +108,7 @@ export default async function AdminReportDetailPage({
           className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to reports
+          Kembali ke laporan
         </Link>
 
         <div className="mt-5 flex flex-col justify-between gap-4 lg:flex-row lg:items-start">
@@ -122,7 +122,7 @@ export default async function AdminReportDetailPage({
             </h1>
 
             <p className="mt-2 text-sm text-muted-foreground">
-              Submitted on {formatDateTime(report.created_at)}
+              Dikirim pada {formatDateTime(report.created_at)}
             </p>
           </div>
 
@@ -147,9 +147,9 @@ export default async function AdminReportDetailPage({
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Report Description</CardTitle>
+              <CardTitle>Deskripsi Laporan</CardTitle>
               <CardDescription>
-                Detailed information submitted by the citizen.
+                Informasi detail yang dikirim oleh masyarakat.
               </CardDescription>
             </CardHeader>
 
@@ -162,10 +162,10 @@ export default async function AdminReportDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Status Timeline</CardTitle>
+              <CardTitle>Linimasa Status</CardTitle>
               <CardDescription>
-                Real status history of this report from submission to the latest handling
-                process.
+                Riwayat status laporan dari pengiriman awal sampai proses
+                penanganan terbaru.
               </CardDescription>
             </CardHeader>
 
@@ -176,9 +176,9 @@ export default async function AdminReportDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Photo Evidence</CardTitle>
+              <CardTitle>Foto Bukti</CardTitle>
               <CardDescription>
-                Uploaded photos submitted as evidence for this report.
+                Foto yang diunggah sebagai bukti laporan.
               </CardDescription>
             </CardHeader>
 
@@ -186,10 +186,10 @@ export default async function AdminReportDetailPage({
               {photos.length === 0 ? (
                 <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-8 text-center">
                   <p className="text-sm font-medium text-foreground">
-                    No photos uploaded
+                    Belum ada foto yang diunggah
                   </p>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Photo evidence will appear here after upload.
+                    Foto bukti akan muncul di sini setelah diunggah.
                   </p>
                 </div>
               ) : (
@@ -202,14 +202,14 @@ export default async function AdminReportDetailPage({
                       {photo.signedUrl ? (
                         <Image
                           src={photo.signedUrl}
-                          alt="Report evidence"
+                          alt="Bukti laporan"
                           width={800}
                           height={600}
                           className="h-56 w-full object-cover"
                         />
                       ) : (
                         <div className="flex h-56 items-center justify-center text-sm text-muted-foreground">
-                          Image unavailable
+                          Gambar tidak tersedia
                         </div>
                       )}
                     </div>
@@ -222,9 +222,9 @@ export default async function AdminReportDetailPage({
           {report.agency ? (
             <Card>
               <CardHeader>
-                <CardTitle>Forwarded Agency</CardTitle>
+                <CardTitle>Instansi Tujuan</CardTitle>
                 <CardDescription>
-                  Target agency selected for this forwarded report.
+                  Instansi tujuan yang dipilih untuk laporan yang diteruskan.
                 </CardDescription>
               </CardHeader>
 
@@ -242,7 +242,7 @@ export default async function AdminReportDetailPage({
 
                   <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
                     <InfoItem
-                      label="Contact Person"
+                      label="Kontak"
                       value={
                         getAgencyValue(
                           report.agency as AgencyRelation,
@@ -252,7 +252,7 @@ export default async function AdminReportDetailPage({
                     />
 
                     <InfoItem
-                      label="Phone"
+                      label="Telepon"
                       value={
                         getAgencyValue(report.agency as AgencyRelation, "phone") ?? "-"
                       }
@@ -266,7 +266,7 @@ export default async function AdminReportDetailPage({
                     />
 
                     <InfoItem
-                      label="Address"
+                      label="Alamat"
                       value={
                         getAgencyValue(report.agency as AgencyRelation, "address") ?? "-"
                       }
@@ -279,10 +279,10 @@ export default async function AdminReportDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Field Verification Result</CardTitle>
+              <CardTitle>Hasil Verifikasi Lapangan</CardTitle>
               <CardDescription>
-                Verification result submitted by the hamlet head after checking the report
-                location.
+                Hasil verifikasi dari kepala dusun setelah mengecek lokasi
+                laporan.
               </CardDescription>
             </CardHeader>
 
@@ -294,12 +294,12 @@ export default async function AdminReportDetailPage({
                   </div>
 
                   <p className="mt-4 text-sm font-medium text-foreground">
-                    No verification result yet
+                    Belum ada hasil verifikasi
                   </p>
 
                   <p className="mt-2 text-sm text-muted-foreground">
-                    The verification result will appear here after the hamlet head
-                    completes field verification.
+                    Hasil verifikasi akan muncul setelah kepala dusun
+                    menyelesaikan verifikasi lapangan.
                   </p>
                 </div>
               ) : (
@@ -321,12 +321,13 @@ export default async function AdminReportDetailPage({
                       <div>
                         <p className="font-semibold">
                           {verification.is_valid
-                            ? "Verified as valid"
-                            : "Verified as invalid"}
+                            ? "Terverifikasi valid"
+                            : "Terverifikasi tidak valid"}
                         </p>
 
                         <p className="mt-1 text-sm">
-                          Verified on {formatDateTime(verification.created_at)}
+                          Diverifikasi pada{" "}
+                          {formatDateTime(verification.created_at)}
                         </p>
 
                         <p className="mt-3 whitespace-pre-line">
@@ -339,13 +340,13 @@ export default async function AdminReportDetailPage({
                   {verificationPhotos.length === 0 ? (
                     <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-6 text-center">
                       <p className="text-sm font-medium text-foreground">
-                        No verification photos uploaded
+                        Belum ada foto verifikasi
                       </p>
                     </div>
                   ) : (
                     <div>
                       <p className="mb-3 text-sm font-semibold text-foreground">
-                        Verification Photos
+                        Foto Verifikasi
                       </p>
 
                       <div className="grid gap-4 sm:grid-cols-2">
@@ -357,14 +358,14 @@ export default async function AdminReportDetailPage({
                             {photo.signedUrl ? (
                               <Image
                                 src={photo.signedUrl}
-                                alt="Verification evidence"
+                                alt="Bukti verifikasi"
                                 width={800}
                                 height={600}
                                 className="h-56 w-full object-cover"
                               />
                             ) : (
                               <div className="flex h-56 items-center justify-center text-sm text-muted-foreground">
-                                Image unavailable
+                                Gambar tidak tersedia
                               </div>
                             )}
                           </div>
@@ -404,9 +405,9 @@ export default async function AdminReportDetailPage({
           {report.status === "forwarded_to_agency" ? (
             <Card>
               <CardHeader>
-                <CardTitle>Official Letter</CardTitle>
+                <CardTitle>Surat Resmi</CardTitle>
                 <CardDescription>
-                  Generate an official letter for the selected target agency.
+                  Buat surat resmi untuk instansi tujuan yang dipilih.
                 </CardDescription>
               </CardHeader>
 
@@ -430,16 +431,16 @@ export default async function AdminReportDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Reporter</CardTitle>
+              <CardTitle>Pelapor</CardTitle>
               <CardDescription>
-                Citizen account that submitted this report.
+                Akun masyarakat yang mengirim laporan ini.
               </CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-4">
               <InfoRow
                 icon={<User className="h-4 w-4" />}
-                label="Name"
+                label="Nama"
                 value={reporter?.full_name ?? "-"}
               />
 
@@ -451,7 +452,7 @@ export default async function AdminReportDetailPage({
 
               <InfoRow
                 icon={<Phone className="h-4 w-4" />}
-                label="Phone"
+                label="Nomor HP"
                 value={reporter?.phone_number ?? "-"}
               />
             </CardContent>
@@ -459,22 +460,22 @@ export default async function AdminReportDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Classification</CardTitle>
+              <CardTitle>Klasifikasi</CardTitle>
               <CardDescription>
-                These fields will be completed by the village admin.
+                Data klasifikasi yang dilengkapi oleh admin desa.
               </CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-4">
-              <InfoItem label="Category" value={categoryName} />
-              <InfoItem label="Hamlet" value={hamletName} />
-              <InfoItem label="Asset status" value={formatEnum(report.asset_status)} />
+              <InfoItem label="Kategori" value={categoryName} />
+              <InfoItem label="Dusun" value={hamletName} />
+              <InfoItem label="Status aset" value={formatEnum(report.asset_status)} />
               <InfoItem
-                label="Authority level"
+                label="Level kewenangan"
                 value={formatEnum(report.authority_level)}
               />
               <InfoRow
-                label="Follow-up type"
+                label="Jenis tindak lanjut"
                 value={formatEnum(report.follow_up_type)}
               />
             </CardContent>
@@ -482,17 +483,17 @@ export default async function AdminReportDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>SLA Information</CardTitle>
+              <CardTitle>Informasi SLA</CardTitle>
               <CardDescription>
-                SLA will be calculated after admin review.
+                SLA dihitung setelah laporan ditinjau oleh admin.
               </CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-4">
-              <InfoRow label="SLA status" value={formatEnum(effectiveSlaStatus)} />
+              <InfoRow label="Status SLA" value={formatEnum(effectiveSlaStatus)} />
               <InfoRow
                 icon={<CalendarDays className="h-4 w-4" />}
-                label="Verification due"
+                label="Batas verifikasi"
                 value={
                   report.verification_due_at
                     ? formatDateTime(report.verification_due_at)
@@ -501,7 +502,7 @@ export default async function AdminReportDetailPage({
               />
               <InfoRow
                 icon={<CalendarDays className="h-4 w-4" />}
-                label="Resolution due"
+                label="Batas penyelesaian"
                 value={
                   report.resolution_due_at
                     ? formatDateTime(report.resolution_due_at)
@@ -563,10 +564,27 @@ function getReporter(
 function formatEnum(value: string | null) {
   if (!value) return "-";
 
-  return value
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const labels: Record<string, string> = {
+    aset_desa: "Aset Desa",
+    bukan_aset_desa: "Bukan Aset Desa",
+    belum_diketahui: "Belum Diketahui",
+    desa: "Desa",
+    kabupaten_kota: "Kabupaten/Kota",
+    provinsi: "Provinsi",
+    nasional: "Nasional",
+    ditangani_desa: "Ditangani Desa",
+    diteruskan_ke_dinas: "Diteruskan ke Dinas",
+    diusulkan_musrenbang: "Diusulkan Musrenbang",
+    menunggu_anggaran: "Menunggu Anggaran",
+    belum_ditentukan: "Belum Ditentukan",
+    on_time: "Tepat Waktu",
+    at_risk: "Berisiko",
+    overdue: "Terlambat",
+    paused: "Dijeda",
+    completed: "Selesai",
+  };
+
+  return labels[value] ?? value.replaceAll("_", " ");
 }
 
 function formatDateTime(date: string) {

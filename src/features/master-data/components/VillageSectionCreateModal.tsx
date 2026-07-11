@@ -30,7 +30,7 @@ export function VillageSectionCreateModal() {
     if (state.status === "success") {
       toast.success(state.message);
       formRef.current?.reset();
-      setOpen(false);
+      setTimeout(() => setOpen(false), 0);
     }
 
     if (state.status === "error") {
@@ -42,19 +42,19 @@ export function VillageSectionCreateModal() {
     <>
       <Button type="button" onClick={() => setOpen(true)}>
         <PlusCircle className="mr-2 h-4 w-4" />
-        Add Section
+        Tambah Seksi
       </Button>
 
       <Modal
         open={open}
         onOpenChange={setOpen}
-        title="Add Village Section"
-        description="Create an internal village section used for assigning village-handled reports to Kasi."
+        title="Tambah Seksi Desa"
+        description="Buat seksi internal desa untuk menugaskan laporan yang ditangani desa kepada Kasi."
       >
         <form ref={formRef} action={action} className="space-y-5">
           <div>
             <label className="form-label" htmlFor="name">
-              Section Name
+              Nama Seksi
             </label>
 
             <Input
@@ -67,7 +67,7 @@ export function VillageSectionCreateModal() {
 
           <div>
             <label className="form-label" htmlFor="code">
-              Code
+              Kode
             </label>
 
             <Input
@@ -79,13 +79,13 @@ export function VillageSectionCreateModal() {
 
           <div>
             <label className="form-label" htmlFor="description">
-              Description
+              Deskripsi
             </label>
 
             <Textarea
               id="description"
               name="description"
-              placeholder="Briefly describe the responsibility of this section."
+              placeholder="Jelaskan singkat tanggung jawab seksi ini."
               rows={4}
             />
           </div>
@@ -97,11 +97,11 @@ export function VillageSectionCreateModal() {
               onClick={() => setOpen(false)}
               disabled={isPending}
             >
-              Cancel
+              Batal
             </Button>
 
             <Button type="submit" disabled={isPending}>
-              {isPending ? "Creating..." : "Create Section"}
+              {isPending ? "Membuat..." : "Buat Seksi"}
             </Button>
           </div>
         </form>

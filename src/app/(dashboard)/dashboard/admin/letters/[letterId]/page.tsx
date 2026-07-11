@@ -27,14 +27,14 @@ export default async function AdminLetterDetailPage({
     <div className="space-y-6">
       <section className="flex flex-col justify-between gap-4 print:hidden lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-semibold text-primary">Official Letter</p>
+          <p className="text-sm font-semibold text-primary">Surat Resmi</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Letter Preview
+            Pratinjau Surat
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Review the generated letter draft before printing or saving it as
+            Tinjau draf surat yang dibuat sebelum dicetak atau disimpan sebagai
             PDF.
           </p>
         </div>
@@ -43,7 +43,7 @@ export default async function AdminLetterDetailPage({
           <Link href="/dashboard/admin/letters">
             <Button variant="outline">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Letters
+              Kembali ke Surat
             </Button>
           </Link>
 
@@ -64,7 +64,7 @@ export default async function AdminLetterDetailPage({
           </p>
 
           <p className="mt-1 text-sm">
-            Sistem Lapor Aja - Village Reporting System
+            Sistem Lapor Aja - Sistem Pelaporan Desa
           </p>
 
           <p className="mt-1 text-xs text-slate-600">
@@ -90,7 +90,7 @@ export default async function AdminLetterDetailPage({
         </section>
 
         <section className="mt-8 whitespace-pre-wrap text-sm leading-8">
-          {letter.body || "Letter body is not available."}
+          {letter.body || "Isi surat tidak tersedia."}
         </section>
 
         <section className="mt-12 flex justify-end">
@@ -109,10 +109,13 @@ export default async function AdminLetterDetailPage({
 }
 
 function formatEnum(value: string) {
-  return value
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const labels: Record<string, string> = {
+    draft: "Draf",
+    final: "Final",
+    sent: "Terkirim",
+  };
+
+  return labels[value] ?? value.replaceAll("_", " ");
 }
 
 function formatDate(date: string) {

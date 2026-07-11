@@ -79,29 +79,29 @@ export function VillageAnalyticsCharts({
   return (
     <section className="grid gap-6 xl:grid-cols-2">
       <ChartCard
-        title="Status Distribution"
-        description="Shows how reports are distributed across workflow status."
+        title="Distribusi Status"
+        description="Menampilkan sebaran laporan berdasarkan status alur."
       >
         <PieChartBox data={statusData} total={total} />
       </ChartCard>
 
       <ChartCard
-        title="Priority Distribution"
-        description="Shows how many reports are low, medium, high, or emergency."
+        title="Distribusi Prioritas"
+        description="Menampilkan jumlah laporan rendah, sedang, tinggi, atau darurat."
       >
         <PieChartBox data={priorityData} total={total} />
       </ChartCard>
 
       <ChartCard
-        title="Top Report Categories"
-        description="Shows which public issues appear most frequently."
+        title="Kategori Laporan Teratas"
+        description="Menampilkan jenis masalah masyarakat yang paling sering muncul."
       >
         <HorizontalBarChartBox data={categoryData} />
       </ChartCard>
 
       <ChartCard
-        title="Reports by Hamlet"
-        description="Shows report distribution across hamlets."
+        title="Laporan Berdasarkan Dusun"
+        description="Menampilkan distribusi laporan di tiap dusun."
       >
         <HorizontalBarChartBox data={hamletData} />
       </ChartCard>
@@ -234,7 +234,7 @@ function ChartLegend({
                 {item.label}
               </p>
               <p className="text-xs text-muted-foreground">
-                {item.count} report • {percentage}%
+                {item.count} laporan - {percentage}%
               </p>
             </div>
           </div>
@@ -268,13 +268,13 @@ function ChartTooltip({
   const label = item.payload?.label ?? item.name ?? "-";
   const count = Number(item.value ?? item.payload?.count ?? 0);
   const percentage =
-    total && total > 0 ? ` • ${Math.round((count / total) * 100)}%` : "";
+    total && total > 0 ? ` - ${Math.round((count / total) * 100)}%` : "";
 
   return (
     <div className="rounded-xl border border-border bg-card px-3 py-2 shadow-lg">
       <p className="text-sm font-semibold text-foreground">{label}</p>
       <p className="text-xs text-muted-foreground">
-        {count} report{count > 1 ? "s" : ""}
+        {count} laporan
         {percentage}
       </p>
     </div>
@@ -285,9 +285,9 @@ function EmptyChart() {
   return (
     <div className="flex h-[280px] items-center justify-center rounded-2xl border border-dashed border-border bg-muted/40 text-center">
       <div>
-        <p className="text-sm font-medium text-foreground">No chart data</p>
+        <p className="text-sm font-medium text-foreground">Belum ada data chart</p>
         <p className="mt-2 text-sm text-muted-foreground">
-          Charts will appear after reports are submitted.
+          Chart akan muncul setelah laporan dikirim.
         </p>
       </div>
     </div>

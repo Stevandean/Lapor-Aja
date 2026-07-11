@@ -37,11 +37,12 @@ export function DusunTable({ dusuns }: DusunTableProps) {
     return (
       <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-10 text-center">
         <p className="text-sm font-semibold text-foreground">
-          No dusuns found
+          Belum ada dusun
         </p>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          Add the first dusun to support report assignment by area.
+          Tambahkan dusun pertama untuk mendukung penugasan laporan berdasarkan
+          wilayah.
         </p>
       </div>
     );
@@ -54,10 +55,10 @@ export function DusunTable({ dusuns }: DusunTableProps) {
           <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
               <th className="px-5 py-4 font-semibold">Dusun</th>
-              <th className="px-5 py-4 font-semibold">Description</th>
+              <th className="px-5 py-4 font-semibold">Deskripsi</th>
               <th className="px-5 py-4 font-semibold">Status</th>
-              <th className="px-5 py-4 font-semibold">Updated</th>
-              <th className="px-5 py-4 text-right font-semibold">Action</th>
+              <th className="px-5 py-4 font-semibold">Diperbarui</th>
+              <th className="px-5 py-4 text-right font-semibold">Aksi</th>
             </tr>
           </thead>
 
@@ -127,7 +128,7 @@ function DusunEditModal({ dusun }: { dusun: Dusun }) {
 
     if (state.status === "success") {
       toast.success(state.message);
-      setOpen(false);
+      setTimeout(() => setOpen(false), 0);
     }
 
     if (state.status === "error") {
@@ -151,14 +152,14 @@ function DusunEditModal({ dusun }: { dusun: Dusun }) {
         open={open}
         onOpenChange={setOpen}
         title="Edit Dusun"
-        description="Update dusun information."
+        description="Perbarui informasi dusun."
       >
         <form action={action} className="space-y-5">
           <input type="hidden" name="dusun_id" value={dusun.id} />
 
           <div>
             <label className="form-label" htmlFor={`dusun-name-${dusun.id}`}>
-              Dusun Name
+              Nama Dusun
             </label>
 
             <Input
@@ -174,7 +175,7 @@ function DusunEditModal({ dusun }: { dusun: Dusun }) {
               className="form-label"
               htmlFor={`dusun-description-${dusun.id}`}
             >
-              Description
+              Deskripsi
             </label>
 
             <Textarea
@@ -192,11 +193,11 @@ function DusunEditModal({ dusun }: { dusun: Dusun }) {
               onClick={() => setOpen(false)}
               disabled={isPending}
             >
-              Cancel
+              Batal
             </Button>
 
             <Button type="submit" disabled={isPending}>
-              {isPending ? "Saving..." : "Save Changes"}
+              {isPending ? "Menyimpan..." : "Simpan Perubahan"}
             </Button>
           </div>
         </form>
@@ -233,7 +234,7 @@ function DusunStatusButton({ dusun }: { dusun: Dusun }) {
       />
 
       <Button type="submit" variant="outline" size="sm" disabled={isPending}>
-        {dusun.is_active ? "Deactivate" : "Activate"}
+        {dusun.is_active ? "Nonaktifkan" : "Aktifkan"}
       </Button>
     </form>
   );
@@ -244,7 +245,7 @@ function StatusBadge({ isActive }: { isActive: boolean }) {
     return (
       <Badge className="bg-success-50 text-success-700">
         <CircleCheck className="mr-1 h-3.5 w-3.5" />
-        Active
+        Aktif
       </Badge>
     );
   }
@@ -252,7 +253,7 @@ function StatusBadge({ isActive }: { isActive: boolean }) {
   return (
     <Badge className="bg-danger-50 text-danger-700">
       <CircleX className="mr-1 h-3.5 w-3.5" />
-      Inactive
+      Nonaktif
     </Badge>
   );
 }

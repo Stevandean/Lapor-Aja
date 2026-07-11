@@ -51,7 +51,7 @@ export function AdminFollowUpPanel({
 
   useEffect(() => {
     if (state.status === "success") {
-      toast.success("Success", {
+      toast.success("Berhasil", {
         description: state.message,
       });
 
@@ -59,7 +59,7 @@ export function AdminFollowUpPanel({
     }
 
     if (state.status === "error") {
-      toast.error("Failed", {
+      toast.error("Gagal", {
         description: state.message,
       });
     }
@@ -68,17 +68,18 @@ export function AdminFollowUpPanel({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Follow-up Action</CardTitle>
+        <CardTitle>Aksi Tindak Lanjut</CardTitle>
         <CardDescription>
-          Process this classified report based on the selected follow-up type.
+          Proses laporan yang sudah diklasifikasi berdasarkan jenis tindak
+          lanjut yang dipilih.
         </CardDescription>
       </CardHeader>
 
       <CardContent>
         {!canProcess && (
           <div className="rounded-2xl border border-muted bg-muted/40 p-4 text-sm leading-6 text-muted-foreground">
-            Follow-up action is only available for reports with classified
-            status.
+            Aksi tindak lanjut hanya tersedia untuk laporan dengan status sudah
+            diklasifikasi.
           </div>
         )}
 
@@ -87,7 +88,7 @@ export function AdminFollowUpPanel({
             <input type="hidden" name="report_id" value={reportId} />
 
             <div className="rounded-2xl border border-info-100 bg-info-50 p-4 text-sm leading-6 text-info-700">
-              Current follow-up type:{" "}
+              Jenis tindak lanjut saat ini:{" "}
               <span className="font-semibold">{formatEnum(followUpType)}</span>
             </div>
 
@@ -103,7 +104,7 @@ export function AdminFollowUpPanel({
                       className="form-label"
                       htmlFor={`agency-${reportId}`}
                     >
-                      Target Agency
+                      Instansi Tujuan
                     </label>
 
                     <select
@@ -114,7 +115,7 @@ export function AdminFollowUpPanel({
                       required
                       disabled={!agencyOptionsAvailable || isSubmitting}
                     >
-                      <option value="">Select target agency</option>
+                      <option value="">Pilih instansi tujuan</option>
 
                       {agencies.map((agency) => (
                         <option key={agency.id} value={agency.id}>
@@ -124,14 +125,14 @@ export function AdminFollowUpPanel({
                     </select>
 
                     <p className="mt-2 text-xs leading-5 text-muted-foreground">
-                      This field is required because the report will be forwarded
-                      to an external agency.
+                      Field ini wajib diisi karena laporan akan diteruskan ke
+                      instansi luar.
                     </p>
 
                     {!agencyOptionsAvailable ? (
                       <p className="mt-2 text-xs font-medium text-danger-700">
-                        No active agency is available. Please add an active
-                        agency in Master Data first.
+                        Belum ada instansi aktif. Tambahkan instansi aktif di
+                        Data Master terlebih dahulu.
                       </p>
                     ) : null}
                   </div>
@@ -147,7 +148,7 @@ export function AdminFollowUpPanel({
               className="w-full"
             >
               <ArrowRightCircle className="mr-2 h-4 w-4" />
-              {isSubmitting ? "Processing..." : "Process follow-up"}
+              {isSubmitting ? "Memproses..." : "Proses tindak lanjut"}
             </Button>
           </form>
         )}
@@ -157,8 +158,13 @@ export function AdminFollowUpPanel({
 }
 
 function formatEnum(value: string) {
-  return value
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const labels: Record<string, string> = {
+    ditangani_desa: "Ditangani Desa",
+    diteruskan_ke_dinas: "Diteruskan ke Dinas",
+    diusulkan_musrenbang: "Diusulkan Musrenbang",
+    menunggu_anggaran: "Menunggu Anggaran",
+    belum_ditentukan: "Belum Ditentukan",
+  };
+
+  return labels[value] ?? value.replaceAll("_", " ");
 }

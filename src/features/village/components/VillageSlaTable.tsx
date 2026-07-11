@@ -39,12 +39,11 @@ export function VillageSlaTable({ reports }: VillageSlaTableProps) {
         </div>
 
         <h3 className="mt-4 text-sm font-semibold text-foreground">
-          No SLA reports
+          Belum ada laporan SLA
         </h3>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          SLA monitoring data will appear after reports are submitted and
-          processed.
+          Data monitoring SLA akan muncul setelah laporan dikirim dan diproses.
         </p>
       </div>
     );
@@ -56,13 +55,13 @@ export function VillageSlaTable({ reports }: VillageSlaTableProps) {
         <table className="w-full min-w-[1050px] text-left text-sm">
           <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
-              <th className="px-5 py-4 font-semibold">Report</th>
-              <th className="px-5 py-4 font-semibold">Hamlet</th>
-              <th className="px-5 py-4 font-semibold">Priority</th>
-              <th className="px-5 py-4 font-semibold">Workflow Status</th>
-              <th className="px-5 py-4 font-semibold">SLA Status</th>
-              <th className="px-5 py-4 font-semibold">Verification Due</th>
-              <th className="px-5 py-4 font-semibold">Resolution Due</th>
+              <th className="px-5 py-4 font-semibold">Laporan</th>
+              <th className="px-5 py-4 font-semibold">Dusun</th>
+              <th className="px-5 py-4 font-semibold">Prioritas</th>
+              <th className="px-5 py-4 font-semibold">Status Alur</th>
+              <th className="px-5 py-4 font-semibold">Status SLA</th>
+              <th className="px-5 py-4 font-semibold">Batas Verifikasi</th>
+              <th className="px-5 py-4 font-semibold">Batas Penyelesaian</th>
             </tr>
           </thead>
 
@@ -144,13 +143,13 @@ export function VillageSlaTable({ reports }: VillageSlaTableProps) {
             </div>
 
             <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-              <InfoItem label="Hamlet" value={getRelationName(report.hamlet)} />
+              <InfoItem label="Dusun" value={getRelationName(report.hamlet)} />
               <InfoItem
-                label="Priority"
+                label="Prioritas"
                 value={REPORT_PRIORITY_LABELS[report.priority] ?? report.priority}
               />
               <InfoItem
-                label="Verification Due"
+                label="Batas Verifikasi"
                 value={
                   report.verification_due_at
                     ? formatDateTime(report.verification_due_at)
@@ -158,7 +157,7 @@ export function VillageSlaTable({ reports }: VillageSlaTableProps) {
                 }
               />
               <InfoItem
-                label="Resolution Due"
+                label="Batas Penyelesaian"
                 value={
                   report.resolution_due_at
                     ? formatDateTime(report.resolution_due_at)
@@ -175,18 +174,18 @@ export function VillageSlaTable({ reports }: VillageSlaTableProps) {
 
 function SlaBadge({ value }: { value: string | null }) {
   if (!value) {
-    return <Badge variant="muted">Not Set</Badge>;
+    return <Badge variant="muted">Belum Diatur</Badge>;
   }
 
   if (value === "on_time") {
-    return <Badge className="bg-success-50 text-success-700">On Time</Badge>;
+    return <Badge className="bg-success-50 text-success-700">Tepat Waktu</Badge>;
   }
 
   if (value === "at_risk") {
     return (
       <Badge className="bg-warning-50 text-warning-700">
         <AlertTriangle className="mr-1 h-3 w-3" />
-        At Risk
+        Berisiko
       </Badge>
     );
   }
@@ -195,20 +194,20 @@ function SlaBadge({ value }: { value: string | null }) {
     return (
       <Badge className="bg-danger-50 text-danger-700">
         <AlertTriangle className="mr-1 h-3 w-3" />
-        Overdue
+        Terlambat
       </Badge>
     );
   }
 
   if (value === "completed") {
-    return <Badge className="bg-info-50 text-info-700">Completed</Badge>;
+    return <Badge className="bg-info-50 text-info-700">Selesai</Badge>;
   }
 
   if (value === "paused_budget") {
     return (
       <Badge className="bg-warning-50 text-warning-700">
         <PauseCircle className="mr-1 h-3 w-3" />
-        Paused Budget
+        Jeda Anggaran
       </Badge>
     );
   }
@@ -217,7 +216,7 @@ function SlaBadge({ value }: { value: string | null }) {
     return (
       <Badge className="bg-slate-100 text-slate-700">
         <GitMerge className="mr-1 h-3 w-3" />
-        Merged
+        Digabung
       </Badge>
     );
   }

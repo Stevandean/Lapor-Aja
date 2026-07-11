@@ -27,7 +27,7 @@ export function DusunCreateModal() {
     if (state.status === "success") {
       toast.success(state.message);
       formRef.current?.reset();
-      setOpen(false);
+      setTimeout(() => setOpen(false), 0);
     }
 
     if (state.status === "error") {
@@ -39,38 +39,38 @@ export function DusunCreateModal() {
     <>
       <Button type="button" variant="outline" onClick={() => setOpen(true)}>
         <PlusCircle className="mr-2 h-4 w-4" />
-        Add Dusun
+        Tambah Dusun
       </Button>
 
       <Modal
         open={open}
         onOpenChange={setOpen}
-        title="Add Dusun"
-        description="Create a hamlet area used for report assignment and hamlet head access."
+        title="Tambah Dusun"
+        description="Buat wilayah dusun untuk penugasan laporan dan akses kepala dusun."
       >
         <form ref={formRef} action={action} className="space-y-5">
           <div>
             <label className="form-label" htmlFor="dusun-name">
-              Dusun Name
+              Nama Dusun
             </label>
 
             <Input
               id="dusun-name"
               name="name"
-              placeholder="Example: Dusun Krajan"
+              placeholder="Contoh: Dusun Krajan"
               required
             />
           </div>
 
           <div>
             <label className="form-label" htmlFor="dusun-description">
-              Description
+              Deskripsi
             </label>
 
             <Textarea
               id="dusun-description"
               name="description"
-              placeholder="Briefly describe this dusun area."
+              placeholder="Jelaskan singkat wilayah dusun ini."
               rows={4}
             />
           </div>
@@ -82,11 +82,11 @@ export function DusunCreateModal() {
               onClick={() => setOpen(false)}
               disabled={isPending}
             >
-              Cancel
+              Batal
             </Button>
 
             <Button type="submit" disabled={isPending}>
-              {isPending ? "Creating..." : "Create Dusun"}
+              {isPending ? "Membuat..." : "Buat Dusun"}
             </Button>
           </div>
         </form>

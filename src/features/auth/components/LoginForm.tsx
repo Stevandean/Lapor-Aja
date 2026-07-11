@@ -33,7 +33,7 @@ export default function LoginForm() {
 
     if (error) {
       setLoading(false);
-      toast.error("Login failed", {
+      toast.error("Login gagal", {
         description: translateAuthError(error.message),
       });
       return;
@@ -45,8 +45,8 @@ export default function LoginForm() {
       await supabase.auth.signOut();
 
       setLoading(false);
-      toast.error("Login failed", {
-        description: "User session could not be created.",
+      toast.error("Login gagal", {
+        description: "Sesi pengguna tidak dapat dibuat.",
       });
       return;
     }
@@ -61,9 +61,9 @@ export default function LoginForm() {
       await supabase.auth.signOut();
 
       setLoading(false);
-      toast.error("Login failed", {
+      toast.error("Login gagal", {
         description:
-          "Your profile could not be found. Please contact the administrator.",
+          "Profil Anda tidak ditemukan. Silakan hubungi administrator.",
       });
       return;
     }
@@ -72,15 +72,15 @@ export default function LoginForm() {
       await supabase.auth.signOut();
 
       setLoading(false);
-      toast.error("Account deactivated", {
+      toast.error("Akun dinonaktifkan", {
         description:
-          "Your account has been deactivated. Please contact the administrator.",
+          "Akun Anda telah dinonaktifkan. Silakan hubungi administrator.",
       });
       return;
     }
 
-    toast.success("Login successful", {
-      description: "Redirecting to your dashboard.",
+    toast.success("Login berhasil", {
+      description: "Mengalihkan ke dashboard Anda.",
     });
 
     const redirectParam = searchParams.get("redirect");
@@ -101,9 +101,9 @@ export default function LoginForm() {
     <form onSubmit={handleLogin} className="space-y-5">
       <div className="relative">
         <Input
-          label="Email address"
+          label="Alamat email"
           type="email"
-          placeholder="you@example.com"
+          placeholder="nama@email.com"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           required
@@ -114,9 +114,9 @@ export default function LoginForm() {
 
       <div className="relative">
         <Input
-          label="Password"
+          label="Kata sandi"
           type={showPassword ? "text" : "password"}
-          placeholder="Enter your password"
+          placeholder="Masukkan kata sandi"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           required
@@ -129,7 +129,9 @@ export default function LoginForm() {
           type="button"
           onClick={() => setShowPassword((current) => !current)}
           className="absolute right-3 top-[34px] rounded-md p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
-          aria-label={showPassword ? "Hide password" : "Show password"}
+          aria-label={
+            showPassword ? "Sembunyikan kata sandi" : "Tampilkan kata sandi"
+          }
         >
           {showPassword ? (
             <EyeOff className="h-4 w-4" />
@@ -140,7 +142,7 @@ export default function LoginForm() {
       </div>
 
       <Button type="submit" className="w-full" isLoading={loading}>
-        Sign in
+        Masuk
       </Button>
     </form>
   );
@@ -150,11 +152,11 @@ function translateAuthError(message: string) {
   const lowerMessage = message.toLowerCase();
 
   if (lowerMessage.includes("invalid login credentials")) {
-    return "Email or password is incorrect.";
+    return "Email atau kata sandi salah.";
   }
 
   if (lowerMessage.includes("email not confirmed")) {
-    return "Your email has not been confirmed.";
+    return "Email Anda belum dikonfirmasi.";
   }
 
   return message;

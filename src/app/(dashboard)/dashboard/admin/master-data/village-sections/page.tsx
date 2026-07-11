@@ -9,15 +9,15 @@ export default async function AdminVillageSectionsPage() {
     <div className="space-y-6">
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-semibold text-primary">Master Data</p>
+          <p className="text-sm font-semibold text-primary">Data Master</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Village Sections
+            Seksi Desa
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Manage internal village sections used to assign reports handled by
-            the village to the appropriate Kasi.
+            Kelola seksi internal desa yang digunakan untuk menugaskan laporan
+            yang ditangani desa kepada Kasi yang tepat.
           </p>
         </div>
 
@@ -27,12 +27,11 @@ export default async function AdminVillageSectionsPage() {
       <section className="space-y-4">
         <div>
           <h2 className="text-lg font-semibold text-foreground">
-            Section List
+            Daftar Seksi
           </h2>
 
           <p className="mt-1 text-sm text-muted-foreground">
-            Active sections can later be assigned to Kasi users and internal
-            village reports.
+            Seksi aktif dapat ditautkan ke akun Kasi dan laporan internal desa.
           </p>
         </div>
 

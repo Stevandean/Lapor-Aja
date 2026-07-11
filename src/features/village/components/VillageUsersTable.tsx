@@ -38,11 +38,11 @@ type VillageUsersTableProps = {
 
 const roleFilters = [
   {
-    label: "All Roles",
+    label: "Semua Role",
     value: "all",
   },
   {
-    label: "Public",
+    label: "Publik",
     value: "public",
   },
   {
@@ -69,15 +69,15 @@ const roleFilters = [
 
 const statusFilters = [
   {
-    label: "All Status",
+    label: "Semua Status",
     value: "all",
   },
   {
-    label: "Active",
+    label: "Aktif",
     value: "active",
   },
   {
-    label: "Inactive",
+    label: "Nonaktif",
     value: "inactive",
   },
 ];
@@ -131,7 +131,7 @@ export function VillageUsersTable({ users }: VillageUsersTableProps) {
           <div className="grid flex-1 gap-4 md:grid-cols-[1.5fr_1fr_1fr]">
             <div>
               <label className="form-label" htmlFor="user-search">
-                Search User
+                Cari Pengguna
               </label>
 
               <div className="relative">
@@ -139,7 +139,7 @@ export function VillageUsersTable({ users }: VillageUsersTableProps) {
                   id="user-search"
                   value={searchQuery}
                   onChange={(event) => setSearchQuery(event.target.value)}
-                  placeholder="Search by name, email, or phone"
+                  placeholder="Cari berdasarkan nama, email, atau nomor HP"
                   className="pl-10"
                 />
 
@@ -190,11 +190,11 @@ export function VillageUsersTable({ users }: VillageUsersTableProps) {
             <div className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-3 py-2 text-sm text-muted-foreground">
               <Filter className="h-4 w-4" />
               <span>
-                Showing{" "}
+                Menampilkan{" "}
                 <strong className="font-semibold text-foreground">
                   {filteredUsers.length}
                 </strong>{" "}
-                of{" "}
+                dari{" "}
                 <strong className="font-semibold text-foreground">
                   {users.length}
                 </strong>
@@ -225,14 +225,14 @@ export function VillageUsersTable({ users }: VillageUsersTableProps) {
             <table className="w-full min-w-[1000px] text-left text-sm">
               <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
                 <tr>
-                  <th className="px-5 py-4 font-semibold">User</th>
+                  <th className="px-5 py-4 font-semibold">Pengguna</th>
                   <th className="px-5 py-4 font-semibold">Role</th>
                   <th className="px-5 py-4 font-semibold">Status</th>
-                  <th className="px-5 py-4 font-semibold">Phone</th>
-                  <th className="px-5 py-4 font-semibold">Assignment</th>
-                  <th className="px-5 py-4 font-semibold">Registered</th>
+                  <th className="px-5 py-4 font-semibold">Nomor HP</th>
+                  <th className="px-5 py-4 font-semibold">Penugasan</th>
+                  <th className="px-5 py-4 font-semibold">Terdaftar</th>
                   <th className="px-5 py-4 text-right font-semibold">
-                    Action
+                    Aksi
                   </th>
                 </tr>
               </thead>
@@ -308,13 +308,13 @@ export function VillageUsersTable({ users }: VillageUsersTableProps) {
                 </div>
 
                 <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-                  <InfoItem label="Phone" value={user.phone_number ?? "-"} />
+                  <InfoItem label="Nomor HP" value={user.phone_number ?? "-"} />
                   <InfoItem
-                    label="Assignment"
+                    label="Penugasan"
                     value={getUserAssignment(user)}
                   />
                   <InfoItem
-                    label="Registered"
+                    label="Terdaftar"
                     value={formatDate(user.created_at)}
                   />
                 </div>
@@ -339,11 +339,11 @@ function EmptyUsersState() {
       </div>
 
       <h3 className="mt-4 text-sm font-semibold text-foreground">
-        No users found
+        Belum ada pengguna
       </h3>
 
       <p className="mt-2 text-sm text-muted-foreground">
-        User data will appear here after accounts are registered or created.
+        Data pengguna akan muncul di sini setelah akun terdaftar atau dibuat.
       </p>
     </div>
   );
@@ -357,15 +357,15 @@ function NoFilteredUsersState({ onReset }: { onReset: () => void }) {
       </div>
 
       <h3 className="mt-4 text-sm font-semibold text-foreground">
-        No matching users
+        Tidak ada pengguna yang cocok
       </h3>
 
       <p className="mt-2 text-sm text-muted-foreground">
-        Try changing the search keyword, role filter, or status filter.
+        Coba ubah kata kunci, filter role, atau filter status.
       </p>
 
       <Button type="button" variant="outline" onClick={onReset} className="mt-5">
-        Reset Filters
+        Reset Filter
       </Button>
     </div>
   );
@@ -378,7 +378,7 @@ function ManageLink({ userId }: { userId: string }) {
       className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground shadow-sm transition hover:bg-muted"
     >
       <Pencil className="h-3.5 w-3.5" />
-      Manage
+      Kelola
     </Link>
   );
 }
@@ -410,7 +410,7 @@ function RoleBadge({ role }: { role: string }) {
     );
   }
 
-  return <Badge variant="muted">Public</Badge>;
+  return <Badge variant="muted">Publik</Badge>;
 }
 
 function StatusBadge({ isActive }: { isActive: boolean }) {
@@ -418,7 +418,7 @@ function StatusBadge({ isActive }: { isActive: boolean }) {
     return (
       <Badge className="bg-success-50 text-success-700">
         <CircleCheck className="mr-1 h-3.5 w-3.5" />
-        Active
+        Aktif
       </Badge>
     );
   }
@@ -426,7 +426,7 @@ function StatusBadge({ isActive }: { isActive: boolean }) {
   return (
     <Badge className="bg-danger-50 text-danger-700">
       <CircleX className="mr-1 h-3.5 w-3.5" />
-      Inactive
+      Nonaktif
     </Badge>
   );
 }

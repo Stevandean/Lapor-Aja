@@ -155,7 +155,7 @@ export function AdminReportRelationsPanel({
 
   useEffect(() => {
     if (state.status === "success") {
-      toast.success("Success", {
+      toast.success("Berhasil", {
         description: state.message,
       });
 
@@ -163,7 +163,7 @@ export function AdminReportRelationsPanel({
     }
 
     if (state.status === "error") {
-      toast.error("Failed", {
+      toast.error("Gagal", {
         description: state.message,
       });
     }
@@ -171,7 +171,7 @@ export function AdminReportRelationsPanel({
 
   useEffect(() => {
     if (bulkState.status === "success") {
-      toast.success("Success", {
+      toast.success("Berhasil", {
         description: bulkState.message,
       });
 
@@ -179,7 +179,7 @@ export function AdminReportRelationsPanel({
     }
 
     if (bulkState.status === "error") {
-      toast.error("Failed", {
+      toast.error("Gagal", {
         description: bulkState.message,
       });
     }
@@ -187,7 +187,7 @@ export function AdminReportRelationsPanel({
 
   useEffect(() => {
     if (bulkRecurringState.status === "success") {
-      toast.success("Success", {
+      toast.success("Berhasil", {
         description: bulkRecurringState.message,
       });
 
@@ -195,7 +195,7 @@ export function AdminReportRelationsPanel({
     }
 
     if (bulkRecurringState.status === "error") {
-      toast.error("Failed", {
+      toast.error("Gagal", {
         description: bulkRecurringState.message,
       });
     }
@@ -233,18 +233,18 @@ export function AdminReportRelationsPanel({
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Report Relations</CardTitle>
+          <CardTitle>Relasi Laporan</CardTitle>
           <CardDescription>
-            Merge duplicate reports or mark recurring issues.
+            Gabungkan laporan duplikat atau tandai masalah yang berulang.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="rounded-2xl border border-warning-100 bg-warning-50 p-4 text-sm leading-6 text-warning-700">
-            Report relation schema is not available yet. Apply migration{" "}
+            Skema relasi laporan belum tersedia. Jalankan migration{" "}
             <span className="font-semibold">
               supabase/migrations/202606250001_report_relations.sql
             </span>{" "}
-            before using duplicate merge or recurring issue links.
+            sebelum menggunakan fitur merge duplikat atau masalah berulang.
           </div>
         </CardContent>
       </Card>
@@ -254,10 +254,10 @@ export function AdminReportRelationsPanel({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Report Relations</CardTitle>
+        <CardTitle>Relasi Laporan</CardTitle>
         <CardDescription>
-          Link duplicate active reports to a master report, or connect a new
-          report to a previous resolved issue.
+          Tautkan laporan aktif yang duplikat ke laporan master, atau hubungkan
+          laporan baru dengan masalah lama yang sudah selesai.
         </CardDescription>
       </CardHeader>
 
@@ -269,15 +269,15 @@ export function AdminReportRelationsPanel({
 
         <div className="space-y-3">
           <RelationList
-            title="This report is linked to"
-            emptyText="No outgoing relation from this report."
+            title="Laporan ini tertaut ke"
+            emptyText="Belum ada relasi keluar dari laporan ini."
             relations={relations.outgoing}
             relationSide="target"
           />
 
           <RelationList
-            title="Reports linked here"
-            emptyText="No reports are linked to this report yet."
+            title="Laporan yang tertaut ke sini"
+            emptyText="Belum ada laporan yang tertaut ke laporan ini."
             relations={relations.incoming}
             relationSide="source"
           />
@@ -286,27 +286,27 @@ export function AdminReportRelationsPanel({
         <div className="border-t border-border pt-5">
           {!canCreateRelation ? (
             <div className="rounded-2xl border border-muted bg-muted/40 p-4 text-sm leading-6 text-muted-foreground">
-              Relations can only be created from active reports or from a
-              resolved report used as a recurring issue reference.
+              Relasi hanya bisa dibuat dari laporan aktif atau dari laporan
+              selesai yang digunakan sebagai referensi masalah berulang.
             </div>
           ) : (
             <div className="space-y-4">
               <div>
-                <p className="form-label">Relation Type</p>
+                <p className="form-label">Jenis Relasi</p>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <RelationModeButton
                     active={relationType === "duplicate"}
                     icon={<GitMerge className="h-4 w-4" />}
-                    title="Duplicate Merge"
-                    description="Same issue while the master report is still active."
+                    title="Merge Duplikat"
+                    description="Masalah yang sama saat laporan master masih aktif."
                     disabled={!isActiveReport}
                     onClick={() => setRelationType("duplicate")}
                   />
                   <RelationModeButton
                     active={relationType === "recurrence"}
                     icon={<History className="h-4 w-4" />}
-                    title="Recurring Issue"
-                    description="Same issue appears again after an older report was resolved."
+                    title="Masalah Berulang"
+                    description="Masalah yang sama muncul lagi setelah laporan lama selesai."
                     onClick={() => setRelationType("recurrence")}
                   />
                 </div>
@@ -320,10 +320,10 @@ export function AdminReportRelationsPanel({
                 }
               >
                 {relationType === "duplicate"
-                  ? "Duplicate merge uses this report as the master. Select one or more active duplicate reports below, then merge them into this report."
+                  ? "Merge duplikat menggunakan laporan ini sebagai master. Pilih satu atau beberapa laporan aktif yang duplikat, lalu gabungkan ke laporan ini."
                   : isRecurrenceReferenceReport
-                    ? "Bulk recurring uses this resolved or archived report as the previous issue. Select one or more active reports that repeat this problem."
-                    : "Recurring issue is for a new active report that repeats a problem from a previous resolved or archived report. This report stays active and continues through the normal workflow."}
+                    ? "Bulk recurring menggunakan laporan selesai/arsip ini sebagai masalah lama. Pilih satu atau beberapa laporan aktif yang mengulang masalah ini."
+                    : "Masalah berulang digunakan untuk laporan aktif baru yang mengulang masalah dari laporan lama yang sudah selesai atau diarsipkan. Laporan ini tetap aktif dan berjalan melalui alur normal."}
               </div>
 
               {relationType === "duplicate" ? (
@@ -332,7 +332,7 @@ export function AdminReportRelationsPanel({
 
                   {relations.duplicateCandidates.length === 0 ? (
                     <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-5 text-sm text-muted-foreground">
-                      No active duplicate candidates are available.
+                      Tidak ada kandidat duplikat aktif yang tersedia.
                     </div>
                   ) : (
                     <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_280px]">
@@ -362,11 +362,11 @@ export function AdminReportRelationsPanel({
                   )}
 
                   <Textarea
-                    label="Bulk Merge Note"
+                    label="Catatan Merge Bulk"
                     name="bulk_note"
                     required
                     rows={4}
-                    placeholder="Explain why these reports are duplicates of this master report."
+                    placeholder="Jelaskan mengapa laporan-laporan ini merupakan duplikat dari laporan master."
                   />
 
                   <Button
@@ -380,8 +380,8 @@ export function AdminReportRelationsPanel({
                   >
                     <GitMerge className="mr-2 h-4 w-4" />
                     {isBulkPending
-                      ? "Merging..."
-                      : `Merge Selected Reports (${selectedDuplicateIds.size})`}
+                      ? "Menggabungkan..."
+                      : `Gabungkan Laporan Terpilih (${selectedDuplicateIds.size})`}
                   </Button>
                 </form>
               ) : isRecurrenceReferenceReport ? (
@@ -390,7 +390,7 @@ export function AdminReportRelationsPanel({
 
                   {relations.recurringSourceCandidates.length === 0 ? (
                     <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-5 text-sm text-muted-foreground">
-                      No active reports are available to mark as recurring.
+                      Tidak ada laporan aktif yang tersedia untuk ditandai sebagai masalah berulang.
                     </div>
                   ) : (
                     <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_280px]">
@@ -420,11 +420,11 @@ export function AdminReportRelationsPanel({
                   )}
 
                   <Textarea
-                    label="Bulk Recurring Note"
+                    label="Catatan Masalah Berulang Bulk"
                     name="bulk_note"
                     required
                     rows={4}
-                    placeholder="Explain why these active reports are recurrences of this resolved issue."
+                    placeholder="Jelaskan mengapa laporan aktif ini merupakan pengulangan dari masalah yang sudah selesai."
                   />
 
                   <Button
@@ -438,8 +438,8 @@ export function AdminReportRelationsPanel({
                   >
                     <History className="mr-2 h-4 w-4" />
                     {isBulkRecurringPending
-                      ? "Saving..."
-                      : `Mark Selected as Recurring (${selectedRecurringIds.size})`}
+                      ? "Menyimpan..."
+                      : `Tandai Terpilih Sebagai Berulang (${selectedRecurringIds.size})`}
                   </Button>
                 </form>
               ) : (
@@ -448,11 +448,11 @@ export function AdminReportRelationsPanel({
                   <input type="hidden" name="relation_type" value="recurrence" />
 
                   <Select
-                    label="Previous Resolved Report"
+                    label="Laporan Lama Yang Sudah Selesai"
                     name="target_report_id"
                     required
                   >
-                    <option value="">Select previous resolved report</option>
+                    <option value="">Pilih laporan lama yang sudah selesai</option>
                     {relations.recurrenceCandidates.map((candidate) => (
                       <option key={candidate.id} value={candidate.id}>
                         {candidate.report_number} - {candidate.title}
@@ -461,11 +461,11 @@ export function AdminReportRelationsPanel({
                   </Select>
 
                   <Textarea
-                    label="Relation Note"
+                    label="Catatan Relasi"
                     name="note"
                     required
                     rows={4}
-                    placeholder="Explain why this report is a recurrence of the selected resolved report."
+                    placeholder="Jelaskan mengapa laporan ini merupakan pengulangan dari laporan lama yang dipilih."
                   />
 
                   <Button
@@ -476,12 +476,12 @@ export function AdminReportRelationsPanel({
                     className="w-full"
                   >
                     <Link2 className="mr-2 h-4 w-4" />
-                    {isPending ? "Saving..." : "Save Recurring Issue"}
+                    {isPending ? "Menyimpan..." : "Simpan Masalah Berulang"}
                   </Button>
 
                   {relations.recurrenceCandidates.length === 0 ? (
                     <p className="text-sm text-muted-foreground">
-                      No resolved or archived reports are available for recurrence.
+                      Tidak ada laporan selesai atau arsip yang tersedia sebagai referensi pengulangan.
                     </p>
                   ) : null}
                 </form>
@@ -503,25 +503,25 @@ function RelationSummary({
 }) {
   const items = [
     {
-      label: "Merged Into",
+      label: "Digabung Ke",
       value: outgoing.filter(
         (relation) => relation.relation_type === "duplicate"
       ).length,
     },
     {
-      label: "Duplicates Here",
+      label: "Duplikat Ke Sini",
       value: incoming.filter(
         (relation) => relation.relation_type === "duplicate"
       ).length,
     },
     {
-      label: "Recurs From",
+      label: "Berulang Dari",
       value: outgoing.filter(
         (relation) => relation.relation_type === "recurrence"
       ).length,
     },
     {
-      label: "Recurrences Here",
+      label: "Pengulangan Ke Sini",
       value: incoming.filter(
         (relation) => relation.relation_type === "recurrence"
       ).length,
@@ -600,7 +600,7 @@ function CandidatePreview({ candidate }: { candidate: RelatedReport | null }) {
   if (!candidate) {
     return (
       <div className="rounded-2xl border border-dashed border-border bg-muted/30 p-4 text-sm text-muted-foreground">
-        Hover a report candidate to preview details.
+        Arahkan kursor ke kandidat laporan untuk melihat detail.
       </div>
     );
   }
@@ -608,27 +608,27 @@ function CandidatePreview({ candidate }: { candidate: RelatedReport | null }) {
   return (
     <div className="sticky top-4 rounded-2xl border border-border bg-card p-4 shadow-sm">
       <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-        Hover Preview
+        Pratinjau Kandidat
       </p>
       <p className="mt-2 text-sm font-semibold text-foreground">
         {candidate.title}
       </p>
       <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
-        <PreviewInfo label="Report" value={candidate.report_number} />
+        <PreviewInfo label="Laporan" value={candidate.report_number} />
         <PreviewInfo label="Status" value={formatEnum(candidate.status)} />
-        <PreviewInfo label="Priority" value={formatEnum(candidate.priority)} />
-        <PreviewInfo label="Category" value={getRelationName(candidate.category)} />
-        <PreviewInfo label="Hamlet" value={getRelationName(candidate.hamlet)} />
-        <PreviewInfo label="Created" value={formatDate(candidate.created_at)} />
+        <PreviewInfo label="Prioritas" value={formatEnum(candidate.priority)} />
+        <PreviewInfo label="Kategori" value={getRelationName(candidate.category)} />
+        <PreviewInfo label="Dusun" value={getRelationName(candidate.hamlet)} />
+        <PreviewInfo label="Dibuat" value={formatDate(candidate.created_at)} />
       </div>
       <div className="mt-4 rounded-xl border border-border bg-muted/30 p-3">
-        <p className="text-xs font-medium text-muted-foreground">Address</p>
+        <p className="text-xs font-medium text-muted-foreground">Alamat</p>
         <p className="mt-1 text-xs leading-5 text-foreground">
           {getCandidateAddress(candidate)}
         </p>
       </div>
       <p className="mt-4 max-h-36 overflow-y-auto text-xs leading-5 text-muted-foreground">
-        {candidate.description || "No description available."}
+        {candidate.description || "Tidak ada deskripsi."}
       </p>
     </div>
   );
@@ -731,7 +731,7 @@ function RelationList({
 
                   <div className="min-w-0 flex-1">
                     <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                      {relation.relation_type}
+                      {formatRelationType(relation.relation_type)}
                     </p>
 
                     {report ? (
@@ -743,7 +743,7 @@ function RelationList({
                       </Link>
                     ) : (
                       <p className="mt-1 text-sm text-muted-foreground">
-                        Related report unavailable
+                        Laporan terkait tidak tersedia
                       </p>
                     )}
 
@@ -782,10 +782,28 @@ function getCandidateAddress(candidate: RelatedReport) {
 function formatEnum(value: string | null | undefined) {
   if (!value) return "-";
 
-  return value
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const labels: Record<string, string> = {
+    pending: "Menunggu",
+    need_verification: "Perlu Verifikasi",
+    verified_valid: "Terverifikasi Valid",
+    classified: "Diklasifikasikan",
+    handled_by_village: "Ditangani Desa",
+    forwarded_to_agency: "Diteruskan ke Instansi",
+    waiting_budget: "Menunggu Anggaran",
+    in_progress: "Diproses",
+    resolved: "Selesai",
+    archived: "Diarsipkan",
+    rendah: "Rendah",
+    sedang: "Sedang",
+    tinggi: "Tinggi",
+    darurat: "Darurat",
+  };
+
+  return labels[value] ?? value.replaceAll("_", " ");
+}
+
+function formatRelationType(value: ReportRelation["relation_type"]) {
+  return value === "duplicate" ? "Duplikat" : "Masalah Berulang";
 }
 
 function formatDate(date: string) {

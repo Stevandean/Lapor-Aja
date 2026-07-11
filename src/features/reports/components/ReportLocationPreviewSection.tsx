@@ -13,7 +13,7 @@ const ReportLocationPreviewMap = dynamic(
     ssr: false,
     loading: () => (
       <div className="flex h-72 items-center justify-center rounded-2xl border border-dashed border-border bg-muted/40">
-        <p className="text-sm text-muted-foreground">Loading location map...</p>
+        <p className="text-sm text-muted-foreground">Memuat peta lokasi...</p>
       </div>
     ),
   }
@@ -29,13 +29,13 @@ type ReportLocationPreviewSectionProps = {
 export function ReportLocationPreviewSection({
   latitude,
   longitude,
-  title = "Report Location",
+  title = "Lokasi Laporan",
   address,
 }: ReportLocationPreviewSectionProps) {
   if (!latitude || !longitude) {
     return (
       <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-6 text-center text-sm text-muted-foreground">
-        Location data is not available.
+        Data lokasi tidak tersedia.
       </div>
     );
   }
@@ -59,7 +59,7 @@ export function ReportLocationPreviewSection({
 
           <div>
             <p className="text-sm font-semibold text-foreground">
-              {address || "Location coordinates"}
+              {address || "Koordinat lokasi"}
             </p>
 
             <p className="mt-1 text-xs text-muted-foreground">
@@ -71,7 +71,7 @@ export function ReportLocationPreviewSection({
         <a href={googleMapsUrl} target="_blank" rel="noreferrer">
           <Button type="button" variant="outline" className="w-full sm:w-auto">
             <ExternalLink className="mr-2 h-4 w-4" />
-            Open in Google Maps
+            Buka di Google Maps
           </Button>
         </a>
       </div>

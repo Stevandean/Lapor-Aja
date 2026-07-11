@@ -14,7 +14,7 @@ type RelationName = {
   name: string;
 };
 
-type HeatmapReport = {
+export type HeatmapReport = {
   id: string;
   report_number: string;
   title: string;
@@ -34,7 +34,7 @@ type VillageHeatmapMapProps = {
 
 const priorityFilters = [
   {
-    label: "All",
+    label: "Semua",
     value: "all",
   },
   {
@@ -73,11 +73,12 @@ export function VillageHeatmapMap({ reports }: VillageHeatmapMapProps) {
       <div className="flex flex-col justify-between gap-4 rounded-2xl border border-border bg-muted/30 p-4 lg:flex-row lg:items-center">
         <div>
           <p className="text-sm font-semibold text-foreground">
-            Map Filter
+            Filter Peta
           </p>
 
           <p className="mt-1 text-sm text-muted-foreground">
-            Filter report points by priority to focus on urgent problem areas.
+            Filter titik laporan berdasarkan prioritas untuk fokus pada area
+            masalah yang mendesak.
           </p>
         </div>
 
@@ -140,23 +141,23 @@ export function VillageHeatmapMap({ reports }: VillageHeatmapMapProps) {
 
                     <div className="space-y-1 text-xs text-slate-600">
                       <p>
-                        <strong>Category:</strong>{" "}
+                        <strong>Kategori:</strong>{" "}
                         {getRelationName(report.category)}
                       </p>
 
                       <p>
-                        <strong>Hamlet:</strong>{" "}
+                        <strong>Dusun:</strong>{" "}
                         {getRelationName(report.hamlet)}
                       </p>
 
                       <p>
-                        <strong>Priority:</strong>{" "}
+                        <strong>Prioritas:</strong>{" "}
                         {REPORT_PRIORITY_LABELS[report.priority] ??
                           report.priority}
                       </p>
 
                       <p>
-                        <strong>Updated:</strong>{" "}
+                        <strong>Diperbarui:</strong>{" "}
                         {formatDate(report.updated_at)}
                       </p>
                     </div>
@@ -183,7 +184,7 @@ export function VillageHeatmapMap({ reports }: VillageHeatmapMapProps) {
                       rel="noreferrer"
                       className="inline-flex text-xs font-semibold text-primary hover:text-primary-700"
                     >
-                      Open in Google Maps
+                      Buka di Google Maps
                     </a>
                   </div>
                 </Popup>
@@ -195,7 +196,7 @@ export function VillageHeatmapMap({ reports }: VillageHeatmapMapProps) {
 
       {filteredReports.length === 0 && (
         <div className="rounded-2xl border border-warning-100 bg-warning-50 p-4 text-sm leading-6 text-warning-700">
-          No reports found for the selected priority filter.
+          Tidak ada laporan untuk filter prioritas yang dipilih.
         </div>
       )}
     </div>
@@ -206,22 +207,22 @@ function PriorityLegend() {
   const items = [
     {
       label: "Darurat",
-      description: "Emergency reports that need immediate attention.",
+      description: "Laporan darurat yang perlu segera ditangani.",
       priority: "darurat",
     },
     {
       label: "Tinggi",
-      description: "High-priority reports that should be monitored closely.",
+      description: "Laporan prioritas tinggi yang perlu dipantau ketat.",
       priority: "tinggi",
     },
     {
       label: "Sedang",
-      description: "Standard reports with normal handling priority.",
+      description: "Laporan standar dengan prioritas penanganan normal.",
       priority: "sedang",
     },
     {
       label: "Rendah",
-      description: "Low-priority reports with lower urgency.",
+      description: "Laporan prioritas rendah dengan urgensi lebih rendah.",
       priority: "rendah",
     },
   ];

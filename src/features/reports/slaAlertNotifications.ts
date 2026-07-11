@@ -122,7 +122,7 @@ export async function sendSlaAlertNotifications({
   if (alertReports.length === 0) {
     return {
       status: "success" as const,
-      message: "No at-risk or overdue SLA reports found.",
+      message: "Tidak ada laporan SLA yang berisiko atau melewati tenggat.",
       processed: 0,
       skipped: 0,
       failed: 0,
@@ -132,7 +132,8 @@ export async function sendSlaAlertNotifications({
   if (!recipients || recipients.length === 0) {
     return {
       status: "success" as const,
-      message: "SLA alerts found, but no active staff recipients are available.",
+      message:
+        "Alert SLA ditemukan, tetapi belum ada penerima petugas yang aktif.",
       processed: 0,
       skipped: alertReports.length,
       failed: 0,
@@ -154,7 +155,7 @@ export async function sendSlaAlertNotifications({
       return {
         status: "error" as const,
         message:
-          "SLA alert notification schema is not available yet. Apply migration supabase/migrations/202606250005_sla_alert_notifications.sql.",
+          "Skema notifikasi alert SLA belum tersedia. Jalankan migration supabase/migrations/202606250005_sla_alert_notifications.sql.",
         processed,
         skipped,
         failed,
@@ -221,8 +222,8 @@ export async function sendSlaAlertNotifications({
     status: failed > 0 ? ("error" as const) : ("success" as const),
     message:
       failed > 0
-        ? `SLA alerts completed with ${failed} failed report(s).`
-        : `SLA alerts sent for ${processed} report(s). ${skipped} duplicate alert(s) skipped.`,
+        ? `Alert SLA selesai dengan ${failed} laporan gagal dikirim.`
+        : `Alert SLA terkirim untuk ${processed} laporan. ${skipped} alert duplikat dilewati.`,
     processed,
     skipped,
     failed,
@@ -282,16 +283,16 @@ async function sendSlaEmailNotification({
   try {
     await sendBrevoEmail({
       to: recipient.email || "",
-      toName: recipient.full_name || recipient.email || "Village Officer",
+      toName: recipient.full_name || recipient.email || "Petugas Desa",
       subject,
       htmlContent: buildSlaEmailHtml({
-        recipientName: recipient.full_name || "Village Officer",
+        recipientName: recipient.full_name || "Petugas Desa",
         report,
         alertType,
         message,
       }),
       textContent: buildSlaEmailText({
-        recipientName: recipient.full_name || "Village Officer",
+        recipientName: recipient.full_name || "Petugas Desa",
         report,
         alertType,
         message,
@@ -310,7 +311,7 @@ async function sendSlaEmailNotification({
     });
   } catch (error) {
     const errorMessage =
-      error instanceof Error ? error.message : "Failed to send SLA email.";
+      error instanceof Error ? error.message : "Gagal mengirim email SLA.";
 
     console.error("Failed to send SLA email notification:", errorMessage);
 
@@ -361,7 +362,7 @@ async function sendSlaWhatsAppNotification({
     });
   } catch (error) {
     const errorMessage =
-      error instanceof Error ? error.message : "Failed to send SLA WhatsApp.";
+      error instanceof Error ? error.message : "Gagal mengirim WhatsApp SLA.";
 
     console.error("Failed to send SLA WhatsApp notification:", errorMessage);
 
@@ -506,7 +507,7 @@ Mohon segera lakukan pengecekan pada dashboard SLA Monitoring.
 }
 
 function getSlaAlertLabel(alertType: SlaAlertType) {
-  return alertType === "overdue" ? "Overdue" : "At Risk";
+  return alertType === "overdue" ? "Melewati Tenggat" : "Berisiko";
 }
 
 function getReportAddress(report: SlaAlertReport) {
@@ -530,10 +531,27 @@ function formatDateTime(date: string) {
 }
 
 function formatEnum(value: string) {
-  return value
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const labels: Record<string, string> = {
+    darurat: "Darurat",
+    tinggi: "Tinggi",
+    sedang: "Sedang",
+    rendah: "Rendah",
+    pending: "Menunggu Review",
+    need_verification: "Perlu Verifikasi",
+    verified_valid: "Terverifikasi Valid",
+    verified_invalid: "Terverifikasi Tidak Valid",
+    classified: "Diklasifikasi",
+    handled_by_village: "Ditangani Desa",
+    forwarded_to_agency: "Diteruskan ke Instansi",
+    waiting_budget: "Menunggu Anggaran",
+    in_progress: "Diproses",
+    resolved: "Selesai",
+    rejected: "Ditolak",
+    archived: "Diarsipkan",
+    merged: "Digabungkan",
+  };
+
+  return labels[value] ?? value.replaceAll("_", " ");
 }
 
 function escapeHtml(value: string) {

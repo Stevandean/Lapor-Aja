@@ -8,8 +8,8 @@ import {
   MapPin,
   MapPinned,
   PlusCircle,
-  ShieldCheck,
-} from "lucide-react";import { useRouter } from "next/navigation";
+} from "lucide-react";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Button } from "@/src/components/ui/Button";
 import { Input } from "@/src/components/ui/Input";
@@ -28,8 +28,25 @@ const initialState: ActionState = {
   message: "",
 };
 
+const ReportLocationMap = dynamic(
+  () =>
+    import("@/src/features/reports/components/ReportLocationMap").then(
+      (module) => module.ReportLocationMap
+    ),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex h-80 items-center justify-center rounded-2xl border border-dashed border-border bg-muted/40">
+        <p className="text-sm text-muted-foreground">
+          Memuat pemilih lokasi...
+        </p>
+      </div>
+    ),
+  }
+);
+
 export function CreateReportModal({
-  buttonLabel = "Create Report",
+  buttonLabel = "Buat Laporan",
   buttonVariant = "default",
 }: CreateReportModalProps) {
   const router = useRouter();
@@ -50,32 +67,19 @@ export function CreateReportModal({
     initialState
   );
 
-  const ReportLocationMap = dynamic(
-    () =>
-        import("@/src/features/reports/components/ReportLocationMap").then(
-        (module) => module.ReportLocationMap
-        ),
-    {
-        ssr: false,
-        loading: () => (
-        <div className="flex h-80 items-center justify-center rounded-2xl border border-dashed border-border bg-muted/40">
-            <p className="text-sm text-muted-foreground">Loading map picker...</p>
-        </div>
-        ),
-    }
-  );
-
   useEffect(() => {
     if (!state.message) return;
 
     if (state.status === "success") {
       toast.success(state.message);
       formRef.current?.reset();
-      setGpsLatitude("");
-      setGpsLongitude("");
-      setLatitude("");
-      setLongitude("");
-      setSelectedAddress("");
+      setTimeout(() => {
+        setGpsLatitude("");
+        setGpsLongitude("");
+        setLatitude("");
+        setLongitude("");
+        setSelectedAddress("");
+      }, 0);
       router.refresh();
     }
 
@@ -86,7 +90,7 @@ export function CreateReportModal({
 
   function handleUseCurrentLocation() {
     if (!navigator.geolocation) {
-        toast.error("Geolocation is not supported by your browser.");
+        toast.error("Geolokasi tidak didukung oleh browser Anda.");
         return;
     }
 
@@ -105,9 +109,9 @@ export function CreateReportModal({
 
             setLocationLoading(false);
 
-            toast.success("GPS location detected", {
+            toast.success("Lokasi GPS terdeteksi", {
                 description:
-                "You can now drag the marker or click within the allowed radius.",
+                "Anda bisa menggeser marker atau klik peta dalam radius yang diizinkan.",
             });
 
             getAddressFromCoordinates(nextLatitude, nextLongitude);
@@ -115,8 +119,8 @@ export function CreateReportModal({
         () => {
             setLocationLoading(false);
 
-            toast.error("Failed to get GPS location", {
-                description: "Please allow location access and try again.",
+            toast.error("Gagal mengambil lokasi GPS", {
+                description: "Izinkan akses lokasi lalu coba lagi.",
             });
         },
         {
@@ -158,20 +162,20 @@ export function CreateReportModal({
         );
 
         if (!response.ok) {
-        throw new Error("Failed to fetch address.");
+        throw new Error("Gagal mengambil alamat.");
         }
 
         const data = await response.json();
 
         setSelectedAddress(
-        data.display_name || "Selected location address is unavailable."
+        data.display_name || "Alamat lokasi terpilih tidak tersedia."
         );
     } catch {
-        setSelectedAddress("Address unavailable. Coordinates have been saved.");
+        setSelectedAddress("Alamat tidak tersedia. Koordinat tetap disimpan.");
 
-        toast.error("Failed to read address", {
+        toast.error("Gagal membaca alamat", {
         description:
-            "The location is still saved, but the address could not be generated.",
+            "Lokasi tetap disimpan, tetapi alamat tidak bisa dibuat otomatis.",
         });
     } finally {
         setAddressLoading(false);
@@ -192,8 +196,8 @@ export function CreateReportModal({
       <Modal
         open={open}
         onOpenChange={setOpen}
-        title="Create Report"
-        description="Submit a public report with description, location, and photo evidence."
+        title="Buat Laporan"
+        description="Kirim laporan masyarakat dengan deskripsi, lokasi, dan foto bukti."
         className="max-w-3xl"
       >
         <form ref={formRef} action={action} className="space-y-5">
@@ -206,26 +210,26 @@ export function CreateReportModal({
 
           <div>
             <label className="form-label" htmlFor="title">
-              Report Title
+              Judul Laporan
             </label>
 
             <Input
               id="title"
               name="title"
-              placeholder="Example: Damaged road near the village hall"
+              placeholder="Contoh: Jalan rusak di dekat balai desa"
               required
             />
           </div>
 
           <div>
             <label className="form-label" htmlFor="description">
-              Description
+              Deskripsi
             </label>
 
             <Textarea
               id="description"
               name="description"
-              placeholder="Explain the problem clearly so the village staff can understand the report."
+              placeholder="Jelaskan masalah dengan jelas agar petugas desa memahami laporan."
               rows={5}
               required
             />
@@ -241,13 +245,14 @@ export function CreateReportModal({
 
                         <div>
                         <p className="text-sm font-semibold text-foreground">
-                            Report Location
+                            Lokasi Laporan
                         </p>
 
                         <p className="mt-1 max-w-xl text-sm leading-6 text-muted-foreground">
-                            Start by detecting your GPS location. After that, you can adjust the
-                            report point by dragging the marker or clicking the map within{" "}
-                            {REPORT_RADIUS_KM} km from your GPS position.
+                            Mulai dengan mendeteksi lokasi GPS Anda. Setelah
+                            itu, Anda bisa menyesuaikan titik laporan dengan
+                            menggeser marker atau klik peta dalam radius{" "}
+                            {REPORT_RADIUS_KM} km dari posisi GPS.
                         </p>
                         </div>
                     </div>
@@ -263,7 +268,7 @@ export function CreateReportModal({
                         ) : (
                         <LocateFixed className="h-4 w-4" />
                         )}
-                        {locationLoading ? "Detecting GPS..." : "Use GPS Location"}
+                        {locationLoading ? "Mendeteksi GPS..." : "Gunakan Lokasi GPS"}
                     </Button>
                 </div>
             </div>
@@ -289,17 +294,17 @@ export function CreateReportModal({
 
                             <div className="min-w-0">
                                 <p className="text-sm font-semibold text-foreground">
-                                Selected Address
+                                Alamat Terpilih
                                 </p>
 
                                 {addressLoading ? (
                                 <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
                                     <Loader2 className="h-4 w-4 animate-spin" />
-                                    Reading address...
+                                    Membaca alamat...
                                 </div>
                                 ) : (
                                 <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                                    {selectedAddress || "Address will appear after location is selected."}
+                                    {selectedAddress || "Alamat akan muncul setelah lokasi dipilih."}
                                 </p>
                                 )}
                             </div>
@@ -314,12 +319,12 @@ export function CreateReportModal({
                     </div>
 
                     <p className="mt-4 text-sm font-semibold text-foreground">
-                    GPS location is required
+                    Lokasi GPS wajib digunakan
                     </p>
 
                     <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-muted-foreground">
-                    Click the GPS button first. The map picker will appear after your
-                    location is detected.
+                    Klik tombol GPS terlebih dahulu. Pemilih peta akan muncul
+                    setelah lokasi Anda terdeteksi.
                     </p>
                 </div>
                 )}
@@ -328,7 +333,7 @@ export function CreateReportModal({
 
           <div>
             <label className="form-label" htmlFor="photos">
-              Evidence Photos
+              Foto Bukti
             </label>
 
             <Input
@@ -341,8 +346,8 @@ export function CreateReportModal({
             />
 
             <p className="mt-2 text-xs leading-5 text-muted-foreground">
-              Upload 1–5 photos. Allowed formats: JPG, PNG, or WEBP. Maximum
-              size: 10MB per photo.
+              Unggah 1-5 foto. Format yang diizinkan: JPG, PNG, atau WEBP.
+              Ukuran maksimal 10MB per foto.
             </p>
           </div>
 
@@ -353,14 +358,14 @@ export function CreateReportModal({
               onClick={() => setOpen(false)}
               disabled={isPending}
             >
-              Cancel
+              Batal
             </Button>
 
             <Button
                 type="submit"
                     disabled={isPending || !gpsLatitude || !gpsLongitude || !latitude || !longitude}
                 >
-                {isPending ? "Submitting..." : "Submit Report"}
+                {isPending ? "Mengirim..." : "Kirim Laporan"}
             </Button>
           </div>
         </form>
@@ -368,3 +373,4 @@ export function CreateReportModal({
     </>
   );
 }
+

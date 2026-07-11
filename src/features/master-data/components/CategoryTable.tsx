@@ -37,11 +37,11 @@ export function CategoryTable({ categories }: CategoryTableProps) {
     return (
       <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-10 text-center">
         <p className="text-sm font-semibold text-foreground">
-          No categories found
+          Belum ada kategori
         </p>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          Add your first category to classify citizen reports.
+          Tambahkan kategori pertama untuk mengklasifikasi laporan masyarakat.
         </p>
       </div>
     );
@@ -53,11 +53,11 @@ export function CategoryTable({ categories }: CategoryTableProps) {
         <table className="w-full min-w-[850px] text-left text-sm">
           <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
-              <th className="px-5 py-4 font-semibold">Category</th>
-              <th className="px-5 py-4 font-semibold">Description</th>
+              <th className="px-5 py-4 font-semibold">Kategori</th>
+              <th className="px-5 py-4 font-semibold">Deskripsi</th>
               <th className="px-5 py-4 font-semibold">Status</th>
-              <th className="px-5 py-4 font-semibold">Updated</th>
-              <th className="px-5 py-4 text-right font-semibold">Action</th>
+              <th className="px-5 py-4 font-semibold">Diperbarui</th>
+              <th className="px-5 py-4 text-right font-semibold">Aksi</th>
             </tr>
           </thead>
 
@@ -138,7 +138,7 @@ function CategoryEditModal({ category }: { category: Category }) {
 
     if (state.status === "success") {
       toast.success(state.message);
-      setOpen(false);
+      setTimeout(() => setOpen(false), 0);
     }
 
     if (state.status === "error") {
@@ -156,15 +156,15 @@ function CategoryEditModal({ category }: { category: Category }) {
       <Modal
         open={open}
         onOpenChange={setOpen}
-        title="Edit Category"
-        description="Update category information."
+        title="Edit Kategori"
+        description="Perbarui informasi kategori."
       >
         <form action={action} className="space-y-5">
           <input type="hidden" name="category_id" value={category.id} />
 
           <div>
             <label className="form-label" htmlFor={`name-${category.id}`}>
-              Category Name
+              Nama Kategori
             </label>
 
             <Input
@@ -180,7 +180,7 @@ function CategoryEditModal({ category }: { category: Category }) {
               className="form-label"
               htmlFor={`description-${category.id}`}
             >
-              Description
+              Deskripsi
             </label>
 
             <Textarea
@@ -198,11 +198,11 @@ function CategoryEditModal({ category }: { category: Category }) {
               onClick={() => setOpen(false)}
               disabled={isPending}
             >
-              Cancel
+              Batal
             </Button>
 
             <Button type="submit" disabled={isPending}>
-              {isPending ? "Saving..." : "Save Changes"}
+              {isPending ? "Menyimpan..." : "Simpan Perubahan"}
             </Button>
           </div>
         </form>
@@ -239,7 +239,7 @@ function CategoryStatusButton({ category }: { category: Category }) {
       />
 
       <Button type="submit" variant="outline" size="sm" disabled={isPending}>
-        {category.is_active ? "Deactivate" : "Activate"}
+        {category.is_active ? "Nonaktifkan" : "Aktifkan"}
       </Button>
     </form>
   );
@@ -250,7 +250,7 @@ function StatusBadge({ isActive }: { isActive: boolean }) {
     return (
       <Badge className="bg-success-50 text-success-700">
         <CircleCheck className="mr-1 h-3.5 w-3.5" />
-        Active
+        Aktif
       </Badge>
     );
   }
@@ -258,7 +258,7 @@ function StatusBadge({ isActive }: { isActive: boolean }) {
   return (
     <Badge className="bg-danger-50 text-danger-700">
       <CircleX className="mr-1 h-3.5 w-3.5" />
-      Inactive
+      Nonaktif
     </Badge>
   );
 }

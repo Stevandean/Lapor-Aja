@@ -48,11 +48,12 @@ export function AdminFollowUpTable({ reports }: AdminFollowUpTableProps) {
         </div>
 
         <h3 className="mt-4 text-sm font-semibold text-foreground">
-          No follow-up reports
+          Belum ada laporan tindak lanjut
         </h3>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          Reports will appear here after the admin processes classified reports.
+          Laporan akan muncul di sini setelah admin memproses laporan yang
+          sudah diklasifikasi.
         </p>
       </div>
     );
@@ -64,14 +65,14 @@ export function AdminFollowUpTable({ reports }: AdminFollowUpTableProps) {
         <table className="w-full min-w-[1000px] text-left text-sm">
           <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
-              <th className="px-5 py-4 font-semibold">Report</th>
-              <th className="px-5 py-4 font-semibold">Reporter</th>
-              <th className="px-5 py-4 font-semibold">Hamlet</th>
-              <th className="px-5 py-4 font-semibold">Follow-up Type</th>
-              <th className="px-5 py-4 font-semibold">Agency</th>
-              <th className="px-5 py-4 font-semibold">Authority</th>
+              <th className="px-5 py-4 font-semibold">Laporan</th>
+              <th className="px-5 py-4 font-semibold">Pelapor</th>
+              <th className="px-5 py-4 font-semibold">Dusun</th>
+              <th className="px-5 py-4 font-semibold">Jenis Tindak Lanjut</th>
+              <th className="px-5 py-4 font-semibold">Instansi</th>
+              <th className="px-5 py-4 font-semibold">Kewenangan</th>
               <th className="px-5 py-4 font-semibold">Status</th>
-              <th className="px-5 py-4 font-semibold text-right">Action</th>
+              <th className="px-5 py-4 font-semibold text-right">Aksi</th>
             </tr>
           </thead>
 
@@ -134,7 +135,7 @@ export function AdminFollowUpTable({ reports }: AdminFollowUpTableProps) {
                       href={`/dashboard/admin/reports/${report.id}`}
                       className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-700"
                     >
-                      View detail
+                      Lihat detail
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   </td>
@@ -173,14 +174,14 @@ export function AdminFollowUpTable({ reports }: AdminFollowUpTableProps) {
               </div>
 
               <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-                <InfoItem label="Reporter" value={reporter?.full_name ?? "-"} />
-                <InfoItem label="Hamlet" value={getRelationName(report.hamlet)} />
+                <InfoItem label="Pelapor" value={reporter?.full_name ?? "-"} />
+                <InfoItem label="Dusun" value={getRelationName(report.hamlet)} />
                 <InfoItem
-                  label="Follow-up"
+                  label="Tindak lanjut"
                   value={formatEnum(report.follow_up_type)}
                 />
                 <InfoItem
-                  label="Agency"
+                  label="Instansi"
                   value={
                     report.follow_up_type === "diteruskan_ke_dinas"
                       ? getRelationName(report.agency)
@@ -188,7 +189,7 @@ export function AdminFollowUpTable({ reports }: AdminFollowUpTableProps) {
                   }
                 />
                 <InfoItem
-                  label="Authority"
+                  label="Kewenangan"
                   value={formatEnum(report.authority_level)}
                 />
               </div>
@@ -197,7 +198,7 @@ export function AdminFollowUpTable({ reports }: AdminFollowUpTableProps) {
                 href={`/dashboard/admin/reports/${report.id}`}
                 className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary-700"
               >
-                View detail
+                Lihat detail
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -234,8 +235,18 @@ function getReporter(
 function formatEnum(value: string | null) {
   if (!value) return "-";
 
-  return value
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const labels: Record<string, string> = {
+    desa: "Desa",
+    kabupaten_kota: "Kabupaten/Kota",
+    provinsi: "Provinsi",
+    nasional: "Nasional",
+    belum_diketahui: "Belum Diketahui",
+    ditangani_desa: "Ditangani Desa",
+    diteruskan_ke_dinas: "Diteruskan ke Dinas",
+    diusulkan_musrenbang: "Diusulkan Musrenbang",
+    menunggu_anggaran: "Menunggu Anggaran",
+    belum_ditentukan: "Belum Ditentukan",
+  };
+
+  return labels[value] ?? value.replaceAll("_", " ");
 }

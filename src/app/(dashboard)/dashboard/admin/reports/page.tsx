@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { Download, Filter, PlusCircle } from "lucide-react";
+import { Download, Filter } from "lucide-react";
 import { Button } from "@/src/components/ui/Button";
 import {
   Card,
@@ -18,15 +17,15 @@ export default async function AdminReportsPage() {
     <div className="space-y-6">
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-semibold text-primary">Reports</p>
+          <p className="text-sm font-semibold text-primary">Laporan</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Report Management
+            Pengelolaan Laporan
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Review, monitor, classify, and manage public reports submitted by
-            citizens.
+            Tinjau, pantau, klasifikasi, dan kelola laporan masyarakat yang
+            masuk ke sistem.
           </p>
         </div>
 
@@ -38,16 +37,16 @@ export default async function AdminReportsPage() {
 
           <Button variant="outline">
             <Download className="mr-2 h-4 w-4" />
-            Export
+            Ekspor
           </Button>
         </div>
       </section>
 
       <Card>
         <CardHeader>
-          <CardTitle>All Reports</CardTitle>
+          <CardTitle>Semua Laporan</CardTitle>
           <CardDescription>
-            Showing the latest 20 reports from the reporting system.
+            Menampilkan laporan terbaru dari sistem pelaporan.
           </CardDescription>
         </CardHeader>
 

@@ -37,8 +37,8 @@ export function ReportForm() {
 
   function handleUseCurrentLocation() {
     if (!navigator.geolocation) {
-      toast.error("Location is not supported", {
-        description: "Your browser does not support geolocation.",
+      toast.error("Lokasi tidak didukung", {
+        description: "Browser Anda tidak mendukung geolokasi.",
       });
       return;
     }
@@ -51,15 +51,15 @@ export function ReportForm() {
         setLongitude(String(position.coords.longitude));
         setIsLocating(false);
 
-        toast.success("Location captured", {
-          description: "Your current location has been added to the report.",
+        toast.success("Lokasi berhasil diambil", {
+          description: "Lokasi Anda sudah ditambahkan ke laporan.",
         });
       },
       () => {
         setIsLocating(false);
 
-        toast.error("Failed to get location", {
-          description: "Please allow location access in your browser.",
+        toast.error("Gagal mengambil lokasi", {
+          description: "Izinkan akses lokasi di browser, lalu coba lagi.",
         });
       },
       {
@@ -72,17 +72,17 @@ export function ReportForm() {
   return (
     <form action={action} className="space-y-6">
       <Input
-        label="Report title"
+        label="Judul laporan"
         name="title"
-        placeholder="Example: Damaged road near the village hall"
+        placeholder="Contoh: Jalan rusak di dekat balai desa"
         required
       />
 
       <Textarea
-        label="Report description"
+        label="Deskripsi laporan"
         name="description"
-        placeholder="Describe the issue clearly, including the condition and impact."
-        helperText="Write a clear description so village officers can review the report properly."
+        placeholder="Jelaskan masalah dengan jelas, termasuk kondisi dan dampaknya."
+        helperText="Tulis deskripsi yang jelas agar petugas desa dapat meninjau laporan dengan tepat."
         required
       />
 
@@ -94,11 +94,11 @@ export function ReportForm() {
 
           <div className="min-w-0 flex-1">
             <p className="text-sm font-semibold text-foreground">
-              Report location
+              Lokasi laporan
             </p>
             <p className="mt-1 text-sm leading-6 text-muted-foreground">
-              Use your current location so the village officer can identify
-              where the issue happened.
+              Gunakan lokasi Anda saat ini agar petugas desa dapat mengetahui
+              tempat masalah terjadi.
             </p>
 
             <div className="mt-4">
@@ -109,18 +109,18 @@ export function ReportForm() {
                 isLoading={isLocating}
               >
                 <LocateFixed className="mr-2 h-4 w-4" />
-                Use current location
+                Gunakan lokasi saat ini
               </Button>
             </div>
 
             {latitude && longitude ? (
               <div className="mt-4 rounded-xl border border-success-100 bg-success-50 p-3 text-sm text-success-700">
-                Location selected: {Number(latitude).toFixed(6)},{" "}
+                Lokasi dipilih: {Number(latitude).toFixed(6)},{" "}
                 {Number(longitude).toFixed(6)}
               </div>
             ) : (
               <div className="mt-4 rounded-xl border border-warning-100 bg-warning-50 p-3 text-sm text-warning-700">
-                Location has not been selected yet.
+                Lokasi belum dipilih.
               </div>
             )}
           </div>
@@ -135,7 +135,7 @@ export function ReportForm() {
       <input type="hidden" name="auto_address" value="" />
 
       <div className="space-y-2">
-        <label className="form-label">Photo evidence</label>
+        <label className="form-label">Foto bukti</label>
 
         <div className="rounded-2xl border border-dashed border-border bg-card p-5">
           <div className="flex items-start gap-3">
@@ -154,8 +154,8 @@ export function ReportForm() {
               />
 
               <p className="mt-2 text-sm text-muted-foreground">
-                Upload 1–5 photos. Supported formats: JPG, PNG, WEBP. Maximum
-                10MB per photo.
+                Unggah 1-5 foto. Format yang didukung: JPG, PNG, WEBP.
+                Maksimal 10MB per foto.
               </p>
             </div>
           </div>
@@ -163,11 +163,8 @@ export function ReportForm() {
       </div>
 
       <div className="flex flex-col-reverse gap-3 border-t border-border pt-6 sm:flex-row sm:justify-end">
-        <Button
-          type="submit"
-          disabled={isPending || !latitude || !longitude}
-        >
-          {isPending ? "Submitting..." : "Submit report"}
+        <Button type="submit" disabled={isPending || !latitude || !longitude}>
+          {isPending ? "Mengirim..." : "Kirim laporan"}
         </Button>
       </div>
     </form>

@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { Archive, ArrowLeft, CheckCircle2, Clock3 } from "lucide-react";
+import { Archive, CheckCircle2, Clock3 } from "lucide-react";
 import { VillageArchiveTable } from "@/src/features/village/components/VillageArchiveTable";
+import type { ArchivedReport } from "@/src/features/village/components/VillageArchiveTable";
 import { getVillageArchivedReports } from "@/src/features/village/queries";
 import {
   Card,
@@ -9,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/src/components/ui/Card";
-import { Button } from "@/src/components/ui/Button";
 
 export default async function VillageArchivePage() {
   const reports = await getVillageArchivedReports();
@@ -22,54 +21,54 @@ export default async function VillageArchivePage() {
     <div className="space-y-6">
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-            <p className="text-sm font-semibold text-primary">Archive</p>
+            <p className="text-sm font-semibold text-primary">Arsip</p>
 
             <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Archived Reports
+            Laporan Arsip
             </h1>
 
             <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Review reports that have been completed and archived in the village
-            reporting workflow.
+            Tinjau laporan yang sudah selesai dan diarsipkan dalam alur
+            pelaporan desa.
             </p>
         </div>
       </section>
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <ArchiveInfoCard
-          title="Archived Reports"
+          title="Laporan Arsip"
           value={reports.length}
-          description="Reports currently stored in archive."
+          description="Laporan yang saat ini tersimpan di arsip."
           icon={<Archive className="h-5 w-5" />}
         />
 
         <ArchiveInfoCard
-          title="Resolved Before Archive"
+          title="Selesai Sebelum Arsip"
           value={resolvedBeforeArchive}
-          description="Reports completed before being archived."
+          description="Laporan yang selesai sebelum diarsipkan."
           icon={<CheckCircle2 className="h-5 w-5" />}
         />
 
         <ArchiveInfoCard
-          title="Archive Purpose"
-          value="Read-only"
-          description="Used for monitoring, accountability, and record keeping."
+          title="Fungsi Arsip"
+          value="Baca Saja"
+          description="Digunakan untuk monitoring, akuntabilitas, dan pencatatan."
           icon={<Clock3 className="h-5 w-5" />}
         />
       </section>
 
       <Card>
         <CardHeader>
-          <CardTitle>Archived Report List</CardTitle>
+          <CardTitle>Daftar Laporan Arsip</CardTitle>
 
           <CardDescription>
-            Showing archived reports with reporter, category, hamlet, priority,
-            and follow-up information.
+            Menampilkan laporan arsip beserta pelapor, kategori, dusun,
+            prioritas, dan informasi tindak lanjut.
           </CardDescription>
         </CardHeader>
 
         <CardContent>
-          <VillageArchiveTable reports={reports as any} />
+          <VillageArchiveTable reports={reports as ArchivedReport[]} />
         </CardContent>
       </Card>
     </div>

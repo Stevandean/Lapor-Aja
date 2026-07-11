@@ -17,7 +17,7 @@ type LogoutButtonProps = {
 export function LogoutButton({
   className,
   showIcon = true,
-  label = "Logout",
+  label = "Keluar",
 }: LogoutButtonProps) {
   const router = useRouter();
   const supabase = createClient();
@@ -26,14 +26,14 @@ export function LogoutButton({
     const { error } = await supabase.auth.signOut();
 
     if (error) {
-      toast.error("Logout failed", {
+      toast.error("Gagal keluar", {
         description: error.message,
       });
       return;
     }
 
-    toast.success("Logged out", {
-      description: "You have been signed out successfully.",
+    toast.success("Berhasil keluar", {
+      description: "Anda sudah keluar dari akun.",
     });
 
     router.replace(ROUTES.LOGIN);

@@ -31,15 +31,15 @@ export default async function PublicDashboardPage() {
     <div className="space-y-6">
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-semibold text-primary">Citizen</p>
+          <p className="text-sm font-semibold text-primary">Masyarakat</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            My Dashboard
+            Beranda Saya
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Submit public reports and monitor the latest progress of reports
-            you have sent to the village.
+            Kirim laporan masyarakat dan pantau perkembangan terbaru dari
+            laporan yang sudah Anda kirim ke desa.
           </p>
         </div>
 
@@ -47,7 +47,7 @@ export default async function PublicDashboardPage() {
           <Link href="/dashboard/public/reports">
             <Button variant="outline">
               <FileText className="mr-2 h-4 w-4" />
-              My Reports
+              Laporan Saya
             </Button>
           </Link>
 
@@ -57,46 +57,46 @@ export default async function PublicDashboardPage() {
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
         <CitizenStatCard
-          title="Total Reports"
+          title="Total Laporan"
           value={stats.totalReports}
-          description="All reports you submitted."
+          description="Semua laporan yang Anda kirim."
           icon={<FileText className="h-5 w-5" />}
         />
 
         <CitizenStatCard
-          title="Pending"
+          title="Menunggu"
           value={stats.pendingReports}
-          description="Waiting for admin review."
+          description="Menunggu pemeriksaan admin."
           icon={<Clock3 className="h-5 w-5" />}
         />
 
         <CitizenStatCard
-          title="In Process"
+          title="Diproses"
           value={stats.inProcessReports}
-          description="Currently being handled."
+          description="Sedang ditangani petugas."
           icon={<Send className="h-5 w-5" />}
         />
 
         <CitizenStatCard
-          title="Resolved"
+          title="Selesai"
           value={stats.resolvedReports}
-          description="Reports that have been resolved."
+          description="Laporan yang sudah diselesaikan."
           icon={<CheckCircle2 className="h-5 w-5" />}
         />
 
         <CitizenStatCard
-          title="Archived"
+          title="Diarsipkan"
           value={stats.archivedReports}
-          description="Reports stored in archive."
+          description="Laporan yang masuk arsip."
           icon={<Archive className="h-5 w-5" />}
         />
       </section>
 
       <Card>
         <CardHeader>
-          <CardTitle>Recent Reports</CardTitle>
+          <CardTitle>Laporan Terbaru</CardTitle>
           <CardDescription>
-            Showing the latest reports you submitted.
+            Menampilkan laporan terbaru yang Anda kirim.
           </CardDescription>
         </CardHeader>
 
@@ -104,17 +104,17 @@ export default async function PublicDashboardPage() {
           {reports.length === 0 ? (
             <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-10 text-center">
               <p className="text-sm font-semibold text-foreground">
-                No recent reports
+                Belum ada laporan terbaru
               </p>
 
               <p className="mt-2 text-sm text-muted-foreground">
-                Create your first report to start tracking its progress.
+                Buat laporan pertama untuk mulai memantau progresnya.
               </p>
 
               <Link href="/reports/create">
                 <Button className="mt-5">
                   <PlusCircle className="mr-2 h-4 w-4" />
-                  Create Report
+                  Buat Laporan
                 </Button>
               </Link>
             </div>

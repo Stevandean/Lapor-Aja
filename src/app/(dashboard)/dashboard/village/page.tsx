@@ -52,16 +52,16 @@ export default async function VillageDashboardPage() {
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
           <p className="text-sm font-semibold text-primary">
-            Village Leadership Dashboard
+            Dashboard Pimpinan Desa
           </p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Village Report Monitoring
+            Monitoring Laporan Desa
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Monitor public reports, follow-up progress, SLA condition, and
-            village-level decision support from one dashboard.
+            Pantau laporan masyarakat, progres tindak lanjut, kondisi SLA, dan
+            dukungan keputusan tingkat desa dari satu dashboard.
           </p>
         </div>
 
@@ -69,7 +69,7 @@ export default async function VillageDashboardPage() {
           <Link href="/dashboard/village/analytics">
             <Button variant="outline">
               <BarChart3 className="mr-2 h-4 w-4" />
-              Analytics
+              Analitik
             </Button>
           </Link>
 
@@ -83,14 +83,14 @@ export default async function VillageDashboardPage() {
           <Link href="/dashboard/village/sla">
             <Button>
               <Timer className="mr-2 h-4 w-4" />
-              SLA Monitoring
+              Monitoring SLA
             </Button>
           </Link>
 
           <Link href="/dashboard/village/budget-requests">
             <Button variant="outline">
               <Wallet className="mr-2 h-4 w-4" />
-              Budget Requests
+              Pengajuan Anggaran
             </Button>
           </Link>
         </div>
@@ -98,44 +98,44 @@ export default async function VillageDashboardPage() {
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-6">
         <VillageStatCard
-          title="Total Reports"
+          title="Total Laporan"
           value={stats.totalReports}
-          description="All reports submitted."
+          description="Semua laporan yang dikirim."
           icon={<ClipboardList className="h-5 w-5" />}
         />
 
         <VillageStatCard
-          title="Pending"
+          title="Menunggu"
           value={stats.pendingReports}
-          description="Waiting for admin review."
+          description="Menunggu review admin."
           icon={<Clock3 className="h-5 w-5" />}
         />
 
         <VillageStatCard
-          title="Need Verification"
+          title="Perlu Verifikasi"
           value={stats.needVerificationReports}
-          description="Waiting for field check."
+          description="Menunggu pemeriksaan lapangan."
           icon={<FileSearch className="h-5 w-5" />}
         />
 
         <VillageStatCard
-          title="In Progress"
+          title="Diproses"
           value={stats.inProgressReports}
-          description="Currently being handled."
+          description="Sedang ditangani."
           icon={<ShieldAlert className="h-5 w-5" />}
         />
 
         <VillageStatCard
-          title="Resolved"
+          title="Selesai"
           value={stats.resolvedReports}
-          description="Completed reports."
+          description="Laporan yang sudah selesai."
           icon={<CheckCircle2 className="h-5 w-5" />}
         />
 
         <VillageStatCard
-          title="Archived"
+          title="Diarsipkan"
           value={stats.archivedReports}
-          description="Closed report records."
+          description="Rekam laporan yang sudah ditutup."
           icon={<Archive className="h-5 w-5" />}
         />
       </section>
@@ -143,9 +143,9 @@ export default async function VillageDashboardPage() {
       <section className="grid gap-6 xl:grid-cols-[1.3fr_0.7fr]">
         <Card>
           <CardHeader>
-            <CardTitle>Recent Reports</CardTitle>
+            <CardTitle>Laporan Terbaru</CardTitle>
             <CardDescription>
-              Latest report updates across all hamlets.
+              Update laporan terbaru dari seluruh dusun.
             </CardDescription>
           </CardHeader>
 
@@ -156,31 +156,31 @@ export default async function VillageDashboardPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Leadership Focus</CardTitle>
+            <CardTitle>Fokus Pimpinan</CardTitle>
             <CardDescription>
-              Suggested monitoring areas for village decision making.
+              Area monitoring yang disarankan untuk pengambilan keputusan desa.
             </CardDescription>
           </CardHeader>
 
           <CardContent className="space-y-4">
             <FocusItem
-              title="Check urgent reports"
-              description="Prioritize high or emergency reports that need immediate attention."
+              title="Cek laporan mendesak"
+              description="Prioritaskan laporan tinggi atau darurat yang perlu perhatian segera."
             />
 
             <FocusItem
-              title="Monitor unresolved issues"
-              description="Review reports that are still in progress or waiting for budget."
+              title="Pantau masalah belum selesai"
+              description="Tinjau laporan yang masih diproses atau menunggu anggaran."
             />
 
             <FocusItem
-              title="Review budget requests"
-              description="Check Kasi proposals that need village budget planning before handling can continue."
+              title="Review pengajuan anggaran"
+              description="Periksa pengajuan Kasi yang memerlukan perencanaan anggaran desa sebelum penanganan dilanjutkan."
             />
 
             <FocusItem
-              title="Observe report distribution"
-              description="Use analytics and heatmap to identify areas with recurring problems."
+              title="Amati sebaran laporan"
+              description="Gunakan analitik dan heatmap untuk mengidentifikasi area dengan masalah berulang."
             />
           </CardContent>
         </Card>
@@ -193,10 +193,10 @@ function RecentVillageReportList({ reports }: { reports: RecentReport[] }) {
   if (reports.length === 0) {
     return (
       <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-8 text-center">
-        <p className="text-sm font-medium text-foreground">No reports yet</p>
+        <p className="text-sm font-medium text-foreground">Belum ada laporan</p>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          Reports will appear here after citizens submit them.
+          Laporan akan muncul di sini setelah masyarakat mengirimkannya.
         </p>
       </div>
     );
@@ -215,8 +215,8 @@ function RecentVillageReportList({ reports }: { reports: RecentReport[] }) {
             </p>
 
             <p className="mt-1 text-xs text-muted-foreground">
-              {report.report_number} • {getRelationName(report.hamlet)} •{" "}
-              {getRelationName(report.category)} • {formatDate(report.updated_at)}
+              {report.report_number} - {getRelationName(report.hamlet)} -{" "}
+              {getRelationName(report.category)} - {formatDate(report.updated_at)}
             </p>
           </div>
 

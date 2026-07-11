@@ -17,15 +17,15 @@ export default async function AdminAgencyMasterDataPage() {
     <div className="space-y-6">
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-semibold text-primary">Master Data</p>
+          <p className="text-sm font-semibold text-primary">Data Master</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Agencies Data
+            Data Instansi
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Manage external agencies used when reports need to be forwarded
-            outside the village authority.
+            Kelola instansi luar yang digunakan saat laporan perlu diteruskan
+            ke luar kewenangan desa.
           </p>
         </div>
 
@@ -36,12 +36,12 @@ export default async function AdminAgencyMasterDataPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Building2 className="h-5 w-5 text-primary" />
-            Agencies
+            Instansi
           </CardTitle>
 
           <CardDescription>
-            Agency data helps admins decide where non-village asset reports
-            should be forwarded.
+            Data instansi membantu admin menentukan tujuan laporan yang bukan
+            kewenangan desa.
           </CardDescription>
         </CardHeader>
 

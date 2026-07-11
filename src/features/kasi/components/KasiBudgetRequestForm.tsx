@@ -75,7 +75,7 @@ export function KasiBudgetRequestForm({
 
   useEffect(() => {
     if (state.status === "success") {
-      toast.success("Success", {
+      toast.success("Berhasil", {
         description: state.message,
       });
 
@@ -83,7 +83,7 @@ export function KasiBudgetRequestForm({
     }
 
     if (state.status === "error") {
-      toast.error("Failed", {
+      toast.error("Gagal", {
         description: state.message,
       });
     }
@@ -122,11 +122,11 @@ export function KasiBudgetRequestForm({
     return (
       <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-8 text-center">
         <p className="text-sm font-semibold text-foreground">
-          No reports available for budget request
+          Tidak ada laporan yang bisa diajukan anggaran
         </p>
         <p className="mt-2 text-sm leading-6 text-muted-foreground">
-          Reports can be proposed for budgeting after they are assigned to your
-          section and enter village handling or in-progress status.
+          Laporan dapat diajukan anggaran setelah ditugaskan ke seksi Anda dan
+          masuk status ditangani desa atau sedang diproses.
         </p>
       </div>
     );
@@ -136,13 +136,13 @@ export function KasiBudgetRequestForm({
     <form action={action} className="space-y-5">
       <Select
         name="report_id"
-        label="Assigned report"
+        label="Laporan ditugaskan"
         defaultValue={defaultReportId}
         required
         disabled={isSubmitting}
       >
         <option value="" disabled>
-          Select assigned report
+          Pilih laporan ditugaskan
         </option>
         {reports.map((report) => (
           <option key={report.id} value={report.id}>
@@ -153,8 +153,8 @@ export function KasiBudgetRequestForm({
 
       <Textarea
         name="summary_note"
-        label="Budget need summary"
-        placeholder="Explain why this report needs a budget and what will be purchased or done."
+        label="Ringkasan kebutuhan anggaran"
+        placeholder="Jelaskan kenapa laporan ini membutuhkan anggaran dan apa yang akan dibeli atau dikerjakan."
         required
         disabled={isSubmitting}
       />
@@ -163,10 +163,10 @@ export function KasiBudgetRequestForm({
         <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
           <div>
             <p className="text-sm font-semibold text-foreground">
-              Estimate Items
+              Item Estimasi
             </p>
             <p className="mt-1 text-sm text-muted-foreground">
-              Add materials, labor, transport, or service items.
+              Tambahkan material, tenaga kerja, transportasi, atau jasa.
             </p>
           </div>
 
@@ -178,7 +178,7 @@ export function KasiBudgetRequestForm({
             disabled={isSubmitting}
           >
             <Plus className="mr-2 h-4 w-4" />
-            Add item
+            Tambah item
           </Button>
         </div>
 
@@ -202,7 +202,7 @@ export function KasiBudgetRequestForm({
                   size="sm"
                   onClick={() => removeItem(item.id)}
                   disabled={isSubmitting || items.length === 1}
-                  aria-label={`Remove item ${index + 1}`}
+                  aria-label={`Hapus item ${index + 1}`}
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
@@ -211,8 +211,8 @@ export function KasiBudgetRequestForm({
               <div className="mt-4 grid gap-4 lg:grid-cols-2">
                 <Input
                   name="item_name"
-                  label="Item name"
-                  placeholder="Example: Cement"
+                  label="Nama item"
+                  placeholder="Contoh: Semen"
                   value={item.itemName}
                   onChange={(event) =>
                     updateItem(item.id, "itemName", event.target.value)
@@ -223,8 +223,8 @@ export function KasiBudgetRequestForm({
 
                 <Input
                   name="item_description"
-                  label="Description"
-                  placeholder="Optional item detail"
+                  label="Deskripsi"
+                  placeholder="Detail item opsional"
                   value={item.description}
                   onChange={(event) =>
                     updateItem(item.id, "description", event.target.value)
@@ -234,7 +234,7 @@ export function KasiBudgetRequestForm({
 
                 <Input
                   name="item_quantity"
-                  label="Quantity"
+                  label="Jumlah"
                   type="number"
                   min="0.01"
                   step="0.01"
@@ -248,7 +248,7 @@ export function KasiBudgetRequestForm({
 
                 <Input
                   name="item_unit"
-                  label="Unit"
+                  label="Satuan"
                   placeholder="sak, meter, hari"
                   value={item.unit}
                   onChange={(event) =>
@@ -260,11 +260,11 @@ export function KasiBudgetRequestForm({
 
                 <Input
                   name="item_unit_price"
-                  label="Unit price"
+                  label="Harga satuan"
                   type="number"
                   min="0"
                   step="1000"
-                  placeholder="Example: 75000"
+                  placeholder="Contoh: 75000"
                   value={item.unitPrice}
                   onChange={(event) =>
                     updateItem(item.id, "unitPrice", event.target.value)
@@ -290,7 +290,7 @@ export function KasiBudgetRequestForm({
       <div className="flex flex-col justify-between gap-4 rounded-2xl border border-primary-100 bg-primary-50 p-4 sm:flex-row sm:items-center">
         <div>
           <p className="text-sm font-semibold text-primary-700">
-            Total estimated budget
+            Total estimasi anggaran
           </p>
           <p className="mt-1 text-2xl font-bold text-primary-700">
             {formatCurrency(totalEstimate)}
@@ -299,7 +299,7 @@ export function KasiBudgetRequestForm({
 
         <Button type="submit" disabled={isSubmitting}>
           <Wallet className="mr-2 h-4 w-4" />
-          {isSubmitting ? "Submitting..." : "Submit budget request"}
+          {isSubmitting ? "Mengirim..." : "Kirim pengajuan anggaran"}
         </Button>
       </div>
     </form>

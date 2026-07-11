@@ -36,21 +36,21 @@ export default async function KasiBudgetPage({
           className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to Kasi dashboard
+          Kembali ke dashboard Kasi
         </Link>
 
         <div className="mt-5">
           <p className="text-sm font-semibold text-primary">
-            Budget Proposal
+            Pengajuan Anggaran
           </p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Itemized Budget Request
+            Pengajuan Anggaran Per Item
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Prepare detailed cost estimates for reports that need village
-            budget allocation before handling can continue.
+            Siapkan estimasi biaya detail untuk laporan yang membutuhkan
+            alokasi anggaran desa sebelum penanganan dapat dilanjutkan.
           </p>
         </div>
       </section>
@@ -64,11 +64,11 @@ export default async function KasiBudgetPage({
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Wallet className="h-5 w-5 text-primary" />
-                New Budget Request
+                Pengajuan Anggaran Baru
               </CardTitle>
               <CardDescription>
-                Add each estimated item so leadership can review the budget
-                proposal clearly.
+                Tambahkan tiap item estimasi agar pimpinan dapat meninjau
+                pengajuan anggaran dengan jelas.
               </CardDescription>
             </CardHeader>
 
@@ -84,10 +84,10 @@ export default async function KasiBudgetPage({
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <ClipboardList className="h-5 w-5 text-primary" />
-                Submitted Requests
+                Pengajuan Terkirim
               </CardTitle>
               <CardDescription>
-                Budget proposals submitted by your section.
+                Pengajuan anggaran yang dikirim oleh seksi Anda.
               </CardDescription>
             </CardHeader>
 
@@ -104,8 +104,8 @@ export default async function KasiBudgetPage({
 function MissingSectionNotice() {
   return (
     <div className="rounded-2xl border border-warning-100 bg-warning-50 p-4 text-sm leading-6 text-warning-700">
-      Your account has not been assigned to a village section yet. Please ask
-      the admin, sekdes, or kepala desa to update your user profile.
+      Akun Anda belum ditautkan ke seksi desa. Silakan minta admin, sekdes,
+      atau kepala desa memperbarui profil pengguna Anda.
     </div>
   );
 }
@@ -113,11 +113,11 @@ function MissingSectionNotice() {
 function BudgetSchemaNotice() {
   return (
     <div className="rounded-2xl border border-warning-100 bg-warning-50 p-4 text-sm leading-6 text-warning-700">
-      Budget proposal tables are not available yet. Apply the migration{" "}
+      Tabel pengajuan anggaran belum tersedia. Jalankan migration{" "}
       <span className="font-semibold">
         supabase/migrations/202606240001_kasi_progress_workflow.sql
       </span>{" "}
-      to Supabase, then reload this page.
+      di Supabase, lalu muat ulang halaman ini.
     </div>
   );
 }
@@ -150,10 +150,10 @@ function BudgetRequestHistory({
     return (
       <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-8 text-center">
         <p className="text-sm font-semibold text-foreground">
-          No budget requests yet
+          Belum ada pengajuan anggaran
         </p>
         <p className="mt-2 text-sm leading-6 text-muted-foreground">
-          Submitted requests will appear here after you create one.
+          Pengajuan yang dikirim akan muncul di sini setelah Anda membuatnya.
         </p>
       </div>
     );
@@ -169,10 +169,10 @@ function BudgetRequestHistory({
           <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-start">
             <div>
               <p className="text-sm font-semibold text-foreground">
-                {request.report?.title ?? "Unknown report"}
+                {request.report?.title ?? "Laporan tidak diketahui"}
               </p>
               <p className="mt-1 text-xs text-muted-foreground">
-                {request.report?.report_number ?? "-"} •{" "}
+                {request.report?.report_number ?? "-"} -{" "}
                 {formatDateTime(request.created_at)}
               </p>
             </div>
@@ -186,7 +186,7 @@ function BudgetRequestHistory({
 
           <div className="mt-4 rounded-xl border border-primary-100 bg-primary-50 p-3">
             <p className="text-xs font-medium text-primary-700">
-              Total estimate
+              Total estimasi
             </p>
             <p className="mt-1 text-xl font-bold text-primary-700">
               {formatCurrency(request.total_estimated_budget)}
@@ -245,8 +245,11 @@ function formatDateTime(date: string) {
 }
 
 function formatEnum(value: string) {
-  return value
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const labels: Record<string, string> = {
+    submitted: "Menunggu Peninjauan",
+    approved: "Disetujui",
+    rejected: "Ditolak",
+  };
+
+  return labels[value] ?? value.replaceAll("_", " ");
 }
