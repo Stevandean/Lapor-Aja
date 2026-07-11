@@ -73,11 +73,11 @@ export function VillageHeatmapMap({ reports }: VillageHeatmapMapProps) {
       <div className="flex flex-col justify-between gap-4 rounded-2xl border border-border bg-muted/30 p-4 lg:flex-row lg:items-center">
         <div>
           <p className="text-sm font-semibold text-foreground">
-            Filter Peta
+            Saring Peta
           </p>
 
           <p className="mt-1 text-sm text-muted-foreground">
-            Filter titik laporan berdasarkan prioritas untuk fokus pada area
+            Saring titik laporan berdasarkan prioritas untuk fokus pada area
             masalah yang mendesak.
           </p>
         </div>

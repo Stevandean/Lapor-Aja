@@ -32,7 +32,7 @@ export default async function AdminReportsPage() {
         <div className="flex flex-wrap gap-3">
           <Button variant="outline">
             <Filter className="mr-2 h-4 w-4" />
-            Filter
+            Saring
           </Button>
 
           <Button variant="outline">

@@ -22,7 +22,7 @@ export default async function KasiDashboardPage() {
     <div className="space-y-6">
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-semibold text-primary">Dashboard Kasi</p>
+          <p className="text-sm font-semibold text-primary">Dasbor Kasi</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             Penanganan Laporan Internal

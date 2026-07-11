@@ -38,11 +38,12 @@ export function HamletVerificationTable({
         </div>
 
         <h3 className="mt-4 text-sm font-semibold text-foreground">
-          No verification reports
+          Belum ada laporan verifikasi
         </h3>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          Reports assigned to your hamlet will appear here after admin review.
+          Laporan yang ditugaskan ke dusun Anda akan muncul di sini setelah
+          review admin.
         </p>
       </div>
     );
@@ -54,13 +55,13 @@ export function HamletVerificationTable({
         <table className="w-full min-w-[850px] text-left text-sm">
           <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
-              <th className="px-5 py-4 font-semibold">Report</th>
-              <th className="px-5 py-4 font-semibold">Category</th>
-              <th className="px-5 py-4 font-semibold">Hamlet</th>
-              <th className="px-5 py-4 font-semibold">Priority</th>
+              <th className="px-5 py-4 font-semibold">Laporan</th>
+              <th className="px-5 py-4 font-semibold">Kategori</th>
+              <th className="px-5 py-4 font-semibold">Dusun</th>
+              <th className="px-5 py-4 font-semibold">Prioritas</th>
               <th className="px-5 py-4 font-semibold">Status</th>
-              <th className="px-5 py-4 font-semibold">Submitted</th>
-              <th className="px-5 py-4 font-semibold text-right">Action</th>
+              <th className="px-5 py-4 font-semibold">Dikirim</th>
+              <th className="px-5 py-4 font-semibold text-right">Aksi</th>
             </tr>
           </thead>
 
@@ -146,15 +147,15 @@ export function HamletVerificationTable({
 
             <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
               <InfoItem
-                label="Category"
+                label="Kategori"
                 value={getRelationName(report.categories)}
               />
-              <InfoItem label="Hamlet" value={getRelationName(report.dusuns)} />
+              <InfoItem label="Dusun" value={getRelationName(report.dusuns)} />
               <InfoItem
-                label="Priority"
+                label="Prioritas"
                 value={REPORT_PRIORITY_LABELS[report.priority] ?? report.priority}
               />
-              <InfoItem label="Submitted" value={formatDate(report.created_at)} />
+              <InfoItem label="Dikirim" value={formatDate(report.created_at)} />
             </div>
           </div>
         ))}

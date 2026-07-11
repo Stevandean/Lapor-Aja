@@ -189,13 +189,13 @@ function SlaRuleEditModal({ rule }: { rule: SlaRule }) {
         onClick={() => setOpen(true)}
       >
         <Pencil className="mr-2 h-4 w-4" />
-        Edit
+        Ubah
       </Button>
 
       <Modal
         open={open}
         onOpenChange={setOpen}
-        title="Edit Aturan SLA"
+        title="Ubah Aturan SLA"
         description="Perbarui batas waktu verifikasi dan penyelesaian untuk prioritas ini."
       >
         <form action={action} className="space-y-5">

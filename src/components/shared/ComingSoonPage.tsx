@@ -9,7 +9,7 @@ export function ComingSoonPage({ title, description }: ComingSoonPageProps) {
   return (
     <div className="space-y-6">
       <div>
-        <p className="text-sm font-medium text-primary">Dashboard</p>
+        <p className="text-sm font-medium text-primary">Dasbor</p>
         <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground">
           {title}
         </h1>
@@ -20,21 +20,21 @@ export function ComingSoonPage({ title, description }: ComingSoonPageProps) {
 
       <Card>
         <CardHeader>
-          <CardTitle>Page under development</CardTitle>
+          <CardTitle>Halaman dalam pengembangan</CardTitle>
           <CardDescription>
-            This page has been prepared as part of the dashboard structure and
-            will be completed in the next development step.
+            Halaman ini sudah disiapkan sebagai bagian dari struktur dasbor
+            dan akan dilengkapi pada tahap pengembangan berikutnya.
           </CardDescription>
         </CardHeader>
 
         <CardContent>
           <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-8 text-center">
             <p className="text-sm font-medium text-foreground">
-              Feature coming soon
+              Fitur segera hadir
             </p>
             <p className="mt-2 text-sm text-muted-foreground">
-              The layout and access control are ready. The feature content will
-              be added later.
+              Layout dan kontrol akses sudah siap. Konten fitur akan
+              ditambahkan nanti.
             </p>
           </div>
         </CardContent>

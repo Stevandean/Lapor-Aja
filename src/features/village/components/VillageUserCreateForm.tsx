@@ -23,7 +23,7 @@ const initialState: ActionState = {
 
 const roleOptions = [
   {
-    label: "Public",
+    label: "Masyarakat",
     value: "public",
   },
   {
@@ -68,24 +68,24 @@ export function VillageUserCreateForm({ hamlets }: VillageUserCreateFormProps) {
     <form action={action} className="rounded-2xl border border-border bg-card p-6">
       <div>
         <h2 className="text-lg font-semibold text-foreground">
-          Create User Account
+          Buat Akun Pengguna
         </h2>
 
         <p className="mt-1 text-sm text-muted-foreground">
-          Create an internal or public account and assign the correct role.
+          Buat akun internal atau masyarakat dan tetapkan peran yang sesuai.
         </p>
       </div>
 
       <div className="mt-6 grid gap-5">
         <div>
           <label className="form-label" htmlFor="full_name">
-            Full Name
+            Nama Lengkap
           </label>
 
           <Input
             id="full_name"
             name="full_name"
-            placeholder="Example: Ahmad Fauzi"
+            placeholder="Contoh: Ahmad Fauzi"
             required
           />
         </div>
@@ -106,38 +106,38 @@ export function VillageUserCreateForm({ hamlets }: VillageUserCreateFormProps) {
 
         <div>
           <label className="form-label" htmlFor="password">
-            Temporary Password
+            Kata Sandi Sementara
           </label>
 
           <Input
             id="password"
             name="password"
             type="password"
-            placeholder="Minimum 6 characters"
+            placeholder="Minimal 6 karakter"
             required
           />
 
           <p className="mt-2 text-xs text-muted-foreground">
-            Give this temporary password to the user. They can change it later
-            if password reset is added.
+            Berikan kata sandi sementara ini kepada pengguna. Pengguna dapat
+            menggantinya nanti jika fitur reset kata sandi sudah tersedia.
           </p>
         </div>
 
         <div>
           <label className="form-label" htmlFor="phone_number">
-            Phone Number
+            Nomor HP
           </label>
 
           <Input
             id="phone_number"
             name="phone_number"
-            placeholder="Example: 081234567890"
+            placeholder="Contoh: 081234567890"
           />
         </div>
 
         <div>
           <label className="form-label" htmlFor="role">
-            Role
+            Peran
           </label>
 
           <select
@@ -157,7 +157,7 @@ export function VillageUserCreateForm({ hamlets }: VillageUserCreateFormProps) {
 
         <div>
           <label className="form-label" htmlFor="dusun_id">
-            Hamlet Assignment
+            Penugasan Dusun
           </label>
 
           <select
@@ -166,7 +166,7 @@ export function VillageUserCreateForm({ hamlets }: VillageUserCreateFormProps) {
             disabled={selectedRole !== "kepala_dusun"}
             className="form-input disabled:cursor-not-allowed disabled:bg-muted"
           >
-            <option value="">Select hamlet</option>
+            <option value="">Pilih dusun</option>
 
             {hamlets.map((hamlet) => (
               <option key={hamlet.id} value={hamlet.id}>
@@ -176,14 +176,14 @@ export function VillageUserCreateForm({ hamlets }: VillageUserCreateFormProps) {
           </select>
 
           <p className="mt-2 text-xs text-muted-foreground">
-            Hamlet assignment is required only for Kepala Dusun.
+            Penugasan dusun hanya wajib untuk peran Kepala Dusun.
           </p>
         </div>
       </div>
 
       <div className="mt-6 flex justify-end">
         <Button type="submit" disabled={isPending}>
-          {isPending ? "Creating..." : "Create User"}
+          {isPending ? "Membuat..." : "Buat Pengguna"}
         </Button>
       </div>
     </form>

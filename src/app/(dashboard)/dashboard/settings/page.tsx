@@ -7,14 +7,14 @@ export default async function SettingsPage() {
   return (
     <div className="space-y-6">
       <section>
-        <p className="text-sm font-semibold text-primary">Settings</p>
+        <p className="text-sm font-semibold text-primary">Pengaturan</p>
 
         <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-          Account Settings
+          Pengaturan Akun
         </h1>
 
         <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-          Manage your profile, password, and notification preferences.
+          Kelola profil, kata sandi, dan preferensi notifikasi akun Anda.
         </p>
       </section>
 

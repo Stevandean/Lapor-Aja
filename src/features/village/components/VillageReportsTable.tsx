@@ -274,7 +274,7 @@ export function VillageReportsTable({
               className="gap-2"
             >
               <X className="h-4 w-4" />
-              Reset Filter
+              Atur Ulang Saringan
             </Button>
           ) : null}
         </div>

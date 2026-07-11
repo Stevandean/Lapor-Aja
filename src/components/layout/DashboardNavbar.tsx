@@ -32,7 +32,7 @@ export function DashboardNavbar({
         </button>
 
         <div>
-          <p className="text-sm text-muted-foreground">Dashboard</p>
+          <p className="text-sm text-muted-foreground">Dasbor</p>
           <h1 className="line-clamp-1 text-lg font-semibold text-foreground">
             Selamat datang, {profile.full_name}
           </h1>

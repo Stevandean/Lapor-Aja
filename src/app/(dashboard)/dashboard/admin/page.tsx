@@ -40,7 +40,7 @@ export default async function AdminDashboardPage() {
     <div className="space-y-8">
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-sm font-semibold text-primary">Dashboard Admin</p>
+          <p className="text-sm font-semibold text-primary">Dasbor Admin</p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             Beranda Pengelolaan Laporan

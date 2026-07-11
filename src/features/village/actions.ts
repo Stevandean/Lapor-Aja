@@ -142,14 +142,14 @@ export async function updateVillageUser(
   if (!isManagedUserRole(role)) {
     return {
       status: "error",
-      message: "Role pengguna tidak valid.",
+      message: "Peran pengguna tidak valid.",
     };
   }
 
   if (role === "admin" && manager.role !== "admin") {
     return {
       status: "error",
-      message: "Hanya admin yang bisa menetapkan role admin.",
+      message: "Hanya admin yang bisa menetapkan peran admin.",
     };
   }
 
@@ -170,7 +170,7 @@ export async function updateVillageUser(
   if (userId === manager.id && role !== manager.role) {
     return {
       status: "error",
-      message: "Anda tidak bisa mengubah role akun sendiri.",
+      message: "Anda tidak bisa mengubah peran akun sendiri.",
     };
   }
 
@@ -292,14 +292,14 @@ export async function createVillageUser(
   if (!password || password.length < 6) {
     return {
       status: "error",
-      message: "Password minimal 6 karakter.",
+      message: "Kata sandi minimal 6 karakter.",
     };
   }
 
   if (!isManagedUserRole(role)) {
     return {
       status: "error",
-      message: "Role pengguna tidak valid.",
+      message: "Peran pengguna tidak valid.",
     };
   }
 

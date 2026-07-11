@@ -37,7 +37,7 @@ export async function updateOwnProfile(
   if (!fullName) {
     return {
       status: "error",
-      message: "Full name is required.",
+      message: "Nama lengkap wajib diisi.",
     };
   }
 
@@ -48,14 +48,14 @@ export async function updateOwnProfile(
     if (!isValidAvatar(avatar)) {
       return {
         status: "error",
-        message: "Avatar must be JPG, PNG, or WEBP.",
+        message: "Foto profil harus berformat JPG, PNG, atau WEBP.",
       };
     }
 
     if (avatar.size > MAX_AVATAR_SIZE) {
       return {
         status: "error",
-        message: "Avatar must be less than 2MB.",
+        message: "Foto profil harus kurang dari 2MB.",
       };
     }
 
@@ -74,7 +74,7 @@ export async function updateOwnProfile(
         status: "error",
         message:
           uploadError.message ||
-          "Failed to upload avatar. Please apply the settings migration.",
+          "Gagal mengunggah foto profil. Jalankan migration pengaturan terlebih dahulu.",
       };
     }
   }
@@ -101,7 +101,7 @@ export async function updateOwnProfile(
 
   return {
     status: "success",
-    message: "Profile updated successfully.",
+    message: "Profil berhasil diperbarui.",
   };
 }
 
@@ -119,14 +119,14 @@ export async function updateOwnPassword(
   if (password.length < 8) {
     return {
       status: "error",
-      message: "Password must be at least 8 characters.",
+      message: "Kata sandi minimal 8 karakter.",
     };
   }
 
   if (password !== confirmPassword) {
     return {
       status: "error",
-      message: "Password confirmation does not match.",
+      message: "Konfirmasi kata sandi tidak cocok.",
     };
   }
 
@@ -144,7 +144,7 @@ export async function updateOwnPassword(
 
   return {
     status: "success",
-    message: "Password updated successfully.",
+    message: "Kata sandi berhasil diperbarui.",
   };
 }
 
@@ -174,7 +174,7 @@ export async function updateNotificationPreferences(
     return {
       status: "error",
       message: isMissingNotificationSettingsColumn(error)
-        ? "Notification preferences are not available yet. Please apply the settings migration first."
+        ? "Preferensi notifikasi belum tersedia. Jalankan migration pengaturan terlebih dahulu."
         : error.message,
     };
   }
@@ -184,7 +184,7 @@ export async function updateNotificationPreferences(
 
   return {
     status: "success",
-    message: "Notification preferences updated.",
+    message: "Preferensi notifikasi berhasil diperbarui.",
   };
 }
 

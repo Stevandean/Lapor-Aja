@@ -52,7 +52,7 @@ export default async function VillageDashboardPage() {
       <section className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
           <p className="text-sm font-semibold text-primary">
-            Dashboard Pimpinan Desa
+            Dasbor Pimpinan Desa
           </p>
 
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
@@ -61,7 +61,7 @@ export default async function VillageDashboardPage() {
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
             Pantau laporan masyarakat, progres tindak lanjut, kondisi SLA, dan
-            dukungan keputusan tingkat desa dari satu dashboard.
+            dukungan keputusan tingkat desa dari satu dasbor.
           </p>
         </div>
 

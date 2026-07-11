@@ -97,7 +97,7 @@ export function VillageUserCreateModal({
         open={open}
         onOpenChange={setOpen}
         title="Buat Pengguna"
-        description="Buat akun masyarakat atau perangkat desa dengan penugasan role yang aman."
+        description="Buat akun masyarakat atau perangkat desa dengan penugasan peran yang aman."
       >
         <form action={action} className="space-y-5">
           <div>
@@ -129,7 +129,7 @@ export function VillageUserCreateModal({
 
           <div>
             <label className="form-label" htmlFor="password">
-              Password Sementara
+              Kata Sandi Sementara
             </label>
 
             <Input
@@ -141,8 +141,8 @@ export function VillageUserCreateModal({
             />
 
             <p className="mt-2 text-xs leading-5 text-muted-foreground">
-              Berikan password sementara ini kepada pengguna. Pengguna dapat
-              menggantinya nanti jika fitur reset password sudah ditambahkan.
+              Berikan kata sandi sementara ini kepada pengguna. Pengguna dapat
+              menggantinya nanti jika fitur reset kata sandi sudah ditambahkan.
             </p>
           </div>
 
@@ -160,7 +160,7 @@ export function VillageUserCreateModal({
 
           <div>
             <label className="form-label" htmlFor="role">
-              Role
+              Peran
             </label>
 
             <select

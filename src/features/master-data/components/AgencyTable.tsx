@@ -203,13 +203,13 @@ function AgencyEditModal({ agency }: { agency: Agency }) {
         onClick={() => setOpen(true)}
       >
         <Pencil className="mr-2 h-4 w-4" />
-        Edit
+        Ubah
       </Button>
 
       <Modal
         open={open}
         onOpenChange={setOpen}
-        title="Edit Instansi"
+        title="Ubah Instansi"
         description="Perbarui informasi instansi."
         className="max-w-2xl"
       >

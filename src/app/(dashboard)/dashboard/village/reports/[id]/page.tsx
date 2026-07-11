@@ -477,12 +477,12 @@ export default async function VillageReportDetailPage({
                 <CardTitle>Dinas Tujuan</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <InfoRow label="Agency" value={getAgencyValue(report.agency, "name")} />
+                <InfoRow label="Dinas" value={getAgencyValue(report.agency, "name")} />
                 <InfoRow
-                  label="Contact"
+                  label="Kontak"
                   value={getAgencyValue(report.agency, "contact_person")}
                 />
-                <InfoRow label="Phone" value={getAgencyValue(report.agency, "phone")} />
+                <InfoRow label="Nomor HP" value={getAgencyValue(report.agency, "phone")} />
                 <InfoRow label="Email" value={getAgencyValue(report.agency, "email")} />
                 <p className="whitespace-pre-line rounded-xl bg-muted/40 p-3 text-sm leading-6 text-muted-foreground">
                   {getAgencyValue(report.agency, "description")}
@@ -493,15 +493,15 @@ export default async function VillageReportDetailPage({
 
           <Card>
             <CardHeader>
-              <CardTitle>Internal Notes</CardTitle>
+              <CardTitle>Catatan Internal</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <NoteBlock title="Admin Note" note={report.admin_note} />
+              <NoteBlock title="Catatan Admin" note={report.admin_note} />
               <NoteBlock
-                title="Handling Note"
+                title="Catatan Penanganan"
                 note={report.internal_handling_note}
               />
-              <NoteBlock title="Rejection Reason" note={report.rejection_reason} />
+              <NoteBlock title="Alasan Penolakan" note={report.rejection_reason} />
             </CardContent>
           </Card>
         </aside>
@@ -541,7 +541,7 @@ function PhotoCard({ src, alt }: { src: string | null; alt: string }) {
     return (
       <div className="flex aspect-video items-center justify-center rounded-2xl border border-dashed border-border bg-muted/40 text-sm text-muted-foreground">
         <ImageIcon className="mr-2 h-4 w-4" />
-        Photo unavailable
+        Foto tidak tersedia
       </div>
     );
   }

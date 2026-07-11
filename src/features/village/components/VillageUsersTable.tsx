@@ -38,7 +38,7 @@ type VillageUsersTableProps = {
 
 const roleFilters = [
   {
-    label: "Semua Role",
+    label: "Semua Peran",
     value: "all",
   },
   {
@@ -149,7 +149,7 @@ export function VillageUsersTable({ users }: VillageUsersTableProps) {
 
             <div>
               <label className="form-label" htmlFor="role-filter">
-                Role
+                Peran
               </label>
 
               <select
@@ -226,7 +226,7 @@ export function VillageUsersTable({ users }: VillageUsersTableProps) {
               <thead className="border-b border-border bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
                 <tr>
                   <th className="px-5 py-4 font-semibold">Pengguna</th>
-                  <th className="px-5 py-4 font-semibold">Role</th>
+                  <th className="px-5 py-4 font-semibold">Peran</th>
                   <th className="px-5 py-4 font-semibold">Status</th>
                   <th className="px-5 py-4 font-semibold">Nomor HP</th>
                   <th className="px-5 py-4 font-semibold">Penugasan</th>
@@ -361,11 +361,11 @@ function NoFilteredUsersState({ onReset }: { onReset: () => void }) {
       </h3>
 
       <p className="mt-2 text-sm text-muted-foreground">
-        Coba ubah kata kunci, filter role, atau filter status.
+        Coba ubah kata kunci, saringan peran, atau saringan status.
       </p>
 
       <Button type="button" variant="outline" onClick={onReset} className="mt-5">
-        Reset Filter
+        Atur Ulang Saringan
       </Button>
     </div>
   );

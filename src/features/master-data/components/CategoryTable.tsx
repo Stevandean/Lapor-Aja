@@ -150,13 +150,13 @@ function CategoryEditModal({ category }: { category: Category }) {
     <>
       <Button type="button" variant="outline" size="sm" onClick={() => setOpen(true)}>
         <Pencil className="mr-2 h-4 w-4" />
-        Edit
+        Ubah
       </Button>
 
       <Modal
         open={open}
         onOpenChange={setOpen}
-        title="Edit Kategori"
+        title="Ubah Kategori"
         description="Perbarui informasi kategori."
       >
         <form action={action} className="space-y-5">

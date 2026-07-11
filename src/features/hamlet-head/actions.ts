@@ -37,7 +37,7 @@ export async function verifyReport(
   if (!profile.dusun_id) {
     return {
       status: "error",
-      message: "Your account has not been assigned to a hamlet.",
+      message: "Akun Anda belum ditugaskan ke dusun.",
     };
   }
 
@@ -52,35 +52,35 @@ export async function verifyReport(
   if (!reportId) {
     return {
       status: "error",
-      message: "Report ID is missing.",
+      message: "ID laporan tidak ditemukan.",
     };
   }
 
   if (result !== "valid" && result !== "invalid") {
     return {
       status: "error",
-      message: "Please choose a verification result.",
+      message: "Pilih hasil verifikasi terlebih dahulu.",
     };
   }
 
   if (!verificationNote) {
     return {
       status: "error",
-      message: "Please write a verification note.",
+      message: "Tulis catatan verifikasi terlebih dahulu.",
     };
   }
 
   if (photos.length === 0) {
     return {
       status: "error",
-      message: "Please upload at least one verification photo.",
+      message: "Unggah minimal satu foto verifikasi.",
     };
   }
 
   if (photos.length > 5) {
     return {
       status: "error",
-      message: "You can upload a maximum of 5 verification photos.",
+      message: "Anda hanya bisa mengunggah maksimal 5 foto verifikasi.",
     };
   }
 
@@ -88,14 +88,14 @@ export async function verifyReport(
     if (!isValidImage(photo)) {
       return {
         status: "error",
-        message: "Only JPG, PNG, and WEBP images are allowed.",
+        message: "Hanya gambar JPG, PNG, dan WEBP yang diizinkan.",
       };
     }
 
     if (photo.size > 10 * 1024 * 1024) {
       return {
         status: "error",
-        message: "Each photo must be less than 10MB.",
+        message: "Setiap foto harus kurang dari 10MB.",
       };
     }
   }
@@ -114,7 +114,7 @@ export async function verifyReport(
     return {
       status: "error",
       message:
-        "Report not found, already verified, or not assigned to your hamlet.",
+        "Laporan tidak ditemukan, sudah diverifikasi, atau bukan penugasan dusun Anda.",
     };
   }
 
@@ -135,7 +135,7 @@ export async function verifyReport(
   if (verificationError || !verification) {
     return {
       status: "error",
-      message: verificationError?.message || "Failed to save verification data.",
+      message: verificationError?.message || "Gagal menyimpan data verifikasi.",
     };
   }
 
@@ -195,15 +195,15 @@ export async function verifyReport(
     oldStatus: "need_verification",
     newStatus,
     note: isValid
-      ? "Report verified as valid by hamlet head."
-      : "Report verified as invalid by hamlet head.",
+      ? "Laporan diverifikasi valid oleh kepala dusun."
+      : "Laporan diverifikasi tidak valid oleh kepala dusun.",
   });
 
   if (!isValid) {
     await recordSlaEvent({
       reportId,
       eventType: "completed",
-      note: "SLA completed when report was verified as invalid.",
+      note: "SLA selesai karena laporan diverifikasi tidak valid.",
     });
   }
 
@@ -223,7 +223,7 @@ export async function verifyReport(
     status: "success",
     message:
       result === "valid"
-        ? "Report has been verified as valid."
-        : "Report has been verified as invalid.",
+        ? "Laporan berhasil diverifikasi valid."
+        : "Laporan berhasil diverifikasi tidak valid.",
   };
 }

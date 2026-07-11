@@ -14,30 +14,31 @@ export default async function HamletHeadVerificationPage() {
   return (
     <div className="space-y-6">
       <section>
-        <p className="text-sm font-semibold text-primary">Verification</p>
+        <p className="text-sm font-semibold text-primary">Verifikasi</p>
 
         <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-          Report Verification
+          Verifikasi Laporan
         </h1>
 
         <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-          Review reports assigned to your hamlet and verify whether the reported
-          issue is valid in the field.
+          Tinjau laporan yang ditugaskan ke dusun Anda dan verifikasi apakah
+          masalah yang dilaporkan valid di lapangan.
         </p>
       </section>
 
       {missingHamlet && (
         <div className="rounded-2xl border border-warning-100 bg-warning-50 p-4 text-sm leading-6 text-warning-700">
-          Your account has not been assigned to a hamlet yet. Please ask the
-          admin to set your hamlet in the profile data.
+          Akun Anda belum ditugaskan ke dusun. Hubungi admin untuk mengatur
+          dusun pada data profil Anda.
         </div>
       )}
 
       <Card>
         <CardHeader>
-          <CardTitle>Reports Need Verification</CardTitle>
+          <CardTitle>Laporan Perlu Verifikasi</CardTitle>
           <CardDescription>
-            Showing reports approved by admin and assigned to your hamlet.
+            Menampilkan laporan yang sudah disetujui admin dan ditugaskan ke
+            dusun Anda.
           </CardDescription>
         </CardHeader>
 

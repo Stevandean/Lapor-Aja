@@ -117,11 +117,11 @@ export function VillageUserEditForm({
 
         <div>
           <h2 className="text-lg font-semibold text-foreground">
-            Edit Profil Pengguna
+            Ubah Profil Pengguna
           </h2>
 
           <p className="mt-1 text-sm text-muted-foreground">
-            Perbarui identitas, role, dan penugasan pengguna.
+            Perbarui identitas, peran, dan penugasan pengguna.
           </p>
         </div>
 
@@ -166,7 +166,7 @@ export function VillageUserEditForm({
 
           <div>
             <label className="form-label" htmlFor="role">
-              Role
+              Peran
             </label>
 
             <select
@@ -259,7 +259,7 @@ export function VillageUserEditForm({
           </h2>
 
           <p className="mt-2 text-sm leading-6 text-muted-foreground">
-            Pengguna nonaktif tidak dapat mengakses fitur dashboard yang
+            Pengguna nonaktif tidak dapat mengakses fitur dasbor yang
             dilindungi.
           </p>
 
@@ -302,7 +302,7 @@ export function VillageUserEditForm({
           </p>
 
           <p className="mt-2 text-sm leading-6 text-warning-700">
-            Jangan berikan role admin, sekdes, atau kepala desa kepada pengguna
+            Jangan berikan peran admin, sekdes, atau kepala desa kepada pengguna
             publik kecuali akun sudah diverifikasi sebagai akun perangkat resmi.
           </p>
         </div>

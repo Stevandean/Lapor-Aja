@@ -76,10 +76,10 @@ export function SettingsForms({ profile }: SettingsFormsProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <UserCog className="h-5 w-5 text-primary" />
-              Profile
+              Profil
             </CardTitle>
             <CardDescription>
-              Update your display name, phone number, and profile photo.
+              Perbarui nama tampilan, nomor HP, dan foto profil Anda.
             </CardDescription>
           </CardHeader>
 
@@ -90,7 +90,7 @@ export function SettingsForms({ profile }: SettingsFormsProps) {
 
                 <div className="flex-1">
                   <label className="form-label" htmlFor="avatar">
-                    Profile photo
+                    Foto profil
                   </label>
                   <input
                     id="avatar"
@@ -101,13 +101,13 @@ export function SettingsForms({ profile }: SettingsFormsProps) {
                     disabled={isProfilePending}
                   />
                   <p className="mt-2 text-sm text-muted-foreground">
-                    JPG, PNG, or WEBP. Maximum 2MB.
+                    JPG, PNG, atau WEBP. Maksimal 2MB.
                   </p>
                 </div>
               </div>
 
               <Input
-                label="Full name"
+                label="Nama lengkap"
                 name="full_name"
                 defaultValue={profile.full_name}
                 required
@@ -115,24 +115,24 @@ export function SettingsForms({ profile }: SettingsFormsProps) {
               />
 
               <Input
-                label="Phone number"
+                label="Nomor HP"
                 name="phone_number"
                 defaultValue={profile.phone_number ?? ""}
                 placeholder="08xxxxxxxxxx"
                 disabled={isProfilePending}
-                helperText="This number is used for WhatsApp notifications when enabled."
+                helperText="Nomor ini digunakan untuk notifikasi WhatsApp jika diaktifkan."
               />
 
               <Input
                 label="Email"
                 value={profile.email}
                 disabled
-                helperText="Email is managed by your login account and is read-only here."
+                helperText="Email dikelola oleh akun login Anda dan hanya bisa dibaca di sini."
               />
 
               <Button type="submit" disabled={isProfilePending}>
                 <Save className="mr-2 h-4 w-4" />
-                {isProfilePending ? "Saving..." : "Save Profile"}
+                {isProfilePending ? "Menyimpan..." : "Simpan Profil"}
               </Button>
             </form>
           </CardContent>
@@ -142,17 +142,17 @@ export function SettingsForms({ profile }: SettingsFormsProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <KeyRound className="h-5 w-5 text-primary" />
-              Security
+              Keamanan
             </CardTitle>
             <CardDescription>
-              Change your password for the current login account.
+              Ubah kata sandi untuk akun login saat ini.
             </CardDescription>
           </CardHeader>
 
           <CardContent>
             <form action={passwordAction} className="space-y-5">
               <Input
-                label="New password"
+                label="Kata sandi baru"
                 name="password"
                 type="password"
                 minLength={8}
@@ -161,7 +161,7 @@ export function SettingsForms({ profile }: SettingsFormsProps) {
               />
 
               <Input
-                label="Confirm new password"
+                label="Konfirmasi kata sandi baru"
                 name="confirm_password"
                 type="password"
                 minLength={8}
@@ -171,7 +171,7 @@ export function SettingsForms({ profile }: SettingsFormsProps) {
 
               <Button type="submit" disabled={isPasswordPending}>
                 <KeyRound className="mr-2 h-4 w-4" />
-                {isPasswordPending ? "Updating..." : "Update Password"}
+                {isPasswordPending ? "Memperbarui..." : "Perbarui Kata Sandi"}
               </Button>
             </form>
           </CardContent>
@@ -183,10 +183,10 @@ export function SettingsForms({ profile }: SettingsFormsProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Bell className="h-5 w-5 text-primary" />
-              Notifications
+              Notifikasi
             </CardTitle>
             <CardDescription>
-              Choose which notification channels are allowed for your account.
+              Pilih kanal notifikasi yang diizinkan untuk akun Anda.
             </CardDescription>
           </CardHeader>
 
@@ -194,29 +194,29 @@ export function SettingsForms({ profile }: SettingsFormsProps) {
             <form action={notificationAction} className="space-y-4">
               {!notificationSettingsAvailable ? (
                 <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-900">
-                  Notification preferences are not available yet. Apply the
-                  settings migration first, then reload this page.
+                  Preferensi notifikasi belum tersedia. Jalankan migration
+                  pengaturan terlebih dahulu, lalu muat ulang halaman ini.
                 </div>
               ) : null}
 
               <PreferenceToggle
                 name="notification_internal_enabled"
-                title="Internal popup"
-                description="Show notifications in the dashboard navbar."
+                title="Popup internal"
+                description="Tampilkan notifikasi di navbar dasbor."
                 defaultChecked={profile.notification_internal_enabled ?? true}
                 disabled={isNotificationPending || !notificationSettingsAvailable}
               />
               <PreferenceToggle
                 name="notification_email_enabled"
                 title="Email"
-                description="Allow system notifications to be sent by email."
+                description="Izinkan notifikasi sistem dikirim melalui email."
                 defaultChecked={profile.notification_email_enabled ?? true}
                 disabled={isNotificationPending || !notificationSettingsAvailable}
               />
               <PreferenceToggle
                 name="notification_whatsapp_enabled"
                 title="WhatsApp"
-                description="Allow WhatsApp notifications when your phone number is available."
+                description="Izinkan notifikasi WhatsApp saat nomor HP Anda tersedia."
                 defaultChecked={profile.notification_whatsapp_enabled ?? true}
                 disabled={isNotificationPending || !notificationSettingsAvailable}
               />
@@ -228,7 +228,7 @@ export function SettingsForms({ profile }: SettingsFormsProps) {
                 className="w-full"
               >
                 <Save className="mr-2 h-4 w-4" />
-                {isNotificationPending ? "Saving..." : "Save Preferences"}
+                {isNotificationPending ? "Menyimpan..." : "Simpan Preferensi"}
               </Button>
             </form>
           </CardContent>
@@ -236,16 +236,16 @@ export function SettingsForms({ profile }: SettingsFormsProps) {
 
         <Card>
           <CardHeader>
-            <CardTitle>Account Assignment</CardTitle>
+            <CardTitle>Penugasan Akun</CardTitle>
             <CardDescription>
-              Role and assignment data are managed by authorized staff.
+              Data peran dan penugasan dikelola oleh petugas yang berwenang.
             </CardDescription>
           </CardHeader>
 
           <CardContent className="space-y-4">
-            <InfoRow label="Role" value={ROLE_LABELS[profile.role]} />
-            <InfoRow label="Hamlet" value={getRelationName(profile.dusun)} />
-            <InfoRow label="Section" value={getRelationName(profile.section)} />
+            <InfoRow label="Peran" value={ROLE_LABELS[profile.role]} />
+            <InfoRow label="Dusun" value={getRelationName(profile.dusun)} />
+            <InfoRow label="Seksi" value={getRelationName(profile.section)} />
           </CardContent>
         </Card>
       </aside>
@@ -261,7 +261,7 @@ function AvatarPreview({ profile }: { profile: SettingsProfile }) {
       <div className="relative h-24 w-24 overflow-hidden rounded-2xl border border-border bg-muted">
         <Image
           src={profile.avatar_signed_url}
-          alt="Profile avatar"
+          alt="Foto profil"
           fill
           className="object-cover"
         />

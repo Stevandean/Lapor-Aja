@@ -145,13 +145,13 @@ function DusunEditModal({ dusun }: { dusun: Dusun }) {
         onClick={() => setOpen(true)}
       >
         <Pencil className="mr-2 h-4 w-4" />
-        Edit
+        Ubah
       </Button>
 
       <Modal
         open={open}
         onOpenChange={setOpen}
-        title="Edit Dusun"
+        title="Ubah Dusun"
         description="Perbarui informasi dusun."
       >
         <form action={action} className="space-y-5">
